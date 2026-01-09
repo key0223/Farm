@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - BoundsConfiner
+  - Deco1
+  - Deco2
+  - ItemsParent
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Interactable
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 1196879233
+    locked: 0
+  - name: Deco
+    uniqueID: 1445142125
+    locked: 0
+  - name: Buildings
+    uniqueID: 684388209
+    locked: 0
+  - name: Path
+    uniqueID: 3401534789
+    locked: 0
+  - name: Instances
+    uniqueID: 1716287463
+    locked: 0
+  - name: Front
+    uniqueID: 2524668801
+    locked: 0
+  - name: AlwaysFront
+    uniqueID: 4176751347
+    locked: 0
+  - name: Objects
+    uniqueID: 126145591
+    locked: 0

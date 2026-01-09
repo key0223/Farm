@@ -1,0 +1,946 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" parallaxoriginx="0" parallaxoriginy="2" nextlayerid="19" nextobjectid="63">
+ <tileset firstgid="1" name="Smoke1" tilewidth="15" tileheight="37" tilecount="30" columns="30">
+  <image source="Tiles/VFX/Smoke/Smoke1.png" width="450" height="37"/>
+  <tile id="0">
+   <animation>
+    <frame tileid="0" duration="100"/>
+    <frame tileid="1" duration="100"/>
+    <frame tileid="2" duration="100"/>
+    <frame tileid="3" duration="100"/>
+    <frame tileid="4" duration="100"/>
+    <frame tileid="5" duration="100"/>
+    <frame tileid="6" duration="100"/>
+    <frame tileid="7" duration="100"/>
+    <frame tileid="8" duration="100"/>
+    <frame tileid="9" duration="100"/>
+    <frame tileid="10" duration="100"/>
+    <frame tileid="11" duration="100"/>
+    <frame tileid="12" duration="100"/>
+    <frame tileid="13" duration="100"/>
+    <frame tileid="14" duration="100"/>
+    <frame tileid="15" duration="100"/>
+    <frame tileid="16" duration="100"/>
+    <frame tileid="17" duration="100"/>
+    <frame tileid="18" duration="100"/>
+    <frame tileid="19" duration="100"/>
+    <frame tileid="20" duration="100"/>
+    <frame tileid="21" duration="100"/>
+    <frame tileid="22" duration="100"/>
+    <frame tileid="23" duration="100"/>
+    <frame tileid="24" duration="100"/>
+    <frame tileid="25" duration="100"/>
+    <frame tileid="26" duration="100"/>
+    <frame tileid="27" duration="100"/>
+    <frame tileid="28" duration="100"/>
+    <frame tileid="29" duration="100"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="31" name="Smoke2" tilewidth="10" tileheight="30" tilecount="30" columns="30">
+  <image source="Tiles/VFX/Smoke/Smoke2.png" width="300" height="30"/>
+  <tile id="0">
+   <animation>
+    <frame tileid="0" duration="100"/>
+    <frame tileid="1" duration="100"/>
+    <frame tileid="2" duration="100"/>
+    <frame tileid="3" duration="100"/>
+    <frame tileid="4" duration="100"/>
+    <frame tileid="5" duration="100"/>
+    <frame tileid="6" duration="100"/>
+    <frame tileid="7" duration="100"/>
+    <frame tileid="8" duration="100"/>
+    <frame tileid="9" duration="100"/>
+    <frame tileid="10" duration="100"/>
+    <frame tileid="11" duration="100"/>
+    <frame tileid="12" duration="100"/>
+    <frame tileid="13" duration="100"/>
+    <frame tileid="14" duration="100"/>
+    <frame tileid="15" duration="100"/>
+    <frame tileid="16" duration="100"/>
+    <frame tileid="17" duration="100"/>
+    <frame tileid="18" duration="100"/>
+    <frame tileid="19" duration="100"/>
+    <frame tileid="20" duration="100"/>
+    <frame tileid="21" duration="100"/>
+    <frame tileid="22" duration="100"/>
+    <frame tileid="23" duration="100"/>
+    <frame tileid="24" duration="100"/>
+    <frame tileid="25" duration="100"/>
+    <frame tileid="26" duration="100"/>
+    <frame tileid="27" duration="100"/>
+    <frame tileid="28" duration="100"/>
+    <frame tileid="29" duration="100"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="61" name="Smoke3" tilewidth="18" tileheight="21" tilecount="30" columns="30">
+  <image source="Tiles/VFX/Smoke/Smoke3.png" width="540" height="21"/>
+  <tile id="0">
+   <animation>
+    <frame tileid="0" duration="100"/>
+    <frame tileid="1" duration="100"/>
+    <frame tileid="2" duration="100"/>
+    <frame tileid="3" duration="100"/>
+    <frame tileid="4" duration="100"/>
+    <frame tileid="5" duration="100"/>
+    <frame tileid="6" duration="100"/>
+    <frame tileid="7" duration="100"/>
+    <frame tileid="8" duration="100"/>
+    <frame tileid="9" duration="100"/>
+    <frame tileid="10" duration="100"/>
+    <frame tileid="11" duration="100"/>
+    <frame tileid="12" duration="100"/>
+    <frame tileid="13" duration="100"/>
+    <frame tileid="14" duration="100"/>
+    <frame tileid="15" duration="100"/>
+    <frame tileid="16" duration="100"/>
+    <frame tileid="17" duration="100"/>
+    <frame tileid="18" duration="100"/>
+    <frame tileid="19" duration="100"/>
+    <frame tileid="20" duration="100"/>
+    <frame tileid="21" duration="100"/>
+    <frame tileid="22" duration="100"/>
+    <frame tileid="23" duration="100"/>
+    <frame tileid="24" duration="100"/>
+    <frame tileid="25" duration="100"/>
+    <frame tileid="26" duration="100"/>
+    <frame tileid="27" duration="100"/>
+    <frame tileid="28" duration="100"/>
+    <frame tileid="29" duration="100"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="91" name="Smoke4" tilewidth="20" tileheight="32" tilecount="30" columns="30">
+  <image source="Tiles/VFX/Smoke/Smoke4.png" width="600" height="32"/>
+  <tile id="0">
+   <animation>
+    <frame tileid="0" duration="100"/>
+    <frame tileid="1" duration="100"/>
+    <frame tileid="2" duration="100"/>
+    <frame tileid="3" duration="100"/>
+    <frame tileid="4" duration="100"/>
+    <frame tileid="5" duration="100"/>
+    <frame tileid="6" duration="100"/>
+    <frame tileid="7" duration="100"/>
+    <frame tileid="8" duration="100"/>
+    <frame tileid="9" duration="100"/>
+    <frame tileid="10" duration="100"/>
+    <frame tileid="11" duration="100"/>
+    <frame tileid="12" duration="100"/>
+    <frame tileid="13" duration="100"/>
+    <frame tileid="14" duration="100"/>
+    <frame tileid="15" duration="100"/>
+    <frame tileid="16" duration="100"/>
+    <frame tileid="17" duration="100"/>
+    <frame tileid="18" duration="100"/>
+    <frame tileid="19" duration="100"/>
+    <frame tileid="20" duration="100"/>
+    <frame tileid="21" duration="100"/>
+    <frame tileid="22" duration="100"/>
+    <frame tileid="23" duration="100"/>
+    <frame tileid="24" duration="100"/>
+    <frame tileid="25" duration="100"/>
+    <frame tileid="26" duration="100"/>
+    <frame tileid="27" duration="100"/>
+    <frame tileid="28" duration="100"/>
+    <frame tileid="29" duration="100"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="121" name="Smoke5" tilewidth="24" tileheight="19" tilecount="30" columns="30">
+  <image source="Tiles/VFX/Smoke/Smoke5.png" width="720" height="19"/>
+  <tile id="0">
+   <animation>
+    <frame tileid="0" duration="100"/>
+    <frame tileid="1" duration="100"/>
+    <frame tileid="2" duration="100"/>
+    <frame tileid="3" duration="100"/>
+    <frame tileid="4" duration="100"/>
+    <frame tileid="5" duration="100"/>
+    <frame tileid="6" duration="100"/>
+    <frame tileid="7" duration="100"/>
+    <frame tileid="8" duration="100"/>
+    <frame tileid="9" duration="100"/>
+    <frame tileid="10" duration="100"/>
+    <frame tileid="11" duration="100"/>
+    <frame tileid="12" duration="100"/>
+    <frame tileid="13" duration="100"/>
+    <frame tileid="14" duration="100"/>
+    <frame tileid="15" duration="100"/>
+    <frame tileid="16" duration="100"/>
+    <frame tileid="17" duration="100"/>
+    <frame tileid="18" duration="100"/>
+    <frame tileid="19" duration="100"/>
+    <frame tileid="20" duration="100"/>
+    <frame tileid="21" duration="100"/>
+    <frame tileid="22" duration="100"/>
+    <frame tileid="23" duration="100"/>
+    <frame tileid="24" duration="100"/>
+    <frame tileid="25" duration="100"/>
+    <frame tileid="26" duration="100"/>
+    <frame tileid="27" duration="100"/>
+    <frame tileid="28" duration="100"/>
+    <frame tileid="29" duration="100"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="151" name="World1" tilewidth="16" tileheight="16" tilecount="4096" columns="64">
+  <image source="Tiles/Tilesets/World1.png" width="1024" height="1024"/>
+  <tile id="65">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="66">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="67">
+   <properties>
+    <property name="Diggable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="68">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="91">
+   <animation>
+    <frame tileid="91" duration="300"/>
+    <frame tileid="92" duration="300"/>
+    <frame tileid="93" duration="300"/>
+    <frame tileid="94" duration="300"/>
+   </animation>
+  </tile>
+  <tile id="128">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="129">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="130">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="131">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="132">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="133">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="134">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="147">
+   <animation>
+    <frame tileid="147" duration="400"/>
+    <frame tileid="150" duration="400"/>
+   </animation>
+  </tile>
+  <tile id="148">
+   <animation>
+    <frame tileid="148" duration="400"/>
+    <frame tileid="151" duration="400"/>
+   </animation>
+  </tile>
+  <tile id="149">
+   <animation>
+    <frame tileid="149" duration="400"/>
+    <frame tileid="152" duration="400"/>
+   </animation>
+  </tile>
+  <tile id="155">
+   <animation>
+    <frame tileid="155" duration="300"/>
+    <frame tileid="156" duration="300"/>
+   </animation>
+  </tile>
+  <tile id="157">
+   <animation>
+    <frame tileid="157" duration="300"/>
+    <frame tileid="158" duration="300"/>
+   </animation>
+  </tile>
+  <tile id="192">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="193">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="194">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="195">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="196">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="197">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="198">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="199">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="211">
+   <animation>
+    <frame tileid="211" duration="400"/>
+    <frame tileid="214" duration="400"/>
+   </animation>
+  </tile>
+  <tile id="213">
+   <animation>
+    <frame tileid="213" duration="400"/>
+    <frame tileid="216" duration="400"/>
+   </animation>
+  </tile>
+  <tile id="219">
+   <animation>
+    <frame tileid="219" duration="300"/>
+    <frame tileid="220" duration="300"/>
+   </animation>
+  </tile>
+  <tile id="221">
+   <animation>
+    <frame tileid="221" duration="300"/>
+    <frame tileid="222" duration="300"/>
+   </animation>
+  </tile>
+  <tile id="257">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="258">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="259">
+   <properties>
+    <property name="Buildable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="275">
+   <animation>
+    <frame tileid="275" duration="400"/>
+    <frame tileid="278" duration="400"/>
+   </animation>
+  </tile>
+  <tile id="276">
+   <animation>
+    <frame tileid="276" duration="400"/>
+    <frame tileid="279" duration="400"/>
+   </animation>
+  </tile>
+  <tile id="277">
+   <animation>
+    <frame tileid="277" duration="400"/>
+    <frame tileid="280" duration="400"/>
+   </animation>
+  </tile>
+  <tile id="283">
+   <animation>
+    <frame tileid="283" duration="300"/>
+    <frame tileid="284" duration="300"/>
+    <frame tileid="285" duration="300"/>
+    <frame tileid="286" duration="300"/>
+   </animation>
+  </tile>
+  <tile id="326">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="327">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="328">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="329">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="334">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="449">
+   <properties>
+    <property name="Diggable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="457">
+   <properties>
+    <property name="Diggable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="458">
+   <properties>
+    <property name="Diggable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="459">
+   <properties>
+    <property name="Diggable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="470">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="473">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="475">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="476">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="477">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="478">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="479">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="480">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="481">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="521">
+   <properties>
+    <property name="Diggable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="522">
+   <properties>
+    <property name="Diggable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="535">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="536">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="537">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="538">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="539">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="540">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="541">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="542">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="543">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="544">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="545">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1163">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1164">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1165">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1166">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1227">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1228">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1229">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1230">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1291">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1292">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1293">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1294">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1355">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1356">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1357">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1358">
+   <properties>
+    <property name="Passable" value="F"/>
+    <property name="Water" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1794">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1857">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1858">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1859">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1922">
+   <properties>
+    <property name="Buildable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2182">
+   <properties>
+    <property name="Diggable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="2245">
+   <properties>
+    <property name="Diggable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="2246">
+   <properties>
+    <property name="Diggable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="2247">
+   <properties>
+    <property name="Diggable" value="T"/>
+   </properties>
+  </tile>
+  <tile id="2310">
+   <properties>
+    <property name="Diggable" value="T"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="4247" name="Paths" tilewidth="16" tileheight="16" tilecount="40" columns="4">
+  <image source="Tiles/Tilesets/Paths.png" width="64" height="160"/>
+ </tileset>
+ <layer id="12" name="Back" width="30" height="20" locked="1">
+  <properties>
+   <property name="unity:SortingLayer" value="Back"/>
+   <property name="unity:SortingOrder" value="200"/>
+  </properties>
+  <data encoding="csv">
+283,217,409,284,408,280,345,346,346,280,280,285,284,345,216,217,408,346,345,282,346,350,217,281,350,217,285,217,346,408,
+345,216,408,345,409,281,281,346,350,345,281,282,285,283,350,284,280,284,283,346,281,281,216,346,346,350,216,285,280,346,
+285,285,283,282,283,282,216,350,283,346,409,281,285,408,280,409,284,283,346,283,281,282,216,216,217,409,285,217,283,280,
+345,409,284,284,283,281,216,412,412,412,412,412,409,284,408,282,216,282,409,284,217,281,409,282,216,217,217,346,350,216,
+345,216,217,346,345,412,285,218,600,673,600,609,216,350,284,216,217,285,282,283,216,280,281,346,285,408,285,216,285,346,
+217,285,345,281,217,672,673,672,608,610,610,600,673,349,284,217,350,285,216,409,408,346,282,409,285,284,280,408,281,284,
+284,408,345,410,609,672,672,608,600,673,672,609,673,217,412,412,412,412,412,412,412,412,412,412,412,412,412,409,350,409,
+280,345,409,410,610,218,218,218,218,609,600,609,610,218,609,672,673,609,672,600,608,673,600,218,218,218,673,216,285,217,
+408,409,409,410,672,218,609,673,609,218,608,600,672,610,218,608,608,672,672,600,218,610,218,218,600,600,609,608,349,281,
+285,346,217,410,610,672,218,610,609,672,600,600,609,608,673,610,672,608,610,609,673,600,218,600,600,609,600,609,349,345,
+345,282,216,410,610,218,608,672,609,216,347,347,347,347,347,347,347,347,347,347,347,347,350,609,673,600,673,673,349,280,
+409,408,345,410,600,610,600,608,673,349,217,350,283,284,622,621,621,621,621,621,623,284,410,610,218,610,600,673,349,409,
+408,350,345,410,608,218,672,218,609,349,345,283,281,622,621,621,621,621,621,621,621,687,410,600,218,600,673,608,349,284,
+280,409,345,410,218,673,608,673,610,349,345,217,622,621,621,621,621,621,621,621,621,687,410,218,609,673,600,600,349,216,
+280,345,409,217,217,610,600,610,216,346,283,626,621,621,621,2684355256,2684355254,2684355253,621,621,685,216,410,218,609,610,673,600,349,282,
+346,217,281,217,280,347,347,347,345,409,281,626,621,621,621,621,621,621,621,621,687,285,346,216,218,610,608,216,346,409,
+217,409,217,285,281,216,217,217,281,345,282,217,625,621,621,1610613430,1610613432,621,621,685,216,280,283,409,347,347,347,409,345,284,
+284,216,217,409,284,345,350,408,346,350,282,216,345,625,621,621,621,621,685,408,281,350,284,216,350,346,216,285,281,350,
+282,282,350,345,350,350,345,409,284,284,350,283,281,408,689,689,689,689,346,280,408,217,281,282,284,285,350,280,346,409,
+409,283,346,409,281,408,285,281,408,284,285,281,283,408,281,280,408,285,350,283,350,217,285,345,346,217,408,284,285,409
+</data>
+ </layer>
+ <objectgroup id="11" name="Back Object" locked="1">
+  <object id="52" name="TileData" x="464" y="96" width="16" height="16">
+   <properties>
+    <property name="NoSpawn" value="All"/>
+   </properties>
+  </object>
+  <object id="53" name="TileData" x="464" y="112" width="16" height="16">
+   <properties>
+    <property name="NoSpawn" value="All"/>
+   </properties>
+  </object>
+  <object id="54" name="TileData" x="464" y="80" width="16" height="16">
+   <properties>
+    <property name="NoSpawn" value="All"/>
+   </properties>
+  </object>
+  <object id="55" name="TileData" x="448" y="80" width="16" height="16">
+   <properties>
+    <property name="NoSpawn" value="All"/>
+   </properties>
+  </object>
+  <object id="56" name="TileData" x="448" y="96" width="16" height="16">
+   <properties>
+    <property name="NoSpawn" value="All"/>
+   </properties>
+  </object>
+  <object id="57" name="TileData" x="448" y="112" width="16" height="16">
+   <properties>
+    <property name="NoSpawn" value="All"/>
+   </properties>
+  </object>
+  <object id="58" name="TileData" x="448" y="128" width="16" height="16">
+   <properties>
+    <property name="NoSpawn" value="All"/>
+   </properties>
+  </object>
+  <object id="59" name="TileData" x="464" y="128" width="16" height="16">
+   <properties>
+    <property name="NoSpawn" value="All"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="16" name="Back2" width="30" height="20" locked="1">
+  <properties>
+   <property name="unity:SortingLayer" value="Back"/>
+  </properties>
+  <data encoding="csv">
+0,311,0,0,0,0,312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,434,
+0,0,0,0,0,246,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,248,0,0,0,0,247,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,785,0,0,0,2332,0,0,0,0,0,602,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+782,783,0,0,601,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+248,0,0,0,0,0,0,0,0,0,0,0,0,2334,0,0,0,2535,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,602,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,2462,0,0,0,0,0,3221226151,3221226151,3221226151,3221226151,3221226151,0,0,2460,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,604,0,0,0,664,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,604,0,0,0,664,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,782,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,248
+</data>
+ </layer>
+ <objectgroup id="15" name="Back2 Object" locked="1"/>
+ <layer id="10" name="Buildings" width="30" height="20">
+  <properties>
+   <property name="Passable" value="F"/>
+   <property name="unity:SortingLayer" value="Buildings"/>
+   <property name="unity:SortingOrder" value="400"/>
+  </properties>
+  <data encoding="csv">
+714,715,2074,370,718,589,783,441,523,714,715,264,265,718,721,328,329,719,651,523,718,721,458,0,377,0,373,718,719,785,
+376,2074,2138,375,782,653,377,0,0,308,0,328,329,782,785,242,0,783,715,378,782,384,255,376,0,0,374,782,783,0,
+2010,2138,2202,715,382,317,320,320,320,320,320,320,320,320,320,320,320,320,321,523,0,0,254,318,318,318,321,382,0,0,
+2010,2202,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2342,2345,2345,2345,2345,2344,0,0,0,0,0,0,384,384,
+718,1945,1946,0,0,0,0,0,0,0,0,0,0,0,0,0,2470,2471,2471,2474,2347,2472,0,0,0,0,0,0,0,0,
+0,377,2010,0,0,0,0,0,0,0,0,0,0,0,0,0,2470,2471,2471,2537,2599,2472,0,0,0,0,0,0,0,0,
+0,245,2010,0,0,0,0,0,0,0,0,0,0,0,0,0,2534,1915,2599,2536,0,0,0,0,0,0,0,0,0,0,
+714,715,2074,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+374,2074,2138,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+2074,2138,2202,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,255,
+2138,2202,782,783,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,383,
+2202,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,383,
+0,718,595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,383,
+0,782,659,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,383,
+714,715,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,383,
+1945,1946,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,383,
+718,2010,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,447,
+712,458,1946,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1944,
+650,651,458,1946,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1944,718,
+714,715,0,0,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,0,782
+</data>
+ </layer>
+ <objectgroup id="9" name="Buildings Object" locked="1"/>
+ <layer id="8" name="Path" width="30" height="20" locked="1">
+  <properties>
+   <property name="unity:SortingLayer" value="Path"/>
+   <property name="unity:SortingOrder" value="500"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,4264,0,0,0,0,0,0,0,0,4257,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,4256,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,4264,0,0,0,0,4263,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,4264,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4263,4264,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,4264,0,0,0,0,4264,0,0,4263,0,0,0,4264,0,0,0,0,0,0,
+0,0,0,0,0,0,0,4263,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,4263,0,0,0,0,0,0,0,0,0,0,0,4263,0,0,0,
+0,0,0,0,0,4263,0,0,0,0,4264,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4264,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4264,0,0,0,0,0,0,
+0,0,0,0,0,0,4263,0,0,0,4257,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4263,0,0,0,
+0,0,4263,0,0,0,0,4263,0,0,0,0,0,0,0,0,0,0,0,0,0,4264,0,0,0,0,0,4256,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,4263,0,4256,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4264,0,0,0,0,
+0,0,0,0,0,0,4264,0,0,0,4257,0,0,0,0,0,0,0,0,0,0,4264,0,0,0,0,4257,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="7" name="Path Object" locked="1"/>
+ <layer id="6" name="Front" width="30" height="20" locked="1">
+  <properties>
+   <property name="unity:SortingLayer" value="Front"/>
+   <property name="unity:SortingOrder" value="700"/>
+  </properties>
+  <data encoding="csv">
+0,0,586,587,0,586,587,402,403,0,459,0,270,271,396,397,718,650,0,395,0,0,0,270,271,650,651,0,586,587,
+0,0,650,651,0,650,651,718,721,0,523,0,718,721,718,721,782,714,0,459,458,0,0,588,721,714,715,311,650,651,
+0,0,714,384,0,714,715,782,785,0,0,0,782,785,782,0,2278,2279,2279,2279,2279,2280,0,652,785,0,0,0,714,715,
+0,718,721,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1945,1946,0,0,0,0,0,0,0,0,0,0,0,0,0,0,500,0,0,0,0,0,0,0,0,0,0,0,0,
+586,587,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+650,651,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,270,271,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,718,721,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,523,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,270,271,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+586,587,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+650,651,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1946,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,270,271,
+586,587,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,718,595,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1944,0,
+248,270,271,370,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,1945,0,0
+</data>
+ </layer>
+ <objectgroup id="5" name="Front Object" locked="1"/>
+ <layer id="4" name="Always Front" width="30" height="20" locked="1">
+  <properties>
+   <property name="unity:SortingLayer" value="AlwaysFront"/>
+   <property name="unity:SortingOrder" value="800"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,246,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,270,271,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+270,271,395,0,0,0,0,0,0,0,0,0,0,0,0,0,121,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,721,459,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,523,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,395,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,459,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+270,271,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,721,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,785,0,0,0,0,0,0,0,0,0,0,0,0,395,0,0,0,0,0,0,0,0,0,395,0,0,0,0,396,
+0,0,0,0,395,264,265,0,270,271,395,0,586,587,459,0,0,270,271,0,0,0,270,271,459,0,0,270,271,0,
+0,0,0,0,459,328,329,397,718,721,459,270,650,651,523,265,396,330,331,458,248,313,718,721,523,265,0,718,721,0
+</data>
+ </layer>
+ <objectgroup id="3" name="Always Front Object" locked="1"/>
+ <layer id="14" name="Always Front2" width="30" height="20" locked="1">
+  <properties>
+   <property name="unity:SortingLayer" value="AlwaysFront"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,396,0,0,264,265,0,397,263,264,0,0,0,0,273,0,0,0,0,264,0,396,397,0,0
+</data>
+ </layer>
+ <objectgroup id="13" name="Always Front2 Object" visible="0" locked="1"/>
+</map>

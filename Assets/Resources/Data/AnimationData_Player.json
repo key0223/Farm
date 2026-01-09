@@ -1,0 +1,444 @@
+﻿{
+	"md5": "3efffdbc4987b0ffff8803ccf7e3f1e1",
+	"array": 
+		[
+			{
+				"AnimationName": "body_attack",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "0-9"
+			},
+			{
+				"AnimationName": "body_axe",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "23-32"
+			},
+			{
+				"AnimationName": "body_carry",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "46-53"
+			},
+			{
+				"AnimationName": "body_casting",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "69-83"
+			},
+			{
+				"AnimationName": "body_caught",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "92-101"
+			},
+			{
+				"AnimationName": "body_death",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "115-127"
+			},
+			{
+				"AnimationName": "body_dig",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "138-150"
+			},
+			{
+				"AnimationName": "body_doing",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "161-168"
+			},
+			{
+				"AnimationName": "body_hammering",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "184-206"
+			},
+			{
+				"AnimationName": "body_hurt",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "207-214"
+			},
+			{
+				"AnimationName": "body_idle",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "230-238",
+				"Loop": true
+			},
+			{
+				"AnimationName": "body_jump",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "253-161"
+			},
+			{
+				"AnimationName": "body_mining",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "276-285"
+			},
+			{
+				"AnimationName": "body_reeling",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "299-311",
+				"Loop": true
+			},
+			{
+				"AnimationName": "body_roll",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "321-331"
+			},
+			{
+				"AnimationName": "body_run",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "345-352",
+				"Loop": true
+			},
+			{
+				"AnimationName": "body_swimming",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "368-379",
+				"Loop": true
+			},
+			{
+				"AnimationName": "body_wating",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "391-399",
+				"Loop": true
+			},
+			{
+				"AnimationName": "body_walking",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "414-421",
+				"Loop": true
+			},
+			{
+				"AnimationName": "body_watering",
+				"LayerType": "BODY",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "BodyBase",
+				"SpriteIndexStr": "437-441"
+			},
+			{
+				"AnimationName": "arms_attack",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "0-9"
+			},
+			{
+				"AnimationName": "arms_axe",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "23-32"
+			},
+			{
+				"AnimationName": "arms_carry",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "46-53"
+			},
+			{
+				"AnimationName": "arms_casting",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "69-83"
+			},
+			{
+				"AnimationName": "arms_caught",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "92-101"
+			},
+			{
+				"AnimationName": "arms_death",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "115-127"
+			},
+			{
+				"AnimationName": "arms_dig",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "138-150"
+			},
+			{
+				"AnimationName": "arms_doing",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "161-168"
+			},
+			{
+				"AnimationName": "arms_hammering",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "184-206"
+			},
+			{
+				"AnimationName": "arms_hurt",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "207-214"
+			},
+			{
+				"AnimationName": "arms_idle",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "230-238",
+				"Loop": true
+			},
+			{
+				"AnimationName": "arms_jump",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "253-161"
+			},
+			{
+				"AnimationName": "arms_mining",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "276-285"
+			},
+			{
+				"AnimationName": "arms_reeling",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "299-311",
+				"Loop": true
+			},
+			{
+				"AnimationName": "arms_roll",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "321-331"
+			},
+			{
+				"AnimationName": "arms_run",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "345-352",
+				"Loop": true
+			},
+			{
+				"AnimationName": "arms_swimming",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "368-379",
+				"Loop": true
+			},
+			{
+				"AnimationName": "arms_wating",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "391-399",
+				"Loop": true
+			},
+			{
+				"AnimationName": "arms_walking",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "414-421",
+				"Loop": true
+			},
+			{
+				"AnimationName": "arms_watering",
+				"LayerType": "ARMS",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Arms",
+				"SpriteIndexStr": "437-441"
+			},
+			{
+				"AnimationName": "hair_attack",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "0-9"
+			},
+			{
+				"AnimationName": "hair_axe",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "23-32"
+			},
+			{
+				"AnimationName": "hair_carry",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "46-53"
+			},
+			{
+				"AnimationName": "hair_casting",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "69-83"
+			},
+			{
+				"AnimationName": "hair_caught",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "92-101"
+			},
+			{
+				"AnimationName": "hair_death",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "115-127"
+			},
+			{
+				"AnimationName": "hair_dig",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "138-150"
+			},
+			{
+				"AnimationName": "hair_doing",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "161-168"
+			},
+			{
+				"AnimationName": "hair_hammering",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "184-206"
+			},
+			{
+				"AnimationName": "hair_hurt",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "207-214"
+			},
+			{
+				"AnimationName": "hair_idle",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "230-238",
+				"Loop": true
+			},
+			{
+				"AnimationName": "hair_jump",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "253-161"
+			},
+			{
+				"AnimationName": "hair_mining",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "276-285"
+			},
+			{
+				"AnimationName": "hair_reeling",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "299-311",
+				"Loop": true
+			},
+			{
+				"AnimationName": "hair_roll",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "321-331"
+			},
+			{
+				"AnimationName": "hair_run",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "345-352",
+				"Loop": true
+			},
+			{
+				"AnimationName": "hair_swimming",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "368-379",
+				"Loop": true
+			},
+			{
+				"AnimationName": "hair_wating",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "391-399",
+				"Loop": true
+			},
+			{
+				"AnimationName": "hair_walking",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "414-421",
+				"Loop": true
+			},
+			{
+				"AnimationName": "hair_watering",
+				"LayerType": "HAIR",
+				"SheetDirectory": "Sprites/Characters",
+				"ParentSheet": "Hair",
+				"SpriteIndexStr": "437-441"
+			}
+		]
+}

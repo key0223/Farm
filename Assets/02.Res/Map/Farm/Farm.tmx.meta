@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: 536c9bf5be5b70249bf8a6bfd387cee5
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
+  importerVersion: 34
+  pixelsPerUnit: 16
+  edgesPerEllipse: 16
+  numberOfObjectsImported: 8581
+  tilesAsObjects: 0
+  sortingMode: 1
+  isIsometric: 0
+  customImporterClassName: 
+  internalTilesets:
+  - {instanceID: 0}
+  - {instanceID: 0}
+  - {instanceID: 0}
+  - {instanceID: 0}
+  - {instanceID: 0}
+  - {instanceID: 0}
+  - {instanceID: 0}

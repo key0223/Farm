@@ -1,0 +1,334 @@
+﻿{
+	"md5": "3f8412b9a427366c0efc4b8e9cceb47d",
+	"array": 
+		[
+			{
+				"StringId": "Rock_Name",
+				"Translation": "돌"
+			},
+			{
+				"StringId": "Rock_Description",
+				"Translation": "제작과 건설에 많이 사용되는 흔한 재료."
+			},
+			{
+				"StringId": "Milk_Name",
+				"Translation": "우유"
+			},
+			{
+				"StringId": "Milk_Description",
+				"Translation": "우유 한 통."
+			},
+			{
+				"StringId": "Carrot_Name",
+				"Translation": "당근"
+			},
+			{
+				"StringId": "Carrot_Description",
+				"Translation": "빠르게 자라는 간식으로 적합한 알록달록한 덩이줄기."
+			},
+			{
+				"StringId": "Cauliflower_Name",
+				"Translation": "콜리플라워"
+			},
+			{
+				"StringId": "Cauliflower_Description",
+				"Translation": "값이 비싸지만, 천천히 자랍니다. 창백한 색과는 다르게, 꽃 부분에 영양소가 풍부합니다."
+			},
+			{
+				"StringId": "Pumpkin_Name",
+				"Translation": "호박"
+			},
+			{
+				"StringId": "Pumpkin_Description",
+				"Translation": "가을철을 대표하는 작물로, 바삭한 씨앗과 미묘한 맛의 과육이 인기 있습니다. 추가로, 비워낸 껍질로 축제 분위기의 장식을 만들 수 있습니다."
+			},
+			{
+				"StringId": "Sunflower_Name",
+				"Translation": "해바라기"
+			},
+			{
+				"StringId": "Sunflower_Description",
+				"Translation": "이 꽃이 항상 태양을 보기위해 돌아간다는 오해가 있습니다."
+			},
+			{
+				"StringId": "Radish_Name",
+				"Translation": "무"
+			},
+			{
+				"StringId": "Radish_Description",
+				"Translation": "바삭하고 시원한 뿌리채소. 날로 먹으면 고추 맛이 살짝 납니다."
+			},
+			{
+				"StringId": "Parsnip_Name",
+				"Translation": "파스닙"
+			},
+			{
+				"StringId": "Parsnip_Description",
+				"Translation": "당근과 비슷한, 봄철 덩이줄기 식물. 대지의 맛이 나고 영양분이 듬뿍 들어있습니다."
+			},
+			{
+				"StringId": "Potato_Name",
+				"Translation": "감자"
+			},
+			{
+				"StringId": "Potato_Description",
+				"Translation": "널리 재배되는 덩이줄기 식물."
+			},
+			{
+				"StringId": "Red Cabbage_Name",
+				"Translation": "붉은 양배추"
+			},
+			{
+				"StringId": "Red Cabbage_Description",
+				"Translation": "샐러드나 코울슬로를 만들 때 자주 쓰이는 채소. 토양 환경에 따라 색이 보라색, 푸른색, 연두색으로 다양합니다."
+			},
+			{
+				"StringId": "Beetroot_Name",
+				"Translation": "사탕무"
+			},
+			{
+				"StringId": "Beetroot_Description",
+				"Translation": "달콤하고 대지의 향이 나는 뿌리채소. 보너스로, 잎사귀로 만든 샐러드도 맛있습니다."
+			},
+			{
+				"StringId": "Wheat_Name",
+				"Translation": "밀"
+			},
+			{
+				"StringId": "Wheat_Description",
+				"Translation": "가장 널리 재배되는 곡물 중 하나. 빵이나 케이크 요리에 적합한 가루를 만들 수 있습니다."
+			},
+			{
+				"StringId": "Kale_Name",
+				"Translation": "케일"
+			},
+			{
+				"StringId": "Kale_Description",
+				"Translation": "스프나 볶음요리에 알맞은 잎사귀."
+			},
+			{
+				"StringId": "Blue Mushroom _Name",
+				"Translation": "파란색 버섯"
+			},
+			{
+				"StringId": "Blue Mushroom _Description",
+				"Translation": "동굴 깊은 곳에서 발견되는 희귀한 버섯."
+			},
+			{
+				"StringId": "Red Mushroom _Name",
+				"Translation": "빨간색 버섯"
+			},
+			{
+				"StringId": "Red Mushroom _Description",
+				"Translation": "동굴에서 발견되는 얼룩무늬 버섯."
+			},
+			{
+				"StringId": "Wood_Name",
+				"Translation": "나무"
+			},
+			{
+				"StringId": "Wood_Description",
+				"Translation": "사용 용도가 다양한 유연하면서 견고한 식물 재료."
+			},
+			{
+				"StringId": "Egg_Name",
+				"Translation": "달걀"
+			},
+			{
+				"StringId": "Egg_Description",
+				"Translation": "평범한 달걀."
+			},
+			{
+				"StringId": "Coal_Name",
+				"Translation": "석탄"
+			},
+			{
+				"StringId": "Coal_Description",
+				"Translation": "제작과 제련 활동에 사용되는 불이 잘 붙는 돌."
+			},
+			{
+				"StringId": "Iron Ore_Name",
+				"Translation": "철광석"
+			},
+			{
+				"StringId": "Iron Ore_Description",
+				"Translation": "주괴로 제련할 수 있는 그럭저럭 흔한 광석."
+			},
+			{
+				"StringId": "Gold Ore_Name",
+				"Translation": "금광석"
+			},
+			{
+				"StringId": "Gold Ore_Description",
+				"Translation": "주괴로 제련할 수 있는 귀한 광석."
+			},
+			{
+				"StringId": "Diamond Ore_Name",
+				"Translation": "다이아몬드 광석"
+			},
+			{
+				"StringId": "Diamond Ore_Description",
+				"Translation": "주괴로 제련할 수 있는 아주 귀한 광석."
+			},
+			{
+				"StringId": "Iron Bar_Name",
+				"Translation": "철 주괴"
+			},
+			{
+				"StringId": "Iron Bar_Description",
+				"Translation": "순수한 철 주괴 하나."
+			},
+			{
+				"StringId": "Gold Bar_Name",
+				"Translation": "금 주괴"
+			},
+			{
+				"StringId": "Gold Bar_Description",
+				"Translation": "순수한 금 주괴 하나."
+			},
+			{
+				"StringId": "Diamond Bar_Name",
+				"Translation": "다이아몬드 주괴"
+			},
+			{
+				"StringId": "Diamond Bar_Description",
+				"Translation": "순수한 다이아몬드 주괴 하나."
+			},
+			{
+				"StringId": "Starfish_Name",
+				"Translation": "불가사리"
+			},
+			{
+				"StringId": "Starfish_Description",
+				"Translation": "불가사리. 스폰지의 친구."
+			},
+			{
+				"StringId": "Clam_Name",
+				"Translation": "조개"
+			},
+			{
+				"StringId": "Clam_Description",
+				"Translation": "한때 누군가 여기 살았습니다."
+			},
+			{
+				"StringId": "Crab_Name",
+				"Translation": "게"
+			},
+			{
+				"StringId": "Crab_Description",
+				"Translation": "두 개의 강한 집게발이 있는 바다에 서식하는 갑각류."
+			},
+			{
+				"StringId": "Fish_Name",
+				"Translation": "생선"
+			},
+			{
+				"StringId": "Fish_Description",
+				"Translation": "바다의 고기입니다."
+			},
+			{
+				"StringId": "Acorn_Name",
+				"Translation": "도토리"
+			},
+			{
+				"StringId": "Acorn_Description",
+				"Translation": "심으면 참나무가 자랍니다."
+			},
+			{
+				"StringId": "Crate_Name",
+				"Translation": "보관함"
+			},
+			{
+				"StringId": "Crate_Description",
+				"Translation": "아이템을 저장할 수 있는 공간."
+			},
+			{
+				"StringId": "Carrot Seeds_Name",
+				"Translation": "당근 씨앗"
+			},
+			{
+				"StringId": "Carrot Seeds_Description",
+				"Translation": "봄 작물. 성장하려면 3일 소요됩니다."
+			},
+			{
+				"StringId": "Cauliflower Seeds_Name",
+				"Translation": "콜리플라워 씨앗"
+			},
+			{
+				"StringId": "Cauliflower Seeds_Description",
+				"Translation": "봄 작물. 심으면 12일 후 큰 콜리플라워를 생산합니다."
+			},
+			{
+				"StringId": "Pumpkin Seeds_Name",
+				"Translation": "호박 씨앗"
+			},
+			{
+				"StringId": "Pumpkin Seeds_Description",
+				"Translation": "가을 작물. 성장하려면 13일 소요됩니다."
+			},
+			{
+				"StringId": "Sunflower Seeds_Name",
+				"Translation": "해바라기 씨앗"
+			},
+			{
+				"StringId": "Sunflower Seeds_Description",
+				"Translation": "여름이나 가을에 심으세요. 8일 후 큰 해바라기 꽃이 핍니다. 수확하면 더 많은 씨앗을 얻을 수 있습니다."
+			},
+			{
+				"StringId": "Radish Seeds_Name",
+				"Translation": "무 씨앗"
+			},
+			{
+				"StringId": "Radish Seeds_Description",
+				"Translation": "여름 작물. 성장하려면 6일 소요됩니다."
+			},
+			{
+				"StringId": "Parsnip Seeds_Name",
+				"Translation": "파스닙 씨앗"
+			},
+			{
+				"StringId": "Parsnip Seeds_Description",
+				"Translation": "봄 작물. 성장하려면 4일 소요됩니다."
+			},
+			{
+				"StringId": "Potato Seeds_Name",
+				"Translation": "감자 씨앗"
+			},
+			{
+				"StringId": "Potato Seeds_Description",
+				"Translation": "봄 작물. 성장하려면 6일 소요되며, 한번 수확할 때 여러 개 수확할 확률이 있습니다."
+			},
+			{
+				"StringId": "Red Cabbage Seeds_Name",
+				"Translation": "붉은 양배추 씨앗"
+			},
+			{
+				"StringId": "Red Cabbage Seeds_Description",
+				"Translation": "여름 작물. 성장하려면 9일 소요됩니다."
+			},
+			{
+				"StringId": "Beetroot Seeds_Name",
+				"Translation": "사탕무 씨앗"
+			},
+			{
+				"StringId": "Beetroot Seeds_Description",
+				"Translation": "가을 작물. 성장하려면 6일 소요됩니다."
+			},
+			{
+				"StringId": "Wheat Seeds_Name",
+				"Translation": "밀 씨앗"
+			},
+			{
+				"StringId": "Wheat Seeds_Description",
+				"Translation": "여름 혹은 가을 작물. 성장하려면 4일 소요됩니다. 낫으로 수확할 수 있습니다."
+			},
+			{
+				"StringId": "Kale Seeds_Name",
+				"Translation": "케일 씨앗"
+			},
+			{
+				"StringId": "Kale Seeds_Description",
+				"Translation": "봄 작물. 성장하려면 6일 소요됩니다. 낫으로 수확할 수 있습니다."
+			}
+		]
+}

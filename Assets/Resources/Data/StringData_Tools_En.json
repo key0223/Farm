@@ -1,0 +1,151 @@
+﻿{
+	"md5": "f4f4952e8ce78949197bacf696deb7c9",
+	"array": 
+		[
+			{
+				"StringId": "Axe_Name",
+				"Translation": "Axe"
+			},
+			{
+				"StringId": "Axe_Description",
+				"Translation": "10 hits to chop a fully-grown tree, and 5 hits for a small stump."
+			},
+			{
+				"StringId": "SteelAxe_Name",
+				"Translation": "Steel Axe"
+			},
+			{
+				"StringId": "SteelAxe_Description"
+			},
+			{
+				"StringId": "GoldAxe_Name",
+				"Translation": "Gold Axe"
+			},
+			{
+				"StringId": "GoldAxe_Description"
+			},
+			{
+				"StringId": "DiamondAxe_Name",
+				"Translation": "Diamond Axe"
+			},
+			{
+				"StringId": "DiamondAxe_Description"
+			},
+			{
+				"StringId": "FishingRod_Name",
+				"Translation": "Fishing Rod"
+			},
+			{
+				"StringId": "FishingRod_Description",
+				"Translation": "Easier to use "
+			},
+			{
+				"StringId": "SteelFishingRod_Name",
+				"Translation": "Steel Fishing Rod"
+			},
+			{
+				"StringId": "SteelFishingRod_Description"
+			},
+			{
+				"StringId": "GoldFishingRod_Name",
+				"Translation": "Gold Fishing Rod"
+			},
+			{
+				"StringId": "GoldFishingRod_Description"
+			},
+			{
+				"StringId": "DiamondFishingRod_Name",
+				"Translation": "Diamond Fishing Rod"
+			},
+			{
+				"StringId": "DiamondFishingRod_Description"
+			},
+			{
+				"StringId": "Pickaxe_Name",
+				"Translation": "Pickaxe"
+			},
+			{
+				"StringId": "Pickaxe_Description",
+				"Translation": "Can break small rocks anywhere."
+			},
+			{
+				"StringId": "SteelPickaxe_Name",
+				"Translation": "Steel Pickaxe"
+			},
+			{
+				"StringId": "SteelPickaxe_Description"
+			},
+			{
+				"StringId": "GoldPickaxe_Name",
+				"Translation": "Gold Pickaxe"
+			},
+			{
+				"StringId": "GoldPickaxe_Description"
+			},
+			{
+				"StringId": "DiamondPickaxe_Name",
+				"Translation": "Diamond Pickaxe"
+			},
+			{
+				"StringId": "DiamondPickaxe_Description"
+			},
+			{
+				"StringId": "Shovel_Name",
+				"Translation": "Shovel"
+			},
+			{
+				"StringId": "Shovel_Description",
+				"Translation": "Dig up the ground and plant seeds."
+			},
+			{
+				"StringId": "SteelShovel_Name",
+				"Translation": "Steel Shovel"
+			},
+			{
+				"StringId": "SteelShovel_Description"
+			},
+			{
+				"StringId": "GoldShovel_Name",
+				"Translation": "Gold Shovel"
+			},
+			{
+				"StringId": "GoldShovel_Description"
+			},
+			{
+				"StringId": "DiamondShovel_Name",
+				"Translation": "Diamond Shovel"
+			},
+			{
+				"StringId": "DiamondShovel_Description"
+			},
+			{
+				"StringId": "WateringCan_Name",
+				"Translation": "Watering Can"
+			},
+			{
+				"StringId": "WateringCan_Description",
+				"Translation": "Has a total water capacity of 40 charges before it has to be refilled."
+			},
+			{
+				"StringId": "SteelWateringCan_Name",
+				"Translation": "Steel Watering Can"
+			},
+			{
+				"StringId": "SteelWateringCan_Description"
+			},
+			{
+				"StringId": "GoldWateringCan_Name",
+				"Translation": "Gold Watering Can"
+			},
+			{
+				"StringId": "GoldWateringCan_Description"
+			},
+			{
+				"StringId": "DiamondWateringCan_Name",
+				"Translation": "Diamond Watering Can"
+			},
+			{
+				"StringId": "DiamondWateringCan_Description"
+			}
+		]
+}

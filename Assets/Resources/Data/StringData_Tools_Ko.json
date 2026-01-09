@@ -1,0 +1,154 @@
+﻿{
+	"md5": "8539a94daab33de3cbac1627ec49a41f",
+	"array": 
+		[
+			{
+				"StringId": "Axe_Name",
+				"Translation": "도끼"
+			},
+			{
+				"StringId": "Axe_Description",
+				"Translation": "다 자란 나무는 10번, 작은 그루터기는 5번 도끼질을 해야합니다."
+			},
+			{
+				"StringId": "SteelAxe_Name",
+				"Translation": "강철 도끼"
+			},
+			{
+				"StringId": "SteelAxe_Description",
+				"Translation": "큰 통나무를 벨 수 있습니다. 다 자란 나무는 6번, 작은 그루터기는 3번 도끼질을 해야합니다."
+			},
+			{
+				"StringId": "GoldAxe_Name",
+				"Translation": "황금 도끼"
+			},
+			{
+				"StringId": "GoldAxe_Description",
+				"Translation": "다 자란 나무는 4번, 작은 그루터기는 2번 도끼질을 해야합니다."
+			},
+			{
+				"StringId": "DiamondAxe_Name",
+				"Translation": "다이아몬드 도끼"
+			},
+			{
+				"StringId": "DiamondAxe_Description",
+				"Translation": "다 자란 나무는 2번, 작은 그루터기는 1번 도끼질을 해야합니다."
+			},
+			{
+				"StringId": "FishingRod_Name",
+				"Translation": "연습용 낚싯대"
+			},
+			{
+				"StringId": "FishingRod_Description",
+				"Translation": "사용하기 쉽습니다."
+			},
+			{
+				"StringId": "SteelFishingRod_Name",
+				"Translation": "강철 낚싯대"
+			},
+			{
+				"StringId": "SteelFishingRod_Description"
+			},
+			{
+				"StringId": "GoldFishingRod_Name",
+				"Translation": "황금 낚싯대"
+			},
+			{
+				"StringId": "GoldFishingRod_Description"
+			},
+			{
+				"StringId": "DiamondFishingRod_Name",
+				"Translation": "다이아몬드 낚싯대"
+			},
+			{
+				"StringId": "DiamondFishingRod_Description"
+			},
+			{
+				"StringId": "Pickaxe_Name",
+				"Translation": "곡괭이"
+			},
+			{
+				"StringId": "Pickaxe_Description",
+				"Translation": "광산에 있는 바위나 아무 곳에 있는 돌을 부술 수 있습니다."
+			},
+			{
+				"StringId": "SteelPickaxe_Name",
+				"Translation": "강철 곡괭이"
+			},
+			{
+				"StringId": "SteelPickaxe_Description"
+			},
+			{
+				"StringId": "GoldPickaxe_Name",
+				"Translation": "황금 곡괭이"
+			},
+			{
+				"StringId": "GoldPickaxe_Description"
+			},
+			{
+				"StringId": "DiamondPickaxe_Name",
+				"Translation": "다이아몬드 곡괭이"
+			},
+			{
+				"StringId": "DiamondPickaxe_Description"
+			},
+			{
+				"StringId": "Shovel_Name",
+				"Translation": "삽"
+			},
+			{
+				"StringId": "Shovel_Description",
+				"Translation": "땅을 파 씨앗을 심을 수 있습니다."
+			},
+			{
+				"StringId": "SteelShovel_Name",
+				"Translation": "강철 삽"
+			},
+			{
+				"StringId": "SteelShovel_Description"
+			},
+			{
+				"StringId": "GoldShovel_Name",
+				"Translation": "황금 삽"
+			},
+			{
+				"StringId": "GoldShovel_Description"
+			},
+			{
+				"StringId": "DiamondShovel_Name",
+				"Translation": "다이아몬드 삽"
+			},
+			{
+				"StringId": "DiamondShovel_Description"
+			},
+			{
+				"StringId": "WateringCan_Name",
+				"Translation": "물뿌리개"
+			},
+			{
+				"StringId": "WateringCan_Description",
+				"Translation": "한 번 채우면 40회까지 물을 줄 수 있습니다."
+			},
+			{
+				"StringId": "SteelWateringCan_Name",
+				"Translation": "강철 물뿌리개"
+			},
+			{
+				"StringId": "SteelWateringCan_Description"
+			},
+			{
+				"StringId": "GoldWateringCan_Name",
+				"Translation": "황금 물뿌리개"
+			},
+			{
+				"StringId": "GoldWateringCan_Description"
+			},
+			{
+				"StringId": "DiamondWateringCan_Name",
+				"Translation": "다이아몬드 물뿌리개"
+			},
+			{
+				"StringId": "DiamondWateringCan_Description"
+			}
+		]
+}

@@ -1,0 +1,332 @@
+﻿{
+	"md5": "376cac4f7e7fc6571930f15d22b9a4ce",
+	"array": 
+		[
+			{
+				"StringId": "Rock_Name",
+				"Translation": "Stone"
+			},
+			{
+				"StringId": "Rock_Description",
+				"Translation": "A common material with many uses in crafting and building."
+			},
+			{
+				"StringId": "Milk_Name",
+				"Translation": "Milk"
+			},
+			{
+				"StringId": "Milk_Description",
+				"Translation": "A jug of cow's milk."
+			},
+			{
+				"StringId": "Carrot_Name",
+				"Translation": "Carrot"
+			},
+			{
+				"StringId": "Carrot_Description",
+				"Translation": "A fast-growing, colorful tuber that makes for a great snack."
+			},
+			{
+				"StringId": "Cauliflower_Name",
+				"Translation": "Cauliflower"
+			},
+			{
+				"StringId": "Cauliflower_Description",
+				"Translation": "Valuable, but slow-growing. Despite its pale color, the florets are packed with nutrients."
+			},
+			{
+				"StringId": "Pumpkin_Name",
+				"Translation": "Pumpkin"
+			},
+			{
+				"StringId": "Pumpkin_Description",
+				"Translation": "A fall favorite, grown for its crunchy seeds and delicately flavored flesh. As a bonus, the hollow shell can be carved into a festive decoration."
+			},
+			{
+				"StringId": "Sunflower_Name",
+				"Translation": "Sunflower"
+			},
+			{
+				"StringId": "Sunflower_Description",
+				"Translation": "A common misconception is that the flower turns so it's always facing the sun."
+			},
+			{
+				"StringId": "Radish_Name",
+				"Translation": "Radish"
+			},
+			{
+				"StringId": "Radish_Description",
+				"Translation": "A crisp and refreshing root vegetable with hints of pepper when eaten raw."
+			},
+			{
+				"StringId": "Parsnip_Name",
+				"Translation": "Parsnip"
+			},
+			{
+				"StringId": "Parsnip_Description",
+				"Translation": "A spring tuber closely related to the carrot. It has an earthy taste and is full of nutrients."
+			},
+			{
+				"StringId": "Potato_Name",
+				"Translation": "Potato"
+			},
+			{
+				"StringId": "Potato_Description",
+				"Translation": "A widely cultivated tuber."
+			},
+			{
+				"StringId": "Red Cabbage_Name",
+				"Translation": "Red Cabbage"
+			},
+			{
+				"StringId": "Red Cabbage_Description",
+				"Translation": "Often used in salads and coleslaws. The color can range from purple to blue to green-yellow depending on soil conditions."
+			},
+			{
+				"StringId": "Beetroot_Name",
+				"Translation": "Beet"
+			},
+			{
+				"StringId": "Beetroot_Description",
+				"Translation": "A sweet and earthy root vegetable. As a bonus, the leaves make a great salad."
+			},
+			{
+				"StringId": "Wheat_Name",
+				"Translation": "Wheat"
+			},
+			{
+				"StringId": "Wheat_Description",
+				"Translation": "One of the most widely cultivated grains. Makes a great flour for breads and cakes."
+			},
+			{
+				"StringId": "Kale_Name",
+				"Translation": "Kale"
+			},
+			{
+				"StringId": "Kale_Description",
+				"Translation": "The waxy leaves are great in soups and stir fries."
+			},
+			{
+				"StringId": "Blue Mushroom _Name",
+				"Translation": "Blue Mushroom"
+			},
+			{
+				"StringId": "Blue Mushroom _Description",
+				"Translation": "A rare mushroom found deep in caves."
+			},
+			{
+				"StringId": "Red Mushroom _Name",
+				"Translation": "Red Mushroom"
+			},
+			{
+				"StringId": "Red Mushroom _Description",
+				"Translation": "A spotted mushroom sometimes found in caves."
+			},
+			{
+				"StringId": "Wood_Name",
+				"Translation": "Wood"
+			},
+			{
+				"StringId": "Wood_Description",
+				"Translation": "A sturdy, yet flexible plant material with a wide variety of uses."
+			},
+			{
+				"StringId": "Egg_Name",
+				"Translation": "Egg"
+			},
+			{
+				"StringId": "Egg_Description",
+				"Translation": "A regular chicken egg."
+			},
+			{
+				"StringId": "Coal_Name",
+				"Translation": "Coal"
+			},
+			{
+				"StringId": "Coal_Description",
+				"Translation": "A combustible rock that is useful for crafting and smelting."
+			},
+			{
+				"StringId": "Iron Ore_Name",
+				"Translation": "Iron Ore"
+			},
+			{
+				"StringId": "Iron Ore_Description",
+				"Translation": "A fairly common ore that can be smelted into bars."
+			},
+			{
+				"StringId": "Gold Ore_Name",
+				"Translation": "Gold Ore"
+			},
+			{
+				"StringId": "Gold Ore_Description",
+				"Translation": "A precious ore that can be smelted into bars."
+			},
+			{
+				"StringId": "Diamond Ore_Name",
+				"Translation": "Diamond Ore"
+			},
+			{
+				"StringId": "Diamond Ore_Description",
+				"Translation": "Can be smelted into bars."
+			},
+			{
+				"StringId": "Iron Bar_Name",
+				"Translation": "Iron Bar"
+			},
+			{
+				"StringId": "Iron Bar_Description",
+				"Translation": "A bar of pure iron."
+			},
+			{
+				"StringId": "Gold Bar_Name",
+				"Translation": "Gold Bar"
+			},
+			{
+				"StringId": "Gold Bar_Description",
+				"Translation": "A bar of pure gold."
+			},
+			{
+				"StringId": "Diamond Bar_Name",
+				"Translation": "Diamond Bar"
+			},
+			{
+				"StringId": "Diamond Bar_Description",
+				"Translation": "A bar of pure diamond"
+			},
+			{
+				"StringId": "Starfish_Name",
+				"Translation": "Starfish"
+			},
+			{
+				"StringId": "Starfish_Description"
+			},
+			{
+				"StringId": "Clam_Name",
+				"Translation": "Clam"
+			},
+			{
+				"StringId": "Clam_Description",
+				"Translation": "There's a chewy little guy in there..."
+			},
+			{
+				"StringId": "Crab_Name",
+				"Translation": "Crab"
+			},
+			{
+				"StringId": "Crab_Description",
+				"Translation": "A marine crustacean with two powerful pincers."
+			},
+			{
+				"StringId": "Fish_Name",
+				"Translation": "Fish"
+			},
+			{
+				"StringId": "Fish_Description"
+			},
+			{
+				"StringId": "Acorn_Name",
+				"Translation": "Acorn"
+			},
+			{
+				"StringId": "Acorn_Description",
+				"Translation": "This can be planted to grow an oak tree."
+			},
+			{
+				"StringId": "Crate_Name",
+				"Translation": "Crate"
+			},
+			{
+				"StringId": "Crate_Description",
+				"Translation": "A place to store your items."
+			},
+			{
+				"StringId": "Carrot Seeds_Name",
+				"Translation": "Carrot Seeds"
+			},
+			{
+				"StringId": "Carrot Seeds_Description",
+				"Translation": "Plant in the spring. Takes 3 days to grow."
+			},
+			{
+				"StringId": "Cauliflower Seeds_Name",
+				"Translation": "Cauliflower Seeds"
+			},
+			{
+				"StringId": "Cauliflower Seeds_Description",
+				"Translation": "Plant these in the spring. Takes 12 days to produce a large cauliflower."
+			},
+			{
+				"StringId": "Pumpkin Seeds_Name",
+				"Translation": "Pumpkin Seeds"
+			},
+			{
+				"StringId": "Pumpkin Seeds_Description",
+				"Translation": "Plant these in the fall. Takes 13 days to mature."
+			},
+			{
+				"StringId": "Sunflower Seeds_Name",
+				"Translation": "Sunflower Seeds"
+			},
+			{
+				"StringId": "Sunflower Seeds_Description",
+				"Translation": "Plant in summer or fall. Takes 8 days to produce a large sunflower. Yields more seeds at harvest."
+			},
+			{
+				"StringId": "Radish Seeds_Name",
+				"Translation": "Radish Seeds"
+			},
+			{
+				"StringId": "Radish Seeds_Description",
+				"Translation": "Plant these in the summer. Takes 6 days to mature."
+			},
+			{
+				"StringId": "Parsnip Seeds_Name",
+				"Translation": "Parsnip Seeds"
+			},
+			{
+				"StringId": "Parsnip Seeds_Description",
+				"Translation": "Plant these in the spring. Takes 4 days to mature."
+			},
+			{
+				"StringId": "Potato Seeds_Name",
+				"Translation": "Potato Seeds"
+			},
+			{
+				"StringId": "Potato Seeds_Description",
+				"Translation": "Plant these in the spring. Takes 6 days to mature, and has a chance of yielding multiple potatoes at harvest."
+			},
+			{
+				"StringId": "Red Cabbage Seeds_Name",
+				"Translation": "Red Cabbage Seeds"
+			},
+			{
+				"StringId": "Red Cabbage Seeds_Description",
+				"Translation": "Plant these in the summer. Takes 9 days to mature."
+			},
+			{
+				"StringId": "Beetroot Seeds_Name",
+				"Translation": "Beet Seeds"
+			},
+			{
+				"StringId": "Beetroot Seeds_Description",
+				"Translation": "Plant these in the fall. Takes 6 days to mature."
+			},
+			{
+				"StringId": "Wheat Seeds_Name",
+				"Translation": "Wheat Seeds"
+			},
+			{
+				"StringId": "Wheat Seeds_Description",
+				"Translation": "Plant these in the summer or fall. Takes 4 days to mature. Harvest with the scythe."
+			},
+			{
+				"StringId": "Kale Seeds_Name",
+				"Translation": "Kale Seeds"
+			},
+			{
+				"StringId": "Kale Seeds_Description",
+				"Translation": "Plant these in the spring. Takes 6 days to mature. Harvest with the scythe."
+			}
+		]
+}
