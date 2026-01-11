@@ -33,23 +33,32 @@ public class MapManager : SingletonMonobehaviour<MapManager>
         GameManager.Instance.ManagerReady("MapManager");
 
     }
-   
+
+    void Start()
+    {
+        Init();
+    }
     void OnEnable()
     {
         if (!GameManager.Instance.AllMamagersReady)
             return;
+
+        GameSceneManager.Instance.OnAfterSceneLoad -= AfterSceneLoaded;
+        GameSceneManager.Instance.OnAfterSceneLoad += AfterSceneLoaded;
 
         TimeManager.Instance.OnDayPassed -= AdvanceDay;
         TimeManager.Instance.OnDayPassed += AdvanceDay;
     }
     void OnDisable()
     {
+        GameSceneManager.Instance.OnAfterSceneLoad -= AfterSceneLoaded;
         TimeManager.Instance.OnDayPassed -= AdvanceDay;
 
     }
 
     void SubscribeEvent()
     {
+        GameSceneManager.Instance.OnAfterSceneLoad += AfterSceneLoaded;
         TimeManager.Instance.OnDayPassed += AdvanceDay;
         GameManager.OnAllManagersReady -= SubscribeEvent;
     }
@@ -62,7 +71,6 @@ public class MapManager : SingletonMonobehaviour<MapManager>
             if (_gameLocations.ContainsKey(mapName)) return;
 
             GameLocation location = new GameLocation(superMap);
-
             _gameLocations.Add(mapName, location);
 
             //if(_currentLocation == null)
@@ -84,9 +92,9 @@ public class MapManager : SingletonMonobehaviour<MapManager>
 
             if(startSceneName == mapName)
             {
-                SetCurrentLocation(startSceneName);
+                _currentLocation = kvp.Value;
+                OnLocationChanged?.Invoke(kvp.Value);
             }
-
         }
     }
     public void SetCurrentLocation(string sceneName)
@@ -96,9 +104,6 @@ public class MapManager : SingletonMonobehaviour<MapManager>
         if (_gameLocations.TryGetValue(mapName, out GameLocation location))
         {
             _currentLocation = location;
-            _currentLocation.SetDecoTilemaps();
-            _grid = location.Grid;
-            _itemsParent = GameObject.FindGameObjectWithTag("ItemsParent").transform;
             OnLocationChanged?.Invoke(location);
         }
 
@@ -124,6 +129,18 @@ public class MapManager : SingletonMonobehaviour<MapManager>
         string mapName = sceneName.Substring(index + 1);
 
         return mapName;
+    }
+
+    void AfterSceneLoaded()
+    {
+        Transform parent = GameObject.FindGameObjectWithTag("ItemsParent").transform;
+        if (parent != null)
+            _itemsParent = parent;
+        else
+            _itemsParent = null;
+
+        _currentLocation.SetDecoTilemaps();
+        _grid = _currentLocation.Grid;
     }
     #region Grid
 

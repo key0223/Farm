@@ -21,7 +21,7 @@ public class PlayerMove : MonoBehaviour
     int _currentDirection; /* 0 : Left, 1 : Right, 2 : Up, 3 : Down */
     int _lastHorizontalDirection = 1;
 
-    public Vector3Int CellPos { get { return _cellPos; } }
+    public Vector3Int CellPos { get { return _cellPos; } set { _cellPos = value; } }
     public bool CanMove { get { return _canMove; } set { _canMove = value; } }
     public int CurrentDirection { get { return _currentDirection; } set { _currentDirection = value; } }
     public int LastHorizontalDirection { get { return _lastHorizontalDirection; } set {_lastHorizontalDirection = value; } }

@@ -195,9 +195,6 @@ public class PlayerActionHanlder : MonoBehaviour
             case 2: front.y += 1; break;  // Up  
             case 3: front.y -= 1; break;  // Down
         }
-        //front.y += 1;  // Y º¸Á¤
         return front;
     }
-
-   
 }

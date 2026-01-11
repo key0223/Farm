@@ -58,18 +58,19 @@ public class GameSceneManager : SingletonMonobehaviour<GameSceneManager>
         yield return StartCoroutine(CoFade(1f)); /* Fading to black */
 
         // TODO : Store scene data
-        GameObject player = FindObjectOfType<PlayerController>().gameObject;
+        PlayerController player = FindObjectOfType<PlayerController>();
         player.transform.position = spawnPosition;
+        player.CellPos = GridUtils.WorldToGrid(player.transform.position);
 
         OnBeforeSceneUnload?.Invoke();
         yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex); /* Unload current scene */
 
         yield return StartCoroutine(CoLoadSceneAndSetActive(sceneName)); /* Load new scene */
+        MapManager.Instance.SetCurrentLocation(SceneManager.GetActiveScene().name);
         OnAfterSceneLoad?.Invoke();
 
         // TODO : Restore new scene Data
 
-        MapManager.Instance.SetCurrentLocation(SceneManager.GetActiveScene().name);
 
         yield return StartCoroutine(CoFade(0));
         OnAfterSceneLoadFadeIn?.Invoke();

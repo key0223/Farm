@@ -51,8 +51,6 @@ public class GameLocation
     }
     void RegisterMap(SuperMap superMap)
     {
-        CreateOverlayTilemap(superMap);
-
         string mapName = superMap.gameObject.name;
         int width = superMap.m_Width;
         int height = superMap.m_Height;
@@ -67,17 +65,6 @@ public class GameLocation
 
         _deco1 = GameObject.FindGameObjectWithTag("Deco1").GetComponent<Tilemap>();
         _deco2 = GameObject.FindGameObjectWithTag("Deco2").GetComponent<Tilemap>();
-    }
-    void CreateOverlayTilemap(SuperMap superMap)
-    {
-        Transform parent = superMap.gameObject.transform;
-        Grid grid = parent.GetChild(0).GetComponent<Grid>();
-        if (grid == null) return;
-
-        //GameObject decoObj = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Map/DecoGrid"));
-
-        //_deco1 = decoObj.transform.GetChild(0).GetComponent<Tilemap>();
-        //_deco2 = decoObj.transform.GetChild(1).GetComponent<Tilemap>();
     }
 
     public TileRuntimeFeature GetRuntimeFeature(int gridX, int gridY)

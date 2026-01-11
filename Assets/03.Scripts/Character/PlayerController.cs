@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
             _playerAnim.AnimatedSprite.SetDirection(value);
         }
     }
-    public Vector3Int CellPos {  get { return _playerMove.CellPos; } }
+    public Vector3Int CellPos {  get { return _playerMove.CellPos; } set { _playerMove.CellPos = value; } }
     #endregion
 
     void Awake()
