@@ -12,12 +12,26 @@ public static class GridUtils
     }
     public static Vector3Int GetCellPosFromKey(string key)
     {
-        int xStart = key.IndexOf('x');
-        int yStart = key.IndexOf('y');
+        if(string.IsNullOrEmpty(key) || !key.StartsWith("x") || !key.StartsWith("y"))
+            return Vector3Int.zero;
 
-        int x = int.Parse(key.Substring(xStart, yStart - xStart));
-        int y = int.Parse(key.Substring(yStart));
-        return new Vector3Int(x, y, 0);
+        try
+        {
+            int yStart = key.IndexOf('y');
+            if (yStart <= 1) return Vector3Int.zero;
+
+            string xStr = key.Substring(1, yStart - 1); 
+            string yStr = key.Substring(yStart + 1);
+
+            int x = int.Parse(xStr);
+            int y = int.Parse(yStr);
+            return new Vector3Int(x, y, 0);
+        }
+        catch(System.Exception e)
+        {
+            Debug.LogError($"Invalid key format '{key}': {e.Message}");
+            return Vector3Int.zero;
+        }
     }
     /* Å¸ÀÏ ÀÎµ¦½º, ÁÂÇÏ´Ü ±âÁØ */
     public static Vector3Int WorldToGrid(Vector3 worldPos)

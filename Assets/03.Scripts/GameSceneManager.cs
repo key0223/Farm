@@ -34,7 +34,7 @@ public class GameSceneManager : SingletonMonobehaviour<GameSceneManager>
         yield return StartCoroutine(CoLoadSceneAndSetActive(_startScene.ToString()));
         OnAfterSceneLoad?.Invoke();
 
-        // TODO : Restore Scene Data
+        SaveLoadManager.Instance.RestoreCurrentSceneData();
 
         StartCoroutine(CoFade(0));
     }
@@ -57,7 +57,8 @@ public class GameSceneManager : SingletonMonobehaviour<GameSceneManager>
         OnBeforeSceneUnloadFadeOut?.Invoke();
         yield return StartCoroutine(CoFade(1f)); /* Fading to black */
 
-        // TODO : Store scene data
+        SaveLoadManager.Instance.StoreCurrentSceneData();
+
         PlayerController player = FindObjectOfType<PlayerController>();
         player.transform.position = spawnPosition;
         player.CellPos = GridUtils.WorldToGrid(player.transform.position);
@@ -69,8 +70,7 @@ public class GameSceneManager : SingletonMonobehaviour<GameSceneManager>
         MapManager.Instance.SetCurrentLocation(SceneManager.GetActiveScene().name);
         OnAfterSceneLoad?.Invoke();
 
-        // TODO : Restore new scene Data
-
+        SaveLoadManager.Instance.RestoreCurrentSceneData();
 
         yield return StartCoroutine(CoFade(0));
         OnAfterSceneLoadFadeIn?.Invoke();

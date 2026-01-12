@@ -2503,6 +2503,7 @@ Transform:
   - {fileID: 852794293}
   - {fileID: 1978610610}
   - {fileID: 1663023058}
+  - {fileID: 922624688}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &536220085
@@ -2542,6 +2543,8 @@ MonoBehaviour:
     ManagerName: ResourceManager
   - Manager: {fileID: 1663023059}
     ManagerName: GameSceneManager
+  - Manager: {fileID: 922624689}
+    ManagerName: SaveLoadManager
 --- !u!1 &590670992
 GameObject:
   m_ObjectHideFlags: 0
@@ -4103,6 +4106,50 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &922624687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 922624688}
+  - component: {fileID: 922624689}
+  m_Layer: 0
+  m_Name: SaveLoadManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &922624688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922624687}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 536220084}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &922624689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922624687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8436830f0291c04eb4d8198ed105c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &953520532
 GameObject:
   m_ObjectHideFlags: 0
@@ -8914,6 +8961,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1805673885}
   - component: {fileID: 1805673886}
+  - component: {fileID: 1805673887}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -8953,6 +9001,19 @@ MonoBehaviour:
   - {fileID: -3656767908885118864, guid: 536c9bf5be5b70249bf8a6bfd387cee5, type: 3}
   _dugTile: {fileID: 11400000, guid: 7211a25fe2ba4d54ca7696ecf91cc53e, type: 2}
   _wateredTile: {fileID: 11400000, guid: 083fc58821cbca546a36406f1045967a, type: 2}
+--- !u!114 &1805673887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805673884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864206b6baa291948ba54d0bf3f1bfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: ef6d5546-1c1f-47f6-98ed-21c2e91454b2
 --- !u!1 &1817668448
 GameObject:
   m_ObjectHideFlags: 0

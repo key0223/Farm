@@ -26,10 +26,10 @@ public class Crop
     bool _fullyGrown;
     bool _dead;
 
-    
-    public int CurrentPhase { get {  return _currentPhase; } }
-    public int DaysOfCurrentPhase { get { return _daysOfCurrentPhase; } }
-    public bool FullyGrown { get { return _fullyGrown; } }
+    public int Id {  get { return _id; }set { _id = value; } }
+    public int CurrentPhase { get {  return _currentPhase; }set { _currentPhase = value; } }
+    public int DaysOfCurrentPhase { get { return _daysOfCurrentPhase; } set { _daysOfCurrentPhase = value; } }
+    public bool FullyGrown { get { return _fullyGrown; }set { _fullyGrown = value; } }
 
     public Crop(int seedId)
     {

@@ -25,6 +25,18 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         ValidateManagers();
     }
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F1))
+        {
+            SaveLoadManager.Instance.SaveDataToFile();
+        }
+        if(Input.GetKeyDown(KeyCode.F2))
+        {
+            SaveLoadManager.Instance.LoadDataFromFile();
+            Debug.Log("Load Data");
+        }
+    }
     public void ManagerReady(string managerName)
     {
         _managersReadyCount++;

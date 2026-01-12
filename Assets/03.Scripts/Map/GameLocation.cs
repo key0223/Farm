@@ -22,6 +22,9 @@ public class GameLocation
 
     public MapData MapData { get { return _mapData; } }
     public Grid Grid { get { return _grid; } }
+
+    public Dictionary<string,TileRuntimeFeature> RuntimeFeature { get { return _runtimeFeature; } }
+    public Dictionary<string,WorldObjectItem> WorldObjects { get { return _worldObjects; } set { _worldObjects = value; } }
     public GameLocation(SuperMap superMap)
     {
         _runtimeFeature = new Dictionary<string, TileRuntimeFeature>();
@@ -97,7 +100,7 @@ public class GameLocation
         }
     }
 
-    void AddRuntimeFeature(string key, TileRuntimeFeature feature)
+    public void AddRuntimeFeature(string key, TileRuntimeFeature feature)
     {
         _runtimeFeature.Add(key,feature);
         feature.OnPlaced(this);

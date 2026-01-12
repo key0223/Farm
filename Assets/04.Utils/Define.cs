@@ -64,4 +64,11 @@ public partial class Define
         HAIR,
         ARMS,
     }
+
+    public enum TileFeatureType
+    {
+        NONE,
+        HOE_DIRT,
+
+    }
 }
