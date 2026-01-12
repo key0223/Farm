@@ -9,6 +9,7 @@ public partial class Define
     public const int TILE_SIZE = 16;
     public const int ITEM_MAX_STACK = 99;
 
+    public const string PERSISTENT_SCENE = "PersistentScene";
     public const string DEFAULT_TEXT_COLOR = "#313131";
 
     // Time 실제 시간 50배

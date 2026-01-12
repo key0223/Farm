@@ -12,7 +12,6 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>, ISaveable
     string _isavableUniqueId;
     GameObjectSave _gameObjectSave;
 
-    bool _isFirstTimeSceneLoaded = true;
     public string ISaveableUniqueId { get { return _isavableUniqueId; } set { _isavableUniqueId = value; } }
     public GameObjectSave GameObjectSave { get { return _gameObjectSave; } set { _gameObjectSave = value; } }
 
@@ -214,7 +213,7 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>, ISaveable
 
     public GameObjectSave ISaveableSave()
     {
-        ISaveableStoreScene("PersistentScene");
+        ISaveableStoreScene(PERSISTENT_SCENE);
         return GameObjectSave;
     }
 
@@ -223,7 +222,7 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>, ISaveable
         if (gameSave.GameObjectData.TryGetValue(ISaveableUniqueId, out GameObjectSave gameObjSave))
         {
             GameObjectSave = gameObjSave;
-            ISaveableRestoreScene("PersistentScene");
+            ISaveableRestoreScene(PERSISTENT_SCENE);
         }
     }
 
