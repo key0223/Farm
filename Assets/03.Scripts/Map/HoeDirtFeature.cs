@@ -14,6 +14,7 @@ public class HoeDirtFeature : TileRuntimeFeature
 
     public Vector3Int TilePos { get { return _tilePos; } set { _tilePos = value; } }
     public Crop CurrentCrop { get { return _currentCrop; } }
+    public CropDisplayObject CropDisplay { get { return _cropDisplay; } }
     public int DaysSinceTilled { get { return _daysSinceTilled; } set { _daysSinceTilled = value; } }
     public bool Watered { get { return _watered; } set { _watered = value; } }
 
@@ -77,7 +78,7 @@ public class HoeDirtFeature : TileRuntimeFeature
         _currentCrop = crop;
 
         GameObject displayObj = ResourceManager.Instance.Instantiate(_cropDisplayPath);
-        Vector3Int pos = TilePos + new Vector3Int(0, -1, 0);
+        Vector3Int pos = TilePos;
         displayObj.transform.position = GridUtils.GridToWorldCenter(pos);
         _cropDisplay = displayObj.GetComponent<CropDisplayObject>();
         _cropDisplay.UpdateDisplay(crop.GetCurrentPhaseSprite());

@@ -268,6 +268,7 @@ public class MapManager : SingletonMonobehaviour<MapManager>, ISaveable
                                         feature.CurrentCrop.DaysOfCurrentPhase = saveData.Data[4];
                                         feature.CurrentCrop.FullyGrown = saveData.Data[5] == 1;
 
+                                        feature.CropDisplay.UpdateDisplay(feature.CurrentCrop.GetCurrentPhaseSprite());
                                     }
                                 }
 
