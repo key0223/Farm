@@ -9,3 +9,5 @@ public class AnimationData
     public Sprite[] Sprites;
     public bool Loop;
 }
+
+

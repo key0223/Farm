@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Storage
 {
@@ -101,7 +100,7 @@ public class Storage
         return false;
     }
 
-    public void RemoveAt(int idx, int count = 1)
+    void RemoveAt(int idx, int count = 1)
     {
         if (idx < 0 || idx >= _slots.Length || _slots[idx] == null) return;
 

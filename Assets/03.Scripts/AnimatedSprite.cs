@@ -46,7 +46,6 @@ public class AnimatedSprite : MonoBehaviour
             UpdateLayer(i);
         }
     }
-
     void UpdateLayer(int layerIndex)
     {
         if (_currentAnims[layerIndex] == null) return;
@@ -60,7 +59,6 @@ public class AnimatedSprite : MonoBehaviour
             NextFrame(layerIndex, clip);
             _layerTimers[layerIndex] = 0;
         }
-
     }
 
     void NextFrame(int layerIndex, AnimationData clip)

@@ -5,7 +5,7 @@ using UnityEngine;
 public interface ISaveable 
 {
     string ISaveableUniqueId { get; set;}
-    GameObjectSave GameObjectSave { get; set; } /* 오브젝트 데이터 전체 */
+    GameObjectSave GameObjectSave { get; set; } /* 오브젝트에 대한 저장 데이터 전체 */
 
     void ISaveableRegister();
 

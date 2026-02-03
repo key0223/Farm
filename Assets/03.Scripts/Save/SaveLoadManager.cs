@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class SaveLoadManager : SingletonMonobehaviour<SaveLoadManager>
 {
-
     GameSave _gameSave;
     List<ISaveable> _iSaveableList;
 

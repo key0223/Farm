@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static Define;
-using static UnityEditor.PlayerSettings;
 public class MapData 
 {
     GameObject _root;
