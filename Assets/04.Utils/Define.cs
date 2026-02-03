@@ -72,4 +72,19 @@ public partial class Define
         HOE_DIRT,
 
     }
+
+    public enum DialogueTagType
+    {
+        NONE,
+        QUESTION,
+        RESPONSE,
+        BREAK,
+        END,
+        KILL,
+        CHANCE,
+        WORLD,
+        PRE_PREREQUISITES,
+        QUICK,
+        ONCE,
+    }
 }

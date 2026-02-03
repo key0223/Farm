@@ -87,4 +87,19 @@ namespace Data
             return dict;
         }
     }
+    [Serializable]
+    public class DialogueLoader : ILoader<string, DialogueData>
+    {
+        public DialogueData[] array;
+
+        public Dictionary<string, DialogueData> MakeDict()
+        {
+            Dictionary<string, DialogueData> dict = new Dictionary<string, DialogueData>();
+            foreach (DialogueData item in array)
+            {
+                dict.Add(item.DialogueId, item);
+            }
+            return dict;
+        }
+    }
 }

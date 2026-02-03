@@ -828,7 +828,7 @@
 </data>
  </layer>
  <objectgroup id="9" name="Buildings Object" locked="1"/>
- <layer id="8" name="Path" width="30" height="20" locked="1">
+ <layer id="8" name="Path" width="30" height="20" visible="0" locked="1">
   <properties>
    <property name="unity:SortingLayer" value="Path"/>
    <property name="unity:SortingOrder" value="500"/>

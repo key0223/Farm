@@ -13,6 +13,7 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
     public Dictionary<int,CropDataBase> CropDict = new Dictionary<int,CropDataBase>();
     public Dictionary<string,AnimationDataBase> AnimationDict = new Dictionary<string,AnimationDataBase>();
     public Dictionary<string,Dictionary<string,StringDataBase>> Languages = new Dictionary<string, Dictionary<string, StringDataBase>>();
+    public Dictionary<string,DialogueData> DialogueDict = new Dictionary<string,DialogueData>();
 
     protected override void Awake()
     {
