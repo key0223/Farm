@@ -16,6 +16,7 @@ public partial class Define : MonoBehaviour
        Down,
        E,
        Escape,
+       Return,
 
        /* Toolbar */
        Alpha1,

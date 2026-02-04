@@ -8,6 +8,9 @@ using static Define;
 
 public class DialogueManager : SingletonMonobehaviour<DialogueManager>
 {
+    InputState _input;
+
+    string _currentNpc;
 
     string _currentRawDialogue;
     string[] _dialogueLines;
@@ -18,33 +21,48 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
     bool _isQuestionActive;
     bool _dialogueKilled;
 
-
-    List<DialogueResponseOption> _currentResponses;
+    DialogueState _dialogueState;
+    List<DialogueResponseOption> _currentResponses = new List<DialogueResponseOption>();
 
     protected override void Awake()
     {
         base.Awake();
+        _dialogueState = new DialogueState();
         GameManager.Instance.ManagerReady("DialogueManager");
-
     }
 
-    
-    public void StartDialogue(string dialogueId)
+    void Start()
+    {
+        _input = InputManager.Instance.InputState;
+    }
+
+    void Update()
+    {
+        if (!UIManager.Instance.DialogueUI.gameObject.activeSelf) return;
+
+        if (_input.IsNewKeyPress(Keys.Return) && !_typing && !_isQuestionActive)
+            ProcessNextLine();
+    }
+
+
+    public void StartDialogue(string npc, string dialogueId)
     {
         DialogueData dialogueData;
         TableDataManager.Instance.DialogueDict.TryGetValue(dialogueId, out dialogueData);
         if (dialogueData == null) return;
 
+        _currentNpc = npc;
         _currentRawDialogue = dialogueData.Dialogue;
         _dialogueLines = _currentRawDialogue.Split('#');
         _lineIndex = 0;
         _dialogueKilled = false;
+        UIManager.Instance.ShowDialogue();
         ProcessNextLine();
     }
 
     void ProcessNextLine()
     {
-        if(_dialogueKilled || _lineIndex >= _dialogueLines.Length)
+        if (_dialogueKilled || _lineIndex >= _dialogueLines.Length)
         {
             EndDialogue();
             return;
@@ -53,7 +71,7 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
         string line = _dialogueLines[_lineIndex++].Trim();
         DialogueTagType tag = ParseDialogueTag(line);
 
-        if(tag == DialogueTagType.KILL)
+        if (tag == DialogueTagType.KILL)
         {
             _dialogueKilled = true;
             EndDialogue();
@@ -64,52 +82,126 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
 
         string parsed = ReplaceTokens(line);
 
-        //StartCoroutine(CoTypeText());
+        StartCoroutine(CoTypeText(UIManager.Instance.DialogueUI.DialogueText, parsed));
     }
-  
+
 
     void EndDialogue()
     {
-        
+        _dialogueState.ClearSession();
+        UIManager.Instance.HideDialogue();
+        _currentResponses.Clear();
     }
-    #region Tag Handler
+    #region Question Dialogue
 
     void ShowQuestion(string line)
     {
-        Match match = Regex.Match(line, @"\$q (.*?)#(.*)");
-        if(match.Success)
+        ClearResponseButtons();
+        _currentResponses.Clear();
+
+        string QuestionText = GetNextPlainText();
+
+        UIManager.Instance.DialogueUI.DialogueText.text = QuestionText;
+        ParseResponses(_currentRawDialogue);
+        SetButtons();
+        _isQuestionActive = true;
+
+    }
+    string GetNextPlainText()
+    {
+        for (int i = _lineIndex; i < _dialogueLines.Length; i++)
         {
-            string dialogue = ReplaceTokens(match.Groups[2].Value);
-            ParseResponses(_currentRawDialogue);
-            _isQuestionActive = true;
+            string nextLine = _dialogueLines[i].Trim();
+            if (!nextLine.StartsWith("$"))
+            {
+                return ReplaceTokens(nextLine);
+            }
         }
-            
+        return "No Question...";
     }
 
     void ParseResponses(string raw)
     {
-        _currentResponses = new List<DialogueResponseOption>();
+        if (_currentResponses == null)
+            _currentResponses = new List<DialogueResponseOption>();
 
-        MatchCollection matches = Regex.Matches(raw, @"#r (\d+) ([+-]\d+) (\w+)#(.*?)($|#)");
+        _currentResponses.Clear();
 
-        foreach(Match match in matches)
+
+        var matches = Regex.Matches(raw,
+        @"#\$r\s+(\d+)\s+([+-]?\d*)\s+(\w+)\s*#([^#]+)",
+        RegexOptions.IgnoreCase);
+
+        foreach (Match match in matches)
         {
             _currentResponses.Add(new DialogueResponseOption
             {
                 ResponseId = match.Groups[1].Value,
                 ReactionId = match.Groups[3].Value,
-                PlayerResponsText = match.Groups[4].Value,
+                PlayerResponsText = ReplaceTokens(match.Groups[4].Value.Trim())
             });
         }
 
-
-        
     }
+
+    void SetButtons()
+    {
+        UIManager.Instance.DialogueUI.SetButtonInactive();
+        int count = Mathf.Min(_currentResponses.Count, UIManager.Instance.DialogueUI.Buttons.Count);
+
+        for (int i = 0; i < count; i++)
+        {
+            DialogueResponseOption resp = _currentResponses[i];
+            ResponseButton button = UIManager.Instance.DialogueUI.Buttons[i];
+            button.SetResponseText(resp.PlayerResponsText, OnResponseSelected);
+            button.gameObject.SetActive(true);
+        }
+
+        UIManager.Instance.ActiveMenu.PopulateClickableComponentList();
+
+    }
+
+    void OnResponseSelected(int index)
+    {
+        SelectResponse(index);
+    }
+
+    void SelectResponse(int index)
+    {
+        DialogueResponseOption response = _currentResponses[index];
+        _dialogueState.ChooseResponse(_currentNpc, response.ResponseId);
+
+        ClearResponseButtons();
+
+        _isQuestionActive = false;
+
+        LoadReactionDialogue(response.ReactionId);
+    }
+
+    void LoadReactionDialogue(string reactionId)
+    {
+        DialogueData reactionData;
+        TableDataManager.Instance.DialogueDict.TryGetValue(reactionId, out reactionData);
+        if (reactionData == null)
+            ProcessNextLine();
+
+        _currentRawDialogue = reactionData.Dialogue;
+        _dialogueLines = _currentRawDialogue.Split('#');
+        _lineIndex = 0;
+        ProcessNextLine();
+    }
+    void ClearResponseButtons()
+    {
+        UIManager.Instance.DialogueUI.SetButtonInactive();
+    }
+
+
     #endregion
     #region Utils
-    IEnumerator CoTypeText(TMP_Text txt, string text)
+    IEnumerator CoTypeText(TextMeshProUGUI txt, string text)
     {
         txt.text = "";
+        _typing = true;
         foreach (char c in text)
         {
             txt.text += c;
@@ -128,7 +220,7 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
                 EndDialogue();
                 return true;
             case DialogueTagType.QUESTION:
-                //ShowQuestion(line);
+                ShowQuestion(line);
                 return true;
             case DialogueTagType.CHANCE:
                 //HandleChance(line);
@@ -155,19 +247,20 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
         line = line.Replace("@", "플레이어");
         return line;
     }
-        DialogueTagType ParseDialogueTag(string line)
+    DialogueTagType ParseDialogueTag(string line)
     {
         if (!line.StartsWith("$")) return DialogueTagType.NONE;
-        if (!line.StartsWith("$q")) return DialogueTagType.QUESTION;
-        if (!line.StartsWith("$r")) return DialogueTagType.RESPONSE;
-        if (!line.StartsWith("$b")) return DialogueTagType.BREAK;
-        if (!line.StartsWith("$e")) return DialogueTagType.END;
-        if (!line.StartsWith("$k")) return DialogueTagType.KILL;
-        if (!line.StartsWith("$c")) return DialogueTagType.CHANCE;
-        if (!line.StartsWith("$d")) return DialogueTagType.WORLD;
-        if (!line.StartsWith("$p")) return DialogueTagType.PRE_PREREQUISITES;
-        if (!line.StartsWith("$y")) return DialogueTagType.QUICK;
-        if (!line.StartsWith("$1")) return DialogueTagType.ONCE;
+
+        if (line.StartsWith("$q ")) return DialogueTagType.QUESTION;
+        if (line.StartsWith("$r ")) return DialogueTagType.RESPONSE;
+        if (line.StartsWith("$b")) return DialogueTagType.BREAK;
+        if (line.StartsWith("$e")) return DialogueTagType.END;
+        if (line.StartsWith("$k")) return DialogueTagType.KILL;
+        if (line.StartsWith("$c ")) return DialogueTagType.CHANCE;
+        if (line.StartsWith("$d ")) return DialogueTagType.WORLD;
+        if (line.StartsWith("$p ")) return DialogueTagType.PRE_PREREQUISITES;
+        if (line.StartsWith("$y ")) return DialogueTagType.QUICK;
+        if (line.StartsWith("$1 ")) return DialogueTagType.ONCE;
 
         return DialogueTagType.NONE;
     }

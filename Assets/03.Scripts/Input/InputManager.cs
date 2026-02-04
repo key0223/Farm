@@ -16,7 +16,7 @@ public class InputManager : SingletonMonobehaviour<InputManager>
     {
         Keys.A,Keys.D,Keys.W,Keys.S,
         Keys.Left,Keys.Right,Keys.Up, Keys.Down,
-        Keys.E,Keys.Escape,
+        Keys.E,Keys.Escape,Keys.Return,
         Keys.Alpha1,Keys.Alpha2,Keys.Alpha3,Keys.Alpha4,Keys.Alpha5,
         Keys.Alpha6,Keys.Alpha7,Keys.Alpha8,Keys.Alpha9,Keys.Alpha0,
     };
@@ -85,6 +85,7 @@ public class InputManager : SingletonMonobehaviour<InputManager>
             case Keys.Down : return KeyCode.DownArrow;
             case Keys.E : return KeyCode.E;
             case Keys.Escape: return KeyCode.Escape;
+            case Keys.Return: return KeyCode.Return;
             case Keys.Alpha1: return KeyCode.Alpha1;
             case Keys.Alpha2: return KeyCode.Alpha2;
             case Keys.Alpha3: return KeyCode.Alpha3;

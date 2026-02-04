@@ -35,8 +35,12 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
     TooltipUI _tooltip;
 
+    DialogueUI _dialogueUI;
+
     public Dictionary<string, ClickableMenu> MenuCache { get { return _menuCache; } }
     public ClickableMenu ActiveMenu { get { return _activeMenu; } set { _activeMenu = value; } }
+
+    public DialogueUI DialogueUI { get { return _dialogueUI; } }
     protected override void Awake()
     {
         base.Awake();
@@ -45,6 +49,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         CacheAllMenus();
         _toolbar = FindObjectOfType<ToolbarMenu>();
         _tooltip = FindObjectOfType<TooltipUI>();
+        _dialogueUI = FindObjectOfType<DialogueUI>();
         GameManager.Instance.ManagerReady("UIManager");
 
     }
@@ -191,6 +196,19 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         _tooltip.Hide();
     }
+    #endregion
+
+    #region Dialogue
+
+    public void ShowDialogue()
+    {
+        OpenMenuByName("Dialogue");
+    }
+    public void HideDialogue()
+    {
+        OpenMenuByName("Dialogue");
+    }
+    
     #endregion
     #region Helpers
 

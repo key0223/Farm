@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialgoueState 
+public class DialogueState 
 {
-    Dictionary<string,HashSet<string>> _npcResponses = new Dictionary<string,HashSet<string>>(); // 저장 될 데이터
-    Dictionary<string,HashSet<string>> _eventDialogue = new Dictionary<string,HashSet<string>>(); // 한 번만 보여줄 대사
+    Dictionary<string, HashSet<string>> _npcResponses = new Dictionary<string, HashSet<string>>(); // 저장 될 데이터
+    Dictionary<string, HashSet<string>> _eventDialogue = new Dictionary<string, HashSet<string>>(); // 한 번만 보여줄 대사
 
     HashSet<string> _sessionResponses = new HashSet<string>();
     HashSet<string> _sessionDialogues = new HashSet<string>();
@@ -17,7 +17,7 @@ public class DialgoueState
 
     public void ChooseResponse(string npcId, string responseId)
     {
-        if(!_npcResponses.ContainsKey(npcId))
+        if (!_npcResponses.ContainsKey(npcId))
             _npcResponses[npcId] = new HashSet<string>();
 
         _npcResponses[npcId].Add(responseId);

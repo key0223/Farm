@@ -30,6 +30,8 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
         CropDict = LoadJson<Data.CropLoader, int, CropDataBase>("Crops").MakeDict();
         AnimationDict = LoadJson<Data.AnimationLoader, string, AnimationDataBase>("AnimationData_Player").MakeDict();
         LoadAllLanguages();
+
+        DialogueDict = LoadJson<Data.DialogueLoader, string, DialogueData>("DialogueData_Rand").MakeDict();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>

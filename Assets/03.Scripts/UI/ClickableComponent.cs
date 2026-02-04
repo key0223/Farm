@@ -25,5 +25,6 @@ public class ClickableComponent : MonoBehaviour
     }
     
     public virtual void OnHover() { }
+    public virtual void OnHoverExit() { }
     public virtual void OnLeftClick(Vector2 pos) { }
 }

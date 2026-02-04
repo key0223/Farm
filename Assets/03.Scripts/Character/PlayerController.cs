@@ -93,6 +93,12 @@ public class PlayerController : MonoBehaviour, ISaveable
         else
             return direction.x > 0 ? 1 : 0;
     }
+
+    [ContextMenu("DialogueTest")]
+    public void DialogueTest()
+    {
+        DialogueManager.Instance.StartDialogue("Rand", "Sun2");
+    }
     #region Saveable
     public void ISaveableRegister()
     {

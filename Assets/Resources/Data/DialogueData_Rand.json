@@ -1,0 +1,26 @@
+﻿{
+	"md5": "44f24ac0db509c90013803f42b43271c",
+	"array": 
+		[
+			{
+				"DialogueId": "Sun2",
+				"Dialogue": "밤새 묘지에 있으면 어떻게 될까?#$q 17/18 Sun_old#@, 우리가 죽고 나면 무슨 일이 있을 거라 생각해?#$r 17 0 Sun_17#나도 모르겠어.#$r 18 40 Sun_18#으스스한 귀신이 될거야.#$r 17 0 Sun_17#천국에 가겠지.#$r 18 0 Sun_17#우리 에너지가 영적인 차원으로 넘어갈 거야.#$r 17 30 Sun_nothing#아무일도 없어. 그냥 존재하지 않게 되는 거지."
+			},
+			{
+				"DialogueId": "Sun_old",
+				"Dialogue": "$p 17#아무 일도 없을 거라 생각하는 거야?$u|사악한 귀신이 나타날지도 몰라!"
+			},
+			{
+				"DialogueId": "Sun_17",
+				"Dialogue": "흐음, 흥미로운걸..."
+			},
+			{
+				"DialogueId": "Sun_18",
+				"Dialogue": "흥미로운 이론인걸!"
+			},
+			{
+				"DialogueId": "Sun_nothing",
+				"Dialogue": "그거 알아? 그거 그렇게 나쁜 거 같진 않다."
+			}
+		]
+}
