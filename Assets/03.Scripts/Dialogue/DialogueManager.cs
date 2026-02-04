@@ -102,7 +102,7 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
         Match qMatch = Regex.Match(line, @"\$q\s*([0-9,/]+)\s+(\w+)");
         if (qMatch.Success)
         {
-            string idsRaw = qMatch.Groups[1].Value.Replace("/", ","); // "17/18" → "17,18"
+            string idsRaw = qMatch.Groups[1].Value.Replace("/", ",");
             string fallbackKey = qMatch.Groups[2].Value;
 
             string[] ids = idsRaw.Split(',').Select(s => s.Trim()).ToArray();
@@ -225,7 +225,6 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
         int hashIdx = line.IndexOf('#');
         if (hashIdx == -1)
         {
-            // $p 17 다음 일반 텍스트 처리
             ProcessPWithNextText(line);
             return;
         }

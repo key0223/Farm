@@ -7,6 +7,8 @@ using static Define;
 
 public class UIManager : SingletonMonobehaviour<UIManager>
 {
+    public event Action<bool> OnUIOpenedChanged;
+
     readonly Dictionary<Keys, (string name, Type type)> _uiButtons = new()
     {
         {Keys.E,("Inventory",typeof(InventoryMenu))},
@@ -165,9 +167,14 @@ public class UIManager : SingletonMonobehaviour<UIManager>
             _activeMenu.gameObject.SetActive(true);
             _activeMenu.PopulateClickableComponentList();
             HideToolbar();
+            OnUIOpenedChanged?.Invoke(true);
         }
         else
+        {
             ShowToolbar();
+            OnUIOpenedChanged?.Invoke(false);
+
+        }
     }
 
     #region Toolbar

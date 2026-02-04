@@ -60,16 +60,20 @@ public class PlayerController : MonoBehaviour, ISaveable
         if (!GameManager.Instance.AllMamagersReady)
             return;
 
+        UIManager.Instance.OnUIOpenedChanged -= OnUIOpenChanged;
+        UIManager.Instance.OnUIOpenedChanged += OnUIOpenChanged;
+
         ISaveableRegister();
     }
     void OnDisable()
     {
+        UIManager.Instance.OnUIOpenedChanged -= OnUIOpenChanged;
         ISaveableDeregister();
     }
     void SubscribeEvent()
     {
         ISaveableRegister();
-
+        UIManager.Instance.OnUIOpenedChanged += OnUIOpenChanged;
         GameManager.OnAllManagersReady -= SubscribeEvent;
     }
     void CacheComponents()
@@ -92,6 +96,11 @@ public class PlayerController : MonoBehaviour, ISaveable
             return direction.y > 0 ? 2 : 3;
         else
             return direction.x > 0 ? 1 : 0;
+    }
+
+    void OnUIOpenChanged(bool open)
+    {
+        CanMove = !open;
     }
 
     [SerializeField] string TestDialogue;
