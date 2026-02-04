@@ -191,9 +191,9 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
         _dialogueState.ChooseResponse(_currentNpc, response.ResponseId);
 
         ClearResponseButtons();
-
         _isQuestionActive = false;
-
+        StopAllCoroutines();
+        UIManager.Instance.DialogueUI.DialogueText.text = "";
         LoadReactionDialogue(response.ReactionId);
     }
 
