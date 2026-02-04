@@ -26,7 +26,14 @@ public class ResponseButton : ClickableComponent
         _responseText.color = _defaultColor;
         OnResponseSelected = callback;
     }
+    public void SetResponseText(string response, Action callback)
+    {
+        _responseText.text = response;
+        _responseText.color = _defaultColor;
 
+        OnResponseSelected = null;
+        _onResponseSelected = (int idx) => callback?.Invoke();
+    }
     public void SelectResponse()
     {
         _onResponseSelected?.Invoke(_buttonIndex);

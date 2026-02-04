@@ -101,7 +101,7 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
 
         string QuestionText = GetNextPlainText();
 
-        UIManager.Instance.DialogueUI.DialogueText.text = QuestionText;
+        StartCoroutine(CoTypeText(UIManager.Instance.DialogueUI.DialogueText, QuestionText));
         ParseResponses(_currentRawDialogue);
         SetButtons();
         _isQuestionActive = true;
@@ -195,8 +195,47 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
         UIManager.Instance.DialogueUI.SetButtonInactive();
     }
 
-
     #endregion
+
+    void HandleQuickQuestion(string line)
+    {
+        Match yMatch = Regex.Match(line, @"\$y '(.*?)'");
+        if (!yMatch.Success) return;
+
+        string content = yMatch.Groups[1].Value;
+        string[] parts = content.Split('_');
+
+        if (parts.Length < 3) return;
+
+        // Áú¹®
+        StartCoroutine(CoTypeText(UIManager.Instance.DialogueUI.DialogueText, ReplaceTokens(parts[0])));
+
+        UIManager.Instance.DialogueUI.SetButtonInactive();
+        int buttonIdx = 0;
+
+        for (int i = 1; i < parts.Length; i += 2)
+        {
+            if (i + 1 >= parts.Length) break;
+
+            string choice = ReplaceTokens(parts[i]);
+            string reaction = ReplaceTokens(parts[i + 1]);
+
+            ResponseButton button = UIManager.Instance.DialogueUI.Buttons[buttonIdx];
+            button.ButtonIndex = buttonIdx;
+            button.SetResponseText(choice, () =>
+            {
+                UIManager.Instance.DialogueUI.SetButtonInactive();
+                _isQuestionActive = false;
+                StartCoroutine(CoTypeText(UIManager.Instance.DialogueUI.DialogueText, reaction));
+            });
+            button.gameObject.SetActive(true);
+            buttonIdx++;
+        }
+
+        UIManager.Instance.ActiveMenu.PopulateClickableComponentList();
+        _isQuestionActive = true;
+    }
+
     #region Utils
     IEnumerator CoTypeText(TextMeshProUGUI txt, string text)
     {
@@ -232,7 +271,7 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
                 //HandlePrerequisite(line);
                 return true;
             case DialogueTagType.QUICK:
-                //HandleQuickQuestion(line);
+                HandleQuickQuestion(line);
                 return true;
             case DialogueTagType.ONCE:
                 //HandleOnce(line);
