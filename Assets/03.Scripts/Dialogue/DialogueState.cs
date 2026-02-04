@@ -14,7 +14,7 @@ public class DialogueState
     {
         return _npcResponses.ContainsKey(npcId) && _npcResponses[npcId].Contains(responseId);
     }
-
+   
     public void ChooseResponse(string npcId, string responseId)
     {
         if (!_npcResponses.ContainsKey(npcId))

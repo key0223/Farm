@@ -70,8 +70,10 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
             return;
         }
 
-        string line = _dialogueLines[_lineIndex++].Trim();
+        string line = _dialogueLines[_lineIndex].Trim();
         DialogueTagType tag = ParseDialogueTag(line);
+
+        _lineIndex++;
 
         if (tag == DialogueTagType.KILL)
         {
@@ -83,7 +85,6 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
         if (ProcessTag(tag, line)) return;
 
         string parsed = ReplaceTokens(line);
-
         StartCoroutine(CoTypeText(UIManager.Instance.DialogueUI.DialogueText, parsed));
     }
 
@@ -98,12 +99,28 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
 
     void ShowQuestion(string line)
     {
+        Match qMatch = Regex.Match(line, @"\$q\s*([0-9,/]+)\s+(\w+)");
+        if (qMatch.Success)
+        {
+            string idsRaw = qMatch.Groups[1].Value.Replace("/", ","); // "17/18" → "17,18"
+            string fallbackKey = qMatch.Groups[2].Value;
+
+            string[] ids = idsRaw.Split(',').Select(s => s.Trim()).ToArray();
+            bool alreadyAnswered = ids.Any(id => _dialogueState.HasChosenResponse(_currentNpc, id));
+
+            if (alreadyAnswered)
+            {
+                LoadReactionDialogue(fallbackKey);
+                return;
+            }
+        }
+
         ClearResponseButtons();
         _currentResponses.Clear();
 
-        string QuestionText = GetNextPlainText();
+        string questionText = GetNextPlainText();
 
-        StartCoroutine(CoTypeText(UIManager.Instance.DialogueUI.DialogueText, QuestionText));
+        StartCoroutine(CoTypeText(UIManager.Instance.DialogueUI.DialogueText, questionText));
         ParseResponses(_currentRawDialogue);
         SetButtons();
         _isQuestionActive = true;
@@ -185,7 +202,10 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
         DialogueData reactionData;
         TableDataManager.Instance.DialogueDict.TryGetValue(reactionId, out reactionData);
         if (reactionData == null)
+        {
             ProcessNextLine();
+            return;
+        }
 
         _currentRawDialogue = reactionData.Dialogue;
         _dialogueLines = _currentRawDialogue.Split('#');
@@ -199,31 +219,45 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
 
     #endregion
 
-    void HandleOnce(string line)
-    {
-        Match match = Regex.Match(_currentRawDialogue,
-            @"(\$1\s+\w+)\s*#([^\$]+?)\s*#\$e\s*#([^\$]+)",
-            RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
-        if (!match.Success)
+    void HandlePrerequisite(string line)
+    {
+        int hashIdx = line.IndexOf('#');
+        if (hashIdx == -1)
         {
-            ProcessNextLine();
+            // $p 17 다음 일반 텍스트 처리
+            ProcessPWithNextText(line);
             return;
         }
 
-        string dialogueId = match.Groups[1].Value.Split(' ')[1].Trim();
-        string firstText = match.Groups[2].Value.Trim();
-        string repeatText = match.Groups[3].Value.Trim();
+        string idPart = line.Substring(3, hashIdx - 3).Trim(); // $p 다음부터 # 전까지
+        string[] ids = idPart.Split('/').Select(s => s.Trim()).ToArray();
+        string textPart = line.Substring(hashIdx + 1).Trim();
+        string[] branches = textPart.Split('|', 2);
 
-        bool seen = _dialogueState.HasSeenDialogue(_currentNpc, dialogueId);
-        string chosen = seen ? repeatText : firstText;
-
-        if (!seen)
-            _dialogueState.SetDialogueSeen(_currentNpc, dialogueId);
-
+        bool matched = ids.Any(id => _dialogueState.HasChosenResponse(_currentNpc, id));
+        string chosen = matched && branches.Length > 0 ? branches[0] : (branches.Length > 1 ? branches[1] : textPart);
         StartCoroutine(CoTypeText(UIManager.Instance.DialogueUI.DialogueText, ReplaceTokens(chosen)));
 
-        _lineIndex++; // $e 스킵
+    }
+    void ProcessPWithNextText(string idLine)
+    {
+        string idPart = idLine.Substring(3).Trim();
+        string[] ids = idPart.Split('/').Select(s => s.Trim()).ToArray();
+
+        for (int i = _lineIndex; i < _dialogueLines.Length; i++)
+        {
+            string nextLine = _dialogueLines[i].Trim();
+            if (!nextLine.StartsWith("$") && !string.IsNullOrEmpty(nextLine))
+            {
+                string[] branches = nextLine.Split('|', 2);
+                bool matched = ids.Any(id => _dialogueState.HasChosenResponse(_currentNpc, id));
+                string chosen = matched && branches.Length > 0 ? branches[0] : (branches.Length > 1 ? branches[1] : nextLine);
+                StartCoroutine(CoTypeText(UIManager.Instance.DialogueUI.DialogueText, ReplaceTokens(chosen)));
+                _lineIndex = i + 1;
+                return;
+            }
+        }
     }
     void HandleQuickQuestion(string line)
     {
@@ -263,7 +297,32 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
         UIManager.Instance.ActiveMenu.PopulateClickableComponentList();
         _isQuestionActive = true;
     }
+    void HandleOnce(string line)
+    {
+        Match match = Regex.Match(_currentRawDialogue,
+            @"(\$1\s+\w+)\s*#([^\$]+?)\s*#\$e\s*#([^\$]+)",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
+        if (!match.Success)
+        {
+            ProcessNextLine();
+            return;
+        }
+
+        string dialogueId = match.Groups[1].Value.Split(' ')[1].Trim();
+        string firstText = match.Groups[2].Value.Trim();
+        string repeatText = match.Groups[3].Value.Trim();
+
+        bool seen = _dialogueState.HasSeenDialogue(_currentNpc, dialogueId);
+        string chosen = seen ? repeatText : firstText;
+
+        if (!seen)
+            _dialogueState.SetDialogueSeen(_currentNpc, dialogueId);
+
+        StartCoroutine(CoTypeText(UIManager.Instance.DialogueUI.DialogueText, ReplaceTokens(chosen)));
+
+        _lineIndex++; // $e 스킵
+    }
     #region Utils
     IEnumerator CoTypeText(TextMeshProUGUI txt, string text)
     {
@@ -296,7 +355,7 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
                 //HandleWorldState(line);
                 return true;
             case DialogueTagType.PRE_PREREQUISITES:
-                //HandlePrerequisite(line);
+                HandlePrerequisite(line);
                 return true;
             case DialogueTagType.QUICK:
                 HandleQuickQuestion(line);
@@ -318,16 +377,16 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
     {
         if (!line.StartsWith("$")) return DialogueTagType.NONE;
 
-        if (line.StartsWith("$q ")) return DialogueTagType.QUESTION;
-        if (line.StartsWith("$r ")) return DialogueTagType.RESPONSE;
+        if (line.StartsWith("$q")) return DialogueTagType.QUESTION;
+        if (line.StartsWith("$r")) return DialogueTagType.RESPONSE;
         if (line.StartsWith("$b")) return DialogueTagType.BREAK;
         if (line.StartsWith("$e")) return DialogueTagType.END;
         if (line.StartsWith("$k")) return DialogueTagType.KILL;
-        if (line.StartsWith("$c ")) return DialogueTagType.CHANCE;
-        if (line.StartsWith("$d ")) return DialogueTagType.WORLD;
-        if (line.StartsWith("$p ")) return DialogueTagType.PRE_PREREQUISITES;
-        if (line.StartsWith("$y ")) return DialogueTagType.QUICK;
-        if (line.StartsWith("$1 ")) return DialogueTagType.ONCE;
+        if (line.StartsWith("$c")) return DialogueTagType.CHANCE;
+        if (line.StartsWith("$d")) return DialogueTagType.WORLD;
+        if (line.StartsWith("$p")) return DialogueTagType.PRE_PREREQUISITES;
+        if (line.StartsWith("$y")) return DialogueTagType.QUICK;
+        if (line.StartsWith("$1")) return DialogueTagType.ONCE;
 
         return DialogueTagType.NONE;
     }

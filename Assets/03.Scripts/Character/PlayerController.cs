@@ -94,10 +94,12 @@ public class PlayerController : MonoBehaviour, ISaveable
             return direction.x > 0 ? 1 : 0;
     }
 
+    [SerializeField] string TestDialogue;
+
     [ContextMenu("DialogueTest")]
     public void DialogueTest()
     {
-        DialogueManager.Instance.StartDialogue("Rand", "Sun2");
+        DialogueManager.Instance.StartDialogue("Rand", TestDialogue);
     }
     #region Saveable
     public void ISaveableRegister()
