@@ -27,7 +27,7 @@ public class DialogueState
 
     public bool HasSeenDialogue(string npcId, string dialogueId)
     {
-        return _eventDialogue.ContainsKey(npcId) && _npcResponses[npcId].Contains(dialogueId);
+        return _eventDialogue.ContainsKey(npcId) && _eventDialogue[npcId].Contains(dialogueId);
     }
 
     public void SetDialogueSeen(string npcId, string dialogueId)

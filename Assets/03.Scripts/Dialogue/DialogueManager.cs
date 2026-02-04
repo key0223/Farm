@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
 using TMPro;
@@ -53,7 +54,8 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
 
         _currentNpc = npc;
         _currentRawDialogue = dialogueData.Dialogue;
-        _dialogueLines = _currentRawDialogue.Split('#');
+        _dialogueLines = _currentRawDialogue.Split('#')
+         .Where(l => !string.IsNullOrWhiteSpace(l.Trim())).Select(l => l.Trim()).ToArray();
         _lineIndex = 0;
         _dialogueKilled = false;
         UIManager.Instance.ShowDialogue();
@@ -197,6 +199,32 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
 
     #endregion
 
+    void HandleOnce(string line)
+    {
+        Match match = Regex.Match(_currentRawDialogue,
+            @"(\$1\s+\w+)\s*#([^\$]+?)\s*#\$e\s*#([^\$]+)",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline);
+
+        if (!match.Success)
+        {
+            ProcessNextLine();
+            return;
+        }
+
+        string dialogueId = match.Groups[1].Value.Split(' ')[1].Trim();
+        string firstText = match.Groups[2].Value.Trim();
+        string repeatText = match.Groups[3].Value.Trim();
+
+        bool seen = _dialogueState.HasSeenDialogue(_currentNpc, dialogueId);
+        string chosen = seen ? repeatText : firstText;
+
+        if (!seen)
+            _dialogueState.SetDialogueSeen(_currentNpc, dialogueId);
+
+        StartCoroutine(CoTypeText(UIManager.Instance.DialogueUI.DialogueText, ReplaceTokens(chosen)));
+
+        _lineIndex++; // $e ½ºÅµ
+    }
     void HandleQuickQuestion(string line)
     {
         Match yMatch = Regex.Match(line, @"\$y '(.*?)'");
@@ -274,7 +302,7 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
                 HandleQuickQuestion(line);
                 return true;
             case DialogueTagType.ONCE:
-                //HandleOnce(line);
+                HandleOnce(line);
                 return true;
         }
         return false;
