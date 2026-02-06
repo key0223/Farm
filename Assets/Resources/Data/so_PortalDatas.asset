@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19cfd5c56d5cb2146a67b5ac21ca64be, type: 3}
+  m_Name: so_PortalDatas
+  m_EditorClassIdentifier: 
+  FarmHouse:
+  - FromMap: 0
+    FromX: 4
+    FromY: -9
+    ToMap: 0
+    ToX: 17
+    ToY: -7
+  Farm:
+  - FromMap: 1
+    FromX: 17
+    FromY: -7
+    ToMap: 0
+    ToX: 4
+    ToY: -9
