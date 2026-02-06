@@ -1,0 +1,24 @@
+﻿{
+	"md5": "b299e9b54fa4e26b259d216910f01b41",
+	"array": 
+		[
+			{
+				"ScheduleId": "Rand_3",
+				"ScheduleOwner": "Rand",
+				"ScheduleName": 3,
+				"ScheduleString": "900 SeedShop 39 5 0/1030 SeedShop 2 20 3/1500 Mountain 46 23 2 abigail_flute/2000 SeedShop 1 9 3 abigail_sleep"
+			},
+			{
+				"ScheduleId": "Rand_5",
+				"ScheduleOwner": "Rand",
+				"ScheduleName": 5,
+				"ScheduleString": "900 SeedShop 34 5 0/1100 SeedShop 9 17 3/1500 Saloon 42 17 2 abigail_sit_down/2100 SeedShop 1 9 3 abigail_sleep"
+			},
+			{
+				"ScheduleId": "Rand_spring_4",
+				"ScheduleOwner": "Rand",
+				"ScheduleName": "spring_4",
+				"ScheduleString": "900 SeedShop 11 5 0 \\\"Strings\\\\schedules\\\\Abigail:spring_4.000\\\"/1230 Hospital 13 14 0 \\\"Strings\\\\schedules\\\\Abigail:spring_4.001\\\"/1330 Hospital 4 6 1 \\\"Strings\\\\schedules\\\\Abigail:spring_4.002\\\"/1600 SeedShop 10 5 0/2000 SeedShop 1 9 3 abigail_sleep"
+			}
+		]
+}

@@ -36,7 +36,7 @@ public static class Parser
         return set;
     }
 
-    public static HashSet<TEnum> ParseEnum<TEnum>(string rawString) where TEnum : struct,Enum
+    public static HashSet<TEnum> ParseEnum<TEnum>(string rawString) where TEnum : struct, Enum
     {
         HashSet<TEnum> set = new HashSet<TEnum>();
 
@@ -124,7 +124,7 @@ public static class Parser
         return set;
     }
 
-    public static UpgradeFrom ParseUpgradFrom(int price,string rawString)
+    public static UpgradeFrom ParseUpgradFrom(int price, string rawString)
     {
         if (string.IsNullOrWhiteSpace(rawString)) return null;
         string[] tokens = rawString.Split(',', StringSplitOptions.RemoveEmptyEntries);
@@ -145,28 +145,51 @@ public static class Parser
     {
         Color newColor;
 
-        if(ColorUtility.TryParseHtmlString(color, out newColor))
+        if (ColorUtility.TryParseHtmlString(color, out newColor))
             return newColor;
 
-        return new Color(0,0,0);
+        return new Color(0, 0, 0);
     }
     public static bool TryParseTileKey(string tileKey, out Vector3Int gridPos)
     {
         gridPos = Vector3Int.zero;
 
-        if(tileKey.StartsWith("x") && tileKey.Contains("y"))
+        if (tileKey.StartsWith("x") && tileKey.Contains("y"))
         {
             string trimmed = tileKey.Substring(1); // "5y3"
             string[] xy = trimmed.Split("y");
 
-            if(xy.Length == 2 && int.TryParse(xy[0], out int x)
+            if (xy.Length == 2 && int.TryParse(xy[0], out int x)
                               && int.TryParse(xy[1], out int y))
             {
-                gridPos = new Vector3Int(x, y,0);
+                gridPos = new Vector3Int(x, y, 0);
                 return true;
             }
         }
 
         return false;
+    }
+
+    public static List<ScheduleData> ParseRawSchedule(string rawSchedule)
+    {
+        List<ScheduleData> scheduleDatas = new List<ScheduleData>();
+        string[] parts = rawSchedule.Split('/');
+        foreach (string part in parts)
+        {
+            if (string.IsNullOrEmpty(part)) continue;
+            string[] fields = part.Split(' ');
+            scheduleDatas.Add(new ScheduleData
+            {
+                Time = int.Parse(fields[0]),
+                Location = fields[1],
+                TargetX = int.Parse(fields[2]),
+                TargetY = int.Parse(fields[3]),
+                Facing = int.Parse(fields[4]),
+                Animation = fields.Length > 5 ? fields[5] : "idle",
+                DialogueId = fields.Length > 6 ? fields[6] : ""
+            });
+        }
+
+        return scheduleDatas.OrderBy(t => t.Time).ToList();
     }
 }

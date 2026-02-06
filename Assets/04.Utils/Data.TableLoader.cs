@@ -102,4 +102,23 @@ namespace Data
             return dict;
         }
     }
+
+    [Serializable]
+    public class ScheduleLoader : ILoader<string, List<ScheduleData>>
+    {
+        public ScheduleDataBase[] array;
+
+        public Dictionary<string, List<ScheduleData>> MakeDict()
+        {
+            Dictionary<string, List<ScheduleData>> dict = new Dictionary<string, List<ScheduleData>>();
+            foreach(ScheduleDataBase item in array)
+            {
+                item.scheduleDatas = Parser.ParseRawSchedule(item.ScheduleString);
+                dict.Add(item.ScheduleId, item.scheduleDatas);
+            }
+            return dict;
+        }
+        
+    }
+
 }

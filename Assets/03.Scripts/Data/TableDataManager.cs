@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
+using Unity.VisualScripting;
 using UnityEngine;
 public interface ILoader<Key, Value>
 {
@@ -14,6 +16,7 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
     public Dictionary<string,AnimationDataBase> AnimationDict = new Dictionary<string,AnimationDataBase>();
     public Dictionary<string,Dictionary<string,StringDataBase>> Languages = new Dictionary<string, Dictionary<string, StringDataBase>>();
     public Dictionary<string,DialogueData> DialogueDict = new Dictionary<string,DialogueData>();
+    public Dictionary<string,List<ScheduleData>> ScheduleDict = new Dictionary<string, List<ScheduleData>>();
 
     protected override void Awake()
     {
@@ -32,6 +35,8 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
         LoadAllLanguages();
 
         DialogueDict = LoadJson<Data.DialogueLoader, string, DialogueData>("DialogueData_Rand").MakeDict();
+        ScheduleDict = LoadJson<Data.ScheduleLoader, string, List<ScheduleData>>("ScheduleData_Rand").MakeDict();
+
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
