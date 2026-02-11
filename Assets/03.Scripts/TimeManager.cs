@@ -168,6 +168,11 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>, ISaveable
         }
     }
 
+    public TimeSpan GetGameTime()
+    {
+        TimeSpan gameTime = new TimeSpan(_gameHour, _gameMinute, _gameSecond);
+        return gameTime;
+    }
     void PlayerTestInput()
     {
         // Trigger Advance Time

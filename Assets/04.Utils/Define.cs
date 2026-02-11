@@ -7,6 +7,7 @@ public partial class Define
     public static readonly string[] MAP_LAYER_NAMES = { "Back","Deco", "Buildings", "Path", "Front", "Always Front" };
     public const int CELL_SIZE = 1;
     public const int TILE_SIZE = 16;
+    public const float PIXEL_SIZE = 0.0625f;
     public const int ITEM_MAX_STACK = 99;
 
     public const string PERSISTENT_SCENE = "PersistentScene";
