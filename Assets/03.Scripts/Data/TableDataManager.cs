@@ -1,6 +1,7 @@
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using Unity.VisualScripting;
 using UnityEngine;
 public interface ILoader<Key, Value>
@@ -11,12 +12,12 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
 {
     const string rootPath = "Data";
 
-    public Dictionary<int,ItemDataBase> ItemDict = new Dictionary<int,ItemDataBase>();
-    public Dictionary<int,CropDataBase> CropDict = new Dictionary<int,CropDataBase>();
-    public Dictionary<string,AnimationDataBase> AnimationDict = new Dictionary<string,AnimationDataBase>();
-    public Dictionary<string,Dictionary<string,StringDataBase>> Languages = new Dictionary<string, Dictionary<string, StringDataBase>>();
-    public Dictionary<string,DialogueData> DialogueDict = new Dictionary<string,DialogueData>();
-    public Dictionary<string,List<ScheduleData>> ScheduleDict = new Dictionary<string, List<ScheduleData>>();
+    public Dictionary<int, ItemDataBase> ItemDict = new Dictionary<int, ItemDataBase>();
+    public Dictionary<int, CropDataBase> CropDict = new Dictionary<int, CropDataBase>();
+    public Dictionary<string, AnimationDataBase> AnimationDict = new Dictionary<string, AnimationDataBase>();
+    public Dictionary<string, Dictionary<string, StringDataBase>> Languages = new Dictionary<string, Dictionary<string, StringDataBase>>();
+    public Dictionary<string, DialogueData> DialogueDict = new Dictionary<string, DialogueData>();
+    public Dictionary<string, List<ScheduleData>> ScheduleDict = new Dictionary<string, List<ScheduleData>>();
 
     protected override void Awake()
     {
@@ -27,11 +28,11 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
     }
     public void Init()
     {
-        Dictionary<int,ItemDataBase> tools = LoadJson<Data.ItemToolLoader, int, ItemDataBase>("Tools").MakeDict();
-        Dictionary<int,ItemDataBase> objects = LoadJson<Data.ItemLoader, int, ItemDataBase>("Objects").MakeDict();
-        ItemDict = MergeDict<int,ItemDataBase>(tools, objects);
+        Dictionary<int, ItemDataBase> tools = LoadJson<Data.ItemToolLoader, int, ItemDataBase>("Tools").MakeDict();
+        Dictionary<int, ItemDataBase> objects = LoadJson<Data.ItemLoader, int, ItemDataBase>("Objects").MakeDict();
+        ItemDict = MergeDict<int, ItemDataBase>(tools, objects);
         CropDict = LoadJson<Data.CropLoader, int, CropDataBase>("Crops").MakeDict();
-        AnimationDict = LoadJson<Data.AnimationLoader, string, AnimationDataBase>("AnimationData_Player").MakeDict();
+        LoadAllAnimations();
         LoadAllLanguages();
 
         DialogueDict = LoadJson<Data.DialogueLoader, string, DialogueData>("DialogueData_Rand").MakeDict();
@@ -58,6 +59,37 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
 
         return mergeDict;
     }
+
+    #region Animation
+
+    public Dictionary<string, AnimationDataBase> GetNPCAnimationDict(string npcName)
+    {
+        string prefix = $"{npcName}_";
+        Dictionary<string, AnimationDataBase> dict = new Dictionary<string, AnimationDataBase>();
+
+        foreach (var kvp in AnimationDict)
+        {
+            if (!kvp.Key.StartsWith(npcName, StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            string newKey = kvp.Key.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)
+                ? kvp.Key.Substring(prefix.Length)
+                : kvp.Key;
+
+            dict[newKey] = kvp.Value;
+        }
+        return dict;
+    }
+
+    void LoadAllAnimations()
+    {
+        Dictionary<string, AnimationDataBase> player = LoadJson<Data.AnimationLoader, string, AnimationDataBase>("AnimationData_Player").MakeDict();
+        Dictionary<string, AnimationDataBase> villagerWoman = LoadJson<Data.AnimationLoader, string, AnimationDataBase>("AnimationData_MiniVillagerWoman").MakeDict();
+
+        AnimationDict = MergeDict<string, AnimationDataBase>(player, villagerWoman);
+    }
+
+    #endregion
 
     #region String Table
 
@@ -93,15 +125,15 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
     public Dictionary<string, List<ScheduleData>> GetNPCScheduleDict(string npcName)
     {
         string prefix = $"{npcName}_";
-        Dictionary<string,List<ScheduleData>> dict = new Dictionary<string, List<ScheduleData>>();
+        Dictionary<string, List<ScheduleData>> dict = new Dictionary<string, List<ScheduleData>>();
 
-        foreach(var kvp in ScheduleDict)
+        foreach (var kvp in ScheduleDict)
         {
-            if (!kvp.Key.StartsWith(npcName, System.StringComparison.OrdinalIgnoreCase))
+            if (!kvp.Key.StartsWith(npcName, StringComparison.OrdinalIgnoreCase))
                 continue;
 
-            string newKey = kvp.Key.StartsWith(prefix,System.StringComparison.OrdinalIgnoreCase)
-                ?kvp.Key.Substring(prefix.Length)
+            string newKey = kvp.Key.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)
+                ? kvp.Key.Substring(prefix.Length)
                 : kvp.Key;
 
             dict[newKey] = kvp.Value;

@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6b85924a4634c4bbc6fe7f496d06a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soMapRouteList: {fileID: 0}
+  _soMapRouteList: {fileID: 11400000, guid: f285535f7951a4e4ab0b6298082142b2, type: 2}
 --- !u!114 &271162793
 MonoBehaviour:
   m_ObjectHideFlags: 0

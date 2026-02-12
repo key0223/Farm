@@ -65,6 +65,7 @@ public partial class Define
 
     public enum SpriteLayer
     {
+        NONE,
         BODY,
         HAIR,
         ARMS,

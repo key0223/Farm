@@ -1,0 +1,43 @@
+﻿{
+	"md5": "9acb769502d4c750d33ccba739032037",
+	"array": 
+		[
+			{
+				"AnimationName": "MiniVillagerWoman_idle",
+				"LayerType": "NONE",
+				"SheetDirectory": "Sprites/Characters/NPC",
+				"ParentSheet": "MiniVillagerWoman",
+				"SpriteIndexStr": "0-3",
+				"Loop": true
+			},
+			{
+				"AnimationName": "MiniVillagerWoman_walk",
+				"LayerType": "NONE",
+				"SheetDirectory": "Sprites/Characters/NPC",
+				"ParentSheet": "MiniVillagerWoman",
+				"SpriteIndexStr": "6-11",
+				"Loop": true
+			},
+			{
+				"AnimationName": "MiniVillagerWoman_jump",
+				"LayerType": "NONE",
+				"SheetDirectory": "Sprites/Characters/NPC",
+				"ParentSheet": "MiniVillagerWoman",
+				"SpriteIndexStr": "12-14"
+			},
+			{
+				"AnimationName": "MiniVillagerWoman_hit",
+				"LayerType": "NONE",
+				"SheetDirectory": "Sprites/Characters/NPC",
+				"ParentSheet": "MiniVillagerWoman",
+				"SpriteIndexStr": "18-20"
+			},
+			{
+				"AnimationName": "MiniVillagerWoman_death",
+				"LayerType": "NONE",
+				"SheetDirectory": "Sprites/Characters/NPC",
+				"ParentSheet": "MiniVillagerWoman",
+				"SpriteIndexStr": "24-17"
+			}
+		]
+}
