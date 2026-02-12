@@ -23,11 +23,11 @@ public class PlayerAnimator : MonoBehaviour
         _animatedSprite.PlayAnimAllLayers("idle");
     }
 
-    public void SetMovementState(bool isMoveing,int direction)
+    public void SetMovementState(bool isMoving,int direction)
     {
         if (_isInAction) return;
       
-        string targetAnim = isMoveing ? "run" : "idle";
+        string targetAnim = isMoving ? "run" : "idle";
 
         if (_lastAnimState != targetAnim)
         {

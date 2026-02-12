@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(NPCMovement))]
+[RequireComponent (typeof(NPCNavigator))]
+[RequireComponent(typeof(NPCSchedule))]
+[RequireComponent(typeof(NPCAnimator))]
 public class NPCController : MonoBehaviour
 {
     [SerializeField] string _npcName;
@@ -11,24 +15,25 @@ public class NPCController : MonoBehaviour
 
     NPCMovement _npcMovement;
     NPCNavigator _npcNavigator;
+    NPCAnimator _npcAnimator;
 
     bool _npcActiveInScene = false;
 
 
 
     public string NPCName { get { return _npcName; }}
+    public NPCAnimator NPCAnim { get { return _npcAnimator; }}
 
     void Start()
     {
         _npcMovement = GetComponent<NPCMovement>();
         _npcNavigator = GetComponent<NPCNavigator>();
+        _npcAnimator = GetComponent<NPCAnimator>();
     }
 
     public void MoveTo(ScheduleData scheduleData)
     {
         _npcNavigator.BuildPath(scheduleData);
-        // ResetAnimation
-
     }
 
     public void ResetDay()

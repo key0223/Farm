@@ -14,7 +14,6 @@ public class NPCMovement : MonoBehaviour
     [SerializeField] float _minSpeed = 1f;
     [SerializeField] float _maxSpeed = 3f;
 
-    Grid _grid;
     NPCController _npcController;
     NPCNavigator _nav;
 
@@ -25,6 +24,8 @@ public class NPCMovement : MonoBehaviour
     Vector3Int _targetCellPos;
     Vector3 _targetWorldPos;
 
+    int _currentDirection;
+    int _lastHorizontalDirection;
     int _facingDirectionAtDestination;
     string _targetAnimation;
 
@@ -181,8 +182,8 @@ public class NPCMovement : MonoBehaviour
             }
             else
             {
-                //SetNPCFacingDirection();
-                //SetNPCEventAnimation();
+                _currentDirection = _facingDirectionAtDestination;
+                _npcController.NPCAnim.PlayAction(_targetAnimation, _currentDirection);
             }
         }
     }
@@ -202,14 +203,25 @@ public class NPCMovement : MonoBehaviour
             float timeToMove = (float)(pathNodeTime.TotalSeconds - gameTime.TotalSeconds);
             float calculatedSpeed = Mathf.Max(_minSpeed, Vector3.Distance(transform.position, _nextWorldPos) / timeToMove / Define.SECONDS_PER_GAME_SECOND);
 
-            if(calculatedSpeed <= _maxSpeed)
+            if (calculatedSpeed <= _maxSpeed)
             {
-                while(Vector3.Distance(transform.position,_nextWorldPos)> Define.PIXEL_SIZE)
+                while (Vector3.Distance(transform.position, _nextWorldPos) > Define.PIXEL_SIZE)
                 {
                     Vector3 unitVector = Vector3.Normalize(_nextWorldPos - transform.position);
-                    Vector2 move = new Vector2(unitVector.x * calculatedSpeed * Time.fixedDeltaTime, unitVector.y * calculatedSpeed * Time.fixedDeltaTime);
+                    _moveDir = new Vector2(unitVector.x, unitVector.y);
 
+                    if (Mathf.Abs(_moveDir.x) > Mathf.Abs(_moveDir.y))
+                    {
+                        _currentDirection = _moveDir.x > 0 ? 1 : 0;
+                        _lastHorizontalDirection = _currentDirection;
+                    }
+                    else
+                        _currentDirection = _lastHorizontalDirection;
+
+                    Vector2 move = new Vector2(unitVector.x * calculatedSpeed * Time.fixedDeltaTime, unitVector.y * calculatedSpeed * Time.fixedDeltaTime);
                     transform.position += (Vector3)move;
+
+                    _npcController.NPCAnim.SetMovementState(_isMoving,_currentDirection);
                     yield return _waitForFixedUpdate;
                 }
             }
@@ -219,6 +231,6 @@ public class NPCMovement : MonoBehaviour
         _currentCellPos = cellPos;
         _nextCellPos = _currentCellPos;
         _isMoving = false;
-
+        _npcController.NPCAnim.SetMovementState(_isMoving, _currentDirection);
     }
 }

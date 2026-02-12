@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class SingleAnimatedSprite : MonoBehaviour
 {
     public event Action<string, int> OnAnimationFinished;
@@ -10,9 +11,9 @@ public class SingleAnimatedSprite : MonoBehaviour
     SpriteRenderer _renderer;
     AnimationData _currentAnim;
 
+    [SerializeField] float _interval = 0.1f;
     int _frameIndex;
     int _currentDirection;
-    float _interval = 0.1f;
     float _timer;
     Dictionary<string, AnimationData> _animationClipDict = new Dictionary<string, AnimationData>();
 
@@ -93,7 +94,10 @@ public class SingleAnimatedSprite : MonoBehaviour
         _renderer.flipX = shouldFlip;
 
     }
-
+    public void SetDirection(int direction)
+    {
+        _currentDirection = Mathf.Clamp(direction, 0, 3);
+    }
     #region Utils
     string GetCurrentAnimName()
     {
