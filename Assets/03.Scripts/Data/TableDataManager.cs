@@ -36,7 +36,6 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
 
         DialogueDict = LoadJson<Data.DialogueLoader, string, DialogueData>("DialogueData_Rand").MakeDict();
         ScheduleDict = LoadJson<Data.ScheduleLoader, string, List<ScheduleData>>("ScheduleData_Rand").MakeDict();
-
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
@@ -90,4 +89,23 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
         return result;
     }
     #endregion
+
+    public Dictionary<string, List<ScheduleData>> GetNPCScheduleDict(string npcName)
+    {
+        string prefix = $"{npcName}_";
+        Dictionary<string,List<ScheduleData>> dict = new Dictionary<string, List<ScheduleData>>();
+
+        foreach(var kvp in ScheduleDict)
+        {
+            if (!kvp.Key.StartsWith(npcName, System.StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            string newKey = kvp.Key.StartsWith(prefix,System.StringComparison.OrdinalIgnoreCase)
+                ?kvp.Key.Substring(prefix.Length)
+                : kvp.Key;
+
+            dict[newKey] = kvp.Value;
+        }
+        return dict;
+    }
 }

@@ -8,6 +8,9 @@ public partial class Define
     public const int CELL_SIZE = 1;
     public const int TILE_SIZE = 16;
     public const float PIXEL_SIZE = 0.0625f;
+    public const float CELL_DIAGONAL_SIZE = 1.41f;
+    public const int MAX_GRID_WIDTH = 99999;
+    public const int MAX_GRID_HEIGHT = 99999;
     public const int ITEM_MAX_STACK = 99;
 
     public const string PERSISTENT_SCENE = "PersistentScene";

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,7 @@ public class NPCMovement : MonoBehaviour
     [SerializeField] float _maxSpeed = 3f;
 
     Grid _grid;
+    NPCController _npcController;
     NPCNavigator _nav;
 
     string _currentLocation;
@@ -24,6 +26,7 @@ public class NPCMovement : MonoBehaviour
     Vector3 _targetWorldPos;
 
     int _facingDirectionAtDestination;
+    string _targetAnimation;
 
     string _previousPathNodeLocation;
     Vector3Int _nextCellPos;
@@ -36,12 +39,14 @@ public class NPCMovement : MonoBehaviour
     Coroutine _coMoveToCellPos;
     WaitForFixedUpdate _waitForFixedUpdate;
 
+    public float MoveSpeed { get { return _moveSpeed; } }
     public string CurrentLocation {  get { return _currentLocation; } }
     public Vector3Int CurrentCellPos { get { return _currentCellPos; }}
 
     void Awake()
     {
         GameManager.OnAllManagersReady += SubscribeEvent;
+        _npcController = GetComponent<NPCController>();
         _nav = GetComponent<NPCNavigator>();
 
         _targetLocation = _currentLocation;
@@ -78,7 +83,28 @@ public class NPCMovement : MonoBehaviour
         //GameSceneManager.Instance.OnBeforeSceneUnload += BeforeSceneUnloaded;
         //GameManager.OnAllManagersReady -= SubscribeEvent;
     }
+    void Init()
+    {
+        if (_currentLocation == SceneManager.GetActiveScene().name)
+            _npcController.SetNPCActiveInScene();
+        else
+            _npcController.SetNPCInactiveInScene();
 
+        _previousPathNodeLocation = _currentLocation;
+        _currentCellPos = GridUtils.WorldToGrid(transform.position);
+        _nextCellPos = _currentCellPos;
+        _targetCellPos = _currentCellPos;
+        _targetWorldPos = GridUtils.GridToWorldCenter(_currentCellPos);
+    }
+
+    public void SetScheduleDataDetails(ScheduleData scheduleData)
+    {
+        _targetLocation = scheduleData.Location;
+        _targetCellPos = new Vector3Int(scheduleData.TargetX, scheduleData.TargetY, 0);
+        _targetWorldPos = GridUtils.GridToWorldCenter(_targetCellPos);
+        _facingDirectionAtDestination = scheduleData.Facing;
+        _targetAnimation = scheduleData.Animation;
+    }
     void FixedUpdate()
     {
         if (!_sceneLoaded) return;
@@ -104,7 +130,7 @@ public class NPCMovement : MonoBehaviour
 
                 if(_currentLocation == SceneManager.GetActiveScene().name)
                 {
-                    //SetNPCActiveInScene();
+                    _npcController.SetNPCActiveInScene();
 
                     pathNode = _nav.PathStepStack.Pop();
                     _nextCellPos = (Vector3Int)pathNode.TargetGrid;
@@ -114,7 +140,7 @@ public class NPCMovement : MonoBehaviour
                 }
                 else
                 {
-                    //SetNPCInactiveInScene();
+                    _npcController.SetNPCInactiveInScene();
 
                     _currentCellPos = (Vector3Int)pathNode.TargetGrid;
                     _nextCellPos = _currentCellPos;

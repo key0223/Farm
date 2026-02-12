@@ -1122,6 +1122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 271162791}
   - component: {fileID: 271162792}
+  - component: {fileID: 271162793}
   m_Layer: 0
   m_Name: NPCManager
   m_TagString: Untagged
@@ -1156,6 +1157,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6b85924a4634c4bbc6fe7f496d06a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _soMapRouteList: {fileID: 0}
+--- !u!114 &271162793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271162790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5607d887f21908d4682ab8dbb71e2835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _observePenalties: 1
+  _pathMovementPenalty: 0
+  _defaultMovementPenalty: 0
 --- !u!1001 &282370404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10017,7 +10034,7 @@ Transform:
   m_GameObject: {fileID: 1838903399}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.53, y: -7.39, z: 0}
+  m_LocalPosition: {x: 28.44, y: -7.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
