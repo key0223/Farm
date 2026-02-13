@@ -12,7 +12,13 @@ public class MapData
     public int _mapWidth;
     public int _mapHeight;
 
+    public int _minX;
+    public int _minY;
+    public int _actualWidth;
+    public int _actualHeight;
+
     Dictionary<string, TileData> _tiles;
+    public Dictionary<string, TileData> Tiles { get { return _tiles; } }
 
     public MapData(GameObject rootGameObject,string mapName,int mapWidth, int mapHeight)
     {
@@ -24,6 +30,7 @@ public class MapData
         _tiles = new Dictionary<string, TileData>();
         SetTiles(rootGameObject);
         SetObjects();
+        CalculateBounds();
     }
 
     #region Tilemap Layer
@@ -124,6 +131,25 @@ public class MapData
 
         return validPositions;
     }
+    void CalculateBounds()
+    {
+        _minX = int.MaxValue;
+        _minY = int.MaxValue;
+        int maxX = int.MinValue;
+        int maxY = int.MinValue;
+
+        foreach (var kvp in _tiles)
+        {
+            Vector2Int pos = GridUtils.TileKeyToVector2Int(kvp.Key);
+            _minX = Mathf.Min(_minX, pos.x);
+            maxX = Mathf.Max(maxX, pos.x);
+            _minY = Mathf.Min(_minY, pos.y);
+            maxY = Mathf.Max(maxY, pos.y);
+        }
+        _actualWidth = maxX - _minX + 1;
+        _actualHeight = maxY - _minY + 1;
+    }
+
     #endregion
 
     #region Object Layer

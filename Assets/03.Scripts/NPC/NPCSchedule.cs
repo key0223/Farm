@@ -30,14 +30,19 @@ public class NPCSchedule : MonoBehaviour
 
         TimeManager.Instance.OnMinutePassed -= OnMinuteTick;
         TimeManager.Instance.OnMinutePassed += OnMinuteTick;
+
+        TimeManager.Instance.OnDayPassed -= OnNewDayStarted;
+        TimeManager.Instance.OnDayPassed += OnNewDayStarted;
     }
     void OnDisable()
     {
         TimeManager.Instance.OnMinutePassed -= OnMinuteTick;
+        TimeManager.Instance.OnDayPassed -= OnNewDayStarted;
     }
     void SubscribeEvent()
     {
         TimeManager.Instance.OnMinutePassed += OnMinuteTick;
+        TimeManager.Instance.OnDayPassed += OnNewDayStarted;
         GameManager.OnAllManagersReady -= SubscribeEvent;
     }
 
@@ -47,14 +52,14 @@ public class NPCSchedule : MonoBehaviour
         if (_lastMinute == currentTime) return;
         _lastMinute = currentTime;
 
-        /* 새 날 */
-        if (gameHour == 0 && gameMinute == 0)
-        {
-            _currentSchedule = GetSchedule(gameSeason.ToString().ToLower(), gameDay, gameDayOfWeek);
-            _currentScheduleIndex = 0;
-            _npcController.ResetDay();
-            return;
-        }
+        ///* 새 날 */
+        //if (gameHour == 0 && gameMinute == 0)
+        //{
+        //    _currentSchedule = GetSchedule(gameSeason.ToString().ToLower(), gameDay, gameDayOfWeek);
+        //    _currentScheduleIndex = 0;
+        //    _npcController.ResetDay();
+        //    return;
+        //}
 
         if (_currentSchedule == null || _currentScheduleIndex >= _currentSchedule.Count) return;
 
@@ -69,6 +74,13 @@ public class NPCSchedule : MonoBehaviour
                 _currentScheduleIndex = _currentSchedule.Count;
         }
         
+    }
+
+    void OnNewDayStarted(int gameMinute, int gameHour, int gameDay, string gameDayOfWeek, Season gameSeason)
+    {
+        _currentSchedule = GetSchedule(gameSeason.ToString().ToLower(), gameDay, gameDayOfWeek);
+        _currentScheduleIndex = 0;
+        _npcController.ResetDay();
     }
 
     List<ScheduleData> GetSchedule(string gameSeason, int gameDay, string gameDayOfWeek)

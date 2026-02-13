@@ -18,8 +18,6 @@ public class AStar : MonoBehaviour
     Node _targetNode;
     int _gridWidth;
     int _gridHeight;
-    int _originX;
-    int _originY;
 
     PriorityQueue<Node> _openSet;
     HashSet<int> _openSetIds;
@@ -29,6 +27,7 @@ public class AStar : MonoBehaviour
 
     public bool BuildPath(GameLocation location, Vector2Int start, Vector2Int goal, Stack<PathNode> stack)
     {
+        
         _pathFound = false;
         if (SetupPathfindingGrid(location, start, goal) && FindShortestPath())
         {
@@ -44,14 +43,13 @@ public class AStar : MonoBehaviour
         MapData mapData = location.MapData;
         _gridWidth = mapData._mapWidth;
         _gridHeight = mapData._mapHeight;
-        _originX = _originY = 0;
 
-        _gridNodes = new GridNodes(_gridWidth, _gridHeight);
+        _gridNodes = new GridNodes(mapData);
         _openSet = new PriorityQueue<Node>();
         _openSetIds = new HashSet<int>();
         _closedSet = new HashSet<Node>();
 
-        _startNode = _gridNodes.GetGridNode(startPos.x, startPos.y);
+        _startNode = _gridNodes.GetGridNode(startPos.x , startPos.y);
         _targetNode = _gridNodes.GetGridNode(goalPos.x, goalPos.y);
 
         for (int x = 0; x < _gridWidth; x++)
@@ -141,7 +139,7 @@ public class AStar : MonoBehaviour
             var step = new PathNode
             {
                 MapName = location.MapData._mapName,
-                TargetGrid = new Vector2Int(node._gridPosition.x + _originX, node._gridPosition.y + _originY)
+                TargetGrid = new Vector2Int(node._gridPosition.x , node._gridPosition.y )
             };
             stack.Push(step);
             node = node._parentNode;

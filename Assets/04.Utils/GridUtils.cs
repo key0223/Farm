@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public static class GridUtils 
@@ -9,6 +10,17 @@ public static class GridUtils
         string key = "x" + gridX + "y" + gridY;
 
         return key;
+    }
+    public static Vector2Int TileKeyToVector2Int(string key)
+    {
+        Match match = Regex.Match(key, @"x(-?\d+)y(-?\d+)");
+        if (!match.Success)
+            return Vector2Int.zero;
+
+        int x = int.Parse(match.Groups[1].Value);
+        int y = int.Parse(match.Groups[2].Value);
+
+        return new Vector2Int(x, y);
     }
     public static Vector3Int GetCellPosFromKey(string key)
     {

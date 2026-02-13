@@ -9,6 +9,7 @@ using UnityEngine;
 public class NPCController : MonoBehaviour
 {
     [SerializeField] string _npcName;
+    [SerializeField] string _npcStartLocation;
 
     SpriteRenderer _spriteRenderer;
     BoxCollider2D _boxCollider2D;
@@ -22,13 +23,18 @@ public class NPCController : MonoBehaviour
 
 
     public string NPCName { get { return _npcName; }}
+    public NPCMovement NPCMovement { get { return _npcMovement; }}
     public NPCAnimator NPCAnim { get { return _npcAnimator; }}
 
     void Start()
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _boxCollider2D = GetComponent<BoxCollider2D>();
         _npcMovement = GetComponent<NPCMovement>();
         _npcNavigator = GetComponent<NPCNavigator>();
         _npcAnimator = GetComponent<NPCAnimator>();
+
+        _npcMovement.CurrentLocation = _npcStartLocation;
     }
 
     public void MoveTo(ScheduleData scheduleData)

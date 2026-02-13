@@ -9,12 +9,12 @@ EditorBuildSettings:
     path: Assets/01.Scenes/PersistentScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/01.Scenes/Scene1_FarmHouse.unity
+    path: Assets/01.Scenes/FarmHouse.unity
     guid: bc5bb9991fde21c40a33058e4f54e5fa
   - enabled: 1
-    path: Assets/01.Scenes/Scene2_Farm.unity
+    path: Assets/01.Scenes/Farm.unity
     guid: 560f2ba120622244c92e67ea9c1c9029
   - enabled: 1
-    path: Assets/01.Scenes/Scene3_Town.unity
+    path: Assets/01.Scenes/Town.unity
     guid: a86ff6cf560d9d54a86dea3f4beaa74b
   m_configObjects: {}

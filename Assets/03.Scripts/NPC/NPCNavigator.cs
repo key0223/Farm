@@ -49,7 +49,7 @@ public class NPCNavigator : MonoBehaviour
                     MapPath mapPath = mapRoute.MapPaths[i];
 
                     // 마지막 목적지 인가
-                    if (mapPath.ToX >= Define.MAX_GRID_WIDTH || mapPath.ToY >= Define.MAX_GRID_HEIGHT)
+                    if (mapPath.ToX >= MAX_GRID_WIDTH || mapPath.ToY >= MAX_GRID_HEIGHT)
                     {
                         toCellX = data.TargetX;
                         toCellY = data.TargetY;
@@ -62,7 +62,7 @@ public class NPCNavigator : MonoBehaviour
 
                     // 출발지 인가?
 
-                    if (mapPath.FromX >= Define.MAX_GRID_WIDTH || mapPath.FromY >= Define.MAX_GRID_HEIGHT)
+                    if (mapPath.FromX >= MAX_GRID_WIDTH || mapPath.FromY >= MAX_GRID_HEIGHT)
                     {
                         fromCellX = _movement.CurrentCellPos.x;
                         fromCellY = _movement.CurrentCellPos.y;

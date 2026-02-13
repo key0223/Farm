@@ -21,9 +21,9 @@ public partial class Define
 
     public enum SceneName
     {
-        Scene1_FarmHouse,
-        Scene2_Farm,
-        Scene3_Town,
+        FarmHouse,
+        Farm,
+        Town,
 
     }
     public enum ObjectType

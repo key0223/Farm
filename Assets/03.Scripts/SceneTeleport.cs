@@ -6,7 +6,7 @@ using static Define;
 [RequireComponent(typeof(BoxCollider2D))]
 public class SceneTeleport : MonoBehaviour
 {
-    [SerializeField] SceneName _sceneNameGoto = SceneName.Scene2_Farm;
+    [SerializeField] SceneName _sceneNameGoto = SceneName.Farm;
     [SerializeField] Vector3 _scenePositionGoto = new Vector3();
 
 

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AStar))]
 public class NPCManager : SingletonMonobehaviour<NPCManager>
 {
     [SerializeField] SO_MapRouteList _soMapRouteList;
+
+    NPCController[] _npcArray;
 
     AStar _aStar;
     Dictionary<string, MapRoute> _mapRouteDict = new Dictionary<string, MapRoute>();
@@ -13,12 +16,31 @@ public class NPCManager : SingletonMonobehaviour<NPCManager>
     protected override void Awake()
     {
         base.Awake();
-        Init();
+        _npcArray = FindObjectsOfType<NPCController>();
+        InitMapRouteDict();
         _aStar = GetComponent<AStar>();
         GameManager.Instance.ManagerReady("NPCManager");
     }
+    void OnEnable()
+    {
+        if (!GameManager.Instance.AllMamagersReady)
+            return;
 
-    void Init()
+        GameSceneManager.Instance.OnAfterSceneLoad -= AfterSceneLoad;
+        GameSceneManager.Instance.OnAfterSceneLoad += AfterSceneLoad;
+    }
+    void OnDisable()
+    {
+
+        GameSceneManager.Instance.OnAfterSceneLoad -= AfterSceneLoad;
+
+    }
+    void SubscribeEvent()
+    {
+        GameSceneManager.Instance.OnAfterSceneLoad += AfterSceneLoad;
+        GameManager.OnAllManagersReady -= SubscribeEvent;
+    }
+    void InitMapRouteDict()
     {
         if(_soMapRouteList.MapRouteList.Count > 0)
         {
@@ -47,5 +69,21 @@ public class NPCManager : SingletonMonobehaviour<NPCManager>
             return mapRoute;
         else return null;
     }
-  
+
+    void AfterSceneLoad()
+    {
+        SetNPCActiveStatus();
+    }
+
+    void SetNPCActiveStatus()
+    {
+        foreach(NPCController npc in _npcArray)
+        {
+            if (npc.NPCMovement.CurrentLocation == SceneManager.GetActiveScene().name)
+                npc.SetNPCActiveInScene();
+            else
+                npc.SetNPCInactiveInScene();
+        }
+    }
+
 }

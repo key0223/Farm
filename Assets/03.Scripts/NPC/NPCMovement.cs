@@ -28,6 +28,7 @@ public class NPCMovement : MonoBehaviour
     int _lastHorizontalDirection;
     int _facingDirectionAtDestination;
     string _targetAnimation;
+    string _currentAnimation;
 
     string _previousPathNodeLocation;
     Vector3Int _nextCellPos;
@@ -35,13 +36,14 @@ public class NPCMovement : MonoBehaviour
     Vector2 _moveDir; // 실제 이동 방향
 
     bool _isMoving = false;
+    bool _npcInitialized;
     bool _sceneLoaded = false;
 
     Coroutine _coMoveToCellPos;
     WaitForFixedUpdate _waitForFixedUpdate;
 
     public float MoveSpeed { get { return _moveSpeed; } }
-    public string CurrentLocation {  get { return _currentLocation; } }
+    public string CurrentLocation {  get { return _currentLocation; }set { _currentLocation = value; } }
     public Vector3Int CurrentCellPos { get { return _currentCellPos; }}
 
     void Awake()
@@ -64,25 +66,25 @@ public class NPCMovement : MonoBehaviour
         if (!GameManager.Instance.AllMamagersReady)
             return;
 
-        //GameSceneManager.Instance.OnAfterSceneLoad -= AfterSceneLoaded;
-        //GameSceneManager.Instance.OnAfterSceneLoad += AfterSceneLoaded;
+        GameSceneManager.Instance.OnAfterSceneLoad -= AfterSceneLoad;
+        GameSceneManager.Instance.OnAfterSceneLoad += AfterSceneLoad;
 
-        //GameSceneManager.Instance.OnBeforeSceneUnload -= BeforeSceneUnloaded;
-        //GameSceneManager.Instance.OnBeforeSceneUnload += BeforeSceneUnloaded;
+        GameSceneManager.Instance.OnBeforeSceneUnload -= BeforeSceneUnloaded;
+        GameSceneManager.Instance.OnBeforeSceneUnload += BeforeSceneUnloaded;
 
     }
     void OnDisable()
     {
 
-        //GameSceneManager.Instance.OnAfterSceneLoad -= AfterSceneLoaded;
-        //GameSceneManager.Instance.OnBeforeSceneUnload -= BeforeSceneUnloaded;
+        GameSceneManager.Instance.OnAfterSceneLoad -= AfterSceneLoad;
+        GameSceneManager.Instance.OnBeforeSceneUnload -= BeforeSceneUnloaded;
 
     }
     void SubscribeEvent()
     {
-        //GameSceneManager.Instance.OnAfterSceneLoad += AfterSceneLoaded;
-        //GameSceneManager.Instance.OnBeforeSceneUnload += BeforeSceneUnloaded;
-        //GameManager.OnAllManagersReady -= SubscribeEvent;
+        GameSceneManager.Instance.OnAfterSceneLoad += AfterSceneLoad;
+        GameSceneManager.Instance.OnBeforeSceneUnload += BeforeSceneUnloaded;
+        GameManager.OnAllManagersReady -= SubscribeEvent;
     }
     void Init()
     {
@@ -105,12 +107,13 @@ public class NPCMovement : MonoBehaviour
         _targetWorldPos = GridUtils.GridToWorldCenter(_targetCellPos);
         _facingDirectionAtDestination = scheduleData.Facing;
         _targetAnimation = scheduleData.Animation;
+        _currentAnimation = "";
     }
     void FixedUpdate()
     {
         if (!_sceneLoaded) return;
 
-        if(!_isMoving)
+        if (!_isMoving)
         {
             _currentCellPos = GridUtils.WorldToGrid(transform.position);
             _nextCellPos = _currentCellPos;
@@ -167,6 +170,9 @@ public class NPCMovement : MonoBehaviour
                 GameLocation location = MapManager.Instance.GetLocation(_currentLocation);
                 if (location == null) return;
 
+                bool pathFound = NPCManager.Instance.BuildPath(location, start, goal, _nav.PathStepStack);
+                Debug.Log($"[{_npcController.NPCName}] BuildPath {start}->{goal} = {pathFound} (Stack now: {_nav.PathStepStack.Count})");
+
                 /* A* 경로 생성 */
                 if (NPCManager.Instance.BuildPath(location, start, goal, _nav.PathStepStack))
                 {
@@ -183,7 +189,14 @@ public class NPCMovement : MonoBehaviour
             else
             {
                 _currentDirection = _facingDirectionAtDestination;
-                _npcController.NPCAnim.PlayAction(_targetAnimation, _currentDirection);
+
+                if (!string.IsNullOrEmpty(_targetAnimation) && _targetAnimation != _currentAnimation)
+                {
+                    _npcController.NPCAnim.PlayAction(_targetAnimation, _currentDirection);
+                    _currentAnimation = _targetAnimation;
+
+                }
+
             }
         }
     }
@@ -232,5 +245,21 @@ public class NPCMovement : MonoBehaviour
         _nextCellPos = _currentCellPos;
         _isMoving = false;
         _npcController.NPCAnim.SetMovementState(_isMoving, _currentDirection);
+    }
+
+    void AfterSceneLoad()
+    {
+        if (!_npcInitialized)
+        {
+            Init();
+            _npcInitialized = true;
+        }
+
+        _sceneLoaded = true;
+    }
+
+    void BeforeSceneUnloaded()
+    {
+        _sceneLoaded = false;
     }
 }

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" parallaxoriginx="0" parallaxoriginy="2" nextlayerid="19" nextobjectid="63">
+ <properties>
+  <property name="originX" type="int" value="0"/>
+  <property name="originY" type="int" value="19"/>
+ </properties>
  <tileset firstgid="1" name="Smoke1" tilewidth="15" tileheight="37" tilecount="30" columns="30">
   <image source="Tiles/VFX/Smoke/Smoke1.png" width="450" height="37"/>
   <tile id="0">

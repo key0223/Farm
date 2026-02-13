@@ -130,7 +130,7 @@ public class MapManager : SingletonMonobehaviour<MapManager>, ISaveable
         return location;
     }
 
-    void AdvanceDay()
+    void AdvanceDay(int gameMinute, int gameHour, int gameDay, string gameDayOfWeek, Season gameSeason)
     {
         foreach (GameLocation location in _gameLocations.Values)
         {

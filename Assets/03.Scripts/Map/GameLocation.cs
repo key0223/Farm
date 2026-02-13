@@ -54,10 +54,12 @@ public class GameLocation
     }
     void RegisterMap(SuperMap superMap)
     {
+        SuperCustomProperties superCustomProperties = superMap.GetComponent<SuperCustomProperties>();
+
         string mapName = superMap.gameObject.name;
         int width = superMap.m_Width;
         int height = superMap.m_Height;
-
+       
         _mapData = new MapData(superMap.gameObject, mapName, width, height);
         
     }
