@@ -16,15 +16,15 @@ public class NPCAnimator : MonoBehaviour
         _npcController = GetComponent<NPCController>();
         _animatedSprite = GetComponent<SingleAnimatedSprite>();
         _animatedSprite.OnAnimationFinished += OnAnimationFinished;
-        
+
     }
     void Start()
     {
         _animatedSprite.InitAnimationDict(_npcController.NPCName);
         _animatedSprite.PlayAnim("idle");
     }
-   
-    public void SetMovementState(bool isMoving,int direction)
+
+    public void SetMovementState(bool isMoving, int direction)
     {
         if (_isInAction) return;
 
@@ -45,10 +45,8 @@ public class NPCAnimator : MonoBehaviour
     }
     void OnAnimationFinished(string actionName, int direction)
     {
-        if (actionName != "idle" && actionName != "walk")
-        {
-            _isInAction = false;
-            _animatedSprite.PlayAnim("idle");
-        }
+        _isInAction = false;
+        _animatedSprite.PlayAnim("idle");
+
     }
 }

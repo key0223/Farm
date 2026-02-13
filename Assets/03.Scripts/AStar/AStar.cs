@@ -104,6 +104,7 @@ public class AStar : MonoBehaviour
         {
             for (int dy = -1; dy <= 1; dy++)
             {
+                if (dx != 0 && dy != 0) continue;
                 if (dx == 0 && dy == 0) continue;
 
                 Node neighbor = _gridNodes.GetGridNode(current._gridPosition.x + dx, current._gridPosition.y + dy);
