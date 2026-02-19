@@ -42,6 +42,27 @@ public class NPCController : MonoBehaviour
         _npcNavigator.BuildPath(scheduleData);
     }
 
+    public void Interact(PlayerController player, Item gift)
+    {
+        Vector2 dir = (player.transform.position - transform.position).normalized;
+        int faceDir = _npcMovement.GetDirectionIndex(dir);
+        _npcMovement.CurrentDirection = faceDir;
+        _npcAnimator.SetMovementState(false, faceDir);
+
+        if (gift != null && gift.CanBeGivenAsGift)
+        {
+            // ReceiveGift(
+        }
+        else
+            StartDialogue(player);
+
+    }
+
+    void StartDialogue(PlayerController player)
+    {
+        Debug.Log("Interaction Test");
+    }
+
     public void ResetDay()
     {
         _npcNavigator.ClearPath();

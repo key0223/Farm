@@ -12,10 +12,12 @@ public class PlayerActionHandler : MonoBehaviour
     float _maxInteractRange = 1.5f;
 
     readonly List<RaycastResult> _rayResults = new List<RaycastResult>(10);
+    LayerMask _interactableMask = -1;
     void Start()
     {
         _playerController = GetComponent<PlayerController>();
         _input = InputManager.Instance.InputState;
+        _interactableMask = LayerMask.GetMask("Interactable", "NPC");
     }
 
     void Update()
@@ -73,7 +75,25 @@ public class PlayerActionHandler : MonoBehaviour
     void HandleRightClick(Vector2 mousePos)
     {
         if (IsPointerOverUI(mousePos)) return;
+
+        Vector3Int playerCellPos = GetPlayerCellPos();
+        Vector3Int targetCell = GetValidTargetCell(mousePos);
+
+        if (!IsInInteractRange(playerCellPos, targetCell)) return;
+
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -10f));
+        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, 0.1f, _interactableMask);
+
+        if(hit.collider !=null)
+        {
+            int selectedIndex = _playerController.PlayerInven.CurrentToolbarIndex;
+            Item selected = _playerController.PlayerInven.PlayerContainer.Storage.GetItemAtSlot(selectedIndex);
+
+            MapManager.Instance.CurrentLocation.HandleRaycastHit(_playerController, hit, selected);
+        }
     }
+
+   
     void HandleItemUse(Item item, Vector2 mousePos)
     {
         if (IsPointerOverUI(mousePos)) return;
@@ -151,24 +171,6 @@ public class PlayerActionHandler : MonoBehaviour
         return _rayResults.Count > 0;
     }
 
-    //void HandleNPCInteraction(Item item, NPC npc)
-    //{
-    //    if (item is Tool)
-    //    {
-    //        npc.StartDialogue();
-    //    }
-    //    else
-    //    {
-    //        inven.TryRemove(item.Id, 1);
-    //        npc.ReceiveGift(item);
-    //    }
-    //}
-
-    //void ConsumeItem(Item item)
-    //{
-    //    item.Consume();
-    //    inven.TryRemove(item.Id, 1);
-    //}
 
     Vector3Int GetToolTargetCell(Vector3Int playerCellPos, Vector3Int mouseCell, int direction)
     {
@@ -182,6 +184,11 @@ public class PlayerActionHandler : MonoBehaviour
         float tileDistance = Vector3.Distance(playerCell, targetCell);
 
         return tileDistance <= _maxToolRange;
+    }
+    bool IsInInteractRange(Vector3Int playerCellPos, Vector3Int targetCell)
+    {
+        float tileDistance = Vector3.Distance(playerCellPos, targetCell);
+        return tileDistance <= _maxInteractRange;
     }
     Vector3Int GetPlayerCellPos()
     {

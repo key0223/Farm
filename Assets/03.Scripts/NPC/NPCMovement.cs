@@ -45,6 +45,7 @@ public class NPCMovement : MonoBehaviour
     public float MoveSpeed { get { return _moveSpeed; } }
     public string CurrentLocation { get { return _currentLocation; } set { _currentLocation = value; } }
     public Vector3Int CurrentCellPos { get { return _currentCellPos; } }
+    public int CurrentDirection { get { return _currentDirection; } set { _currentDirection = value; } }
 
     void Awake()
     {
@@ -256,6 +257,17 @@ public class NPCMovement : MonoBehaviour
         _npcController.NPCAnim.SetMovementState(_isMoving, _currentDirection);
     }
 
+    public int GetDirectionIndex(Vector2 dir)
+    {
+        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+        {
+            return dir.x > 0 ? 1 : 0;  // 1:Right, 0:Left
+        }
+        else
+        {
+            return dir.y > 0 ? 2 : 3;  // 2:Up, 3:Down
+        }
+    }
     void AfterSceneLoad()
     {
         if (!_npcInitialized)

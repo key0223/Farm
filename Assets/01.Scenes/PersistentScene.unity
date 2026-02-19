@@ -2944,8 +2944,8 @@ GameObject:
   - component: {fileID: 658673267}
   - component: {fileID: 658673271}
   - component: {fileID: 658673272}
-  - component: {fileID: 658673273}
   - component: {fileID: 658673275}
+  - component: {fileID: 658673276}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3119,18 +3119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1f79ecd74c5874b917a57feebf56cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &658673273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658673263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f59024920afcb7749b95298fcec7e641, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &658673274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3157,6 +3145,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guid: 72d03267-87f8-49b9-a46b-430a126709aa
+--- !u!114 &658673276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658673263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49e4e244343d8c42a3e562c4cac5862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &709291058
 GameObject:
   m_ObjectHideFlags: 0
@@ -12683,6 +12683,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPC_MiniVillagerWoman
+      objectReference: {fileID: 0}
+    - target: {fileID: 6829675272023418747, guid: 86a9d58bac9c2554ebb23f29c33da743,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6911023629931186557, guid: 86a9d58bac9c2554ebb23f29c33da743,
         type: 3}

@@ -63,7 +63,17 @@ public class GameLocation
         _mapData = new MapData(superMap.gameObject, mapName, width, height);
         
     }
-
+    public void HandleRaycastHit(PlayerController who, RaycastHit2D hit, Item heldItem)
+    {
+        if (hit.collider.TryGetComponent<NPCController>(out NPCController npc))
+        {
+            npc.Interact(who, heldItem);
+        }
+        else if (hit.collider.TryGetComponent<WorldObjectItem>(out WorldObjectItem item))
+        {
+            // item.Interact 등 상호작용 처리
+        }
+    }
     public void SetDecoTilemaps()
     {
         if (_deco1 != null && _deco2 != null) return;
