@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static Define;
 
-public class PlayerActionHanlder : MonoBehaviour
+public class PlayerActionHandler : MonoBehaviour
 {
     PlayerController _playerController;
     InputState _input;
     float _maxToolRange = 2f;
+    float _maxInteractRange = 1.5f;
 
     readonly List<RaycastResult> _rayResults = new List<RaycastResult>(10);
     void Start()
@@ -40,6 +40,12 @@ public class PlayerActionHanlder : MonoBehaviour
 
             HandleItemUse(selected, mousePos);
         }
+
+        if (_input.IsNewRightClick())
+        {
+            Vector2 mousePos = _input.MousePosition;
+            HandleRightClick(mousePos);
+        }
     }
 
     void HandleLeftClick(Vector2 mousePos)
@@ -51,7 +57,7 @@ public class PlayerActionHanlder : MonoBehaviour
         int targetDirection = _playerController.GetDirectionToMouse(mousePos);
         _playerController.CurrentDirection = targetDirection;
 
-        if(IsInToolRange(playerCellPos, targetCell))
+        if (IsInToolRange(playerCellPos, targetCell))
         {
             GameLocation location = MapManager.Instance.CurrentLocation;
             HoeDirtFeature dirt = location.GetRuntimeFeature(targetCell.x, targetCell.y) as HoeDirtFeature;
@@ -63,14 +69,19 @@ public class PlayerActionHanlder : MonoBehaviour
             }
         }
     }
+
+    void HandleRightClick(Vector2 mousePos)
+    {
+        if (IsPointerOverUI(mousePos)) return;
+    }
     void HandleItemUse(Item item, Vector2 mousePos)
     {
         if (IsPointerOverUI(mousePos)) return;
 
-        Vector2 worldPos =  Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -10f));
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -10f));
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, 0.1f, LayerMask.GetMask("Interactable"));
 
-        if(hit.collider != null)
+        if (hit.collider != null)
         {
             // TODO : NPC 또는 상호작용 가능한 오브젝트 액션 처리
             return;
@@ -86,24 +97,24 @@ public class PlayerActionHanlder : MonoBehaviour
             _playerController.CanMove = false;
             targetCell = GetToolTargetCell(playerCellPos, targetCell, targetDirection);
             HandleToolUse(tool, targetCell);
-          
+
         }
-        else if(item is ObjectItem obj && obj.ObjectType == ObjectType.SEEDS)
+        else if (item is ObjectItem obj && obj.ObjectType == ObjectType.SEEDS)
         {
 
             targetCell = GetValidTargetCell(mousePos);
-            if(IsInToolRange(playerCellPos,targetCell))
+            if (IsInToolRange(playerCellPos, targetCell))
                 PlantSeed(obj, targetCell);
         }
     }
 
     void HandleToolUse(Tool tool, Vector3Int targetCell)
     {
-        switch(tool)
+        switch (tool)
         {
             case Shovel shovel:
                 shovel.UseTool(targetCell);
-                _playerController.PlayerAnim.PlayAction("dig",_playerController.CurrentDirection);
+                _playerController.PlayerAnim.PlayAction("dig", _playerController.CurrentDirection);
                 break;
             case WateringCan watering:
                 watering.UseTool(targetCell);
@@ -118,10 +129,10 @@ public class PlayerActionHanlder : MonoBehaviour
         GameLocation location = MapManager.Instance.CurrentLocation;
         HoeDirtFeature dirt = location.GetRuntimeFeature(targetCell.x, targetCell.y) as HoeDirtFeature;
 
-        if(dirt!=null && dirt.CurrentCrop == null)
+        if (dirt != null && dirt.CurrentCrop == null)
         {
             dirt.Plant(location, seed.Id);
-            _playerController.PlayerInven.TryRemove(seed.Id,1);
+            _playerController.PlayerInven.TryRemove(seed.Id, 1);
 
             SoundManager.Instance.PlaySound(SoundName.EFFECT_PLANTING);
         }
@@ -164,9 +175,9 @@ public class PlayerActionHanlder : MonoBehaviour
         if (IsInToolRange(playerCellPos, mouseCell))
             return mouseCell;
 
-        return GetFrontTile(playerCellPos,direction);
+        return GetFrontTile(playerCellPos, direction);
     }
-    bool IsInToolRange(Vector3Int playerCell,Vector3Int targetCell)
+    bool IsInToolRange(Vector3Int playerCell, Vector3Int targetCell)
     {
         float tileDistance = Vector3.Distance(playerCell, targetCell);
 
@@ -182,10 +193,10 @@ public class PlayerActionHanlder : MonoBehaviour
     {
         Vector3Int mouseCell = GridUtils.ScreenToGridPos(mousePos);
 
-        return mouseCell;  
+        return mouseCell;
     }
-   
-    Vector3Int GetFrontTile(Vector3Int playerCellPos,int direction)
+
+    Vector3Int GetFrontTile(Vector3Int playerCellPos, int direction)
     {
         Vector3Int front = playerCellPos;
         switch (direction)

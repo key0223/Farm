@@ -8,6 +8,8 @@ TagManager:
   - Deco1
   - Deco2
   - ItemsParent
+  - Interactable
+  - NPC
   layers:
   - Default
   - TransparentFX

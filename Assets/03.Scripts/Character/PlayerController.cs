@@ -19,13 +19,13 @@ public class PlayerController : MonoBehaviour, ISaveable
     PlayerMove _playerMove;
     PlayerInventory _playerInven;
     PlayerAnimator _playerAnim;
-    PlayerActionHanlder _playerActionHanlder;
+    PlayerActionHandler _playerActionHandler;
     ItemPickup _itemPickup;
 
     public PlayerMove PlayerMove { get { return _playerMove; } }
     public PlayerInventory PlayerInven { get { return _playerInven; } }
     public PlayerAnimator PlayerAnim { get { return _playerAnim; } }
-    public PlayerActionHanlder PlayerActionHanlder { get { return _playerActionHanlder; } }
+    public PlayerActionHandler PlayerActionHandler { get { return _playerActionHandler; } }
     public ItemPickup PlayerItemPickup { get { return _itemPickup; } }
 
     #region Properties
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour, ISaveable
         _playerMove = GetComponent<PlayerMove>();
         _playerInven = GetComponent<PlayerInventory>();
         _playerAnim = GetComponent<PlayerAnimator>();
-        _playerActionHanlder = GetComponent<PlayerActionHanlder>();
+        _playerActionHandler = GetComponent<PlayerActionHandler>();
         _itemPickup = GetComponent<ItemPickup>();
     }
 
