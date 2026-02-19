@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "9acb769502d4c750d33ccba739032037",
+	"md5": "73d4acda05e8fda0d585c937330cfa4f",
 	"array": 
 		[
 			{
@@ -37,7 +37,7 @@
 				"LayerType": "NONE",
 				"SheetDirectory": "Sprites/Characters/NPC",
 				"ParentSheet": "MiniVillagerWoman",
-				"SpriteIndexStr": "24-17"
+				"SpriteIndexStr": "24-27"
 			}
 		]
 }

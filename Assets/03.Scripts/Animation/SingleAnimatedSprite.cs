@@ -51,7 +51,7 @@ public class SingleAnimatedSprite : MonoBehaviour
 
     public void PlayAnim(string animName)
     {
-        if(_animationClipDict.TryGetValue(animName, out AnimationData clip))
+        if (_animationClipDict.TryGetValue(animName, out AnimationData clip))
         {
             _currentAnim = clip;
             _frameIndex = 0;

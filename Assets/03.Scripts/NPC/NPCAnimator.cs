@@ -43,10 +43,17 @@ public class NPCAnimator : MonoBehaviour
         _animatedSprite.PlayAnim(actionName);
         _lastAnimState = actionName;
     }
+
+    public void ResetActionState()
+    {
+        _isInAction = false;
+        _animatedSprite.PlayAnim("idle");
+        _lastAnimState = "idle";
+    }
     void OnAnimationFinished(string actionName, int direction)
     {
         _isInAction = false;
         _animatedSprite.PlayAnim("idle");
-
+        _lastAnimState = "idle";
     }
 }
