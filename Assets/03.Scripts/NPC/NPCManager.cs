@@ -16,6 +16,8 @@ public class NPCManager : SingletonMonobehaviour<NPCManager>
     protected override void Awake()
     {
         base.Awake();
+        GameManager.OnAllManagersReady += SubscribeEvent;
+
         _npcArray = FindObjectsOfType<NPCController>();
         InitMapRouteDict();
         _aStar = GetComponent<AStar>();
