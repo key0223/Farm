@@ -12,7 +12,7 @@ public class SwitchConfineBoundingShape : MonoBehaviour
   
     void OnEnable()
     {
-        if (!GameManager.Instance.AllMamagersReady)
+        if (!GameManager.Instance.AllManagersReady)
             return;
 
         GameSceneManager.Instance.OnAfterSceneLoad -= SwitchBoundingShape;

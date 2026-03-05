@@ -34,7 +34,7 @@ public abstract class ClickableMenu : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        if (!GameManager.Instance.AllMamagersReady)
+        if (!GameManager.Instance.AllManagersReady)
             return;
         InputManager.Instance.OnInput -= HandleInput;
         InputManager.Instance.OnInput += HandleInput;

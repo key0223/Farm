@@ -20,7 +20,7 @@ public class ItemPickup : MonoBehaviour
     }
     void OnEnable()
     {
-        if (!GameManager.Instance.AllMamagersReady)
+        if (!GameManager.Instance.AllManagersReady)
             return;
 
         MapManager.Instance.OnLocationChanged -= SetCurrentLocation;

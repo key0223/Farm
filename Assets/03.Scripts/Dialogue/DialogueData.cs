@@ -7,5 +7,7 @@ using UnityEngine;
 public class DialogueData 
 {
     public string DialogueId;
+    public string DialogueOwner;
+    public string DialogueName;
     public string Dialogue;
 }

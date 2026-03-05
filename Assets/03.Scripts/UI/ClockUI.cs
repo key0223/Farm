@@ -17,7 +17,7 @@ public class ClockUI : MonoBehaviour
 
     void OnEnable()
     {
-        if (!GameManager.Instance.AllMamagersReady)
+        if (!GameManager.Instance.AllManagersReady)
             return;
 
         TimeManager.Instance.OnMinutePassed -= UpdateGameTime;

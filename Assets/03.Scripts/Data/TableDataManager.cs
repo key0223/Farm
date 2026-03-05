@@ -122,6 +122,24 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
     }
     #endregion
 
+    public Dictionary<string,DialogueData> GetNpcDialogueDict(string npcName)
+    {
+        string prefix = $"{npcName}_";
+        Dictionary<string,DialogueData> dict = new Dictionary<string,DialogueData>();
+
+        foreach(var kvp in DialogueDict)
+        {
+            if (!kvp.Key.StartsWith(npcName, StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            string newKey = kvp.Key.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)
+               ? kvp.Key.Substring(prefix.Length)
+               : kvp.Key;
+
+            dict[newKey] = kvp.Value;
+        }
+        return dict;
+    }
     public Dictionary<string, List<ScheduleData>> GetNPCScheduleDict(string npcName)
     {
         string prefix = $"{npcName}_";

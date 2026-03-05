@@ -1,34 +1,120 @@
 ﻿{
-	"md5": "39f83ca3e26baaa6066fd9ae2d5b0265",
+	"md5": "8a4d3e971e8e53c2f8c1465c731348d1",
 	"array": 
 		[
 			{
-				"DialogueId": "Sun2",
+				"DialogueId": "MiniVillagerWoman_Sun2",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "Sun2",
 				"Dialogue": "밤새 묘지에 있으면 어떻게 될까?#$q 17/18 Sun_old#@, 우리가 죽고 나면 무슨 일이 있을 거라 생각해?#$r 17 0 Sun_17#나도 모르겠어.#$r 18 40 Sun_18#으스스한 귀신이 될거야.#$r 17 0 Sun_17#천국에 가겠지.#$r 18 0 Sun_17#우리 에너지가 영적인 차원으로 넘어갈 거야.#$r 17 30 Sun_nothing#아무일도 없어. 그냥 존재하지 않게 되는 거지."
 			},
 			{
-				"DialogueId": "Sun_old",
+				"DialogueId": "MiniVillagerWoman_Sun_old",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "Sun_old",
 				"Dialogue": "$p 17#아무 일도 없을 거라 생각하는 거야?|사악한 귀신이 나타날지도 몰라!"
 			},
 			{
-				"DialogueId": "Sun_17",
+				"DialogueId": "MiniVillagerWoman_Sun_17",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "Sun_17",
 				"Dialogue": "흐음, 흥미로운걸..."
 			},
 			{
-				"DialogueId": "Sun_18",
+				"DialogueId": "MiniVillagerWoman_Sun_18",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "Sun_18",
 				"Dialogue": "흥미로운 이론인걸!"
 			},
 			{
-				"DialogueId": "Sun_nothing",
+				"DialogueId": "MiniVillagerWoman_Sun_nothing",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "Sun_nothing",
 				"Dialogue": "그거 알아? 그거 그렇게 나쁜 거 같진 않다."
 			},
 			{
-				"DialogueId": "eventSeen_35_memory_oneweek",
+				"DialogueId": "MiniVillagerWoman_eventSeen_35_memory_oneweek",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "eventSeen_35_memory_oneweek",
 				"Dialogue": "$y '@, 어떻게 생각하나요... 사람을 평가하는 기준은 행동일까요, 아니면 의도일까요?_행동_흠... 하지만 다들 실수해 본 경험이 있지 않나요?_의도_흠... 하지만 의도와 다르게 해를 입히는 경우는 어떤가요?_둘 다_그렇네요... 꼭 하나를 선택할 필요는 없죠. 상황에 따라 다를 수 있기도 하고요.'#$b#어떻게 생각하는지 궁금했어요…"
 			},
 			{
-				"DialogueId": "Thu",
-				"Dialogue": "#$1 Abigail1#아 안돼, 아빠가 오늘 저녁 요리하시려나 봐...#$e#오늘 아무것도 하기 싫다..."
+				"DialogueId": "MiniVillagerWoman_4",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": 4,
+				"Dialogue": "오, 안녕."
+			},
+			{
+				"DialogueId": "MiniVillagerWoman_Mon",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "Mon",
+				"Dialogue": "오, 야. 일 좀 쉬는거야?"
+			},
+			{
+				"DialogueId": "MiniVillagerWoman_Tue",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "Tue",
+				"Dialogue": "으... 지금 기분 안 좋아.$s#$e#지금 기분 안 좋다니까... 뭘 원해?$a"
+			},
+			{
+				"DialogueId": "MiniVillagerWoman_Wed",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "Wed",
+				"Dialogue": "야. 내가 혹시 좀 무례한 얘기하게 되면 미안해. 어젯밤에 많이 못 잤어.#$e#뭐 도와줄까?"
+			},
+			{
+				"DialogueId": "MiniVillagerWoman_Thu",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "Thu",
+				"Dialogue": "#$1 Abigail1#아 안돼, 아빠가 오늘 저녁 요리하시려나 봐...$s#$e#오늘 아무것도 하기 싫다...$u"
+			},
+			{
+				"DialogueId": "MiniVillagerWoman_Fri",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "Fri",
+				"Dialogue": "우와, 생각해보니 금요일이네. $u#$e#가끔 내가 완전 시간개념이 없다니까."
+			},
+			{
+				"DialogueId": "MiniVillagerWoman_Sat",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "Sat",
+				"Dialogue": "오늘 같은 날 신선한 산바람이 너무 좋다.$h#$e#개구리도 곧 볼 수 있을까 궁금하네."
+			},
+			{
+				"DialogueId": "MiniVillagerWoman_Sun",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "Sun",
+				"Dialogue": "아... 주말 내내 숙제를 미뤘어. 또 밤새야겠네...$s"
+			},
+			{
+				"DialogueId": "MiniVillagerWoman_spring_1",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "spring_1",
+				"Dialogue": "여름이네. 내가 좋아하는 계절은 아냐.#$e#공기가 너무 후텁지근해서 스프 속에 떠있는 거같아."
+			},
+			{
+				"DialogueId": "MiniVillagerWoman_summer_Mon",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "summer_Mon",
+				"Dialogue": "내 애완용 기니피그 데이비드도 이런 더운 날씨는 질색하더라. 좀 까탈스러워."
+			},
+			{
+				"DialogueId": "MiniVillagerWoman_summer_Tue",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "summer_Tue",
+				"Dialogue": "여름 내내 꿀이랑 과즙으로 차서 공기가 탁해. 어지러울 지경이야.$u"
+			},
+			{
+				"DialogueId": "MiniVillagerWoman_spring_6",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "spring_6",
+				"Dialogue": "어젯밤에 어둑어둑할 때 해변으로 갔어... 가끔 바다 저편에 이상한 빛이 떠다니는 게 보여.#$e#아니면 그냥 꿈일 수도 있겠다... 진짜 일어난 일이라는 기분이 안 들어."
+			},
+			{
+				"DialogueId": "MiniVillagerWoman_spring_12",
+				"DialogueOwner": "MiniVillagerWoman",
+				"DialogueName": "spring_12",
+				"Dialogue": "난 내일 반드시 달걀 사냥에 참가할 거야. 너도 해?"
 			}
 		]
 }

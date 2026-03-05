@@ -57,7 +57,7 @@ public class MapManager : SingletonMonobehaviour<MapManager>, ISaveable
     }
     void OnEnable()
     {
-        if (!GameManager.Instance.AllMamagersReady)
+        if (!GameManager.Instance.AllManagersReady)
             return;
 
         ISaveableRegister();

@@ -322,6 +322,52 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
 
         _lineIndex++; // $e 스킵
     }
+
+    public string FindGenericDialogueKey(string npcName,DialogueContext context)
+    {
+        DialogueData data;
+
+        // 1) 계절 + 요일 + 연도 : spring_Mon_1
+        string key = $"{context.Season}_{context.DayOfWeek}_{context.Year}";
+        if (TryGetDialogue(npcName, key, out data)) return key;
+
+        // 2) 계절 + 날짜 : spring_13
+        key = $"{context.Season}_{context.DayOfMonth}";
+        if (TryGetDialogue(npcName, key, out data)) return key;
+
+        // 3) 계절 + 요일 : spring_Mon
+        key = $"{context.Season}_{context.DayOfWeek}";
+        if (TryGetDialogue(npcName, key, out data)) return key;
+
+        // 4) 계절 : spring
+        key = context.Season;
+        if (TryGetDialogue(npcName, key, out data)) return key;
+
+        // 4) 요일 : Mon
+        key = context.DayOfWeek;
+        if (TryGetDialogue(npcName, key, out data)) return key;
+
+        return key;
+    }
+    bool TryGetDialogue(string npcName,string key, out DialogueData data)
+    {
+        return TableDataManager.Instance.DialogueDict.TryGetValue($"{npcName}_{key}", out data);
+    }
+
+    public DialogueContext BuildContext(string npcName)
+    {
+        string season = TimeManager.Instance.GameSeason.ToString().ToLower();
+        string year = TimeManager.Instance.GameYear.ToString();
+        string day = TimeManager.Instance.GameDay.ToString();
+        string dayOfWeek = TimeManager.Instance.GameDayOfWeek.ToString();
+        return new DialogueContext
+        {
+            Season = season,
+            Year = year,
+            DayOfMonth = day,
+            DayOfWeek = dayOfWeek,
+        };
+    }
     #region Utils
     IEnumerator CoTypeText(TextMeshProUGUI txt, string text)
     {

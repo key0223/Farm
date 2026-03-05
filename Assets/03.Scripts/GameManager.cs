@@ -15,9 +15,9 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     [SerializeField] ManagerInfo[] _managersToWait;
     int _managersReadyCount = 0;
-    bool _allMamagersReady = false;
+    bool _allManagersReady = false;
 
-    public bool AllMamagersReady { get { return _allMamagersReady; } }
+    public bool AllManagersReady { get { return _allManagersReady; } }
     protected override void Awake()
     {
         base.Awake();
@@ -44,7 +44,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         if (_managersReadyCount >= _managersToWait.Length)
         {
             OnAllManagersReady?.Invoke();
-            _allMamagersReady = true;
+            _allManagersReady = true;
         }
     }
     void ValidateManagers()

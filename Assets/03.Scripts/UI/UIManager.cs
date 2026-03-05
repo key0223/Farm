@@ -58,7 +58,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
     void OnEnable()
     {
-        if (!GameManager.Instance.AllMamagersReady)
+        if (!GameManager.Instance.AllManagersReady)
             return;
 
         InputManager.Instance.OnKeyPressed -= HandleKeyPressed;

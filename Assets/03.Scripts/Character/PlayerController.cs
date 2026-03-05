@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour, ISaveable
     }
     void OnEnable()
     {
-        if (!GameManager.Instance.AllMamagersReady)
+        if (!GameManager.Instance.AllManagersReady)
             return;
 
         UIManager.Instance.OnUIOpenedChanged -= OnUIOpenChanged;

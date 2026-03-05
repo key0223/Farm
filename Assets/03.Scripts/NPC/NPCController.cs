@@ -20,8 +20,6 @@ public class NPCController : MonoBehaviour
 
     bool _npcActiveInScene = false;
 
-
-
     public string NPCName { get { return _npcName; }}
     public NPCMovement NPCMovement { get { return _npcMovement; }}
     public NPCAnimator NPCAnim { get { return _npcAnimator; }}
@@ -54,13 +52,16 @@ public class NPCController : MonoBehaviour
             // ReceiveGift(
         }
         else
-            StartDialogue(player);
+            StartDialogue();
 
     }
 
-    void StartDialogue(PlayerController player)
+    void StartDialogue(string baseId = null)
     {
-        Debug.Log("Interaction Test");
+        DialogueContext context = DialogueManager.Instance.BuildContext(_npcName);
+        string key = baseId != null ? baseId : DialogueManager.Instance.FindGenericDialogueKey(NPCName, context);
+        if (key == null) return;
+        DialogueManager.Instance.StartDialogue(_npcName,$"{_npcName}_{key}");
     }
 
     public void ResetDay()

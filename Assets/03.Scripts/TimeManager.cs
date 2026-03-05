@@ -34,6 +34,12 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>, ISaveable
     bool _gameClockPaused = false;
     float _gameTick = 0f;
 
+    #region Properties
+    public Season GameSeason { get { return _gameSeason; } }
+    public int GameYear { get { return _gameYear; } }
+    public int GameDay { get { return _gameDay; } }
+    public string GameDayOfWeek { get { return _gameDayOfWeek; } }
+    #endregion
 
     protected override void Awake()
     {
@@ -52,7 +58,7 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>, ISaveable
     }
     void OnEnable()
     {
-        if (!GameManager.Instance.AllMamagersReady)
+        if (!GameManager.Instance.AllManagersReady)
             return;
 
         ISaveableRegister();

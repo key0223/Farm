@@ -29,7 +29,7 @@ public class ToolbarMenu : ClickableMenu
     protected override void OnEnable()
     {
         base.OnEnable();
-        if (!GameManager.Instance.AllMamagersReady)
+        if (!GameManager.Instance.AllManagersReady)
             return;
 
         UpdateSlots();

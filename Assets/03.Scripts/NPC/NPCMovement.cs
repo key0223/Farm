@@ -64,7 +64,7 @@ public class NPCMovement : MonoBehaviour
     }
     void OnEnable()
     {
-        if (!GameManager.Instance.AllMamagersReady)
+        if (!GameManager.Instance.AllManagersReady)
             return;
 
         GameSceneManager.Instance.OnAfterSceneLoad -= AfterSceneLoad;
