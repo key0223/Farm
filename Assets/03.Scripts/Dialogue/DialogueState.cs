@@ -1,15 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 public class DialogueState 
 {
+    Dictionary<string,int> _dailyLineIndex = new Dictionary<string,int>(); // NPC별 일상 대사 진행도
     Dictionary<string, HashSet<string>> _npcResponses = new Dictionary<string, HashSet<string>>(); // 저장 될 데이터
     Dictionary<string, HashSet<string>> _eventDialogue = new Dictionary<string, HashSet<string>>(); // 한 번만 보여줄 대사
 
     HashSet<string> _sessionResponses = new HashSet<string>();
     HashSet<string> _sessionDialogues = new HashSet<string>();
 
+    #region Daily line
+    public void SetLineIndex(string npcName, int index)
+    {
+        _dailyLineIndex[npcName] = index;
+    }
+    public int GetLineIndex(string npcName)
+    {
+        if (_dailyLineIndex.TryGetValue(npcName, out int index))
+            return index;
+
+        return 0;
+    }
+
+    public void ClearDailySession()
+    {
+        _dailyLineIndex.Clear();
+    }
+    #endregion
     public bool HasChosenResponse(string npcId, string responseId)
     {
         return _npcResponses.ContainsKey(npcId) && _npcResponses[npcId].Contains(responseId);

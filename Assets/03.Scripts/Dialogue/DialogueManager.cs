@@ -28,15 +28,34 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
     protected override void Awake()
     {
         base.Awake();
+        GameManager.OnAllManagersReady += SubscribeEvent;
         _dialogueState = new DialogueState();
         GameManager.Instance.ManagerReady("DialogueManager");
     }
-
     void Start()
     {
         _input = InputManager.Instance.InputState;
     }
 
+    void OnEnable()
+    {
+        if (!GameManager.Instance.AllManagersReady)
+            return;
+
+        TimeManager.Instance.OnDayPassed -= OnNewDayStarted;
+        TimeManager.Instance.OnDayPassed += OnNewDayStarted;
+    }
+    void OnDisable()
+    {
+        TimeManager.Instance.OnDayPassed -= OnNewDayStarted;
+    }
+  
+
+    void SubscribeEvent()
+    {
+        TimeManager.Instance.OnDayPassed += OnNewDayStarted;
+        GameManager.OnAllManagersReady -= SubscribeEvent;
+    }
     void Update()
     {
         if (!UIManager.Instance.DialogueUI.gameObject.activeSelf) return;
@@ -56,7 +75,8 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
         _currentRawDialogue = dialogueData.Dialogue;
         _dialogueLines = _currentRawDialogue.Split('#')
          .Where(l => !string.IsNullOrWhiteSpace(l.Trim())).Select(l => l.Trim()).ToArray();
-        _lineIndex = 0;
+
+        _lineIndex = _dialogueState.GetLineIndex(_currentNpc);
         _dialogueKilled = false;
         UIManager.Instance.ShowDialogue();
         ProcessNextLine();
@@ -91,6 +111,9 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
 
     void EndDialogue()
     {
+        if(_lineIndex <_dialogueLines.Length)
+            _dialogueState.SetLineIndex(_currentNpc,_lineIndex);
+
         _dialogueState.ClearSession();
         UIManager.Instance.HideDialogue();
         _currentResponses.Clear();
@@ -436,4 +459,10 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
         return DialogueTagType.NONE;
     }
     #endregion
+
+    void OnNewDayStarted(int gameMinute, int gameHour, int gameDay, string gameDayOfWeek, Season gameSeason)
+    {
+        _lineIndex = 0;
+        _dialogueState.ClearDailySession();
+    }
 }

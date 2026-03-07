@@ -54,7 +54,7 @@
 				"DialogueId": "MiniVillagerWoman_Tue",
 				"DialogueOwner": "MiniVillagerWoman",
 				"DialogueName": "Tue",
-				"Dialogue": "으... 지금 기분 안 좋아.$s#$e#지금 기분 안 좋다니까... 뭘 원해?$a"
+				"Dialogue": "으... 지금 기분 안 좋아.#$e#지금 기분 안 좋다니까... 뭘 원해?"
 			},
 			{
 				"DialogueId": "MiniVillagerWoman_Wed",
