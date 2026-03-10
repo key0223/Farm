@@ -16,7 +16,7 @@ public class InputManager : SingletonMonobehaviour<InputManager>
     {
         Keys.A,Keys.D,Keys.W,Keys.S,
         Keys.Left,Keys.Right,Keys.Up, Keys.Down,
-        Keys.E,Keys.Escape,Keys.Return,
+        Keys.E,Keys.I, Keys.Escape,Keys.Return,
         Keys.Alpha1,Keys.Alpha2,Keys.Alpha3,Keys.Alpha4,Keys.Alpha5,
         Keys.Alpha6,Keys.Alpha7,Keys.Alpha8,Keys.Alpha9,Keys.Alpha0,
     };

@@ -12,6 +12,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     readonly Dictionary<Keys, (string name, Type type)> _uiButtons = new()
     {
         {Keys.E,("Inventory",typeof(InventoryMenu))},
+        {Keys.I,("TestTab",typeof(TestUI))},
 
         /* Toolbar */
         {Keys.Alpha1,("Toolbar",typeof(ToolbarMenu))},
@@ -27,10 +28,16 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
     };
 
+    Dictionary<string, string> _tabContainers = new()
+    {
+        {"Inventory","TabContainer" },
+        {"TestTab","TabContainer" },
+    };
     Dictionary<string, ClickableMenu> _menuCache = new Dictionary<string, ClickableMenu>();
 
     Stack<ClickableMenu> _menuStack = new Stack<ClickableMenu>(); /* 이전 메뉴들 저장 */
-    List<ClickableMenu> _pages = new List<ClickableMenu>(); /* 탭,페이지 전환용 */
+    List<ClickableMenu> _tabs = new List<ClickableMenu>(); /* 탭,페이지 전환용 */
+    int _currentTabIndex = 0;
 
     ToolbarMenu _toolbar;
     ClickableMenu _activeMenu;
@@ -41,6 +48,8 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
     public Dictionary<string, ClickableMenu> MenuCache { get { return _menuCache; } }
     public ClickableMenu ActiveMenu { get { return _activeMenu; } set { _activeMenu = value; } }
+    public List<ClickableMenu> Tabs { get { return _tabs; } }
+    public ClickableMenu ActiveTab { get { return _tabs.Count > 0 ? _tabs[_currentTabIndex] : null; } }
 
     public DialogueUI DialogueUI { get { return _dialogueUI; } }
     protected override void Awake()
@@ -94,6 +103,13 @@ public class UIManager : SingletonMonobehaviour<UIManager>
                 _menuCache.Add(menu.MenuName, menu);
         }
     }
+
+    public void RegisterTabs(string containerName,List<ClickableMenu> tabs)
+    {
+        _tabs=tabs;
+        _currentTabIndex = 0;
+
+    }
    
     void HandleKeyPressed(Keys key)
     {
@@ -125,6 +141,19 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         HideTooltip();
         ClickableMenu active = _activeMenu;
+
+        // 탭
+        string containerName = GetContainerForTab(menuName);
+        if(!string.IsNullOrEmpty(containerName))
+        {
+            ClickableMenu container = OpenMenuByName(containerName);
+            if(container != null)
+            {
+                int tabIndex = GetTabIndex(containerName,menuName);
+                ShowTab(tabIndex);
+                return;
+            }
+        }
 
         if (active != null && menuType.IsInstanceOfType(active))
         {
@@ -177,6 +206,17 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         }
     }
 
+    public void ShowTab(int index)
+    {
+        if (index < 0 || index >= _tabs.Count) return;
+
+        for (int i = 0; i < _tabs.Count; i++)
+            _tabs[i].gameObject.SetActive(i== index);
+
+        _currentTabIndex = index;
+        if (_activeMenu != null)
+            _activeMenu.PopulateClickableComponentList();
+    }
     #region Toolbar
     void HideToolbar()
     {
@@ -285,6 +325,20 @@ public class UIManager : SingletonMonobehaviour<UIManager>
             return menu as T;
 
         return null;
+    }
+
+    string GetContainerForTab(string tabName)
+    {
+        return _tabContainers.TryGetValue(tabName, out var container) ? container : null;
+    }
+    int GetTabIndex(string container, string tabName)
+    {
+        return tabName switch
+        {
+            "Inventory" => 0,
+            "TestTab"=>1,
+            _ => 0
+        };
     }
     int GetHotbarIndexFromKey(Keys key)
     {

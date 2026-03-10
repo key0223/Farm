@@ -15,6 +15,7 @@ public partial class Define : MonoBehaviour
        Up,
        Down,
        E,
+       I,
        Escape,
        Return,
 
