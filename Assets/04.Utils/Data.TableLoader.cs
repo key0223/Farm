@@ -121,4 +121,22 @@ namespace Data
         
     }
 
+    [Serializable]
+    public class ShopLoader : ILoader<string, ShopDataBase>
+    {
+        public ShopDataBase[] array;
+
+        public Dictionary<string, ShopDataBase> MakeDict()
+        {
+            Dictionary<string, ShopDataBase> dict = new Dictionary<string, ShopDataBase>();
+            foreach (ShopDataBase item in array)
+            {
+                item.SalableCategories = Parser.ParseStringToArray(item.SalableCategoriesString);
+                dict.Add(item.ShopId, item);
+            }
+            return dict;
+        }
+
+    }
+
 }

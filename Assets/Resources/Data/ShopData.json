@@ -1,0 +1,26 @@
+﻿{
+	"md5": "7676eb709965a9d7ba72b78b50a2a1fd",
+	"array": 
+		[
+			{
+				"ShopId": "SeedShop",
+				"DisplayName": "SeedShop_Name",
+				"ShopOwner": "Addkey",
+				"OpenTime": 10,
+				"CloseTime": 18,
+				"DayOff": "Sun",
+				"ClosedMessage": "SeedShop_ClosedMessage",
+				"SalableCategoriesString": "Seed,Resource"
+			},
+			{
+				"ShopId": "VegeShop",
+				"DisplayName": "VegeShop_Name",
+				"ShopOwner": "SubtrackKey",
+				"OpenTime": 9,
+				"CloseTime": 15,
+				"DayOff": "Mon",
+				"ClosedMessage": "VegeShop_ClosedMessage",
+				"SalableCategoriesString": "Vegetable"
+			}
+		]
+}

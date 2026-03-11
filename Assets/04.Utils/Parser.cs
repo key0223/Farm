@@ -192,4 +192,10 @@ public static class Parser
 
         return scheduleDatas.OrderBy(t => t.Time).ToList();
     }
+
+    public static string[] ParseStringToArray(string str)
+    {
+        string[] tokens = str.Split(',', StringSplitOptions.RemoveEmptyEntries);
+        return tokens;
+    }
 }

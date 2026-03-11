@@ -18,6 +18,7 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
     public Dictionary<string, Dictionary<string, StringDataBase>> Languages = new Dictionary<string, Dictionary<string, StringDataBase>>();
     public Dictionary<string, DialogueData> DialogueDict = new Dictionary<string, DialogueData>();
     public Dictionary<string, List<ScheduleData>> ScheduleDict = new Dictionary<string, List<ScheduleData>>();
+    public Dictionary<string,ShopDataBase> ShopDict = new Dictionary<string, ShopDataBase>();
 
     protected override void Awake()
     {
@@ -37,6 +38,7 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
 
         DialogueDict = LoadJson<Data.DialogueLoader, string, DialogueData>("DialogueData_Rand").MakeDict();
         ScheduleDict = LoadJson<Data.ScheduleLoader, string, List<ScheduleData>>("ScheduleData_Rand").MakeDict();
+        ShopDict = LoadJson<Data.ShopLoader, string, ShopDataBase>("ShopData").MakeDict();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
