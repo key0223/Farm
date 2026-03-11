@@ -8,7 +8,7 @@ public class ClickableComponent : MonoBehaviour
     Rect _bounds;
 
     public int ClickableId { get { return _id; } set { _id = value; } }
-    void Start()
+    public virtual void Start()
     {
         _bounds = GetComponent<RectTransform>().rect;
     }

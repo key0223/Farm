@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4699576353745620175}
   - component: {fileID: 2579515670934470662}
+  - component: {fileID: 5007658033318304168}
   m_Layer: 5
   m_Name: ShopSlot
   m_TagString: Untagged
@@ -125,6 +126,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &5007658033318304168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769224212002286774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d153ce0dbe1eda04fbbfcdb872e85d50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 0
+  _iconImage: {fileID: 0}
 --- !u!1 &8853231315178387033
 GameObject:
   m_ObjectHideFlags: 0
