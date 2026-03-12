@@ -10,6 +10,7 @@ public class ShopSlot : ClickableComponent
 
     Item _currentItem;
     int _slotIndex = 0;
+    bool _isHovered = false;
 
     public Item CurrentItem { get { return _currentItem; } }
     public int SlotIndex { get { return _slotIndex; } set { _slotIndex = value; } }
@@ -38,5 +39,29 @@ public class ShopSlot : ClickableComponent
         {
             _iconImage.enabled=false;
         }
+    }
+
+    public void Clear()
+    {
+        _currentItem = null;
+        _slotIndex = -1;
+    }
+
+    public override void OnHover()
+    {
+        if (_isHovered) return;
+        _isHovered = true;
+    }
+    public override void OnHoverExit()
+    {
+        if (!_isHovered) return;
+        _isHovered = false;
+
+        UIManager.Instance.HideTooltip();
+    }
+
+    public override void OnLeftClick(Vector2 pos)
+    {
+        Debug.Log("Shop slot Clicked");
     }
 }

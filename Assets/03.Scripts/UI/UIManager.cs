@@ -39,12 +39,14 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     List<ClickableMenu> _tabs = new List<ClickableMenu>(); /* 탭,페이지 전환용 */
     int _currentTabIndex = 0;
 
-    ToolbarMenu _toolbar;
     ClickableMenu _activeMenu;
+    ToolbarMenu _toolbar;
 
     TooltipUI _tooltip;
-
     DialogueUI _dialogueUI;
+
+    ShopMenu _shopMenu;
+
 
     public Dictionary<string, ClickableMenu> MenuCache { get { return _menuCache; } }
     public ClickableMenu ActiveMenu { get { return _activeMenu; } set { _activeMenu = value; } }
@@ -61,6 +63,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         _toolbar = FindObjectOfType<ToolbarMenu>();
         _tooltip = FindObjectOfType<TooltipUI>();
         _dialogueUI = FindObjectOfType<DialogueUI>();
+        _shopMenu = FindObjectOfType<ShopMenu>();
         GameManager.Instance.ManagerReady("UIManager");
 
     }
@@ -255,8 +258,21 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         OpenMenuByName("Dialogue");
     }
-    
+
     #endregion
+
+    #region Shop
+    public void ShowShop(string shopId)
+    {
+        _shopMenu.SetCurrentShop(shopId);
+        OpenMenuByName("Shop");
+    }
+    public void HideShop()
+    {
+        OpenMenuByName("Shop");
+    }
+    #endregion
+
     #region Helpers
 
     public ClickableMenu OpenMenuByName(string menuName)

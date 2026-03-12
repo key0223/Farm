@@ -73,6 +73,10 @@ public class GameLocation
         {
             // item.Interact 등 상호작용 처리
         }
+        else if(hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
+        {
+            interactable.OnInteract();
+        }
     }
     public void SetDecoTilemaps()
     {

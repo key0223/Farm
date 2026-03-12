@@ -113,12 +113,12 @@ public abstract class ClickableMenu : MonoBehaviour
                 /* Tooltip UI */
 
                 ContainerSlot slot = component.GetComponent<ContainerSlot>();
-                if(slot != null && slot.Currentitem != null)
+                if(slot != null && slot.CurrentItem != null)
                 {
-                    string name = LocalizationManager.Instance.GetString(slot.Currentitem.DisplayName);
-                    string itemType = slot.Currentitem.Category;
-                    string desc = LocalizationManager.Instance.GetString(slot.Currentitem.Description);
-                    string color = slot.Currentitem.CategoryColor;
+                    string name = LocalizationManager.Instance.GetString(slot.CurrentItem.DisplayName);
+                    string itemType = slot.CurrentItem.Category;
+                    string desc = LocalizationManager.Instance.GetString(slot.CurrentItem.Description);
+                    string color = slot.CurrentItem.CategoryColor;
                     UIManager.Instance.ShowTooltip(name, itemType,color, desc,mousePos);
                 }
                 break;

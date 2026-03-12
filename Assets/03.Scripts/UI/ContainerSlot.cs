@@ -30,7 +30,7 @@ public class ContainerSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     public int SlotIndex { get { return _slotIndex; } set { _slotIndex = value; } }
     public Container OwnerContainer { get { return _ownerContainer; } set { _ownerContainer = value; } }
-    public Item Currentitem { get { return _currentItem; } }
+    public Item CurrentItem { get { return _currentItem; } }
     void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
