@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class ShopMenu : ClickableMenu
 {
+    PlayerController _player;
     [SerializeField] GameObject _slotParent;
 
     [Header("Shop Info UI References")]
@@ -17,6 +18,7 @@ public class ShopMenu : ClickableMenu
     [SerializeField] TextMeshProUGUI _itemNameText;
     [SerializeField] TextMeshProUGUI _itemCategoryText;
     [Header("Buy UI References")]
+    ShopPurchase _shopPurchase;
     [SerializeField] GameObject _buyObj;
     [SerializeField] TextMeshProUGUI _buyText;
     
@@ -24,10 +26,11 @@ public class ShopMenu : ClickableMenu
     string _shopSlotPrefabPath = "UI/ShopSlot";
     string _currentShopId;
 
-    Item _selectedItem;
-    List<Item> _items = new List<Item>();
+    ObjectItem _selectedItem;
+    List<ObjectItem> _items = new List<ObjectItem>();
     List<ShopSlot> _slots =new List<ShopSlot>();
 
+    public Item SelectedItem { get { return _selectedItem; } }
     protected override void Awake()
     {
         base.Awake();
@@ -38,6 +41,7 @@ public class ShopMenu : ClickableMenu
     {
         base.Start();
         _buyText.text = LocalizationManager.Instance.GetString("Buy");
+        _shopPurchase = GetComponentInChildren<ShopPurchase>();
     }
 
     protected override void OnEnable()
@@ -57,13 +61,14 @@ public class ShopMenu : ClickableMenu
         base.SubscribeEvent();
     }
 
-    public void SetCurrentShop(string shopId)
+    public void SetCurrentShop(string shopId,PlayerController player)
     {
         if(_currentShopId == shopId) return;
         _currentShopId = shopId;
+        _player = player;
         RefreshMenu();
     }
-    public void SetSelectedItem(Item item)
+    public void SetSelectedItem(ObjectItem item)
     {
         if(_selectedItem == item|| item==null)
         {
@@ -79,6 +84,7 @@ public class ShopMenu : ClickableMenu
             string color = _selectedItem.CategoryColor;
             _itemCategoryText.color = Parser.ParseColor(color);
 
+            _shopPurchase.SetItemPrice(_selectedItem.Price,_player);
             _itemInfoObj.gameObject.SetActive(true);
             _buyObj.gameObject.SetActive(true);
 
@@ -104,9 +110,9 @@ public class ShopMenu : ClickableMenu
     {
         foreach(string category in data.SalableCategories)
         {
-            List<Item> categoryItems = TableDataManager.Instance.ItemDict.Values
+            List<ObjectItem> categoryItems = TableDataManager.Instance.ItemDict.Values
                                        .Where(item => item.Category == category)
-                                       .Select(data=>ItemFactory.Create(data.Id)).ToList();
+                                       .Select(data=>ItemFactory.Create(data.Id)as ObjectItem).ToList();
 
             _items.AddRange(categoryItems);
         }
@@ -180,7 +186,7 @@ public class ShopMenu : ClickableMenu
 
     public override void ReceiveRightClick(Vector2 screenPos)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
    

@@ -75,7 +75,7 @@ public class GameLocation
         }
         else if(hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
         {
-            interactable.OnInteract();
+            interactable.Interact(who);
         }
     }
     public void SetDecoTilemaps()

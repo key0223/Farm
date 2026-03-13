@@ -263,9 +263,9 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     #endregion
 
     #region Shop
-    public void ShowShop(string shopId)
+    public void ShowShop(string shopId,PlayerController player)
     {
-        _shopMenu.SetCurrentShop(shopId);
+        _shopMenu.SetCurrentShop(shopId,player);
         OpenMenuByName("Shop");
     }
     public void HideShop()

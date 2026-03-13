@@ -9,7 +9,7 @@ public class ShopSlot : ClickableComponent
     [SerializeField] Image _iconImage;
 
 
-    Item _currentItem;
+    ObjectItem _currentItem;
     int _slotIndex = 0;
     bool _isHovered = false;
 
@@ -21,7 +21,7 @@ public class ShopSlot : ClickableComponent
         base.Start();
         UpdateVisual();
     }
-    public void SetItem(Item item)
+    public void SetItem(ObjectItem item)
     {
         _currentItem = item;
         UpdateVisual();

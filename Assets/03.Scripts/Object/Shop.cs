@@ -26,10 +26,9 @@ public class Shop : MonoBehaviour, IInteractable
         _dayOff = data.DayOff;
         _closedMessage = data.ClosedMessage;
     }
-    public void OnInteract()
+    public void Interact(PlayerController player)
     {
-        UIManager.Instance.ShowShop(_shopId);
-        Debug.Log("Called Shop OnInteract");
+        UIManager.Instance.ShowShop(_shopId,player);
     }
 
 }

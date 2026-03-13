@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "40d1e72a1bdea5060815fe2a8918722c",
+	"md5": "978cd052dd3d1206fc440de3990fbbcc",
 	"array": 
 		[
 			{
@@ -21,6 +21,38 @@
 			{
 				"StringId": "Buy",
 				"Translation": "Buy"
+			},
+			{
+				"StringId": "Resource",
+				"Translation": "Resource"
+			},
+			{
+				"StringId": "Animal Product",
+				"Translation": "Animal Product"
+			},
+			{
+				"StringId": "Vegetable",
+				"Translation": "Vegetable"
+			},
+			{
+				"StringId": "Flower",
+				"Translation": "Flower"
+			},
+			{
+				"StringId": "Forage",
+				"Translation": "Forage"
+			},
+			{
+				"StringId": "Fish",
+				"Translation": "Fish"
+			},
+			{
+				"StringId": "Crafiting",
+				"Translation": "Crafiting"
+			},
+			{
+				"StringId": "Seed",
+				"Translation": "Seed"
 			}
 		]
 }

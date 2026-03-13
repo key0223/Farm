@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "0d7fce2670f1b72c133dcce62a27f2f3",
+	"md5": "97c53cec7242fb91450deb528c505e29",
 	"array": 
 		[
 			{
@@ -21,6 +21,38 @@
 			{
 				"StringId": "Buy",
 				"Translation": "구매"
+			},
+			{
+				"StringId": "Resource",
+				"Translation": "자원"
+			},
+			{
+				"StringId": "Animal Product",
+				"Translation": "동물 생산품"
+			},
+			{
+				"StringId": "Vegetable",
+				"Translation": "야채"
+			},
+			{
+				"StringId": "Flower",
+				"Translation": "꽃"
+			},
+			{
+				"StringId": "Forage",
+				"Translation": "채집"
+			},
+			{
+				"StringId": "Fish",
+				"Translation": "생선"
+			},
+			{
+				"StringId": "Crafiting",
+				"Translation": "제작"
+			},
+			{
+				"StringId": "Seed",
+				"Translation": "씨앗"
 			}
 		]
 }
