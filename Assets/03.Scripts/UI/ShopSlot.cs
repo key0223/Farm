@@ -8,6 +8,7 @@ public class ShopSlot : ClickableComponent
     [Header("UI References")]
     [SerializeField] Image _iconImage;
 
+
     Item _currentItem;
     int _slotIndex = 0;
     bool _isHovered = false;
@@ -62,6 +63,7 @@ public class ShopSlot : ClickableComponent
 
     public override void OnLeftClick(Vector2 pos)
     {
+        UIManager.Instance.ShopUI.SetSelectedItem(_currentItem);
         Debug.Log("Shop slot Clicked");
     }
 }

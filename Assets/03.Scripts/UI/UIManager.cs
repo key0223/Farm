@@ -54,6 +54,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     public ClickableMenu ActiveTab { get { return _tabs.Count > 0 ? _tabs[_currentTabIndex] : null; } }
 
     public DialogueUI DialogueUI { get { return _dialogueUI; } }
+    public ShopMenu ShopUI {  get { return _shopMenu; } }
     protected override void Awake()
     {
         base.Awake();

@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "39aa67cc4b600d251875bfce2dc5e2b4",
+	"md5": "40d1e72a1bdea5060815fe2a8918722c",
 	"array": 
 		[
 			{
@@ -17,6 +17,10 @@
 			{
 				"StringId": "VegeShop_ClosedMessage",
 				"Translation": "We are not open yet."
+			},
+			{
+				"StringId": "Buy",
+				"Translation": "Buy"
 			}
 		]
 }

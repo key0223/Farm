@@ -3371,6 +3371,7 @@ GameObject:
   - component: {fileID: 554442855}
   - component: {fileID: 554442857}
   - component: {fileID: 554442856}
+  - component: {fileID: 554442858}
   m_Layer: 5
   m_Name: Buy
   m_TagString: Untagged
@@ -3414,7 +3415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3438,6 +3439,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554442854}
   m_CullTransparentMesh: 1
+--- !u!114 &554442858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554442854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb041cf1a83d0824a8c51aa2e97792f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _quantityText: {fileID: 1488674593}
+  _totalPriceText: {fileID: 1368972946}
 --- !u!1 &590670992
 GameObject:
   m_ObjectHideFlags: 0
@@ -4913,6 +4928,13 @@ MonoBehaviour:
   _closeButton: {fileID: 0}
   _isAlwaysActive: 0
   _slotParent: {fileID: 208527686}
+  _shopIconImage: {fileID: 1823616733}
+  _shopNameText: {fileID: 1383564845}
+  _itemInfoObj: {fileID: 1331809454}
+  _itemNameText: {fileID: 1510916255}
+  _itemCategoryText: {fileID: 1723940268}
+  _buyObj: {fileID: 554442854}
+  _buyText: {fileID: 1067042386}
 --- !u!1001 &826310754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6338,7 +6360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -11951,8 +11973,9 @@ GameObject:
   - component: {fileID: 1658584160}
   - component: {fileID: 1658584162}
   - component: {fileID: 1658584161}
+  - component: {fileID: 1658584165}
   m_Layer: 5
-  m_Name: Add Image
+  m_Name: Increase Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11965,13 +11988,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658584159}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 602371215}
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 45}
@@ -12015,6 +12038,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658584159}
   m_CullTransparentMesh: 1
+--- !u!114 &1658584165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658584159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72d3f76c2a93124fbce6a14caf09d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalColor: {r: 1, g: 1, b: 1, a: 1}
+  _pressColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  _holdDelay: 1
+  _repeatRate: 0.2
 --- !u!1 &1663023057
 GameObject:
   m_ObjectHideFlags: 0
@@ -15095,8 +15134,9 @@ GameObject:
   - component: {fileID: 2068683008}
   - component: {fileID: 2068683010}
   - component: {fileID: 2068683009}
+  - component: {fileID: 2068683012}
   m_Layer: 5
-  m_Name: Subtract Image
+  m_Name: Decrease Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15159,6 +15199,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068683007}
   m_CullTransparentMesh: 1
+--- !u!114 &2068683012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068683007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e23f188fdeabbf74ebfc0c956107bcd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalColor: {r: 1, g: 1, b: 1, a: 1}
+  _pressColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  _holdDelay: 1
+  _repeatRate: 0.2
 --- !u!1 &2072064148
 GameObject:
   m_ObjectHideFlags: 0

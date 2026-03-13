@@ -106,8 +106,9 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
 
         Dictionary<string, StringDataBase> objects = LoadJson<Data.StringLoader, string, StringDataBase>("StringData_Objects_Ko").MakeDict();
         Dictionary<string, StringDataBase> tools = LoadJson<Data.StringLoader, string, StringDataBase>("StringData_Tools_Ko").MakeDict();
+        Dictionary<string, StringDataBase> uis = LoadJson<Data.StringLoader, string, StringDataBase>("StringData_UI_Ko").MakeDict();
 
-        result = MergeDict<string, StringDataBase>(objects, tools);
+        result = MergeDict<string, StringDataBase>(objects, tools,uis);
 
         return result;
     }
@@ -117,8 +118,9 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
 
         Dictionary<string, StringDataBase> objects = LoadJson<Data.StringLoader, string, StringDataBase>("StringData_Objects_En").MakeDict();
         Dictionary<string, StringDataBase> tools = LoadJson<Data.StringLoader, string, StringDataBase>("StringData_Tools_En").MakeDict();
+        Dictionary<string, StringDataBase> uis = LoadJson<Data.StringLoader, string, StringDataBase>("StringData_UI_En").MakeDict();
 
-        result = MergeDict<string, StringDataBase>(objects, tools);
+        result = MergeDict<string, StringDataBase>(objects, tools,uis);
 
         return result;
     }

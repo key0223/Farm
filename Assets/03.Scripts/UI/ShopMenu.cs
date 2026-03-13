@@ -1,14 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopMenu : ClickableMenu
 {
     [SerializeField] GameObject _slotParent;
+
+    [Header("Shop Info UI References")]
+    [SerializeField] Image _shopIconImage;
+    [SerializeField] TextMeshProUGUI _shopNameText;
+    [Header("Item Info UI References")]
+    [SerializeField] GameObject _itemInfoObj;
+    [SerializeField] TextMeshProUGUI _itemNameText;
+    [SerializeField] TextMeshProUGUI _itemCategoryText;
+    [Header("Buy UI References")]
+    [SerializeField] GameObject _buyObj;
+    [SerializeField] TextMeshProUGUI _buyText;
+    
+
     string _shopSlotPrefabPath = "UI/ShopSlot";
     string _currentShopId;
 
+    Item _selectedItem;
     List<Item> _items = new List<Item>();
     List<ShopSlot> _slots =new List<ShopSlot>();
 
@@ -21,6 +37,7 @@ public class ShopMenu : ClickableMenu
     protected override void Start()
     {
         base.Start();
+        _buyText.text = LocalizationManager.Instance.GetString("Buy");
     }
 
     protected override void OnEnable()
@@ -46,12 +63,39 @@ public class ShopMenu : ClickableMenu
         _currentShopId = shopId;
         RefreshMenu();
     }
+    public void SetSelectedItem(Item item)
+    {
+        if(_selectedItem == item|| item==null)
+        {
+            _selectedItem = null;
+            _itemInfoObj.gameObject.SetActive(false);
+            _buyObj.gameObject.SetActive(false);
+        }
+        else
+        {
+            _selectedItem = item;
+            _itemNameText.text = LocalizationManager.Instance.GetString(_selectedItem.DisplayName);
+            _itemCategoryText.text = LocalizationManager.Instance.GetString(_selectedItem.Category);
+            string color = _selectedItem.CategoryColor;
+            _itemCategoryText.color = Parser.ParseColor(color);
 
+            _itemInfoObj.gameObject.SetActive(true);
+            _buyObj.gameObject.SetActive(true);
+
+        }
+    }
     void RefreshMenu()
     {
         if(_currentShopId == null) return;
+
+        SetSelectedItem(null);
+
+
+
         ShopDataBase data;
         TableDataManager.Instance.ShopDict.TryGetValue(_currentShopId, out data);
+
+        _shopNameText.text = LocalizationManager.Instance.GetString(data.DisplayName);
 
         AddForSale(data);
     }
