@@ -24,6 +24,7 @@ public class InputManager : SingletonMonobehaviour<InputManager>
     // 기능 단위 버튼
     InputButton _useToolButton;
     InputButton _leftClickButton;
+    InputButton _rightClickButton;
 
     public InputState InputState { get { return _input; } }
     protected override void Awake()
@@ -39,6 +40,7 @@ public class InputManager : SingletonMonobehaviour<InputManager>
         _input = new InputState();
         //_useToolButton = new InputButton(Keys.Space);
         _leftClickButton = new InputButton(MouseButtons.Left);
+        _rightClickButton = new InputButton(MouseButtons.Right);
     }
 
     void Update()
@@ -59,12 +61,18 @@ public class InputManager : SingletonMonobehaviour<InputManager>
         if (_leftClickButton.JustPressed(_input))
         {
             Vector2 pos = _input.MousePosition;
-            Debug.Log("Left Click Started");
         }
         if (_input.IsLeftHeld())
         {
             Vector2 pos = _input.MousePosition;
         }
+
+        if (_rightClickButton.JustPressed(_input))
+        {
+            Vector2 pos = _input.MousePosition;
+            Debug.Log("Right Click Started");
+        }
+        
         if (Mathf.Abs(_input.ScrollDelta) > 0.01f)
         {
             Debug.Log($"Scroll: {_input.ScrollDelta}");

@@ -50,6 +50,7 @@ public class ShopPurchase : MonoBehaviour
 
     void OnPurchase()
     {
+        UIManager.Instance.ShopUI.SelectedItem.Stack = _currentQuantity;
         bool success = _player.PlayerInven.TryAdd(UIManager.Instance.ShopUI.SelectedItem);
         if (success)
         {

@@ -123,7 +123,10 @@ public class Storage
             for (int i = 0; i < _slots.Length; i++)
             {
                 if (_slots[i] != null && _slots[i].Id == item.Id && _slots[i].Stack < Define.ITEM_MAX_STACK)
+                {
+                    assignedSlotIndex = i;
                     return true;
+                }
             }
         }
 

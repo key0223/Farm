@@ -77,7 +77,6 @@ public class InventoryMenu : ClickableMenu
 
     public override void ReceiveRightClick(Vector2 screenPos)
     {
-        throw new System.NotImplementedException();
     }
    
 }

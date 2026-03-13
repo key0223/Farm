@@ -42,8 +42,9 @@ public class InputState
     #region Mouse Helper
     public bool IsNewLeftClick()
     {
-        return _currentMouse.LeftButton == ButtonState.Pressed &&
+        bool result = _currentMouse.LeftButton == ButtonState.Pressed &&
                _lastMouse.LeftButton == ButtonState.Released;
+        return result;
     }
 
     public bool IsLeftHeld()
