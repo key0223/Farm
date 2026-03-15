@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "97c53cec7242fb91450deb528c505e29",
+	"md5": "d352df559eb761b60ff94bd9d82a3b4f",
 	"array": 
 		[
 			{
@@ -9,14 +9,6 @@
 			{
 				"StringId": "VegeShop_Name",
 				"Translation": "채소 가게"
-			},
-			{
-				"StringId": "SeedShop_ClosedMessage",
-				"Translation": "다음에 방문해주세요.."
-			},
-			{
-				"StringId": "VegeShop_ClosedMessage",
-				"Translation": "여는 시간이 아닙니다."
 			},
 			{
 				"StringId": "Buy",

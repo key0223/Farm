@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "978cd052dd3d1206fc440de3990fbbcc",
+	"md5": "479da9e11dce21523ffc7bdda83766ea",
 	"array": 
 		[
 			{
@@ -9,14 +9,6 @@
 			{
 				"StringId": "VegeShop_Name",
 				"Translation": "Vege Shop"
-			},
-			{
-				"StringId": "SeedShop_ClosedMessage",
-				"Translation": "Please come again next time."
-			},
-			{
-				"StringId": "VegeShop_ClosedMessage",
-				"Translation": "We are not open yet."
 			},
 			{
 				"StringId": "Buy",

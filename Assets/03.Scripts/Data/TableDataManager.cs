@@ -107,8 +107,10 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
         Dictionary<string, StringDataBase> objects = LoadJson<Data.StringLoader, string, StringDataBase>("StringData_Objects_Ko").MakeDict();
         Dictionary<string, StringDataBase> tools = LoadJson<Data.StringLoader, string, StringDataBase>("StringData_Tools_Ko").MakeDict();
         Dictionary<string, StringDataBase> uis = LoadJson<Data.StringLoader, string, StringDataBase>("StringData_UI_Ko").MakeDict();
+        Dictionary<string, StringDataBase> locations = LoadJson<Data.StringLoader, string, StringDataBase>("StringData_Location_Ko").MakeDict();
 
-        result = MergeDict<string, StringDataBase>(objects, tools,uis);
+
+        result = MergeDict<string, StringDataBase>(objects, tools,uis,locations);
 
         return result;
     }
@@ -119,8 +121,9 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
         Dictionary<string, StringDataBase> objects = LoadJson<Data.StringLoader, string, StringDataBase>("StringData_Objects_En").MakeDict();
         Dictionary<string, StringDataBase> tools = LoadJson<Data.StringLoader, string, StringDataBase>("StringData_Tools_En").MakeDict();
         Dictionary<string, StringDataBase> uis = LoadJson<Data.StringLoader, string, StringDataBase>("StringData_UI_En").MakeDict();
+        Dictionary<string, StringDataBase> locations = LoadJson<Data.StringLoader, string, StringDataBase>("StringData_Location_En").MakeDict();
 
-        result = MergeDict<string, StringDataBase>(objects, tools,uis);
+        result = MergeDict<string, StringDataBase>(objects, tools, uis,locations);
 
         return result;
     }

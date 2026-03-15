@@ -1,0 +1,14 @@
+﻿{
+	"md5": "fd23e5807f9f7a0aec56ea158bd9a4da",
+	"array": 
+		[
+			{
+				"StringId": "Closed_OpenRange",
+				"Translation": "영업 종료…(여는 시간 {0} - {1})"
+			},
+			{
+				"StringId": "SeedShop_Closed",
+				"Translation": "매주 일요일 휴무."
+			}
+		]
+}

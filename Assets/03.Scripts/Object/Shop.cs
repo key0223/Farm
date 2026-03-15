@@ -61,9 +61,15 @@ public class Shop : MonoBehaviour, IInteractable
     }
     public void Interact(PlayerController player)
     {
-        if (_isDayOff || !_isOpen)
+        if (_isDayOff)
         {
-            Debug.Log("Shop closed");
+            string text = LocalizationManager.Instance.GetString(_closedMessage,_openTime, _closeTime);
+            Debug.Log(text);
+        }
+        else if(!_isOpen)
+        {
+            string text = LocalizationManager.Instance.GetString("Closed_OpenRange", _openTime, _closeTime);
+            Debug.Log(text);
         }
         else
             UIManager.Instance.ShowShop(_shopId, player);

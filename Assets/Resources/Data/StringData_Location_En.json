@@ -1,0 +1,14 @@
+﻿{
+	"md5": "272a7ab9a1aacde1b2ae987d6f93b6fc",
+	"array": 
+		[
+			{
+				"StringId": "Closed_OpenRange",
+				"Translation": "It's closed… (Open {0} - {1})"
+			},
+			{
+				"StringId": "SeedShop_Closed",
+				"Translation": "Closed on Sundays."
+			}
+		]
+}

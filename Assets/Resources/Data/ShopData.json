@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "7676eb709965a9d7ba72b78b50a2a1fd",
+	"md5": "c0d1b3881a70a6421102369929d95775",
 	"array": 
 		[
 			{
@@ -9,7 +9,7 @@
 				"OpenTime": 10,
 				"CloseTime": 18,
 				"DayOff": "Sun",
-				"ClosedMessage": "SeedShop_ClosedMessage",
+				"ClosedMessage": "SeedShop_Closed",
 				"SalableCategoriesString": "Seed,Resource"
 			},
 			{
@@ -19,7 +19,7 @@
 				"OpenTime": 9,
 				"CloseTime": 15,
 				"DayOff": "Mon",
-				"ClosedMessage": "VegeShop_ClosedMessage",
+				"ClosedMessage": "SeedShop_Closed",
 				"SalableCategoriesString": "Vegetable"
 			}
 		]
