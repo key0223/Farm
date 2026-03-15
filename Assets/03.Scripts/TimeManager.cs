@@ -18,7 +18,7 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>, ISaveable
     #endregion
 
     public event Action<int,int,int,string,Season,int> OnMinutePassed;
-    public event Action OnHourPassed;
+    public event Action<int> OnHourPassed;
     public event Action<int, int, int, string, Season> OnDayPassed;
     public event Action OnSeasonPassed;
     public event Action OnYearPassed;
@@ -135,7 +135,7 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>, ISaveable
                     _gameDayOfWeek = GetDayOfWeek();
                     OnDayPassed?.Invoke(_gameMinute, _gameHour, _gameDay, _gameDayOfWeek, _gameSeason);
                 }
-                OnHourPassed?.Invoke();
+                OnHourPassed?.Invoke(_gameHour);
             }
             OnMinutePassed?.Invoke(_gameMinute,_gameHour,_gameDay,_gameDayOfWeek,_gameSeason,_gameYear);
         }
