@@ -44,10 +44,10 @@ public class Shop : MonoBehaviour, IInteractable
     void SubscribeEvent()
     {
         TimeManager.Instance.OnHourPassed += OnHourTick;
-        TimeManager.Instance.OnDayPassed += OnNewDayStarted ;
+        TimeManager.Instance.OnDayPassed += OnNewDayStarted;
         GameManager.OnAllManagersReady -= SubscribeEvent;
     }
-    
+
     void InitShop()
     {
         ShopDataBase data;
@@ -63,29 +63,35 @@ public class Shop : MonoBehaviour, IInteractable
     {
         if (_isDayOff)
         {
-            string text = LocalizationManager.Instance.GetString(_closedMessage,_openTime, _closeTime);
-            Debug.Log(text);
+            string text = LocalizationManager.Instance.GetString(_closedMessage, _openTime, _closeTime);
+            UIManager.Instance.ShowSimpleMessage(text);
+            return;
         }
-        else if(!_isOpen)
+        else if (!_isOpen)
         {
             string text = LocalizationManager.Instance.GetString("Closed_OpenRange", _openTime, _closeTime);
-            Debug.Log(text);
+            UIManager.Instance.ShowSimpleMessage(text);
+            return;
+
         }
-        else
-            UIManager.Instance.ShowShop(_shopId, player);
+        UIManager.Instance.ShowShop(_shopId, player);
     }
 
     bool IsOpen(int currentTime)
     {
 
-        if(_openTime <=_closeTime)
-            return (_openTime <= currentTime) && (currentTime<=_closeTime);
+        if (_openTime <= _closeTime)
+            return (_openTime <= currentTime) && (currentTime <= _closeTime);
         else
-            return (_openTime<=currentTime) || (currentTime<=_closeTime);
+            return (_openTime <= currentTime) || (currentTime <= _closeTime);
     }
     void OnHourTick(int gameHour)
     {
-        _isOpen = IsOpen(gameHour);
+        if (gameHour == _closeTime)
+            _isOpen = false;
+        else
+            _isOpen = IsOpen(gameHour);
+        
     }
     void OnNewDayStarted(int gameMinute, int gameHour, int gameDay, string gameDayOfWeek, Season gameSeason)
     {

@@ -44,6 +44,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
     TooltipUI _tooltip;
     DialogueUI _dialogueUI;
+    SimpleMessageUI _simpleMessageUI;
 
     ShopMenu _shopMenu;
 
@@ -54,7 +55,8 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     public ClickableMenu ActiveTab { get { return _tabs.Count > 0 ? _tabs[_currentTabIndex] : null; } }
 
     public DialogueUI DialogueUI { get { return _dialogueUI; } }
-    public ShopMenu ShopUI {  get { return _shopMenu; } }
+    public SimpleMessageUI SimpleMessageUI { get { return _simpleMessageUI; } }
+    public ShopMenu ShopUI { get { return _shopMenu; } }
     protected override void Awake()
     {
         base.Awake();
@@ -64,6 +66,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         _toolbar = FindObjectOfType<ToolbarMenu>();
         _tooltip = FindObjectOfType<TooltipUI>();
         _dialogueUI = FindObjectOfType<DialogueUI>();
+        _simpleMessageUI = FindObjectOfType<SimpleMessageUI>();
         _shopMenu = FindObjectOfType<ShopMenu>();
         GameManager.Instance.ManagerReady("UIManager");
 
@@ -108,13 +111,13 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         }
     }
 
-    public void RegisterTabs(string containerName,List<ClickableMenu> tabs)
+    public void RegisterTabs(string containerName, List<ClickableMenu> tabs)
     {
-        _tabs=tabs;
+        _tabs = tabs;
         _currentTabIndex = 0;
 
     }
-   
+
     void HandleKeyPressed(Keys key)
     {
         if (_uiButtons.TryGetValue(key, out var menuInfo))
@@ -139,7 +142,12 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     void HandleEscape()
     {
         if (_activeMenu != null && _activeMenu.ShouldExitOnEscapeKey())
+        {
+
             PopMenu();
+            HideTooltip();
+        }
+
     }
     void ToggleMenu(string menuName, Type menuType)
     {
@@ -148,12 +156,12 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
         // ег
         string containerName = GetContainerForTab(menuName);
-        if(!string.IsNullOrEmpty(containerName))
+        if (!string.IsNullOrEmpty(containerName))
         {
             ClickableMenu container = OpenMenuByName(containerName);
-            if(container != null)
+            if (container != null)
             {
-                int tabIndex = GetTabIndex(containerName,menuName);
+                int tabIndex = GetTabIndex(containerName, menuName);
                 ShowTab(tabIndex);
                 return;
             }
@@ -215,7 +223,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         if (index < 0 || index >= _tabs.Count) return;
 
         for (int i = 0; i < _tabs.Count; i++)
-            _tabs[i].gameObject.SetActive(i== index);
+            _tabs[i].gameObject.SetActive(i == index);
 
         _currentTabIndex = index;
         if (_activeMenu != null)
@@ -233,15 +241,15 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         if (_toolbar != null && !_toolbar.gameObject.activeSelf)
         {
             _toolbar.gameObject.SetActive(true);
-            _toolbar.UpdateHighlightVisual();  
+            _toolbar.UpdateHighlightVisual();
         }
     }
     #endregion
 
     #region Tooltip
-    public void ShowTooltip(string name, string itemType,string color,string description, Vector2 mousePos)
+    public void ShowTooltip(string name, string itemType, string color, string description, Vector2 mousePos)
     {
-        _tooltip.Show(name, itemType,color, description, mousePos);
+        _tooltip.Show(name, itemType, color, description, mousePos);
     }
     public void HideTooltip()
     {
@@ -262,10 +270,22 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
     #endregion
 
-    #region Shop
-    public void ShowShop(string shopId,PlayerController player)
+    #region Simple Message
+    public void ShowSimpleMessage(string message)
     {
-        _shopMenu.SetCurrentShop(shopId,player);
+        _simpleMessageUI.Show(message);
+        OpenMenuByName("SimpleMessage");
+    }
+    public void HideSimpleMessage()
+    {
+        OpenMenuByName("SimpleMessage");
+    }
+
+    #endregion
+    #region Shop
+    public void ShowShop(string shopId, PlayerController player)
+    {
+        _shopMenu.SetCurrentShop(shopId, player);
         OpenMenuByName("Shop");
     }
     public void HideShop()
@@ -353,7 +373,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         return tabName switch
         {
             "Inventory" => 0,
-            "TestTab"=>1,
+            "TestTab" => 1,
             _ => 0
         };
     }
