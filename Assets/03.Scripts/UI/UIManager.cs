@@ -32,6 +32,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         {"Inventory","InventoryContainer" },
         {"TestTab","InventoryContainer" },
+        {"Shop","ShopContainer" },
     };
     Dictionary<string, ClickableMenu> _menuCache = new Dictionary<string, ClickableMenu>();
 
