@@ -1839,6 +1839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea9cfe2b7d58b1a4cb686aac774d347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _menuName: 
   _menuId: 0
   _showCloseButton: 0
   _closeButton: {fileID: 0}
@@ -5346,6 +5347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c36cf5edc356841a9fa211c0cc44ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _menuName: 
   _menuId: 0
   _showCloseButton: 0
   _closeButton: {fileID: 0}
@@ -6084,6 +6086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf49077fa223694faa7636d84236ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _menuName: 
   _menuId: 0
   _showCloseButton: 1
   _closeButton: {fileID: 863498451}
@@ -7386,6 +7389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00611d8b376da2b4f9c9696a1918de94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _menuName: 
   _menuId: 0
   _showCloseButton: 0
   _closeButton: {fileID: 0}
@@ -9608,6 +9612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5186f8b58ce341e42926191f78279b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _menuName: 
   _menuId: 0
   _showCloseButton: 0
   _closeButton: {fileID: 0}
@@ -10949,7 +10954,7 @@ GameObject:
   - component: {fileID: 1485752756}
   - component: {fileID: 1485752757}
   m_Layer: 5
-  m_Name: Tab Container
+  m_Name: InventoryContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10990,6 +10995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2014b7252c0f0a74682473a9a3f8a398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _menuName: InventoryContainer
   _menuId: 0
   _showCloseButton: 0
   _closeButton: {fileID: 0}
@@ -14561,6 +14567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39db0bfb337e70b439853b837b8e3718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _menuName: 
   _menuId: 0
   _showCloseButton: 0
   _closeButton: {fileID: 0}

@@ -10,19 +10,20 @@ public class TabContainer : ClickableMenu
     protected override void Awake()
     {
         base.Awake();
-        _menuName = "TabContainer";
+        //_menuName = "TabContainer";
     }
     protected override void Start()
     {
         base.Start();
-        RegisterTabs();
+        UIManager.Instance.RegisterTabs(MenuName, _tabPages);
     }
     protected override void OnEnable()
     {
         base.OnEnable();
         if (!GameManager.Instance.AllManagersReady)
             return;
-        RegisterTabs();
+        UIManager.Instance.RegisterTabs(MenuName, _tabPages);
+
     }
     protected override void OnDisable()
     {
@@ -34,12 +35,6 @@ public class TabContainer : ClickableMenu
         base.SubscribeEvent();
     }
 
-    void RegisterTabs()
-    {
-        UIManager.Instance.RegisterTabs(MenuName, _tabPages);
-        UIManager.Instance.ShowTab(0);
-    }
-
     public override void ReceiveLeftClick(Vector2 screenPos)
     {
 
@@ -47,12 +42,12 @@ public class TabContainer : ClickableMenu
         {
             if (_tabButtons[i].ContainsPoint((int)screenPos.x,(int)screenPos.y))
             {
-                UIManager.Instance.ShowTab(i);
+                UIManager.Instance.ShowTab(_menuName,i);
                 return;
             }
         }
         
-        ClickableMenu activeTab= UIManager.Instance.ActiveTab;
+        ClickableMenu activeTab= UIManager.Instance.GetActiveTab(_menuName);
         if (activeTab != null)
             activeTab.ReceiveLeftClick(screenPos);
     }

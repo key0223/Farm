@@ -30,14 +30,17 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
     Dictionary<string, string> _tabContainers = new()
     {
-        {"Inventory","TabContainer" },
-        {"TestTab","TabContainer" },
+        {"Inventory","InventoryContainer" },
+        {"TestTab","InventoryContainer" },
     };
     Dictionary<string, ClickableMenu> _menuCache = new Dictionary<string, ClickableMenu>();
 
     Stack<ClickableMenu> _menuStack = new Stack<ClickableMenu>(); /* 이전 메뉴들 저장 */
-    List<ClickableMenu> _tabs = new List<ClickableMenu>(); /* 탭,페이지 전환용 */
-    int _currentTabIndex = 0;
+    //List<ClickableMenu> _tabs = new List<ClickableMenu>(); /* 탭,페이지 전환용 */
+
+    Dictionary<string,List<ClickableMenu>> _tabGroups = new Dictionary<string, List<ClickableMenu>>();
+    Dictionary<string, int> _currentTabIndices = new Dictionary<string, int>();
+    //int _currentTabIndex = 0;
 
     ClickableMenu _activeMenu;
     ToolbarMenu _toolbar;
@@ -51,9 +54,6 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
     public Dictionary<string, ClickableMenu> MenuCache { get { return _menuCache; } }
     public ClickableMenu ActiveMenu { get { return _activeMenu; } set { _activeMenu = value; } }
-    public List<ClickableMenu> Tabs { get { return _tabs; } }
-    public ClickableMenu ActiveTab { get { return _tabs.Count > 0 ? _tabs[_currentTabIndex] : null; } }
-
     public DialogueUI DialogueUI { get { return _dialogueUI; } }
     public SimpleMessageUI SimpleMessageUI { get { return _simpleMessageUI; } }
     public ShopMenu ShopUI { get { return _shopMenu; } }
@@ -113,11 +113,23 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
     public void RegisterTabs(string containerName, List<ClickableMenu> tabs)
     {
-        _tabs = tabs;
-        _currentTabIndex = 0;
-
+        _tabGroups[containerName] = tabs;
+        _currentTabIndices[containerName] = 0;
+        ShowTab(containerName, 0);
     }
-
+    public ClickableMenu GetActiveTab(string containerName)
+    {
+        if(_tabGroups.TryGetValue(containerName, out var tabs) &&
+           _currentTabIndices.TryGetValue(containerName,out int index))
+            return tabs[index];
+        return null;
+    }
+    public List<ClickableMenu> GetTabs(string containerName)
+    {
+        if(_tabGroups.TryGetValue(containerName,out var tabs))
+            return tabs;
+        return null;
+    }
     void HandleKeyPressed(Keys key)
     {
         if (_uiButtons.TryGetValue(key, out var menuInfo))
@@ -154,19 +166,30 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         HideTooltip();
         ClickableMenu active = _activeMenu;
 
-        // 탭
+        // 탭 메뉴 확인
         string containerName = GetContainerForTab(menuName);
         if (!string.IsNullOrEmpty(containerName))
         {
+            // 컨테이너가 이미 활성화 상태면 탭만 전환
+            if(_activeMenu != null && _activeMenu.MenuName == containerName)
+            {
+                int tabIndex = GetTabIndex(containerName, menuName);
+                ShowTab(containerName,tabIndex);
+                return;
+            }
+
+            // 컨테이너 활성화
             ClickableMenu container = OpenMenuByName(containerName);
             if (container != null)
             {
+                // 탭 전환
                 int tabIndex = GetTabIndex(containerName, menuName);
-                ShowTab(tabIndex);
+                ShowTab(containerName, tabIndex);
                 return;
             }
         }
 
+        // 일반 메뉴
         if (active != null && menuType.IsInstanceOfType(active))
         {
             PopMenu();
@@ -218,14 +241,15 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         }
     }
 
-    public void ShowTab(int index)
+    public void ShowTab(string containerName, int index)
     {
-        if (index < 0 || index >= _tabs.Count) return;
+        if (!_tabGroups.TryGetValue(containerName, out var tabs) || index < 0 || index >= tabs.Count) return;
 
-        for (int i = 0; i < _tabs.Count; i++)
-            _tabs[i].gameObject.SetActive(i == index);
+        for (int i = 0; i < tabs.Count; i++)
+            tabs[i].gameObject.SetActive(i == index);
 
-        _currentTabIndex = index;
+        _currentTabIndices[containerName] = index;
+
         if (_activeMenu != null)
             _activeMenu.PopulateClickableComponentList();
     }
@@ -370,10 +394,12 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     }
     int GetTabIndex(string container, string tabName)
     {
-        return tabName switch
+        return (container,tabName) switch
         {
-            "Inventory" => 0,
-            "TestTab" => 1,
+            ("InventoryContainer","Inventory")=>0,
+            ("InventoryContainer", "TestTab") =>1,
+            ("ShopContainer", "Buy") =>0,
+            ("ShopContainer", "Sell") =>1,
             _ => 0
         };
     }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public abstract class ClickableMenu : MonoBehaviour
 {
     [Header("Menu Settings")]
-    protected string _menuName;
+    [SerializeField] protected string _menuName;
     [SerializeField] protected int _menuId;
     [SerializeField] protected bool _showCloseButton = false;
     [SerializeField] protected GameObject _closeButton;
