@@ -5,7 +5,7 @@ using UnityEngine;
 public class TabContainer : ClickableMenu
 {
     [SerializeField] List<ClickableMenu> _tabPages = new List<ClickableMenu>();
-    [SerializeField] List<ClickableComponent> _tabButtons = new List<ClickableComponent>();
+    [SerializeField] List<TabButton> _tabButtons = new List<TabButton>();
 
     protected override void Awake()
     {
@@ -16,6 +16,7 @@ public class TabContainer : ClickableMenu
     {
         base.Start();
         UIManager.Instance.RegisterTabs(MenuName, _tabPages);
+        _tabButtons[0].SetBGImage(true);
     }
     protected override void OnEnable()
     {
@@ -37,19 +38,28 @@ public class TabContainer : ClickableMenu
 
     public override void ReceiveLeftClick(Vector2 screenPos)
     {
+        TabButton clicked = null;
 
-        for (int i = 0; i < _tabButtons.Count; i++)
+        foreach (TabButton button in _tabButtons)
         {
-            if (_tabButtons[i].ContainsPoint((int)screenPos.x,(int)screenPos.y))
+            if (button.ContainsPoint((int)screenPos.x, (int)screenPos.y))
             {
-                UIManager.Instance.ShowTab(_menuName,i);
-                return;
+                clicked = button;
+                break;
             }
         }
-        
-        //ClickableMenu activeTab= UIManager.Instance.GetActiveTab(_menuName);
-        //if (activeTab != null)
-        //    activeTab.ReceiveLeftClick(screenPos);
+
+        if (clicked != null)
+        {
+            foreach (TabButton button in _tabButtons)
+            {
+                button.SetBGImage(false);
+            }
+
+            int index = _tabButtons.IndexOf(clicked);
+            clicked.OnLeftClick(screenPos);
+            UIManager.Instance.ShowTab(_menuName, index);
+        }
     }
 
     public override void ReceiveRightClick(Vector2 screenPos)
