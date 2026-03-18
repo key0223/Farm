@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "d352df559eb761b60ff94bd9d82a3b4f",
+	"md5": "9c180e7962ecd118c1fb73a624ed5481",
 	"array": 
 		[
 			{
@@ -13,6 +13,10 @@
 			{
 				"StringId": "Buy",
 				"Translation": "구매"
+			},
+			{
+				"StringId": "Sell",
+				"Translation": "판매"
 			},
 			{
 				"StringId": "Resource",

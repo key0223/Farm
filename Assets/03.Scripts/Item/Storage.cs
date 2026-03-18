@@ -6,6 +6,7 @@ public class Storage
 {
     Item[] _slots;
 
+    public Item[] Slots { get { return _slots; } }
     public Storage(int maxSlots)
     {
         _slots = new Item[maxSlots];

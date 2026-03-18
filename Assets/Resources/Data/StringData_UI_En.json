@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "479da9e11dce21523ffc7bdda83766ea",
+	"md5": "8a0b783f9b188959345526c125a7e905",
 	"array": 
 		[
 			{
@@ -13,6 +13,10 @@
 			{
 				"StringId": "Buy",
 				"Translation": "Buy"
+			},
+			{
+				"StringId": "Sell",
+				"Translation": "Sell"
 			},
 			{
 				"StringId": "Resource",
