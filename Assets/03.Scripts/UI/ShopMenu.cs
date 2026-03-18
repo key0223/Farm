@@ -18,6 +18,8 @@ public class ShopMenu : MonoBehaviour
     [SerializeField] TextMeshProUGUI _itemCategoryText;
     
     string _currentShopId;
+    ObjectItem _selectedItem;
+
 
     public PlayerController Player {  get { return _player; } }
     public string CurrentShopId { get { return _currentShopId; } }
@@ -31,12 +33,14 @@ public class ShopMenu : MonoBehaviour
     }
     public void SetSelectedItem(ObjectItem item)
     {
-        if(item==null)
+        if(_selectedItem == item|| item==null)
         {
+            _selectedItem = null;
             _itemInfoObj.gameObject.SetActive(false);
         }
         else
         {
+            _selectedItem = item;
             _itemNameText.text = LocalizationManager.Instance.GetString(item.DisplayName);
             _itemCategoryText.text = LocalizationManager.Instance.GetString(item.Category);
             string color = item.CategoryColor;
