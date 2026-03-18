@@ -6,21 +6,22 @@ using UnityEngine.UI;
 
 public class DecreaseButton : HoldQuantityButton
 {
-    ShopPurchase _shopPurchase;
+    [SerializeField] GameObject _targetReference;
+    IQuantityAdjuster _target;
 
     protected override void Start()
     {
         base.Start();
-        if (_shopPurchase == null)
-            _shopPurchase = GetComponentInParent<ShopPurchase>();
+        if (_target == null)
+            _target = _targetReference.gameObject.GetComponent<IQuantityAdjuster>();
     }
 
     protected override void OnSinglePress()
     {
-        _shopPurchase?.DecreaseQuantity();
+        _target?.DecreaseQuantity();
     }
     protected override void OnRepeatPress()
     {
-        _shopPurchase?.DecreaseQuantity();
+        _target?.DecreaseQuantity();
     }
 }

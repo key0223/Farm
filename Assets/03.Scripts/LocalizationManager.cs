@@ -10,14 +10,15 @@ public class LocalizationManager : SingletonMonobehaviour<LocalizationManager>
     protected override void Awake()
     {
         base.Awake();
+        GameManager.OnAllManagersReady += SubscribeEvent;
         GameManager.Instance.ManagerReady("LocalizationManager");
     }
 
-    void Start()
+    void SubscribeEvent()
     {
         SetLanguage(_currentLanguageCode);
+        GameManager.OnAllManagersReady -= SubscribeEvent;
     }
-
     public void SetLanguage(string languageCode)
     {
         _currentLanguageDict = GetLanguageDict(languageCode);

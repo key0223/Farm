@@ -32,7 +32,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         {"Inventory","InventoryContainer" },
         {"TestTab","InventoryContainer" },
-        {"Shop","ShopContainer" },
+        {"Buy","ShopContainer" },
     };
     Dictionary<string, ClickableMenu> _menuCache = new Dictionary<string, ClickableMenu>();
 
@@ -311,11 +311,24 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     public void ShowShop(string shopId, PlayerController player)
     {
         _shopMenu.SetCurrentShop(shopId, player);
-        OpenMenuByName("Shop");
+        ClickableMenu container = FindMenuByName("ShopContainer");
+        if (container != null && _activeMenu != container)
+        {
+            PushMenu(container);
+
+            int buyTabIndex = GetTabIndex("ShopContainer", "Buy");  // 0
+            ShowTab("ShopContainer", buyTabIndex);
+            return;
+        }
+        if (container == _activeMenu)
+        {
+            int buyTabIndex = GetTabIndex("ShopContainer", "Buy");
+            ShowTab("ShopContainer", buyTabIndex);
+        }
     }
     public void HideShop()
     {
-        OpenMenuByName("Shop");
+        OpenMenuByName("ShopContainer");
     }
     #endregion
 

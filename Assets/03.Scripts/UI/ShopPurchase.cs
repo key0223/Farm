@@ -50,17 +50,17 @@ public class ShopPurchase : MonoBehaviour
 
     void OnPurchase()
     {
-        UIManager.Instance.ShopUI.SelectedItem.Stack = _currentQuantity;
-        bool success = _player.PlayerInven.TryAdd(UIManager.Instance.ShopUI.SelectedItem);
-        if (success)
-        {
-            Debug.Log("Purchase Succeed");
-        }
-        else
-        {
-            Debug.Log("Purchase Failed");
+        //UIManager.Instance.ShopUI.SelectedItem.Stack = _currentQuantity;
+        //bool success = _player.PlayerInven.TryAdd(UIManager.Instance.ShopUI.SelectedItem);
+        //if (success)
+        //{
+        //    Debug.Log("Purchase Succeed");
+        //}
+        //else
+        //{
+        //    Debug.Log("Purchase Failed");
 
-        }
+        //}
     }
     void Refresh()
     {

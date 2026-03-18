@@ -47,9 +47,9 @@ public class TabContainer : ClickableMenu
             }
         }
         
-        ClickableMenu activeTab= UIManager.Instance.GetActiveTab(_menuName);
-        if (activeTab != null)
-            activeTab.ReceiveLeftClick(screenPos);
+        //ClickableMenu activeTab= UIManager.Instance.GetActiveTab(_menuName);
+        //if (activeTab != null)
+        //    activeTab.ReceiveLeftClick(screenPos);
     }
 
     public override void ReceiveRightClick(Vector2 screenPos)

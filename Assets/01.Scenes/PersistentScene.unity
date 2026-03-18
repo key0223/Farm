@@ -3529,8 +3529,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2054661236}
   m_HandleRect: {fileID: 2054661235}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.75
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3912,7 +3912,6 @@ GameObject:
   - component: {fileID: 554442855}
   - component: {fileID: 554442857}
   - component: {fileID: 554442856}
-  - component: {fileID: 554442858}
   m_Layer: 5
   m_Name: Buy
   m_TagString: Untagged
@@ -3980,21 +3979,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554442854}
   m_CullTransparentMesh: 1
---- !u!114 &554442858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554442854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb041cf1a83d0824a8c51aa2e97792f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _quantityText: {fileID: 1488674593}
-  _totalPriceText: {fileID: 1368972946}
-  _purchaseButton: {fileID: 2019978774}
 --- !u!1 &590670992
 GameObject:
   m_ObjectHideFlags: 0
@@ -5446,7 +5430,7 @@ RectTransform:
   m_Children:
   - {fileID: 1525275700}
   - {fileID: 1211036814}
-  m_Father: {fileID: 1413217162}
+  m_Father: {fileID: 1254038861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5462,7 +5446,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 821806451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12c36cf5edc356841a9fa211c0cc44ac, type: 3}
+  m_Script: {fileID: 11500000, guid: ea081cb5f05926d4886974acee7ee8bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _menuName: 
@@ -5471,13 +5455,12 @@ MonoBehaviour:
   _closeButton: {fileID: 0}
   _isAlwaysActive: 0
   _slotParent: {fileID: 208527686}
-  _shopIconImage: {fileID: 1823616733}
-  _shopNameText: {fileID: 1383564845}
-  _itemInfoObj: {fileID: 1331809454}
-  _itemNameText: {fileID: 1510916255}
-  _itemCategoryText: {fileID: 1723940268}
+  _shopSlotPrefabPath: UI/ShopSlot
   _buyObj: {fileID: 554442854}
   _buyText: {fileID: 1067042386}
+  _quantityText: {fileID: 1488674593}
+  _totalPriceText: {fileID: 1368972946}
+  _purchaseButton: {fileID: 2019978774}
 --- !u!1001 &826310754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8884,6 +8867,61 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1222202962}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1254038860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1254038861}
+  - component: {fileID: 1254038862}
+  m_Layer: 5
+  m_Name: Shop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1254038861
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254038860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1612166776}
+  - {fileID: 821806452}
+  m_Father: {fileID: 1413217162}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1100, y: 709}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1254038862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254038860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12c36cf5edc356841a9fa211c0cc44ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shopIconImage: {fileID: 1823616733}
+  _shopNameText: {fileID: 1383564845}
+  _itemInfoObj: {fileID: 1331809454}
+  _itemNameText: {fileID: 1510916255}
+  _itemCategoryText: {fileID: 1723940268}
 --- !u!1 &1261611788
 GameObject:
   m_ObjectHideFlags: 0
@@ -10576,8 +10614,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1612166776}
-  - {fileID: 821806452}
+  - {fileID: 1254038861}
   - {fileID: 1449466106}
   m_Father: {fileID: 61673590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12421,7 +12458,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1127974676}
-  m_Father: {fileID: 1413217162}
+  m_Father: {fileID: 1254038861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12928,6 +12965,7 @@ MonoBehaviour:
   _pressColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   _holdDelay: 1
   _repeatRate: 0.2
+  _targetReference: {fileID: 821806451}
 --- !u!1 &1663023057
 GameObject:
   m_ObjectHideFlags: 0
@@ -13358,8 +13396,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 630, y: 435}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: 630, y: 405}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1697050326
 MonoBehaviour:
@@ -15394,7 +15432,7 @@ GameObject:
   - component: {fileID: 2019978773}
   - component: {fileID: 2019978774}
   m_Layer: 5
-  m_Name: Total Price
+  m_Name: Purchase Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16310,6 +16348,7 @@ MonoBehaviour:
   _pressColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   _holdDelay: 1
   _repeatRate: 0.2
+  _targetReference: {fileID: 821806451}
 --- !u!1 &2072064148
 GameObject:
   m_ObjectHideFlags: 0

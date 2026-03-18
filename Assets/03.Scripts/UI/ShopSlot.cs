@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine.UI;
 
 public class ShopSlot : ClickableComponent
 {
+    public event Action<ObjectItem> OnSlotClicked;
+
     [Header("UI References")]
     [SerializeField] Image _iconImage;
 
@@ -64,6 +67,7 @@ public class ShopSlot : ClickableComponent
     public override void OnLeftClick(Vector2 pos)
     {
         UIManager.Instance.ShopUI.SetSelectedItem(_currentItem);
+        OnSlotClicked?.Invoke(_currentItem);
         Debug.Log("Shop slot Clicked");
     }
 }
