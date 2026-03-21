@@ -40,7 +40,7 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
         _hairColorResetButton.onClick.AddListener(OnHairColorResetButtonClicked);
         _confirmButton.onClick.AddListener(OnConfirmButtonClicked);
 
-        _selectedColor = Color.white;
+        OnHairColorResetButtonClicked();
         _confirmButton.interactable = false;
 
 
@@ -107,6 +107,14 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
     }
     void OnConfirmButtonClicked()
     {
+        PlayerProfile profile = new PlayerProfile()
+        {
+            FarmName = _farmName,
+            PlayerName = _playerName,
+            HairName = _hairStyleNames[_currentHairIndex],
+            HairColor = _selectedColor
+        };
 
+        GameManager.Instance.Player.SetPlayerProfile(profile);
     }
 }

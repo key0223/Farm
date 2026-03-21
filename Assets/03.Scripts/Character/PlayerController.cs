@@ -15,13 +15,14 @@ public class PlayerController : MonoBehaviour, ISaveable
     public GameObjectSave GameObjectSave { get { return _gameObjectSave; } set { _gameObjectSave = value; } }
 
     #endregion
-
+    PlayerProfile _playerProfile;
     PlayerMove _playerMove;
     PlayerInventory _playerInven;
     PlayerAnimator _playerAnim;
     PlayerActionHandler _playerActionHandler;
     ItemPickup _itemPickup;
 
+    public PlayerProfile PlayerProfile { get { return _playerProfile; } }
     public PlayerMove PlayerMove { get { return _playerMove; } }
     public PlayerInventory PlayerInven { get { return _playerInven; } }
     public PlayerAnimator PlayerAnim { get { return _playerAnim; } }
@@ -78,6 +79,8 @@ public class PlayerController : MonoBehaviour, ISaveable
     }
     void CacheComponents()
     {
+        //_playerProfile = new PlayerProfile();
+
         _playerMove = GetComponent<PlayerMove>();
         _playerInven = GetComponent<PlayerInventory>();
         _playerAnim = GetComponent<PlayerAnimator>();
@@ -101,6 +104,11 @@ public class PlayerController : MonoBehaviour, ISaveable
     void OnUIOpenChanged(bool open)
     {
         CanMove = !open;
+    }
+
+    public void SetPlayerProfile(PlayerProfile profile)
+    {
+        _playerProfile = profile;
     }
 
     [SerializeField] string TestDialogue;

@@ -17,12 +17,15 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     int _managersReadyCount = 0;
     bool _allManagersReady = false;
 
+    PlayerController _player;
+    public PlayerController Player { get { return _player; } }
     public bool AllManagersReady { get { return _allManagersReady; } }
     protected override void Awake()
     {
         base.Awake();
 
         ValidateManagers();
+        _player =  FindObjectOfType<PlayerController>();
     }
 
     void Update()
