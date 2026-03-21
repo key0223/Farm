@@ -151,10 +151,17 @@ public class PlayerController : MonoBehaviour, ISaveable
         SceneSave sceneSave = new SceneSave();
         sceneSave.Vector3Dictionary = new Dictionary<string, Vector3Serializable>();
         sceneSave.IntDictionary = new Dictionary<string, int>();
+        sceneSave.StringDictionary = new Dictionary<string, string>();
 
         Vector3Serializable vector3Serializable = new Vector3Serializable(transform.position.x, transform.position.y, transform.position.z);
         sceneSave.Vector3Dictionary.Add("playerPosition", vector3Serializable);
         sceneSave.IntDictionary.Add("playerDirection", _playerMove.CurrentDirection);
+
+        /* Player Profile */
+        sceneSave.StringDictionary.Add("farmName", _playerProfile.FarmName);
+        sceneSave.StringDictionary.Add("playerName", _playerProfile.PlayerName);
+        sceneSave.StringDictionary.Add("hairName", _playerProfile.HairName);
+        sceneSave.StringDictionary.Add("hairColor", _playerProfile.HairColor.ToString());
 
         GameObjectSave.SceneData.Add(sceneName, sceneSave);
     }
@@ -173,6 +180,27 @@ public class PlayerController : MonoBehaviour, ISaveable
                 if (sceneSave.IntDictionary.TryGetValue("playerDirection", out int playerDir))
                 {
                     _playerMove.CurrentDirection = playerDir;
+                }
+            }
+
+            if(sceneSave.StringDictionary != null)
+            {
+                _playerProfile = new PlayerProfile();
+                if (sceneSave.StringDictionary.TryGetValue("farmName", out string farmName))
+                {
+                    _playerProfile.FarmName = farmName;
+                }
+                if (sceneSave.StringDictionary.TryGetValue("playerName", out string playerName))
+                {
+                    _playerProfile.PlayerName = playerName;
+                }
+                if (sceneSave.StringDictionary.TryGetValue("hairName", out string hairName))
+                {
+                    _playerProfile.HairName = hairName;
+                }
+                if (sceneSave.StringDictionary.TryGetValue("hairColor", out string hairColor))
+                {
+                    _playerProfile.HairColor = Parser.ParseColor(hairColor);
                 }
             }
         }
