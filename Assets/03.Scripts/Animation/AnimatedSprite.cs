@@ -35,7 +35,7 @@ public class AnimatedSprite : MonoBehaviour
     }
     void Start()
     {
-        InitAnimationsFromTableData();
+        //InitAnimationsFromTableData();
     }
 
     void Update()
@@ -80,8 +80,9 @@ public class AnimatedSprite : MonoBehaviour
         if (frameIndex < clip.Sprites.Length)
             _renderers[layerIndex].sprite = clip.Sprites[frameIndex];
     }
-    void InitAnimationsFromTableData()
+    public void InitAnimationsFromTableData()
     {
+        string hair = GameManager.Instance.Player.PlayerProfile.HairName;
         foreach (var kvp in TableDataManager.Instance.AnimationDict)
         {
             AnimationDataBase data = kvp.Value;
@@ -89,7 +90,7 @@ public class AnimatedSprite : MonoBehaviour
             if (data.LayerType == SpriteLayer.HAIR)
             {
                 string actualSheet;
-                if (!SheetMappingManager.Instance.GetActualSheet(data.ParentSheet, _currentHair, out actualSheet))
+                if (!SheetMappingManager.Instance.GetActualSheet(data.ParentSheet, hair, out actualSheet))
                     continue;
                 else
                     data.ParentSheet = actualSheet;
@@ -106,6 +107,8 @@ public class AnimatedSprite : MonoBehaviour
 
             _animationClipDict.Add(data.AnimationName, clip);
         }
+
+        _hairRenderer.color = GameManager.Instance.Player.PlayerProfile.HairColor;
     }
     public void PlayAnimAllLayers(string action)
     {

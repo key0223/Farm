@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
+public class CharacterCustomizationUI : ClickableMenu, IQuantityAdjuster
 {
     [Header("Name References")]
     [SerializeField] TMP_InputField _playerNameInput;
@@ -32,8 +32,11 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
     Color _selectedColor;
 
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+        _menuName = "Customization";
+
         _playerNameInput.onValueChanged.AddListener(delegate { UpdateInputText(); });
         _farmNameInput.onValueChanged.AddListener(delegate { UpdateInputText(); });
         _colorSlider.onValueChanged.AddListener(OnColorSliderChanged);
@@ -45,8 +48,10 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
 
 
     }
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+        UIManager.Instance.ShowCustomization();
     }
 
     void Update()
@@ -116,5 +121,21 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
         };
 
         GameManager.Instance.Player.SetPlayerProfile(profile);
+
+        UIManager.Instance.HideCustomization();
     }
+
+
+    #region ClickableMenu
+    public override void ReceiveLeftClick(Vector2 screenPos)
+    {
+        //throw new System.NotImplementedException();
+    }
+
+    public override void ReceiveRightClick(Vector2 screenPos)
+    {
+        //throw new System.NotImplementedException();
+    }
+    #endregion
+
 }

@@ -50,7 +50,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     TooltipUI _tooltip;
     DialogueUI _dialogueUI;
     SimpleMessageUI _simpleMessageUI;
-
+    CharacterCustomizationUI _customizeUI;
     ShopMenu _shopMenu;
 
 
@@ -58,6 +58,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     public ClickableMenu ActiveMenu { get { return _activeMenu; } set { _activeMenu = value; } }
     public DialogueUI DialogueUI { get { return _dialogueUI; } }
     public SimpleMessageUI SimpleMessageUI { get { return _simpleMessageUI; } }
+    public CharacterCustomizationUI CharacterCustomizationUI { get { return _customizeUI; } }
     public ShopMenu ShopUI { get { return _shopMenu; } }
     protected override void Awake()
     {
@@ -69,6 +70,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         _tooltip = FindObjectOfType<TooltipUI>();
         _dialogueUI = FindObjectOfType<DialogueUI>();
         _simpleMessageUI = FindObjectOfType<SimpleMessageUI>();
+        _customizeUI = FindObjectOfType<CharacterCustomizationUI>();
         _shopMenu = FindObjectOfType<ShopMenu>();
         GameManager.Instance.ManagerReady("UIManager");
 
@@ -307,6 +309,17 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         OpenMenuByName("SimpleMessage");
     }
 
+    #endregion
+
+    #region Customization
+    public void ShowCustomization()
+    {
+        OpenMenuByName("Customization");
+    }
+    public void HideCustomization()
+    {
+        OpenMenuByName("Customization");
+    }
     #endregion
     #region Shop
     public void ShowShop(string shopId, PlayerController player)

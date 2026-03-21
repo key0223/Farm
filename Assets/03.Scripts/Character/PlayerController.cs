@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour, ISaveable
     public void SetPlayerProfile(PlayerProfile profile)
     {
         _playerProfile = profile;
+        _playerAnim.AnimatedSprite.InitAnimationsFromTableData();
     }
 
     [SerializeField] string TestDialogue;
@@ -185,23 +186,25 @@ public class PlayerController : MonoBehaviour, ISaveable
 
             if(sceneSave.StringDictionary != null)
             {
-                _playerProfile = new PlayerProfile();
+                PlayerProfile profile = new PlayerProfile();
                 if (sceneSave.StringDictionary.TryGetValue("farmName", out string farmName))
                 {
-                    _playerProfile.FarmName = farmName;
+                    profile.FarmName = farmName;
                 }
                 if (sceneSave.StringDictionary.TryGetValue("playerName", out string playerName))
                 {
-                    _playerProfile.PlayerName = playerName;
+                    profile.PlayerName = playerName;
                 }
                 if (sceneSave.StringDictionary.TryGetValue("hairName", out string hairName))
                 {
-                    _playerProfile.HairName = hairName;
+                    profile.HairName = hairName;
                 }
                 if (sceneSave.StringDictionary.TryGetValue("hairColor", out string hairColor))
                 {
-                    _playerProfile.HairColor = Parser.ParseColor(hairColor);
+                    profile.HairColor = Parser.ParseColor(hairColor);
                 }
+
+                SetPlayerProfile(profile);
             }
         }
     }
