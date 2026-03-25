@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -22,13 +23,13 @@ public class SaveLoadManager : SingletonMonobehaviour<SaveLoadManager>
     public void LoadDataFromFile()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        if(File.Exists(Application.persistentDataPath + "/LifeIsSoup.dat"))
+        if (File.Exists(Application.persistentDataPath + "/LifeIsSoup.dat"))
         {
             _gameSave = new GameSave();
             FileStream file = File.Open(Application.persistentDataPath + "/LifeIsSoup.dat", FileMode.Open);
             _gameSave = (GameSave)bf.Deserialize(file);
 
-            for (int i = _iSaveableList.Count - 1; i >-1; i--)
+            for (int i = _iSaveableList.Count - 1; i > -1; i--)
             {
                 if (_gameSave.GameObjectData.ContainsKey(_iSaveableList[i].ISaveableUniqueId))
                     _iSaveableList[i].ISaveableLoad(_gameSave);
@@ -43,11 +44,31 @@ public class SaveLoadManager : SingletonMonobehaviour<SaveLoadManager>
         }
     }
 
+    public GameSave LoadGameSave(string saveFileName)
+    {
+        string path = GetSaveFilePath(saveFileName);
+        if (!File.Exists(path))
+            return null;
+
+        try
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using (FileStream file = File.Open(path, FileMode.Open))
+            return (GameSave)bf.Deserialize(file);
+        }
+        catch(Exception e)
+        {
+            Debug.LogWarning($"Failed to load save '{saveFileName}' : {e}");
+            return null;
+        }
+
+    }
+
     public void SaveDataToFile()
     {
         _gameSave = new GameSave();
 
-        foreach(ISaveable iSaveableObject in _iSaveableList)
+        foreach (ISaveable iSaveableObject in _iSaveableList)
         {
             _gameSave.GameObjectData.Add(iSaveableObject.ISaveableUniqueId, iSaveableObject.ISaveableSave());
         }
@@ -60,7 +81,7 @@ public class SaveLoadManager : SingletonMonobehaviour<SaveLoadManager>
 
     public void StoreCurrentSceneData()
     {
-        foreach(ISaveable iSaveableObject in _iSaveableList)
+        foreach (ISaveable iSaveableObject in _iSaveableList)
         {
             iSaveableObject.ISaveableStoreScene(SceneManager.GetActiveScene().name);
         }
@@ -71,5 +92,24 @@ public class SaveLoadManager : SingletonMonobehaviour<SaveLoadManager>
         {
             iSaveableObject.ISaveableRestoreScene(SceneManager.GetActiveScene().name);
         }
+    }
+
+    public List<string> GetAllSaveFiles()
+    {
+        string path = Application.persistentDataPath;
+        string[] files = Directory.GetFiles(path, "*dat");
+        List<string> saveFiles = new List<string>();
+
+        foreach (string file in files)
+        {
+            saveFiles.Add(Path.GetFileNameWithoutExtension(file));
+        }
+
+        return saveFiles;
+    }
+
+    public string GetSaveFilePath(string saveFileName)
+    {
+        return Path.Combine(Application.persistentDataPath, $"{saveFileName}.dat");
     }
 }

@@ -6,6 +6,9 @@ public class LocalizationManager : SingletonMonobehaviour<LocalizationManager>
 {
     string _currentLanguageCode = "ko";
     Dictionary<string,StringDataBase> _currentLanguageDict = new Dictionary<string,StringDataBase>();
+
+    public string CurrentLanguageCode {get{ return _currentLanguageCode;}set{_currentLanguageCode = value;}}
+
     
     protected override void Awake()
     {
