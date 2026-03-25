@@ -176,6 +176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c26e94d684bb847aead4e8cd702633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _menuName: 
+  _menuId: 0
+  _showCloseButton: 0
+  _closeButton: {fileID: 0}
+  _isAlwaysActive: 0
   _playerNameInput: {fileID: 191415334}
   _farmNameInput: {fileID: 157336197}
   _hairSprites:
@@ -5320,6 +5325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 536220084}
   - component: {fileID: 536220085}
+  - component: {fileID: 536220086}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -5400,6 +5406,20 @@ MonoBehaviour:
     ManagerName: DialogueManager
   - Manager: {fileID: 271162792}
     ManagerName: NPCManager
+--- !u!114 &536220086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536220083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341f38e71a5424519ba706a87e5d81bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _size: 25
+  _color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &548787390
 GameObject:
   m_ObjectHideFlags: 0
