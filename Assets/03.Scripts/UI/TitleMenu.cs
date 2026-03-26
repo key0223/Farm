@@ -8,8 +8,8 @@ using UnityEngine.UIElements;
 public class TitleMenu : ClickableMenu
 {
     [SerializeField] float _slideDuration = 1.5f;
-    [SerializeField] int _currentIndex;
     RectTransform _rectTransform;
+    int _currentIndex;
     float[] _positions = { 1920, 0, -1920 };
 
     protected override void Awake()
@@ -22,7 +22,7 @@ public class TitleMenu : ClickableMenu
     protected override void Start()
     {
         base.Start();
-        gameObject.SetActive(true);
+        UIManager.Instance.ShowTitle();
 
     }
     public void SlideToIndex(int index)

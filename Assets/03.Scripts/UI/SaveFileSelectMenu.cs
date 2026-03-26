@@ -7,7 +7,13 @@ using UnityEngine.VFX;
 
 public class SaveFileSelectMenu : MonoBehaviour
 {
+    [SerializeField] Transform _slotParent;
     string _saveFileSlotPrefabPath = "UI/SaveFileSlot";
+
+    void Start()
+    {
+        SetSaveFileSlots();
+    }
     void SetSaveFileSlots()
     {
         List<string> saveFiles = SaveLoadManager.Instance.GetAllSaveFiles();
@@ -19,6 +25,9 @@ public class SaveFileSelectMenu : MonoBehaviour
                 continue;
 
             GameObject slotObj = ResourceManager.Instance.Instantiate(_saveFileSlotPrefabPath);
+            slotObj.transform.SetParent(_slotParent);
+            SaveFileSlot saveFileSlot = slotObj.GetComponent<SaveFileSlot>();
+            saveFileSlot.SetSlot(gameSave);
         }
     }
 }

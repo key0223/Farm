@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterCustomizationUI : ClickableMenu, IQuantityAdjuster
+public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
 {
     [Header("Name References")]
     [SerializeField] TMP_InputField _playerNameInput;
@@ -31,12 +31,8 @@ public class CharacterCustomizationUI : ClickableMenu, IQuantityAdjuster
     int _currentHairIndex;
     Color _selectedColor;
 
-
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
-        _menuName = "Customization";
-
         _playerNameInput.onValueChanged.AddListener(delegate { UpdateInputText(); });
         _farmNameInput.onValueChanged.AddListener(delegate { UpdateInputText(); });
         _colorSlider.onValueChanged.AddListener(OnColorSliderChanged);
@@ -45,19 +41,8 @@ public class CharacterCustomizationUI : ClickableMenu, IQuantityAdjuster
 
         OnHairColorResetButtonClicked();
         _confirmButton.interactable = false;
-
-
     }
-    protected override void Start()
-    {
-        base.Start();
-        UIManager.Instance.ShowCustomization();
-    }
-
-    void Update()
-    {
-
-    }
+    
 
     #region Hair
     void OnColorSliderChanged(float value)
@@ -121,21 +106,7 @@ public class CharacterCustomizationUI : ClickableMenu, IQuantityAdjuster
         };
 
         GameManager.Instance.Player.SetPlayerProfile(profile);
+        UIManager.Instance.HideTitle();
 
-        UIManager.Instance.HideCustomization();
     }
-
-
-    #region ClickableMenu
-    public override void ReceiveLeftClick(Vector2 screenPos)
-    {
-        //throw new System.NotImplementedException();
-    }
-
-    public override void ReceiveRightClick(Vector2 screenPos)
-    {
-        //throw new System.NotImplementedException();
-    }
-    #endregion
-
 }

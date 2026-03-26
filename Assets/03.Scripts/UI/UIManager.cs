@@ -311,14 +311,14 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
     #endregion
 
-    #region Customization
-    public void ShowCustomization()
+    #region Title
+    public void ShowTitle()
     {
-        OpenMenuByName("Customization");
+        OpenMenuByName("Title");
     }
-    public void HideCustomization()
+    public void HideTitle()
     {
-        OpenMenuByName("Customization");
+        OpenMenuByName("Title");
     }
     #endregion
     #region Shop

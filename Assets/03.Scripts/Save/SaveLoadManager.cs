@@ -97,7 +97,7 @@ public class SaveLoadManager : SingletonMonobehaviour<SaveLoadManager>
     public List<string> GetAllSaveFiles()
     {
         string path = Application.persistentDataPath;
-        string[] files = Directory.GetFiles(path, "*dat");
+        string[] files = Directory.GetFiles(path, "*.dat");
         List<string> saveFiles = new List<string>();
 
         foreach (string file in files)

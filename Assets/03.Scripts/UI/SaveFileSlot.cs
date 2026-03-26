@@ -24,15 +24,22 @@ public class SaveFileSlot : MonoBehaviour
     public void SetSlot(GameSave gameSave)
     {
         _gameSave = gameSave;
-        GameObjectSave gameObjectSave;
-        gameSave.GameObjectData.TryGetValue(PERSISTENT_SCENE, out gameObjectSave);
-        if (gameObjectSave == null) return;
+        //GameObjectSave gameObjectSave;
 
-        SceneSave sceneSave;
-        gameObjectSave.SceneData.TryGetValue(PERSISTENT_SCENE, out sceneSave);
-        if (sceneSave == null) return;
+        foreach(GameObjectSave gameObjectSave in gameSave.GameObjectData.Values)
+        {
+            SceneSave sceneSave;
+            gameObjectSave.SceneData.TryGetValue(PERSISTENT_SCENE, out sceneSave);
+            if (sceneSave == null) return;
 
+            string farmName;
+            sceneSave.StringDictionary.TryGetValue("farmName", out farmName);
+            if (farmName == null) return;
 
+            SetNameText(sceneSave);
+            SetDayData(sceneSave);
+            break;
+        }
     }
 
     void SetNameText(SceneSave sceneSave)
@@ -99,6 +106,7 @@ public class SaveFileSlot : MonoBehaviour
             case "ko":
                 {
                     string text = $"{_gameYear}년째, {_gameSeason.ToString()}의 {_gameDay}일째";
+                    _currentDayText.text = text;
                 }
                 break;
 
