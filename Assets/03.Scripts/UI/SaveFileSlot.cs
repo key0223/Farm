@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using static Define;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 public class SaveFileSlot : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _farmNameText;
@@ -12,19 +13,25 @@ public class SaveFileSlot : MonoBehaviour
     [SerializeField] TextMeshProUGUI _currentDayText;
     [SerializeField] TextMeshProUGUI _moneyText;
 
+    Button _button;
+
+    string _farmName;
+    string _playerName;
+
     Season _gameSeason;
     int _gameYear = 1;
     int _gameDay = 1;
-    int _gameHour = 6;
-    int _gameMinute = 0;
-    int _gameSecond = 0;
-    string _gameDayOfWeek = "Mon";
     GameSave _gameSave;
+
+    void Awake()
+    {
+        _button = GetComponentInChildren<Button>();
+        _button.onClick.AddListener(OnButtonClicked);
+    }
 
     public void SetSlot(GameSave gameSave)
     {
         _gameSave = gameSave;
-        //GameObjectSave gameObjectSave;
 
         foreach(GameObjectSave gameObjectSave in gameSave.GameObjectData.Values)
         {
@@ -55,8 +62,6 @@ public class SaveFileSlot : MonoBehaviour
         {
             _playerNameText.text = playerName;
         }
-
-
     }
     void SetDayData(SceneSave sceneSave)
     {
@@ -70,18 +75,6 @@ public class SaveFileSlot : MonoBehaviour
 
         if (sceneSave.IntDictionary.TryGetValue("gameDay", out int savedGameDay))
             _gameDay = savedGameDay;
-
-        if (sceneSave.IntDictionary.TryGetValue("gameHour", out int savedGameHour))
-            _gameHour = savedGameHour;
-
-        if (sceneSave.IntDictionary.TryGetValue("gameMinute", out int savedGameMinute))
-            _gameMinute = savedGameMinute;
-
-        if (sceneSave.IntDictionary.TryGetValue("gameSecond", out int savedGameSecond))
-            _gameSecond = savedGameSecond;
-
-        if (sceneSave.StringDictionary.TryGetValue("gameDayOfWeek", out string savedGameDayOfWeek))
-            _gameDayOfWeek = savedGameDayOfWeek;
 
         if (sceneSave.StringDictionary.TryGetValue("gameSeason", out string savedGameSeason))
         {
@@ -113,5 +106,16 @@ public class SaveFileSlot : MonoBehaviour
         }
     }
 
+    void SetCharacterLookData(SceneSave sceneSave)
+    {
+        var stringDict = sceneSave.StringDictionary;
+        if (stringDict == null) return;
 
+
+    }
+    void OnButtonClicked()
+    {
+        SaveLoadManager.Instance.LoadData(_gameSave);
+        UIManager.Instance.HideTitle();
+    }
 }

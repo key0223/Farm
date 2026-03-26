@@ -150,6 +150,16 @@ public static class Parser
 
         return new Color(0, 0, 0);
     }
+    public static string ToHexRGBA(Color color)
+    {
+        return "#" + ColorUtility.ToHtmlStringRGBA(color);
+    }
+
+    public static string ToHexRGB(Color color)
+    {
+        return "#" + ColorUtility.ToHtmlStringRGB(color); 
+    }
+
     public static bool TryParseTileKey(string tileKey, out Vector3Int gridPos)
     {
         gridPos = Vector3Int.zero;

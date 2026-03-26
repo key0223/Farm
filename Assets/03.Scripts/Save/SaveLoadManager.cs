@@ -43,6 +43,21 @@ public class SaveLoadManager : SingletonMonobehaviour<SaveLoadManager>
             file.Close();
         }
     }
+    
+    public void LoadData(GameSave gameSave)
+    {
+        _gameSave = gameSave;
+        for (int i = _iSaveableList.Count - 1; i > -1; i--)
+        {
+            if (_gameSave.GameObjectData.ContainsKey(_iSaveableList[i].ISaveableUniqueId))
+                _iSaveableList[i].ISaveableLoad(_gameSave);
+            else
+            {
+                Component component = (Component)_iSaveableList[i];
+                Destroy(component.gameObject);
+            }
+        }
+    }
 
     public GameSave LoadGameSave(string saveFileName)
     {
@@ -66,6 +81,7 @@ public class SaveLoadManager : SingletonMonobehaviour<SaveLoadManager>
 
     public void SaveDataToFile()
     {
+        string playerName = GameManager.Instance.Player.PlayerProfile.PlayerName;
         _gameSave = new GameSave();
 
         foreach (ISaveable iSaveableObject in _iSaveableList)
@@ -73,7 +89,7 @@ public class SaveLoadManager : SingletonMonobehaviour<SaveLoadManager>
             _gameSave.GameObjectData.Add(iSaveableObject.ISaveableUniqueId, iSaveableObject.ISaveableSave());
         }
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/LifeIsSoup.dat", FileMode.Create);
+        FileStream file = File.Open(Application.persistentDataPath + $"/{playerName}.dat", FileMode.Create);
         bf.Serialize(file, _gameSave);
 
         file.Close();

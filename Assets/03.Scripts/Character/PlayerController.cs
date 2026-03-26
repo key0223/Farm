@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Define;
 
@@ -162,7 +163,7 @@ public class PlayerController : MonoBehaviour, ISaveable
         sceneSave.StringDictionary.Add("farmName", _playerProfile.FarmName);
         sceneSave.StringDictionary.Add("playerName", _playerProfile.PlayerName);
         sceneSave.StringDictionary.Add("hairName", _playerProfile.HairName);
-        sceneSave.StringDictionary.Add("hairColor", _playerProfile.HairColor.ToString());
+        sceneSave.StringDictionary.Add("hairColor", Parser.ToHexRGBA( _playerProfile.HairColor));
 
         GameObjectSave.SceneData.Add(sceneName, sceneSave);
     }
