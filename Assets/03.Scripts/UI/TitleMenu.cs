@@ -3,20 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class TitleMenu : ClickableMenu
 {
-    [SerializeField] Button _newGameButton;
-    [SerializeField] DOTweenAnimation _tweenMain;
-    [SerializeField] float _customizationX;
-    [SerializeField] float _mainX;
-    [SerializeField] float _loadX;
+    [SerializeField] float _slideDuration = 1.5f;
+    [SerializeField] int _currentIndex;
+    RectTransform _rectTransform;
+    float[] _positions = { 1920, 0, -1920 };
 
-   
     protected override void Awake()
     {
         base.Awake();
         _menuName = "Title";
+        _rectTransform = GetComponent<RectTransform>();
     }
 
     protected override void Start()
@@ -24,18 +24,16 @@ public class TitleMenu : ClickableMenu
         base.Start();
         gameObject.SetActive(true);
 
-        _newGameButton.onClick.AddListener(SlideToCustomMenu);
     }
-
-
-    void SlideToCustomMenu()
+    public void SlideToIndex(int index)
     {
+        if (_rectTransform == null || index < 0 || index >= _positions.Length)
+            return;
 
-        if (_tweenMain.tween is Tweener tweener)
-        {
-            tweener.ChangeEndValue(new Vector3(_loadX, 0, 0));
-            _tweenMain.DORestart(true);
-        }
+        _rectTransform.DOKill();
+        _rectTransform.DOAnchorPosX(_positions[index], _slideDuration,snapping:true)
+                   .SetEase(Ease.Linear);
+        _currentIndex = index;
     }
     #region Clickable
     public override void ReceiveLeftClick(Vector2 screenPos)
