@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "9c180e7962ecd118c1fb73a624ed5481",
+	"md5": "c493d8e9a287b93c6d307a074556b6c1",
 	"array": 
 		[
 			{
@@ -49,6 +49,70 @@
 			{
 				"StringId": "Seed",
 				"Translation": "씨앗"
+			},
+			{
+				"StringId": "NewGame",
+				"Translation": "새 게임"
+			},
+			{
+				"StringId": "Load",
+				"Translation": "불러오기"
+			},
+			{
+				"StringId": "Exit",
+				"Translation": "나가기"
+			},
+			{
+				"StringId": "Name",
+				"Translation": "이름"
+			},
+			{
+				"StringId": "FarmName",
+				"Translation": "농장 이름"
+			},
+			{
+				"StringId": "Hair",
+				"Translation": "머리"
+			},
+			{
+				"StringId": "HairColor",
+				"Translation": "머리 색"
+			},
+			{
+				"StringId": "Back",
+				"Translation": "뒤로"
+			},
+			{
+				"StringId": "Farm",
+				"Translation": "농장"
+			},
+			{
+				"StringId": "Mon",
+				"Translation": "월"
+			},
+			{
+				"StringId": "Tue",
+				"Translation": "화"
+			},
+			{
+				"StringId": "Wed",
+				"Translation": "수"
+			},
+			{
+				"StringId": "Thu",
+				"Translation": "목"
+			},
+			{
+				"StringId": "Fri",
+				"Translation": "금"
+			},
+			{
+				"StringId": "Sat",
+				"Translation": "토"
+			},
+			{
+				"StringId": "Sun",
+				"Translation": "일"
 			}
 		]
 }

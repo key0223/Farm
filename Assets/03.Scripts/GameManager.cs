@@ -12,6 +12,7 @@ public class ManagerInfo
 }
 public class GameManager : SingletonMonobehaviour<GameManager>
 {
+    public static event Action OnLanguageChanged;
     public static event Action OnAllManagersReady;
 
     string _configPath;
@@ -66,7 +67,12 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         else
             SaveConfig();
     }
-
+    public void SetLanguage(string language)
+    {
+        _config.LanguageCode = language;
+        SaveConfig();
+        OnLanguageChanged?.Invoke();
+    }
     
     public void ManagerReady(string managerName)
     {

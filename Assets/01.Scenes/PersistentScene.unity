@@ -14703,6 +14703,10 @@ MonoBehaviour:
   _showCloseButton: 0
   _closeButton: {fileID: 0}
   _isAlwaysActive: 0
+  _titleLogoImage: {fileID: 958401345}
+  _logoSprites:
+  - {fileID: 21300000, guid: 57f0676646edbec44aed992c144876fd, type: 3}
+  - {fileID: 21300000, guid: eec99023405917c47b889418f7449ef8, type: 3}
   _languageSettingUI: {fileID: 1637303999}
   _languageButton: {fileID: 17563232}
   _exitButton: {fileID: 1283341490}

@@ -16,16 +16,29 @@ public class LocalizationManager : SingletonMonobehaviour<LocalizationManager>
         GameManager.OnAllManagersReady += SubscribeEvent;
         GameManager.Instance.ManagerReady("LocalizationManager");
     }
+    void OnEnable()
+    {
+        if (!GameManager.Instance.AllManagersReady)
+            return;
+        GameManager.OnLanguageChanged -= SetLanguageDict;
+        GameManager.OnLanguageChanged += SetLanguageDict;
 
+    }
+    void OnDisable()
+    {
+        GameManager.OnLanguageChanged -= SetLanguageDict;
+    }
     void SubscribeEvent()
     {
         _currentLanguageCode =  GameManager.Instance.Config.LanguageCode;
-        SetLanguage(_currentLanguageCode);
+        SetLanguageDict();
+        GameManager.OnLanguageChanged += SetLanguageDict;
         GameManager.OnAllManagersReady -= SubscribeEvent;
     }
-    public void SetLanguage(string languageCode)
+    public void SetLanguageDict()
     {
-        _currentLanguageDict = GetLanguageDict(languageCode);
+        _currentLanguageDict.Clear();
+        _currentLanguageDict = GetLanguageDict(_currentLanguageCode);
     }
     public string GetString(string key)
     {

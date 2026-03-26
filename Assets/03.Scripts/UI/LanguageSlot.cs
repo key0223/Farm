@@ -31,8 +31,7 @@ public class LanguageSlot : MonoBehaviour
     }
     void OnLanguageButtonClicked()
     {
-        GameManager.Instance.Config.LanguageCode = _languageCode;
-        GameManager.Instance.SaveConfig();
+        GameManager.Instance.SetLanguage(_languageCode);
         _languageSettingUI.ShowLanguageSettingUI(false);
 
 #if UNITY_EDITOR

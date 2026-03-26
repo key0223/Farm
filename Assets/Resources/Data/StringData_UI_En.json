@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "8a0b783f9b188959345526c125a7e905",
+	"md5": "9a17f53cb31bed86f9ad5f410ac6c3e5",
 	"array": 
 		[
 			{
@@ -49,6 +49,70 @@
 			{
 				"StringId": "Seed",
 				"Translation": "Seed"
+			},
+			{
+				"StringId": "NewGame",
+				"Translation": "New Game"
+			},
+			{
+				"StringId": "Load",
+				"Translation": "Load"
+			},
+			{
+				"StringId": "Exit",
+				"Translation": "Exit"
+			},
+			{
+				"StringId": "Name",
+				"Translation": "Name"
+			},
+			{
+				"StringId": "FarmName",
+				"Translation": "Farm Name"
+			},
+			{
+				"StringId": "Hair",
+				"Translation": "Hair"
+			},
+			{
+				"StringId": "HairColor",
+				"Translation": "Hair Color"
+			},
+			{
+				"StringId": "Back",
+				"Translation": "Back"
+			},
+			{
+				"StringId": "Farm",
+				"Translation": "Farm"
+			},
+			{
+				"StringId": "Mon",
+				"Translation": "Mon"
+			},
+			{
+				"StringId": "Tue",
+				"Translation": "Tue"
+			},
+			{
+				"StringId": "Wed",
+				"Translation": "Wed"
+			},
+			{
+				"StringId": "Thu",
+				"Translation": "Thu"
+			},
+			{
+				"StringId": "Fri",
+				"Translation": "Fri"
+			},
+			{
+				"StringId": "Sat",
+				"Translation": "Sat"
+			},
+			{
+				"StringId": "Sun",
+				"Translation": "Sun"
 			}
 		]
 }
