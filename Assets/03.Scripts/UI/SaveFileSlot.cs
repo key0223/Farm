@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 public class SaveFileSlot : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _farmNameText;
+    [SerializeField] TextMeshProUGUI _farmText;
     [SerializeField] TextMeshProUGUI _playerNameText;
     [SerializeField] TextMeshProUGUI _currentDayText;
     [SerializeField] TextMeshProUGUI _moneyText;

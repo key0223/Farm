@@ -7,7 +7,7 @@ using UnityEngine.VFX;
 
 public class SaveFileSelectMenu : MonoBehaviour
 {
-    string _saveFileSlotPrefabPath = "UI/SavefileSlot";
+    string _saveFileSlotPrefabPath = "UI/SaveFileSlot";
     void SetSaveFileSlots()
     {
         List<string> saveFiles = SaveLoadManager.Instance.GetAllSaveFiles();
