@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LocalizationManager : SingletonMonobehaviour<LocalizationManager>
 {
-    string _currentLanguageCode = "ko";
+    string _currentLanguageCode;
     Dictionary<string,StringDataBase> _currentLanguageDict = new Dictionary<string,StringDataBase>();
 
     public string CurrentLanguageCode {get{ return _currentLanguageCode;}set{_currentLanguageCode = value;}}
@@ -19,6 +19,7 @@ public class LocalizationManager : SingletonMonobehaviour<LocalizationManager>
 
     void SubscribeEvent()
     {
+        _currentLanguageCode =  GameManager.Instance.Config.LanguageCode;
         SetLanguage(_currentLanguageCode);
         GameManager.OnAllManagersReady -= SubscribeEvent;
     }
