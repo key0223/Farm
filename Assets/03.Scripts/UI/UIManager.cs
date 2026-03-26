@@ -38,11 +38,9 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     Dictionary<string, ClickableMenu> _menuCache = new Dictionary<string, ClickableMenu>();
 
     Stack<ClickableMenu> _menuStack = new Stack<ClickableMenu>(); /* 이전 메뉴들 저장 */
-    //List<ClickableMenu> _tabs = new List<ClickableMenu>(); /* 탭,페이지 전환용 */
 
     Dictionary<string,List<ClickableMenu>> _tabGroups = new Dictionary<string, List<ClickableMenu>>();
     Dictionary<string, int> _currentTabIndices = new Dictionary<string, int>();
-    //int _currentTabIndex = 0;
 
     ClickableMenu _activeMenu;
     ToolbarMenu _toolbar;
@@ -155,7 +153,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         }
 
     }
-    void HandleEscape()
+    public void HandleEscape()
     {
         if (_activeMenu != null && _activeMenu.ShouldExitOnEscapeKey())
         {

@@ -67,4 +67,9 @@ public class TabContainer : ClickableMenu
         //
     }
 
+    protected override void Exit()
+    {
+        UIManager.Instance.HandleEscape();
+    }
+
 }
