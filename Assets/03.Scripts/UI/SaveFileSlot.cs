@@ -7,11 +7,16 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 public class SaveFileSlot : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI _farmNameText;
+    [Header("Refresh UI Targets")]
     [SerializeField] TextMeshProUGUI _farmText;
+
+    [Space(10)]
+    [SerializeField] TextMeshProUGUI _farmNameText;
     [SerializeField] TextMeshProUGUI _playerNameText;
     [SerializeField] TextMeshProUGUI _currentDayText;
     [SerializeField] TextMeshProUGUI _moneyText;
+
+    SaveFileSelectMenu _saveFileSelectMenu;
 
     Button _button;
 
@@ -28,12 +33,26 @@ public class SaveFileSlot : MonoBehaviour
         _button = GetComponentInChildren<Button>();
         _button.onClick.AddListener(OnButtonClicked);
     }
-
-    public void SetSlot(GameSave gameSave)
+    void OnEnable()
     {
+        if (_saveFileSelectMenu == null) return;
+
+        _saveFileSelectMenu.OnRefreshUI -= RefreshUI;
+        _saveFileSelectMenu.OnRefreshUI += RefreshUI;
+    }
+    void OnDisable()
+    {
+        _saveFileSelectMenu.OnRefreshUI -= RefreshUI;
+    }
+
+    public void SetSlot(SaveFileSelectMenu saveFileSelectMenu, GameSave gameSave)
+    {
+        _saveFileSelectMenu = saveFileSelectMenu;
         _gameSave = gameSave;
 
-        foreach(GameObjectSave gameObjectSave in gameSave.GameObjectData.Values)
+        _saveFileSelectMenu.OnRefreshUI -= RefreshUI;
+        _saveFileSelectMenu.OnRefreshUI += RefreshUI;
+        foreach (GameObjectSave gameObjectSave in gameSave.GameObjectData.Values)
         {
             SceneSave sceneSave;
             gameObjectSave.SceneData.TryGetValue(PERSISTENT_SCENE, out sceneSave);
@@ -49,6 +68,12 @@ public class SaveFileSlot : MonoBehaviour
         }
     }
 
+    void RefreshUI()
+    {
+        string farm = LocalizationManager.Instance.GetString("Farm");
+        _farmText.text = farm;
+        SetDayText();
+    }
     void SetNameText(SceneSave sceneSave)
     {
         var stringDict = sceneSave.StringDictionary;
@@ -82,36 +107,30 @@ public class SaveFileSlot : MonoBehaviour
                 _gameSeason = season;
         }
 
-        SetDayText(LocalizationManager.Instance.CurrentLanguageCode);
+        SetDayText();
 
     }
 
-    void SetDayText(string languageCode)
+    void SetDayText()
     {
-        switch (languageCode)
+        string code = GameManager.Instance.Config.LanguageCode;
+        string season = LocalizationManager.Instance.GetString(_gameSeason.ToString());
+        switch (code)
         {
             case "en":
                 {
-                    string text = $"Day {_gameDay} of {_gameSeason.ToString()}, Year {_gameYear}";
+                    string text = $"Day {_gameDay} of {season}, Year {_gameYear}";
                     _currentDayText.text = text;
                 }
                 break;
             case "ko":
                 {
-                    string text = $"{_gameYear}년째, {_gameSeason.ToString()}의 {_gameDay}일째";
+                    string text = $"{_gameYear}년째, {season}의 {_gameDay}일째";
                     _currentDayText.text = text;
                 }
                 break;
 
         }
-    }
-
-    void SetCharacterLookData(SceneSave sceneSave)
-    {
-        var stringDict = sceneSave.StringDictionary;
-        if (stringDict == null) return;
-
-
     }
     void OnButtonClicked()
     {

@@ -13,7 +13,6 @@ public class LanguageSettingUI : MonoBehaviour
         GameManager.OnAllManagersReady += InitSlots;
     }
 
-
     void InitSlots()
     {
         foreach (string language in _languages)

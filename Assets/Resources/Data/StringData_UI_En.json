@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "9794e8e68deea9415ce5b816429ea126",
+	"md5": "5d03b995b16c8eceb88bdbc826c5f28d",
 	"array": 
 		[
 			{
@@ -121,6 +121,22 @@
 			{
 				"StringId": "InputName",
 				"Translation": "Input Name"
+			},
+			{
+				"StringId": "SPRING",
+				"Translation": "Spring"
+			},
+			{
+				"StringId": "SUMMER",
+				"Translation": "Summer"
+			},
+			{
+				"StringId": "FALL",
+				"Translation": "Fall"
+			},
+			{
+				"StringId": "WINTER",
+				"Translation": "Winter"
 			}
 		]
 }

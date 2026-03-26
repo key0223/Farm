@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "9ae6690e9bc44c59723a3964e8dd2b45",
+	"md5": "072349db85bf4b26b6878b410c62bf6c",
 	"array": 
 		[
 			{
@@ -121,6 +121,22 @@
 			{
 				"StringId": "InputName",
 				"Translation": "이름을 입력하세요."
+			},
+			{
+				"StringId": "SPRING",
+				"Translation": "봄"
+			},
+			{
+				"StringId": "SUMMER",
+				"Translation": "여름"
+			},
+			{
+				"StringId": "FALL",
+				"Translation": "가을"
+			},
+			{
+				"StringId": "WINTER",
+				"Translation": "겨울"
 			}
 		]
 }

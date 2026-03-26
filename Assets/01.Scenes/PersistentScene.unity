@@ -1664,6 +1664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dca98c09afcd43c09fd52000164fbc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _backText: {fileID: 1259858192}
   _slotParent: {fileID: 1552134259}
 --- !u!1001 &189913533
 PrefabInstance:
@@ -13868,6 +13869,18 @@ MonoBehaviour:
   _itemInfoObj: {fileID: 1331809454}
   _itemNameText: {fileID: 1510916255}
   _itemCategoryText: {fileID: 1723940268}
+--- !u!114 &1259858192 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6517815580736529944, guid: 523b5c40a732d00479bc3c210bdde121,
+    type: 3}
+  m_PrefabInstance: {fileID: 3113793518554531264}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1261611788
 GameObject:
   m_ObjectHideFlags: 0
