@@ -6,6 +6,15 @@ using UnityEngine.UI;
 
 public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
 {
+    [Header("Refresh UI Targets")]
+    [SerializeField] TextMeshProUGUI _nameText;
+    [SerializeField] TextMeshProUGUI _namePlaceholderText;
+    [SerializeField] TextMeshProUGUI _farmNameText;
+    [SerializeField] TextMeshProUGUI _farmNamePlaceholerText;
+    [SerializeField] TextMeshProUGUI _resetText;
+    [SerializeField] TextMeshProUGUI _hairColorText;
+    [SerializeField] TextMeshProUGUI _backText;
+
     [Header("Name References")]
     [SerializeField] TMP_InputField _playerNameInput;
     [SerializeField] TMP_InputField _farmNameInput;
@@ -33,6 +42,8 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
 
     void Awake()
     {
+        GameManager.OnAllManagersReady += SubscribeEvent;
+
         _playerNameInput.onValueChanged.AddListener(delegate { UpdateInputText(); });
         _farmNameInput.onValueChanged.AddListener(delegate { UpdateInputText(); });
         _colorSlider.onValueChanged.AddListener(OnColorSliderChanged);
@@ -42,7 +53,29 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
         OnHairColorResetButtonClicked();
         _confirmButton.interactable = false;
     }
-    
+    void Start()
+    {
+        RefreshUI();
+
+    }
+    void OnEnable()
+    {
+        if (!GameManager.Instance.AllManagersReady)
+            return;
+
+        GameManager.OnLanguageChanged -= RefreshUI;
+        GameManager.OnLanguageChanged += RefreshUI;
+    }
+    void OnDisable()
+    {
+        GameManager.OnLanguageChanged -= RefreshUI;
+
+    }
+    void SubscribeEvent()
+    {
+        GameManager.OnLanguageChanged += RefreshUI;
+        GameManager.OnAllManagersReady -= SubscribeEvent;
+    }
 
     #region Hair
     void OnColorSliderChanged(float value)
@@ -59,7 +92,8 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
 
     void RefreshHairUI()
     {
-        _hairStyleText.text = $"¸Ó¸® {_currentHairIndex}";
+        string hair = LocalizationManager.Instance.GetString("Hair");
+        _hairStyleText.text = $"{hair} {_currentHairIndex}";
         _hairPreviewImage.sprite = _hairSprites[_currentHairIndex];
     }
     public void IncreaseQuantity()
@@ -83,6 +117,25 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
     }
     #endregion
 
+    void RefreshUI()
+    {
+        string name = LocalizationManager.Instance.GetString("Name");
+        string inputName = LocalizationManager.Instance.GetString("InputName");
+        string farmName = LocalizationManager.Instance.GetString("FarmName");
+        string reset = LocalizationManager.Instance.GetString("Reset");
+        string hairColor = LocalizationManager.Instance.GetString("HairColor");
+        string back = LocalizationManager.Instance.GetString("Back");
+
+        _nameText.text = name;
+        _namePlaceholderText.text = inputName;
+        _farmNameText.text = farmName;
+        _farmNamePlaceholerText.text = farmName;
+        _resetText.text = reset;
+        _hairColorText.text = hairColor;
+        _backText.text = back;
+
+        RefreshHairUI();
+    }
     void UpdateInputText()
     {
         _playerName = _playerNameInput != null ? _playerNameInput.text : "";

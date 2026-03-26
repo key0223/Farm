@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "9a17f53cb31bed86f9ad5f410ac6c3e5",
+	"md5": "9794e8e68deea9415ce5b816429ea126",
 	"array": 
 		[
 			{
@@ -113,6 +113,14 @@
 			{
 				"StringId": "Sun",
 				"Translation": "Sun"
+			},
+			{
+				"StringId": "Reset",
+				"Translation": "Reset"
+			},
+			{
+				"StringId": "InputName",
+				"Translation": "Input Name"
 			}
 		]
 }

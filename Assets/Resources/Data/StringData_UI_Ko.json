@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "c493d8e9a287b93c6d307a074556b6c1",
+	"md5": "9ae6690e9bc44c59723a3964e8dd2b45",
 	"array": 
 		[
 			{
@@ -113,6 +113,14 @@
 			{
 				"StringId": "Sun",
 				"Translation": "일"
+			},
+			{
+				"StringId": "Reset",
+				"Translation": "초기화"
+			},
+			{
+				"StringId": "InputName",
+				"Translation": "이름을 입력하세요."
 			}
 		]
 }
