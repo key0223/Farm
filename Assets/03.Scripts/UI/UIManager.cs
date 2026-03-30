@@ -37,7 +37,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     };
     Dictionary<string, ClickableMenu> _menuCache = new Dictionary<string, ClickableMenu>();
 
-    Stack<ClickableMenu> _menuStack = new Stack<ClickableMenu>(); /* ÀÌÀü ¸Þ´ºµé ÀúÀå */
+    Stack<ClickableMenu> _menuStack = new Stack<ClickableMenu>(); /* ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 
     Dictionary<string,List<ClickableMenu>> _tabGroups = new Dictionary<string, List<ClickableMenu>>();
     Dictionary<string, int> _currentTabIndices = new Dictionary<string, int>();
@@ -50,6 +50,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     SimpleMessageUI _simpleMessageUI;
     CharacterCustomizationUI _customizeUI;
     ShopMenu _shopMenu;
+    SaveUI _saveUI;
 
 
     public Dictionary<string, ClickableMenu> MenuCache { get { return _menuCache; } }
@@ -168,11 +169,11 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         HideTooltip();
         ClickableMenu active = _activeMenu;
 
-        // ÅÇ ¸Þ´º È®ÀÎ
+        // ï¿½ï¿½ ï¿½Þ´ï¿½ È®ï¿½ï¿½
         string containerName = GetContainerForTab(menuName);
         if (!string.IsNullOrEmpty(containerName))
         {
-            // ÄÁÅ×ÀÌ³Ê°¡ ÀÌ¹Ì È°¼ºÈ­ »óÅÂ¸é ÅÇ¸¸ ÀüÈ¯
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Ì³Ê°ï¿½ ï¿½Ì¹ï¿½ È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½È¯
             if(_activeMenu != null && _activeMenu.MenuName == containerName)
             {
                 int tabIndex = GetTabIndex(containerName, menuName);
@@ -180,18 +181,18 @@ public class UIManager : SingletonMonobehaviour<UIManager>
                 return;
             }
 
-            // ÄÁÅ×ÀÌ³Ê È°¼ºÈ­
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ È°ï¿½ï¿½È­
             ClickableMenu container = OpenMenuByName(containerName);
             if (container != null)
             {
-                // ÅÇ ÀüÈ¯
+                // ï¿½ï¿½ ï¿½ï¿½È¯
                 int tabIndex = GetTabIndex(containerName, menuName);
                 ShowTab(containerName, tabIndex);
                 return;
             }
         }
 
-        // ÀÏ¹Ý ¸Þ´º
+        // ï¿½Ï¹ï¿½ ï¿½Þ´ï¿½
         if (active != null && menuType.IsInstanceOfType(active))
         {
             PopMenu();
@@ -344,6 +345,16 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     }
     #endregion
 
+#region Save UI
+public void ShowSave()
+    {
+        OpenMenuByName("Save");
+    }
+    public void HideSave()
+    {
+        OpenMenuByName("Save");
+    }
+#endregion
     #region Helpers
 
     public ClickableMenu OpenMenuByName(string menuName)
@@ -355,7 +366,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
             return null;
         }
 
-        // Åä±Û ·ÎÁ÷
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (_activeMenu == menu)
         {
             PopMenu();
