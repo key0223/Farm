@@ -47,6 +47,10 @@
 				"Translation": "제작"
 			},
 			{
+				"StringId": "Tool",
+				"Translation": "도구"
+			},
+			{
 				"StringId": "Seed",
 				"Translation": "씨앗"
 			},
@@ -137,6 +141,14 @@
 			{
 				"StringId": "WINTER",
 				"Translation": "겨울"
+			},
+			{
+				"StringId": "Am",
+				"Translation": "오전"
+			},
+			{
+				"StringId": "Pm",
+				"Translation": "오후"
 			}
 		]
 }

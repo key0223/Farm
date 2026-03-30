@@ -27,7 +27,7 @@ public class TooltipUI : MonoBehaviour
     public void Show(string name, string itemType,string color, string description, Vector2 mousePos)
     {
         _itemNameText.text = name;
-        _itemTypeText.text = itemType;
+        _itemTypeText.text = LocalizationManager.Instance.GetString(itemType);
         _itemTypeText.color = Parser.ParseColor(color);
         _itemDescriptionText.text = description;
 

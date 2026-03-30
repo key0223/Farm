@@ -47,6 +47,10 @@
 				"Translation": "Crafiting"
 			},
 			{
+				"StringId": "Tool",
+				"Translation": "Tool"
+			},
+			{
 				"StringId": "Seed",
 				"Translation": "Seed"
 			},
@@ -137,6 +141,14 @@
 			{
 				"StringId": "WINTER",
 				"Translation": "Winter"
+			},
+			{
+				"StringId": "Am",
+				"Translation": "am"
+			},
+			{
+				"StringId": "Pm",
+				"Translation": "pm"
 			}
 		]
 }

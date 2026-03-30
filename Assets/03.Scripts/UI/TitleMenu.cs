@@ -113,6 +113,11 @@ public class TitleMenu : ClickableMenu
 #endif
     }
     #region Clickable
+
+    public override bool ShouldExitOnEscapeKey()
+    {
+        return false;
+    }
     public override void ReceiveLeftClick(Vector2 screenPos)
     {
         //throw new System.NotImplementedException();

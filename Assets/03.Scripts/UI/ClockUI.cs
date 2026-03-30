@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using static Define;
@@ -9,7 +7,7 @@ public class ClockUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI _dateText;
     [SerializeField] TextMeshProUGUI _seasonText;
     [SerializeField] TextMeshProUGUI _timeText;
-
+    [SerializeField] TextMeshProUGUI _amPmText;
     string _currentDayOfWeek;
     string _localizedDayOfWeek;
     string _currentSeason;
@@ -43,13 +41,10 @@ public class ClockUI : MonoBehaviour
     void UpdateGameTime(int minute, int hour, int day, string gameDayOfWeek, Season season, int year)
     {
         minute = minute - (minute % 10);
-        string ampm = "";
+        
         string minStr;
 
-        if (hour >= 12)
-            ampm = " pm";
-        else
-            ampm = " am";
+        SetAmPm(hour);
 
         if (hour >= 13)
             hour -= 12;
@@ -59,7 +54,7 @@ public class ClockUI : MonoBehaviour
         else
             minStr = minute.ToString();
 
-        string time = hour.ToString() + " : " + minStr + ampm;
+        string time = hour.ToString() + " : " + minStr;
         if (_currentDayOfWeek == null || _currentDayOfWeek != gameDayOfWeek)
         {
             _currentDayOfWeek = gameDayOfWeek;
@@ -73,6 +68,19 @@ public class ClockUI : MonoBehaviour
         _dateText.text = $"{_localizedDayOfWeek}. {day}";
         _seasonText.text = _localizedSeason;
         _timeText.text = time;
+    }
+
+    void SetAmPm(int hour)
+    {
+        string ampm = "";
+
+        if (hour >= 12)
+            ampm = "Pm";
+        else
+            ampm = "Am";
+
+        _amPmText.text = LocalizationManager.Instance.GetString(ampm);
+
     }
 
 }
