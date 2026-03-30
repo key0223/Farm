@@ -10,6 +10,12 @@ public class ClockUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI _seasonText;
     [SerializeField] TextMeshProUGUI _timeText;
 
+    string _currentDayOfWeek;
+    string _localizedDayOfWeek;
+    string _currentSeason;
+    string _localizedSeason;
+
+
     void Awake()
     {
         GameManager.OnAllManagersReady += SubscribeEvent;
@@ -53,10 +59,19 @@ public class ClockUI : MonoBehaviour
         else
             minStr = minute.ToString();
 
-        string time = hour.ToString() + " : " +minStr + ampm;
-
-        _dateText.text = $"{gameDayOfWeek}. {day}";
-        _seasonText.text = season.ToString();
+        string time = hour.ToString() + " : " + minStr + ampm;
+        if (_currentDayOfWeek == null || _currentDayOfWeek != gameDayOfWeek)
+        {
+            _currentDayOfWeek = gameDayOfWeek;
+            _localizedDayOfWeek = LocalizationManager.Instance.GetString(gameDayOfWeek);
+        }
+        if(_currentSeason == null || _currentSeason != season.ToString())
+        {
+            _currentSeason = season.ToString();
+            _localizedSeason = LocalizationManager.Instance.GetString(_currentSeason);
+        }
+        _dateText.text = $"{_localizedDayOfWeek}. {day}";
+        _seasonText.text = _localizedSeason;
         _timeText.text = time;
     }
 
