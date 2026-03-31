@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour, ISaveable
     public PlayerActionHandler PlayerActionHandler { get { return _playerActionHandler; } }
     public ItemPickup PlayerItemPickup { get { return _itemPickup; } }
 
+    bool _isFirstLoad = true;
     #region Properties
 
     public bool CanMove { get { return _playerMove.CanMove; } set { _playerMove.CanMove = value; } }
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour, ISaveable
     public Vector3Int CellPos { get { return _playerMove.CellPos; } set { _playerMove.CellPos = value; } }
     #endregion
 
+    
     void Awake()
     {
         CacheComponents();
@@ -110,7 +112,11 @@ public class PlayerController : MonoBehaviour, ISaveable
     public void SetPlayerProfile(PlayerProfile profile)
     {
         _playerProfile = profile;
-        _playerAnim.AnimatedSprite.InitAnimationsFromTableData();
+        if (_isFirstLoad)
+        {
+            _playerAnim.AnimatedSprite.InitAnimationsFromTableData();
+            _isFirstLoad = false;
+        }
     }
 
     [SerializeField] string TestDialogue;
