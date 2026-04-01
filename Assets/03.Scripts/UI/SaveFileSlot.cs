@@ -48,24 +48,28 @@ public class SaveFileSlot : MonoBehaviour
     public void SetSlot(SaveFileSelectMenu saveFileSelectMenu, GameSave gameSave)
     {
         _saveFileSelectMenu = saveFileSelectMenu;
-        _gameSave = gameSave;
-
         _saveFileSelectMenu.OnRefreshUI -= RefreshUI;
         _saveFileSelectMenu.OnRefreshUI += RefreshUI;
-        foreach (GameObjectSave gameObjectSave in gameSave.GameObjectData.Values)
+        _gameSave = gameSave;
+
+        if (gameSave.GameObjectData.TryGetValue(TimeManager.Instance.ISaveableUniqueId, out GameObjectSave time))
         {
-            SceneSave sceneSave;
-            gameObjectSave.SceneData.TryGetValue(PERSISTENT_SCENE, out sceneSave);
-            if (sceneSave == null) return;
-
-            string farmName;
-            sceneSave.StringDictionary.TryGetValue("farmName", out farmName);
-            if (farmName == null) return;
-
-            SetNameText(sceneSave);
-            SetDayData(sceneSave);
-            break;
+            if(time.SceneData.TryGetValue(PERSISTENT_SCENE,out SceneSave sceneSave))
+            {
+                if (sceneSave.StringDictionary != null && sceneSave.IntDictionary != null)
+                    SetDayData(sceneSave);
+            }
         }
+        if (gameSave.GameObjectData.TryGetValue(GameManager.Instance.Player.ISaveableUniqueId, out GameObjectSave player))
+        {
+            if (player.SceneData.TryGetValue(PERSISTENT_SCENE, out SceneSave sceneSave))
+            {
+                if (sceneSave.StringDictionary != null)
+                    SetNameText(sceneSave);
+            }
+        }
+
+        RefreshUI();
     }
 
     void RefreshUI()
