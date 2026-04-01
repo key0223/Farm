@@ -30,6 +30,18 @@ public class Container
 
         return false;
     }
+
+    public bool TryAddAt(int idx, Item item)
+    {
+        if (Storage.Slots[idx] == null)
+        {
+            Storage.SetItemAtSlot(idx, item);
+            OnSlotChanged?.Invoke();
+            return true;
+        }
+
+        return false;
+    }
     public bool TryRemove(int id, int count =1)
     {
         if(Storage.Remove(id,count))

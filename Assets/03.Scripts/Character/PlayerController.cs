@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static Define;
+using static UnityEditor.Progress;
 
 public class PlayerController : MonoBehaviour, ISaveable
 {
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour, ISaveable
     public Vector3Int CellPos { get { return _playerMove.CellPos; } set { _playerMove.CellPos = value; } }
     #endregion
 
-    
+
     void Awake()
     {
         CacheComponents();
@@ -139,22 +140,7 @@ public class PlayerController : MonoBehaviour, ISaveable
 
     public GameObjectSave ISaveableSave()
     {
-        ISaveableStoreScene(PERSISTENT_SCENE);
-        return GameObjectSave;
-    }
-
-    public void ISaveableLoad(GameSave gameSave)
-    {
-        if (gameSave.GameObjectData.TryGetValue(ISaveableUniqueId, out GameObjectSave gameObjSave))
-        {
-            GameObjectSave = gameObjSave;
-            ISaveableRestoreScene(PERSISTENT_SCENE);
-        }
-    }
-
-    public void ISaveableStoreScene(string sceneName)
-    {
-        GameObjectSave.SceneData.Remove(sceneName);
+        GameObjectSave.SceneData.Remove(PERSISTENT_SCENE);
 
         SceneSave sceneSave = new SceneSave();
         sceneSave.Vector3Dictionary = new Dictionary<string, Vector3Serializable>();
@@ -169,51 +155,106 @@ public class PlayerController : MonoBehaviour, ISaveable
         sceneSave.StringDictionary.Add("farmName", _playerProfile.FarmName);
         sceneSave.StringDictionary.Add("playerName", _playerProfile.PlayerName);
         sceneSave.StringDictionary.Add("hairName", _playerProfile.HairName);
-        sceneSave.StringDictionary.Add("hairColor", Parser.ToHexRGBA( _playerProfile.HairColor));
+        sceneSave.StringDictionary.Add("hairColor", Parser.ToHexRGBA(_playerProfile.HairColor));
 
-        GameObjectSave.SceneData.Add(sceneName, sceneSave);
+
+        #region Inventory
+
+        sceneSave.InventoryItemArray = new InventoryItem[_playerInven.PlayerContainer.Storage.Slots.Length];
+
+        for (int i = 0; i < sceneSave.InventoryItemArray.Length; i++)
+        {
+            Item item = _playerInven.PlayerContainer.Storage.Slots[i];
+            if (item == null) continue;
+
+            InventoryItem inventoryItem = new InventoryItem();
+            inventoryItem.ItemId = item.Id;
+            inventoryItem.ItemQuantity = item.Stack;
+
+            sceneSave.InventoryItemArray[i] = inventoryItem;
+        }
+       
+        #endregion
+
+        GameObjectSave.SceneData.Add(PERSISTENT_SCENE, sceneSave);
+        return GameObjectSave;
+    }
+
+    public void ISaveableLoad(GameSave gameSave)
+    {
+        if (gameSave.GameObjectData.TryGetValue(ISaveableUniqueId, out GameObjectSave gameObjSave))
+        {
+            GameObjectSave = gameObjSave;
+            if (GameObjectSave.SceneData.TryGetValue(PERSISTENT_SCENE, out SceneSave sceneSave))
+            {
+                if (sceneSave.Vector3Dictionary != null && sceneSave.Vector3Dictionary.TryGetValue("playerPosition", out Vector3Serializable playerPosition))
+                {
+                    transform.position = new Vector3(playerPosition.X, playerPosition.Y, playerPosition.Z);
+                }
+
+                if (sceneSave.IntDictionary != null)
+                {
+                    if (sceneSave.IntDictionary.TryGetValue("playerDirection", out int playerDir))
+                    {
+                        _playerMove.CurrentDirection = playerDir;
+                    }
+                }
+
+                #region Player Profile
+                if (sceneSave.StringDictionary != null)
+                {
+                    PlayerProfile profile = new PlayerProfile();
+                    if (sceneSave.StringDictionary.TryGetValue("farmName", out string farmName))
+                    {
+                        profile.FarmName = farmName;
+                    }
+                    if (sceneSave.StringDictionary.TryGetValue("playerName", out string playerName))
+                    {
+                        profile.PlayerName = playerName;
+                    }
+                    if (sceneSave.StringDictionary.TryGetValue("hairName", out string hairName))
+                    {
+                        profile.HairName = hairName;
+                    }
+                    if (sceneSave.StringDictionary.TryGetValue("hairColor", out string hairColor))
+                    {
+                        profile.HairColor = Parser.ParseColor(hairColor);
+                    }
+
+                    SetPlayerProfile(profile);
+                }
+                #endregion
+
+                #region Inventory
+
+                if(sceneSave.InventoryItemArray != null)
+                {
+                    for (int i = 0; i < sceneSave.InventoryItemArray.Length; i++)
+                    {
+                        InventoryItem inventoryItem = sceneSave.InventoryItemArray[i];
+
+                        if (inventoryItem.ItemId == 0) continue;
+
+                        Item item = ItemFactory.Create(inventoryItem.ItemId);
+                        _playerInven.TryAddAt(i,item);
+                    }
+                   
+                }
+                
+                #endregion
+
+            }
+        }
+    }
+
+    public void ISaveableStoreScene(string sceneName)
+    {
+        //
     }
 
     public void ISaveableRestoreScene(string sceneName)
     {
-        if (GameObjectSave.SceneData.TryGetValue(sceneName, out SceneSave sceneSave))
-        {
-            if (sceneSave.Vector3Dictionary != null && sceneSave.Vector3Dictionary.TryGetValue("playerPosition", out Vector3Serializable playerPosition))
-            {
-                transform.position = new Vector3(playerPosition.X, playerPosition.Y, playerPosition.Z);
-            }
-
-            if (sceneSave.IntDictionary != null)
-            {
-                if (sceneSave.IntDictionary.TryGetValue("playerDirection", out int playerDir))
-                {
-                    _playerMove.CurrentDirection = playerDir;
-                }
-            }
-
-            if(sceneSave.StringDictionary != null)
-            {
-                PlayerProfile profile = new PlayerProfile();
-                if (sceneSave.StringDictionary.TryGetValue("farmName", out string farmName))
-                {
-                    profile.FarmName = farmName;
-                }
-                if (sceneSave.StringDictionary.TryGetValue("playerName", out string playerName))
-                {
-                    profile.PlayerName = playerName;
-                }
-                if (sceneSave.StringDictionary.TryGetValue("hairName", out string hairName))
-                {
-                    profile.HairName = hairName;
-                }
-                if (sceneSave.StringDictionary.TryGetValue("hairColor", out string hairColor))
-                {
-                    profile.HairColor = Parser.ParseColor(hairColor);
-                }
-
-                SetPlayerProfile(profile);
-            }
-        }
+        //
     }
 
     #endregion

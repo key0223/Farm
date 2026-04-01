@@ -22,17 +22,17 @@ public class PlayerInventory : MonoBehaviour
 
     void Start()
     {
-        Item shovel = ItemFactory.Create(7040);
-        TryAdd(shovel);
+        //Item shovel = ItemFactory.Create(7040);
+        //TryAdd(shovel);
 
-        Item wateringCan = ItemFactory.Create(7050);
-        TryAdd(wateringCan);
+        //Item wateringCan = ItemFactory.Create(7050);
+        //TryAdd(wateringCan);
 
-        Item ore = ItemFactory.Create(318);
-        TryAdd(ore);
+        //Item ore = ItemFactory.Create(318);
+        //TryAdd(ore);
 
-        Item seed = ItemFactory.Create(611);
-        TryAdd(seed);
+        //Item seed = ItemFactory.Create(611);
+        //TryAdd(seed);
         //ObjectItem objectItem = item as ObjectItem;
         //MapManager.Instance.CurrentLocation.AddWorldObject(objectItem, new Vector3Int(11, -7, 0));
     }
@@ -40,6 +40,10 @@ public class PlayerInventory : MonoBehaviour
     public bool TryAdd(Item item)
     {
         return _container.TryAdd(item);
+    }
+    public bool TryAddAt(int idx, Item item)
+    {
+        return _container.TryAddAt(idx, item);
     }
     public bool TryRemove(int id, int count)
     {

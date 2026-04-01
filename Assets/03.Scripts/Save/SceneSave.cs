@@ -10,4 +10,5 @@ public class SceneSave /* 씬에서 필요한 모든 세부 데이터 */
     public Dictionary<string, Vector3Serializable> Vector3Dictionary;
     public List<SceneItem> SceneItemList;
     public Dictionary<string, TileFeatureSave> TileFeatureDictionary;
+    public InventoryItem[] InventoryItemArray;
 }
