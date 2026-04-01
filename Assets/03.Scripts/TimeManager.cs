@@ -138,7 +138,69 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>, ISaveable
             OnMinutePassed?.Invoke(_gameMinute,_gameHour,_gameDay,_gameDayOfWeek,_gameSeason,_gameYear);
         }
     }
+    public TimeSpan GetGameTime()
+    {
+        TimeSpan gameTime = new TimeSpan(_gameHour, _gameMinute, _gameSecond);
+        return gameTime;
+    }
 
+    public void AdvancedToTime(int targetHour, int targetMinute, bool advanceDayIfNeeded = true)
+    {
+        _gameClockPaused = true; 
+
+        int currentSeconds = _gameHour * 3600 + _gameMinute * 60 + _gameSecond;
+        int targetSeconds = targetHour * 3600 + targetMinute * 60;
+
+        int daysToAdvanced = 0;
+        if (advanceDayIfNeeded && targetSeconds <= currentSeconds)
+            daysToAdvanced = 1;
+
+        if(daysToAdvanced>0)
+        {
+            for (int d = 0; d < daysToAdvanced; d++)
+            {
+                _gameDay++;
+
+                if (_gameDay > 30)
+                {
+                    _gameDay = 1;
+
+                    int gs = (int)_gameSeason;
+                    gs++;
+
+                    _gameSeason = (Season)gs;
+
+                    if (gs > 4)
+                    {
+                        gs = 1;
+                        _gameSeason = (Season)gs;
+
+                        _gameYear++;
+
+                        if (_gameYear > 9999)
+                            _gameYear = 1;
+
+                        OnYearPassed?.Invoke();
+                    }
+                    OnSeasonPassed?.Invoke();
+                }
+                _gameDayOfWeek = GetDayOfWeek();
+                OnDayPassed?.Invoke(_gameMinute, _gameHour, _gameDay, _gameDayOfWeek, _gameSeason);
+            }
+        }
+
+        _gameHour = targetHour;
+        _gameMinute = targetMinute;
+        _gameSecond = 0;
+
+        OnHourPassed?.Invoke(_gameHour);
+        OnMinutePassed?.Invoke(_gameMinute, _gameHour, _gameDay, _gameDayOfWeek, _gameSeason, _gameYear);
+    }
+
+    public void SleepToMorning()
+    {
+        AdvancedToTime(6, 0, true);
+    }
     string GetDayOfWeek()
     {
         int totalDays = (((int)_gameSeason) * 30) + _gameDay;
@@ -172,11 +234,6 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>, ISaveable
         }
     }
 
-    public TimeSpan GetGameTime()
-    {
-        TimeSpan gameTime = new TimeSpan(_gameHour, _gameMinute, _gameSecond);
-        return gameTime;
-    }
     void PlayerTestInput()
     {
         // Trigger Advance Time
