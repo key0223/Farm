@@ -158,8 +158,14 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
             HairColor = _selectedColor
         };
 
+        StartCoroutine(CoEnterGame(profile));
+    }
+
+    IEnumerator CoEnterGame(PlayerProfile profile)
+    {
+        GameSceneManager.Instance.Fade();
+        yield return new WaitForSeconds(1f);
         GameManager.Instance.Player.SetPlayerProfile(profile);
         UIManager.Instance.HideTitle();
-
     }
 }
