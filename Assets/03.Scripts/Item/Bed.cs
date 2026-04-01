@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bed : MonoBehaviour
 {
 
-    bool _canGotoSleep = false;
+    [SerializeField] bool _canGotoSleep = false;
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(_canGotoSleep)
