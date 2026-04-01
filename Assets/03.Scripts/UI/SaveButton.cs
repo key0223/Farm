@@ -32,6 +32,8 @@ public class SaveButton : ClickableComponent
             SaveLoadManager.Instance.SaveDataToFile();
             UIManager.Instance.HideSave();
 
+            GameSceneManager.Instance.Fade();
+
         }
         else
         {

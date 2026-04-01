@@ -5,6 +5,7 @@ using UnityEngine;
 using static Define;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using System.Collections;
 public class SaveFileSlot : MonoBehaviour
 {
     [Header("Refresh UI Targets")]
@@ -138,6 +139,13 @@ public class SaveFileSlot : MonoBehaviour
     }
     void OnButtonClicked()
     {
+        StartCoroutine(CoEnterGame());
+    }
+
+    IEnumerator CoEnterGame()
+    {
+        GameSceneManager.Instance.Fade();
+        yield return new WaitForSeconds(1f);
         SaveLoadManager.Instance.LoadData(_gameSave);
         UIManager.Instance.HideTitle();
     }

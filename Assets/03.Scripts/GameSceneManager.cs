@@ -39,6 +39,11 @@ public class GameSceneManager : SingletonMonobehaviour<GameSceneManager>
         StartCoroutine(CoFade(0));
     }
 
+    public void Fade()
+    {
+        StartCoroutine(CoFadeScene());
+    }
+
     public void FadeAndLoadScene(string sceneName, Vector3 spawnPosition)
     {
         if (!_isFading)
@@ -74,6 +79,19 @@ public class GameSceneManager : SingletonMonobehaviour<GameSceneManager>
 
         yield return StartCoroutine(CoFade(0));
         OnAfterSceneLoadFadeIn?.Invoke();
+    }
+
+    IEnumerator CoFadeScene()
+    {
+        GameManager.Instance.Player.CanMove = false;
+        yield return StartCoroutine(CoFade(1f)); /* Fading to black */
+
+        yield return new WaitForSeconds(0.5f);
+
+        yield return StartCoroutine(CoFade(0));
+
+        GameManager.Instance.Player.CanMove = true;
+
     }
 
     IEnumerator CoFade(float finalAlpha)
