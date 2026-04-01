@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 
@@ -26,7 +24,6 @@ public class HoeDirtFeature : TileRuntimeFeature
     {
         bool wateredYesterday = _watered;
         _watered = false;
-        location.SetWaterGround(TilePos, false);
 
         /* 작물 업데이트 */
         if (_currentCrop != null)
@@ -36,15 +33,12 @@ public class HoeDirtFeature : TileRuntimeFeature
             if (_currentCrop.IsReadyForGrowth(wateredYesterday))
             {
                 _currentCrop.CropUpdate();
-                _cropDisplay.UpdateDisplay(_currentCrop.GetCurrentPhaseSprite());
             }
         }
         else
         {
             _daysSinceTilled++;
         }
-
-       
     }
     public override void OnRemove(GameLocation location)
     {
@@ -63,7 +57,7 @@ public class HoeDirtFeature : TileRuntimeFeature
        else if(toolType == ToolType.WATERING)
         {
             _watered = true;
-            location.SetWaterGround(TilePos,true);
+            MapManager.Instance.DisplayWaterGround(this);
         }
     }
     public override bool CanApplyTool(ToolType tool)
@@ -82,6 +76,12 @@ public class HoeDirtFeature : TileRuntimeFeature
         displayObj.transform.position = GridUtils.GridToWorldCenter(pos);
         _cropDisplay = displayObj.GetComponent<CropDisplayObject>();
         _cropDisplay.UpdateDisplay(crop.GetCurrentPhaseSprite());
+    }
+
+    public void UpdateCropDisplay()
+    {
+        if (_cropDisplay != null)
+            _cropDisplay.UpdateDisplay(_currentCrop.GetCurrentPhaseSprite());
     }
     public void Harvest()
     {

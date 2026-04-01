@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
@@ -46,7 +45,7 @@ public class Shovel : Tool
             return;
 
         location.SetTileFeature(targetGrid,ToolType);
-
+        MapManager.Instance.DisplayDugGround(location.GetRuntimeFeature(targetGrid.x, targetGrid.y));
         SoundManager.Instance.PlaySound(SoundName.EFFECT_SHOVEL);
     }
 }

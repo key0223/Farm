@@ -1,7 +1,7 @@
 using SuperTiled2Unity;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -29,7 +29,11 @@ public class MapManager : SingletonMonobehaviour<MapManager>, ISaveable
     Dictionary<string, GameLocation> _gameLocations = new Dictionary<string, GameLocation>();
 
     GameLocation _currentLocation;
+    Tilemap _deco1;
+    Tilemap _deco2;
     Grid _grid;
+
+    string _cropDisplayPath = "CropDisplay";
 
     Transform _itemsParent;
     public TileBase DugTile { get { return _dugTile; } }
@@ -130,13 +134,6 @@ public class MapManager : SingletonMonobehaviour<MapManager>, ISaveable
         return location;
     }
 
-    void AdvanceDay(int gameMinute, int gameHour, int gameDay, string gameDayOfWeek, Season gameSeason)
-    {
-        foreach (GameLocation location in _gameLocations.Values)
-        {
-            location.DayUpdateAll();
-        }
-    }
 
     string GetMapName(string sceneName)
     {
@@ -144,6 +141,15 @@ public class MapManager : SingletonMonobehaviour<MapManager>, ISaveable
         string mapName = sceneName.Substring(index + 1);
 
         return mapName;
+    }
+
+    public void SetTileFeatureSave(int gridX, int gridY,TileFeatureSave tileFeatureSave, Dictionary<string,TileFeatureSave> tileFeatureDict)
+    {
+        string key = GridUtils.GetTileKey(gridX, gridY);
+        tileFeatureSave.GridX = gridX;
+        tileFeatureSave.GridY = gridY;
+
+        tileFeatureDict[key] = tileFeatureSave;
     }
 
     void AfterSceneLoaded()
@@ -154,10 +160,97 @@ public class MapManager : SingletonMonobehaviour<MapManager>, ISaveable
         else
             _itemsParent = null;
 
-        _currentLocation.SetDecoTilemaps();
         _grid = _currentLocation.Grid;
+        _deco1 = GameObject.FindGameObjectWithTag("Deco1").GetComponent<Tilemap>();
+        _deco2 = GameObject.FindGameObjectWithTag("Deco2").GetComponent<Tilemap>();
+    }
+    void AdvanceDay(int gameMinute, int gameHour, int gameDay, string gameDayOfWeek, Season gameSeason)
+    {
+        _deco1.ClearAllTiles();
+        _deco2.ClearAllTiles();
+        foreach (string locationName in _gameLocations.Keys)
+        {
+            if(GameObjectSave.SceneData.TryGetValue(locationName,out SceneSave sceneSave))
+            {
+                if(sceneSave.TileFeatureDictionary != null)
+                {
+                    for (int i = sceneSave.TileFeatureDictionary.Count - 1; i >= 0; i--)
+                    {
+                        KeyValuePair<string, TileFeatureSave> item = sceneSave.TileFeatureDictionary.ElementAt(i);
+                        TileFeatureSave tileFeatureSave = item.Value;
+
+                        switch (tileFeatureSave.FeatureType)
+                        {
+                            case TileFeatureType.HOE_DIRT:
+                                {
+                                    int daysSinceTilled = tileFeatureSave.Data[0];
+                                    bool wateredYesterday = tileFeatureSave.Data[1]==1;
+                                    bool hasCrop = tileFeatureSave.Data[2] > -1;
+
+                                    if (!hasCrop)
+                                        tileFeatureSave.Data[0]++;
+                                    else
+                                        tileFeatureSave.Data[0] = 0;
+
+                                    tileFeatureSave.Data[1] = 0;
+
+                                    if (hasCrop && wateredYesterday)
+                                        tileFeatureSave.Data[4]++;
+                                }
+                                break;
+                        }
+
+                        SetTileFeatureSave(tileFeatureSave.GridX, tileFeatureSave.GridY, tileFeatureSave, sceneSave.TileFeatureDictionary);
+
+                    }
+                }
+            }
+           
+        }
+        DisplayTileRuntimeFeatures();
+
+    }
+    #region Display
+
+    public void DisplayDugGround(TileRuntimeFeature tileRuntimeFeature)
+    {
+        if(tileRuntimeFeature is HoeDirtFeature hoeDirt)
+        {
+            if (hoeDirt.DaysSinceTilled > -1)
+                _deco1.SetTile(hoeDirt.TilePos, DugTile);
+        }
+    }
+    public void DisplayWaterGround(TileRuntimeFeature tileRuntimeFeature)
+    {
+        if (tileRuntimeFeature is HoeDirtFeature hoeDirt)
+        {
+            if (hoeDirt.Watered)
+                _deco1.SetTile(hoeDirt.TilePos, WateredTile);
+        }
+    }
+    public void DisplayPlantedCrop(TileRuntimeFeature tileRuntimeFeature)
+    {
+        if (tileRuntimeFeature is HoeDirtFeature hoeDirt)
+        {
+            if(hoeDirt.CropDisplay !=null)
+            {
+                hoeDirt.UpdateCropDisplay();
+                hoeDirt.CurrentCrop.CropUpdate();
+            }
+        }
     }
 
+    void DisplayTileRuntimeFeatures()
+    {
+        foreach(KeyValuePair<string,TileRuntimeFeature> item in _currentLocation.RuntimeFeature)
+        {
+            TileRuntimeFeature tileRuntimeFeature = item.Value;
+            DisplayDugGround(tileRuntimeFeature);
+            DisplayWaterGround(tileRuntimeFeature);
+            DisplayPlantedCrop(tileRuntimeFeature);
+        }
+    }
+    #endregion
     #region Saveable
     public void ISaveableRegister()
     {
@@ -230,6 +323,9 @@ public class MapManager : SingletonMonobehaviour<MapManager>, ISaveable
                 sceneSave.SceneItemList.Add(sceneItem);
             }
 
+            sceneSave.BoolDictionary = new Dictionary<string, bool>();
+            sceneSave.BoolDictionary.Add("isFirstTimeSceneLoaded", _isFirstTimeSceneLoaded);
+
             GameObjectSave.SceneData.Add(sceneName, sceneSave);
 
         }
@@ -267,20 +363,18 @@ public class MapManager : SingletonMonobehaviour<MapManager>, ISaveable
                                         feature.CurrentCrop.CurrentPhase = saveData.Data[3];
                                         feature.CurrentCrop.DaysOfCurrentPhase = saveData.Data[4];
                                         feature.CurrentCrop.FullyGrown = saveData.Data[5] == 1;
-
-                                        feature.CropDisplay.UpdateDisplay(feature.CurrentCrop.GetCurrentPhaseSprite());
                                     }
                                 }
 
                                 location.AddRuntimeFeature(key, feature);
-                                location.SetDugGround(tilePos);
-
-                                if (feature.Watered)
-                                    location.SetWaterGround(tilePos, true);
                             }
                             break;
                     }
                 }
+
+                _deco1.ClearAllTiles();
+                _deco2.ClearAllTiles();
+                DisplayTileRuntimeFeatures();
             }
 
 
@@ -300,6 +394,7 @@ public class MapManager : SingletonMonobehaviour<MapManager>, ISaveable
             if (_isFirstTimeSceneLoaded == true)
                 _isFirstTimeSceneLoaded = false;
         }
+
     }
 
     #endregion

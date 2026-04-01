@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 [Serializable]
 public class SceneSave /* 씬에서 필요한 모든 세부 데이터 */

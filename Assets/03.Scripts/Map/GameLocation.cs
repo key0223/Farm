@@ -1,19 +1,12 @@
 using SuperTiled2Unity;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using System.Linq;
-using UnityEngine.Tilemaps;
-using Unity.VisualScripting;
 using static Define;
 
 public class GameLocation  
 {
     MapData _mapData;
-
-    Tilemap _deco1;
-    Tilemap _deco2;
 
     Grid _grid;
 
@@ -35,8 +28,6 @@ public class GameLocation
 
     public void ResetToDefaultState()
     {
-        _deco1.ClearAllTiles();
-        _deco2.ClearAllTiles();
         if(_runtimeFeature.Values.Count> 0)
         {
             foreach (string key in _runtimeFeature.Keys.ToList())
@@ -78,13 +69,7 @@ public class GameLocation
             interactable.Interact(who);
         }
     }
-    public void SetDecoTilemaps()
-    {
-        if (_deco1 != null && _deco2 != null) return;
-
-        _deco1 = GameObject.FindGameObjectWithTag("Deco1").GetComponent<Tilemap>();
-        _deco2 = GameObject.FindGameObjectWithTag("Deco2").GetComponent<Tilemap>();
-    }
+   
 
     public TileRuntimeFeature GetRuntimeFeature(int gridX, int gridY)
     {
@@ -112,7 +97,7 @@ public class GameLocation
         {
             HoeDirtFeature hoeDirtFeature = new HoeDirtFeature(cellPos);
             AddRuntimeFeature(key, hoeDirtFeature);
-            SetDugGround(cellPos);
+            //SetDugGround(cellPos);
         }
     }
 
@@ -129,16 +114,6 @@ public class GameLocation
             _runtimeFeature.Remove(key);
 
             Vector3Int pos = GridUtils.GetCellPosFromKey(key);
-            _deco1.SetTile(pos, null);
-            _deco2.SetTile(pos, null);
-        }
-    }
-
-    public void DayUpdateAll()
-    {
-        foreach (TileRuntimeFeature runtimeFeature in _runtimeFeature.Values)
-        {
-            runtimeFeature.DayUpdate(this);
         }
     }
 
@@ -211,16 +186,5 @@ public class GameLocation
             GridUtils.GridToWorldCenter(item.CellPos))).ToList();
     }
     #endregion
-
-    public void SetDugGround(Vector3Int cellPos, bool remove = false)
-    {
-        string key = GridUtils.GetTileKey(cellPos.x, cellPos.y);
-        TileBase tile = !remove ? MapManager.Instance.DugTile : null;
-        _deco1.SetTile(cellPos, tile);
-    }
-    public void SetWaterGround(Vector3Int cellPos, bool watered)
-    {
-        TileBase tile = watered ? MapManager.Instance.WateredTile : null;
-        _deco2.SetTile(cellPos, tile);
-    }
+   
 }

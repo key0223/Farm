@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using static Define;
 
@@ -69,8 +67,6 @@ public class Crop
                 return;
             }
         }
-        _daysOfCurrentPhase++;
-
     }
 
     public void OnHarvest(Vector3Int position)
