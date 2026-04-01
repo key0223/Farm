@@ -71,6 +71,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         _simpleMessageUI = FindObjectOfType<SimpleMessageUI>();
         _customizeUI = FindObjectOfType<CharacterCustomizationUI>();
         _shopMenu = FindObjectOfType<ShopMenu>();
+        _saveUI = FindObjectOfType<SaveUI>();
         GameManager.Instance.ManagerReady("UIManager");
 
     }

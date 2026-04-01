@@ -28,9 +28,9 @@ public class SaveButton : ClickableComponent
     {
         if(_isYesButton)
         {
+            TimeManager.Instance.SleepToMorning();
             SaveLoadManager.Instance.SaveDataToFile();
             UIManager.Instance.HideSave();
-            // TODO : 아침 시간 설정
 
         }
         else
