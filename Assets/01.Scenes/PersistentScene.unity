@@ -17191,7 +17191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2014b7252c0f0a74682473a9a3f8a398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuName: InventoryContainer
+  _menuName: GameMenuContainer
   _menuId: 0
   _showCloseButton: 1
   _closeButton: {fileID: 2023321475}

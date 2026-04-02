@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using static Define;
 
@@ -30,8 +28,8 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
     Dictionary<string, string> _tabContainers = new()
     {
-        {"Inventory","InventoryContainer" },
-        {"TestTab","InventoryContainer" },
+        {"Inventory","GameMenuContainer" },
+        {"TestTab","GameMenuContainer" },
         {"Buy","ShopContainer" },
         {"Sell","ShopContainer" },
     };
@@ -210,7 +208,6 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         if (_activeMenu != null)
             _menuStack.Push(_activeMenu);
-
         SetActiveMenu(menu);
     }
 
@@ -232,16 +229,21 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
         if (_activeMenu != null)
         {
+            if (menu.MenuName != "Title")
+                SoundManager.Instance.PlaySound(SoundName.UI_OPEN);
+
             _activeMenu.gameObject.SetActive(true);
-            _activeMenu.PopulateClickableComponentList();
+            //_activeMenu.PopulateClickableComponentList();
             HideToolbar();
             OnUIOpenedChanged?.Invoke(true);
         }
         else
         {
+            if (menu == null ||  menu.MenuName != "Title")
+                SoundManager.Instance.PlaySound(SoundName.UI_CLOSE);
+
             ShowToolbar();
             OnUIOpenedChanged?.Invoke(false);
-
         }
     }
 
@@ -434,8 +436,8 @@ public void ShowSave()
     {
         return (container,tabName) switch
         {
-            ("InventoryContainer","Inventory")=>0,
-            ("InventoryContainer", "TestTab") =>1,
+            ("GameMenuContainer", "Inventory")=>0,
+            ("GameMenuContainer", "TestTab") =>1,
             ("ShopContainer", "Buy") =>0,
             ("ShopContainer", "Sell") =>1,
             _ => 0

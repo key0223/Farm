@@ -98,3 +98,18 @@ MonoBehaviour:
     SoundPitchRandomVariationMin: 1
     SoundPitchRandomVariationMax: 1
     SoundVolume: 0.7
+  - SoundName: 18
+    SoundClip: {fileID: 8300000, guid: 51d733706ac4baf41ad3078e30593f43, type: 3}
+    SoundPitchRandomVariationMin: 1
+    SoundPitchRandomVariationMax: 1
+    SoundVolume: 0.7
+  - SoundName: 19
+    SoundClip: {fileID: 8300000, guid: 761c0e1f9851d544dbbe243bd84a9fdd, type: 3}
+    SoundPitchRandomVariationMin: 1
+    SoundPitchRandomVariationMax: 1
+    SoundVolume: 0.5
+  - SoundName: 20
+    SoundClip: {fileID: 8300000, guid: 6997bdefe431e0a42b908b82a4d8d978, type: 3}
+    SoundPitchRandomVariationMin: 1
+    SoundPitchRandomVariationMax: 1
+    SoundVolume: 0.5

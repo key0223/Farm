@@ -36,5 +36,7 @@ public partial class Define : MonoBehaviour
         UI_CLICK_3,
         UI_CLICK_4,
         UI_CLICK_5,
+        UI_OPEN,
+        UI_CLOSE,
     }
 }
