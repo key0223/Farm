@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static Define;
 
-public class SlideButton : MonoBehaviour
+public class SlideButton : MonoBehaviour,IPointerEnterHandler
 {
     [SerializeField] TitleMenu _titleMenu;
     [SerializeField] Button _button;
@@ -14,11 +16,18 @@ public class SlideButton : MonoBehaviour
     void Awake()
     {
         _button.onClick.AddListener(SlideToTarget);
+        
     }
 
     void SlideToTarget()
     {
+        SoundManager.Instance.PlaySound(SoundName.UI_CLICK_3);
        _titleMenu.SlideToIndex(_targetIndex);
     }
-   
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        SoundManager.Instance.PlaySound(SoundName.UI_HOVER_1);
+
+    }
 }

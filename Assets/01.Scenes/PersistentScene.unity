@@ -3354,7 +3354,11 @@ MonoBehaviour:
   _gameAmbientSnapshot: {fileID: -8867929105644855827, guid: 0d869dd7ba1307e4c8afba1e34301b42,
     type: 2}
   _soundList: {fileID: 11400000, guid: b26ac6a7ca1f27c4ca62851614deca4d, type: 2}
+  _sceneSoundList: {fileID: 11400000, guid: f22b5c49797f711468682cb926f7b9b3, type: 2}
   _musicTransitionSecs: 8
+  _defaultSceneMusicPlayTime: 120
+  _sceneMusicStartMinSecs: 20
+  _sceneMusicStartMaxSecs: 40
 --- !u!1 &307389180
 GameObject:
   m_ObjectHideFlags: 0

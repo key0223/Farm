@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static Define;
 
 public class DecreaseButton : HoldQuantityButton
 {
@@ -18,6 +19,7 @@ public class DecreaseButton : HoldQuantityButton
 
     protected override void OnSinglePress()
     {
+        SoundManager.Instance.PlaySound(SoundName.UI_CLICK_1);
         _target?.DecreaseQuantity();
     }
     protected override void OnRepeatPress()

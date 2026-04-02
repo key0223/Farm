@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 
 public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
 {
@@ -157,7 +158,7 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
             HairName = _hairStyleNames[_currentHairIndex],
             HairColor = _selectedColor
         };
-
+        SoundManager.Instance.PlaySound(SoundName.UI_CLICK_5);
         StartCoroutine(CoEnterGame(profile));
     }
 

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static Define;
 
 public class ContainerSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     IBeginDragHandler, IEndDragHandler,
@@ -65,6 +66,10 @@ public class ContainerSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
   
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if(_currentItem!= null)
+        {
+            SoundManager.Instance.PlaySound(SoundName.UI_CLICK_4);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)

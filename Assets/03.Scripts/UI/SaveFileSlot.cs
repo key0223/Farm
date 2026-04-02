@@ -6,7 +6,8 @@ using static Define;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using System.Collections;
-public class SaveFileSlot : MonoBehaviour
+using UnityEngine.EventSystems;
+public class SaveFileSlot : MonoBehaviour,IPointerEnterHandler
 {
     [Header("Refresh UI Targets")]
     [SerializeField] TextMeshProUGUI _farmText;
@@ -137,8 +138,14 @@ public class SaveFileSlot : MonoBehaviour
 
         }
     }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        SoundManager.Instance.PlaySound(SoundName.UI_HOVER_1);
+    }
     void OnButtonClicked()
     {
+        SoundManager.Instance.PlaySound(SoundName.UI_CLICK_3);
+
         StartCoroutine(CoEnterGame());
     }
 
@@ -149,4 +156,6 @@ public class SaveFileSlot : MonoBehaviour
         SaveLoadManager.Instance.LoadData(_gameSave);
         UIManager.Instance.HideTitle();
     }
+
+    
 }

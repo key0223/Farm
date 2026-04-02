@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class TabButton : ClickableComponent
 {
@@ -17,6 +18,7 @@ public class TabButton : ClickableComponent
 
     public override void OnLeftClick(Vector2 pos)
     {
+        SoundManager.Instance.PlaySound(SoundName.UI_CLICK_2);
         _bgImage.gameObject.SetActive(true);
     }
     
