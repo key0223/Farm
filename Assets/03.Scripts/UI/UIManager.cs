@@ -117,7 +117,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         _tabGroups[containerName] = tabs;
         _currentTabIndices[containerName] = 0;
-        ShowTab(containerName, 0);
+        //ShowTab(containerName, 0);
     }
     public ClickableMenu GetActiveTab(string containerName)
     {
@@ -131,6 +131,12 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         if(_tabGroups.TryGetValue(containerName,out var tabs))
             return tabs;
         return null;
+    }
+
+    public int GetCurrentTabIndex(string containerName)
+    {
+        _currentTabIndices.TryGetValue(containerName, out int index);
+        return index;
     }
     void HandleKeyPressed(Keys key)
     {
@@ -172,26 +178,34 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         string containerName = GetContainerForTab(menuName);
         if (!string.IsNullOrEmpty(containerName))
         {
-            // �����̳ʰ� �̹� Ȱ��ȭ ���¸� �Ǹ� ��ȯ
-            if(_activeMenu != null && _activeMenu.MenuName == containerName)
+            ClickableMenu container  = FindMenuByName(containerName);
+
+            /* 컨테이너 활성, 클릭한 탭 활성 -> 컨테이너 닫기 */
+            if(_activeMenu == container)
             {
-                int tabIndex = GetTabIndex(containerName, menuName);
-                ShowTab(containerName,tabIndex);
-                return;
+                int currentIndex = GetCurrentTabIndex(containerName);
+                int targetIndex = GetTabIndex(containerName,menuName);
+
+                if(currentIndex == targetIndex)
+                {
+                    PopMenu();
+                    return;
+                }
             }
 
-            // �����̳� Ȱ��ȭ
-            ClickableMenu container = OpenMenuByName(containerName);
+            /* 탭 전환 */
             if (container != null)
             {
-                // �� ��ȯ
+                if(_activeMenu != container)
+                    OpenMenuByName(container.MenuName);
+
                 int tabIndex = GetTabIndex(containerName, menuName);
                 ShowTab(containerName, tabIndex);
                 return;
             }
         }
 
-        // �Ϲ� �޴�
+        /* 일반 메뉴 토글 */
         if (active != null && menuType.IsInstanceOfType(active))
         {
             PopMenu();
@@ -233,7 +247,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
                 SoundManager.Instance.PlaySound(SoundName.UI_OPEN);
 
             _activeMenu.gameObject.SetActive(true);
-            //_activeMenu.PopulateClickableComponentList();
+            _activeMenu.PopulateClickableComponentList();
             HideToolbar();
             OnUIOpenedChanged?.Invoke(true);
         }
@@ -251,14 +265,19 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         if (!_tabGroups.TryGetValue(containerName, out var tabs) || index < 0 || index >= tabs.Count) return;
 
+        
         for (int i = 0; i < tabs.Count; i++)
-            tabs[i].gameObject.SetActive(i == index);
+        {
+            bool isActive = (i== index);
+            tabs[i].gameObject.SetActive(isActive);
+        }
 
         _currentTabIndices[containerName] = index;
 
         if (_activeMenu != null)
             _activeMenu.PopulateClickableComponentList();
     }
+   
     #region Toolbar
     void HideToolbar()
     {
@@ -328,7 +347,9 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         _shopMenu.SetCurrentShop(shopId, player);
         ClickableMenu container = FindMenuByName("ShopContainer");
-        if (container != null && _activeMenu != container)
+        if (container == null) return;
+
+        if (_activeMenu != container)
         {
             PushMenu(container);
 

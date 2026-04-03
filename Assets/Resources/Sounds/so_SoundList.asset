@@ -113,3 +113,8 @@ MonoBehaviour:
     SoundPitchRandomVariationMin: 1
     SoundPitchRandomVariationMax: 1
     SoundVolume: 0.5
+  - SoundName: 21
+    SoundClip: {fileID: 8300000, guid: 12bf7d1fb850832459ef9ef7147020f4, type: 3}
+    SoundPitchRandomVariationMin: 1
+    SoundPitchRandomVariationMax: 1
+    SoundVolume: 0.4

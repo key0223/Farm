@@ -156,7 +156,8 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
             FarmName = _farmName,
             PlayerName = _playerName,
             HairName = _hairStyleNames[_currentHairIndex],
-            HairColor = _selectedColor
+            HairColor = _selectedColor,
+            Money = 500
         };
         SoundManager.Instance.PlaySound(SoundName.UI_CLICK_5);
         StartCoroutine(CoEnterGame(profile));
@@ -183,6 +184,5 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
         Item seed = ItemFactory.Create(601,10);
         player.PlayerInven.TryAdd(seed);
 
-        player.PlayerProfile.Money = 500;
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -155,23 +155,32 @@ public class BuyMenu : ClickableMenu,IQuantityAdjuster
         if (_currentQuantity > _minQuantity)
         {
             _currentQuantity--;
-            _totalPrice = (_currentQuantity * _itemPrice);
+            //_totalPrice = (_currentQuantity * _itemPrice);
             Refresh();
         }
     }
     void OnPurchase()
     {
         _selectedItem.Stack = _currentQuantity;
-        bool success = UIManager.Instance.ShopUI.Player.PlayerInven.TryAdd(_selectedItem);
-        if (success)
+        PlayerController player = UIManager.Instance.ShopUI.Player;
+        if (player.Money>=_totalPrice)
         {
-            Debug.Log("Purchase Succeed");
+            bool success = player.PlayerInven.TryAdd(_selectedItem);
+            if (success)
+            {
+                player.Money -= _totalPrice;
+            }
+            else
+            {
+                Debug.Log("Purchase Failed : No slots available");
+
+            }
         }
         else
         {
-            Debug.Log("Purchase Failed");
-
+            Debug.Log("Purchase Failed : Not enough money");
         }
+        
     }
 
     void Refresh()

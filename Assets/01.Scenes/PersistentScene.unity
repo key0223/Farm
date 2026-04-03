@@ -19821,6 +19821,7 @@ MonoBehaviour:
   _seasonText: {fileID: 1452160752}
   _timeText: {fileID: 1688735810}
   _amPmText: {fileID: 1034406387}
+  _moneyText: {fileID: 1588799657}
 --- !u!1 &1684053698
 GameObject:
   m_ObjectHideFlags: 0

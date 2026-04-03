@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -51,12 +51,13 @@ public class TabContainer : ClickableMenu
 
         if (clicked != null)
         {
+            int index = _tabButtons.IndexOf(clicked);
+          
             foreach (TabButton button in _tabButtons)
             {
                 button.SetBGImage(false);
             }
 
-            int index = _tabButtons.IndexOf(clicked);
             clicked.OnLeftClick(screenPos);
             UIManager.Instance.ShowTab(_menuName, index);
         }

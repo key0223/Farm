@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 
 public class ShopSlot : ClickableComponent
 {
@@ -66,6 +67,7 @@ public class ShopSlot : ClickableComponent
 
     public override void OnLeftClick(Vector2 pos)
     {
+        SoundManager.Instance.PlaySound(SoundName.UI_CLICK_1);
         UIManager.Instance.ShopUI.SetSelectedItem(_currentItem);
         OnSlotClicked?.Invoke(_currentItem);
         Debug.Log("Shop slot Clicked");

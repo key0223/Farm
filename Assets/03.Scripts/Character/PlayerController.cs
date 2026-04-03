@@ -8,6 +8,8 @@ using static UnityEditor.Progress;
 
 public class PlayerController : MonoBehaviour, ISaveable
 {
+    public event Action<int> OnMoneyChanged;
+
     #region Saveable
 
     string _isavableUniqueId;
@@ -49,6 +51,16 @@ public class PlayerController : MonoBehaviour, ISaveable
         }
     }
     public Vector3Int CellPos { get { return _playerMove.CellPos; } set { _playerMove.CellPos = value; } }
+
+    public int Money
+    {
+        get { return _playerProfile.Money; }
+        set
+        {
+            OnMoneyChanged?.Invoke(value);
+            _playerProfile.Money = value;
+        }
+    }
     #endregion
 
 
@@ -83,8 +95,6 @@ public class PlayerController : MonoBehaviour, ISaveable
     }
     void CacheComponents()
     {
-        //_playerProfile = new PlayerProfile();
-
         _playerMove = GetComponent<PlayerMove>();
         _playerInven = GetComponent<PlayerInventory>();
         _playerAnim = GetComponent<PlayerAnimator>();
@@ -113,6 +123,7 @@ public class PlayerController : MonoBehaviour, ISaveable
     public void SetPlayerProfile(PlayerProfile profile)
     {
         _playerProfile = profile;
+        Money=profile.Money;
         if (_isFirstLoad)
         {
             _playerAnim.AnimatedSprite.InitAnimationsFromTableData();
@@ -174,7 +185,7 @@ public class PlayerController : MonoBehaviour, ISaveable
 
             sceneSave.InventoryItemArray[i] = inventoryItem;
         }
-       
+
         #endregion
 
         GameObjectSave.SceneData.Add(PERSISTENT_SCENE, sceneSave);
@@ -228,12 +239,13 @@ public class PlayerController : MonoBehaviour, ISaveable
                     }
 
                     SetPlayerProfile(profile);
+
                 }
                 #endregion
 
                 #region Inventory
 
-                if(sceneSave.InventoryItemArray != null)
+                if (sceneSave.InventoryItemArray != null)
                 {
                     for (int i = 0; i < sceneSave.InventoryItemArray.Length; i++)
                     {
@@ -241,12 +253,12 @@ public class PlayerController : MonoBehaviour, ISaveable
 
                         if (inventoryItem.ItemId == 0) continue;
 
-                        Item item = ItemFactory.Create(inventoryItem.ItemId,inventoryItem.ItemQuantity);
-                        _playerInven.TryAddAt(i,item);
+                        Item item = ItemFactory.Create(inventoryItem.ItemId, inventoryItem.ItemQuantity);
+                        _playerInven.TryAddAt(i, item);
                     }
-                   
+
                 }
-                
+
                 #endregion
 
             }

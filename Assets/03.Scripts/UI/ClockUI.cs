@@ -1,13 +1,17 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using static Define;
 
 public class ClockUI : MonoBehaviour
 {
+    [Header("Clock")]
     [SerializeField] TextMeshProUGUI _dateText;
     [SerializeField] TextMeshProUGUI _seasonText;
     [SerializeField] TextMeshProUGUI _timeText;
     [SerializeField] TextMeshProUGUI _amPmText;
+
+    [Header("Money")]
+    [SerializeField] TextMeshProUGUI _moneyText;
     string _currentDayOfWeek;
     string _localizedDayOfWeek;
     string _currentSeason;
@@ -26,15 +30,22 @@ public class ClockUI : MonoBehaviour
 
         TimeManager.Instance.OnMinutePassed -= UpdateGameTime;
         TimeManager.Instance.OnMinutePassed += UpdateGameTime;
+
+        GameManager.Instance.Player.OnMoneyChanged += RefreshMoney;
+        GameManager.Instance.Player.OnMoneyChanged -= RefreshMoney;
     }
 
     void OnDisable()
     {
         TimeManager.Instance.OnMinutePassed -= UpdateGameTime;
+        GameManager.Instance.Player.OnMoneyChanged -= RefreshMoney;
+
     }
     void SubscribeEvent()
     {
         TimeManager.Instance.OnMinutePassed += UpdateGameTime;
+        GameManager.Instance.Player.OnMoneyChanged += RefreshMoney;
+
         GameManager.OnAllManagersReady -= SubscribeEvent;
     }
 
@@ -68,6 +79,12 @@ public class ClockUI : MonoBehaviour
         _dateText.text = $"{_localizedDayOfWeek}. {day}";
         _seasonText.text = _localizedSeason;
         _timeText.text = time;
+    }
+
+    void RefreshMoney(int money)
+    {
+        SoundManager.Instance.PlaySound(SoundName.UI_CHANGE_DROP);
+        _moneyText.text = money.ToString();
     }
 
     void SetAmPm(int hour)

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -39,6 +39,7 @@ public class SellMenu : ClickableMenu, IQuantityAdjuster
     protected override void Start()
     {
         base.Start();
+        gameObject.SetActive(true);
         _sellButton.onClick.AddListener(OnSell);
         _sellText.text = LocalizationManager.Instance.GetString("Sell");
     }
@@ -46,9 +47,6 @@ public class SellMenu : ClickableMenu, IQuantityAdjuster
     protected override void OnEnable()
     {
         base.OnEnable();
-        if (!GameManager.Instance.AllManagersReady)
-            return;
-
         RefreshMenu();
     }
     protected override void OnDisable()
@@ -58,6 +56,7 @@ public class SellMenu : ClickableMenu, IQuantityAdjuster
     protected override void SubscribeEvent()
     {
         _player = FindObjectOfType<PlayerController>();
+        RefreshMenu();
         base.SubscribeEvent();
     }
     public void SetSelectedItem(ObjectItem item)
@@ -143,25 +142,24 @@ public class SellMenu : ClickableMenu, IQuantityAdjuster
     }
     public void DecreaseQuantity()
     {
-        if (_currentQuantity < _maxQuantity)
+        if (_currentQuantity > _minQuantity)
         {
-            _currentQuantity++;
+            _currentQuantity--;
             Refresh();
         }
     }
 
     public void IncreaseQuantity()
     {
-        if (_currentQuantity > _minQuantity)
+        if (_currentQuantity < _maxQuantity)
         {
-            _currentQuantity--;
-            _totalPrice = (_currentQuantity * _itemPrice);
+            _currentQuantity++;
             Refresh();
         }
     }
     void OnSell()
     {
-        bool success = UIManager.Instance.ShopUI.Player.PlayerInven.TryRemove(_selectedItem.Id, _currentQuantity);
+        bool success = _player.PlayerInven.TryRemove(_selectedItem.Id, _currentQuantity);
         if (success)
         {
             int rest = _selectedItem.Stack - _currentQuantity;
@@ -174,6 +172,8 @@ public class SellMenu : ClickableMenu, IQuantityAdjuster
             else
                 _items.Remove(_selectedItem);
             UpdateSlots();
+
+            _player.Money += _totalPrice;
             Debug.Log("Sell Succeed");
         }
         else
