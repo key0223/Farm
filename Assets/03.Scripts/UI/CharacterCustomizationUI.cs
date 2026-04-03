@@ -182,5 +182,7 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
 
         Item seed = ItemFactory.Create(601,10);
         player.PlayerInven.TryAdd(seed);
+
+        player.PlayerProfile.Money = 500;
     }
 }

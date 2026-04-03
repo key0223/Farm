@@ -188,6 +188,8 @@ public class PlayerController : MonoBehaviour, ISaveable
             GameObjectSave = gameObjSave;
             if (GameObjectSave.SceneData.TryGetValue(PERSISTENT_SCENE, out SceneSave sceneSave))
             {
+                PlayerProfile profile = new PlayerProfile();
+
                 if (sceneSave.Vector3Dictionary != null && sceneSave.Vector3Dictionary.TryGetValue("playerPosition", out Vector3Serializable playerPosition))
                 {
                     transform.position = new Vector3(playerPosition.X, playerPosition.Y, playerPosition.Z);
@@ -201,14 +203,13 @@ public class PlayerController : MonoBehaviour, ISaveable
                     }
                     if (sceneSave.IntDictionary.TryGetValue("money", out int money))
                     {
-                        _playerProfile.Money = money;
+                        profile.Money = money;
                     }
                 }
 
                 #region Player Profile
                 if (sceneSave.StringDictionary != null)
                 {
-                    PlayerProfile profile = new PlayerProfile();
                     if (sceneSave.StringDictionary.TryGetValue("farmName", out string farmName))
                     {
                         profile.FarmName = farmName;
@@ -240,7 +241,7 @@ public class PlayerController : MonoBehaviour, ISaveable
 
                         if (inventoryItem.ItemId == 0) continue;
 
-                        Item item = ItemFactory.Create(inventoryItem.ItemId);
+                        Item item = ItemFactory.Create(inventoryItem.ItemId,inventoryItem.ItemQuantity);
                         _playerInven.TryAddAt(i,item);
                     }
                    

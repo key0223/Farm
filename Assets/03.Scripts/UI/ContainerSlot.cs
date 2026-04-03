@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -100,7 +100,7 @@ public class ContainerSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (!_input.IsLeftHeld() || _currentItem == null)
         {
-            /* µå·¡±× Ãë¼Ò */
+            /* Cancel*/
             eventData.pointerDrag = null;
             return;
         }
@@ -119,8 +119,8 @@ public class ContainerSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         if (_input.IsLeftHeld() && _dragItemObj != null)
             _dragItemObj.transform.position = _input.MousePosition;
 
-        /* ½ºÅ©·Ñ ¼ö·® Á¶Àı */
-        if(Mathf.Abs(_input.ScrollDelta) > 0.01f)
+        /* ìŠ¤í¬ë¡¤ ìˆ˜ëŸ‰ ì¡°ì ˆ */
+        if (Mathf.Abs(_input.ScrollDelta) > 0.01f)
         {
             int dir = _input.ScrollDelta >0 ? 1 : -1;
             AdjustDragStack(dir);
@@ -205,7 +205,7 @@ public class ContainerSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         if (_draggedItem == null || !_draggedItem.Stackable) return;
 
         int newStack = _draggedItem.Stack + direction;
-        newStack = Mathf.Clamp(newStack, 1, _originalStack);  // ¿ø·¡ ½ºÅÃ ÃÊ°ú ºÒ°¡
+        newStack = Mathf.Clamp(newStack, 1, _originalStack);  // ì›ë˜ ìŠ¤íƒ ì´ˆê³¼ ë¶ˆê°€
 
         _draggedItem.Stack = newStack;
         UpdateDragStackText(newStack);

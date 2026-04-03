@@ -97,7 +97,7 @@ MonoBehaviour:
     SoundClip: {fileID: 8300000, guid: a36fa24cb3c606f45b73420701be70ab, type: 3}
     SoundPitchRandomVariationMin: 1
     SoundPitchRandomVariationMax: 1
-    SoundVolume: 0.7
+    SoundVolume: 0.1
   - SoundName: 18
     SoundClip: {fileID: 8300000, guid: 51d733706ac4baf41ad3078e30593f43, type: 3}
     SoundPitchRandomVariationMin: 1
