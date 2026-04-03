@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using static Define;
 
@@ -10,12 +11,19 @@ public class ClockUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI _timeText;
     [SerializeField] TextMeshProUGUI _amPmText;
 
-    [Header("Money")]
-    [SerializeField] TextMeshProUGUI _moneyText;
     string _currentDayOfWeek;
     string _localizedDayOfWeek;
     string _currentSeason;
     string _localizedSeason;
+
+    [Header("Money")]
+    [SerializeField] TextMeshProUGUI _moneyText;
+    [SerializeField] float _moneyAnimDuration = 0.5f;
+
+    int _currentMoney;
+    Tween _moneyTween;
+
+
 
 
     void Awake()
@@ -52,7 +60,7 @@ public class ClockUI : MonoBehaviour
     void UpdateGameTime(int minute, int hour, int day, string gameDayOfWeek, Season season, int year)
     {
         minute = minute - (minute % 10);
-        
+
         string minStr;
 
         SetAmPm(hour);
@@ -71,7 +79,7 @@ public class ClockUI : MonoBehaviour
             _currentDayOfWeek = gameDayOfWeek;
             _localizedDayOfWeek = LocalizationManager.Instance.GetString(gameDayOfWeek);
         }
-        if(_currentSeason == null || _currentSeason != season.ToString())
+        if (_currentSeason == null || _currentSeason != season.ToString())
         {
             _currentSeason = season.ToString();
             _localizedSeason = LocalizationManager.Instance.GetString(_currentSeason);
@@ -84,6 +92,22 @@ public class ClockUI : MonoBehaviour
     void RefreshMoney(int money)
     {
         SoundManager.Instance.PlaySound(SoundName.UI_CHANGE_DROP);
+        _moneyTween?.Kill();
+
+        float startValue = _currentMoney != 0 ? _currentMoney : 0;
+        float targetValue = money;
+
+        _moneyTween = DOTween.To(() => startValue, x =>
+        {
+            startValue = x;
+            _moneyText.text = ((int)x).ToString();
+        },
+        targetValue, _moneyAnimDuration)
+            .SetEase(Ease.OutQuad).OnComplete(() =>
+            {
+                _currentMoney = money;
+                _moneyText.text = money.ToString();
+            });
         _moneyText.text = money.ToString();
     }
 

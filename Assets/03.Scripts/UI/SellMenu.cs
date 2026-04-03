@@ -170,7 +170,10 @@ public class SellMenu : ClickableMenu, IQuantityAdjuster
                     target.Stack = rest;
             }
             else
+            {
                 _items.Remove(_selectedItem);
+                SetSelectedItem(null);
+            }
             UpdateSlots();
 
             _player.Money += _totalPrice;

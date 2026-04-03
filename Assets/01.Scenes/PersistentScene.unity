@@ -19822,6 +19822,7 @@ MonoBehaviour:
   _timeText: {fileID: 1688735810}
   _amPmText: {fileID: 1034406387}
   _moneyText: {fileID: 1588799657}
+  _moneyAnimDuration: 0.5
 --- !u!1 &1684053698
 GameObject:
   m_ObjectHideFlags: 0
