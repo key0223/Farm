@@ -1,10 +1,10 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 
 [Serializable]
-public class GameObjectSave /* °ÔÀÓ ¿ÀºêÁ§Æ® ´ÜÀ§ ÀüÃ¼ ÀúÀå µ¥ÀÌÅÍ */
+public class GameObjectSave /* ê²Œì„ ì˜¤ë¸Œì íŠ¸ ë‹¨ìœ„ ì „ì²´ ì €ì¥ ë°ì´í„° */
 {
-    // key = scene name ,  value = ¾À¿¡¼­ÀÇ ¿ÀºêÁ§Æ® »óÅÂ
+    // key = scene name ,  value = ì”¬ì—ì„œì˜ ì˜¤ë¸Œì íŠ¸ ìƒíƒœ
     public Dictionary<string, SceneSave> SceneData;
 
     public GameObjectSave()

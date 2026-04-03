@@ -1,8 +1,8 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 
 [Serializable]
-public class SceneSave /* ¾À¿¡¼­ ÇÊ¿äÇÑ ¸ğµç ¼¼ºÎ µ¥ÀÌÅÍ */
+public class SceneSave /* ì”¬ì—ì„œ í•„ìš”í•œ ëª¨ë“  ì„¸ë¶€ ë°ì´í„° */
 {
     public Dictionary<string, int> IntDictionary;
     public Dictionary<string, bool> BoolDictionary;

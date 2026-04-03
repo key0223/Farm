@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,5 +10,6 @@ public class PlayerProfile
     public string PlayerName { get; set; }
     public string HairName { get; set; }
     public Color HairColor { get; set; }
+    public int Money { get; set; }
 
 }

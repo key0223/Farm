@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -252,7 +252,7 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
             return;
         }
 
-        string idPart = line.Substring(3, hashIdx - 3).Trim(); // $p ¥Ÿ¿Ω∫Œ≈Õ # ¿¸±Ó¡ˆ
+        string idPart = line.Substring(3, hashIdx - 3).Trim(); // $p Îã§ÏùåÎ∂ÄÌÑ∞ # Ï†ÑÍπåÏßÄ
         string[] ids = idPart.Split('/').Select(s => s.Trim()).ToArray();
         string textPart = line.Substring(hashIdx + 1).Trim();
         string[] branches = textPart.Split('|', 2);
@@ -291,7 +291,7 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
 
         if (parts.Length < 3) return;
 
-        // ¡˙πÆ
+        // ÏßàÎ¨∏
         StartCoroutine(CoTypeText(UIManager.Instance.DialogueUI.DialogueText, ReplaceTokens(parts[0])));
 
         UIManager.Instance.DialogueUI.SetButtonInactive();
@@ -343,30 +343,30 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
 
         StartCoroutine(CoTypeText(UIManager.Instance.DialogueUI.DialogueText, ReplaceTokens(chosen)));
 
-        _lineIndex++; // $e Ω∫≈µ
+        _lineIndex++; // $e Skip
     }
 
     public string FindGenericDialogueKey(string npcName,DialogueContext context)
     {
         DialogueData data;
 
-        // 1) ∞Ë¿˝ + ø‰¿œ + ø¨µµ : spring_Mon_1
+        // 1) Season + DayOfWeek + Year : spring_Mon_1
         string key = $"{context.Season}_{context.DayOfWeek}_{context.Year}";
         if (TryGetDialogue(npcName, key, out data)) return key;
 
-        // 2) ∞Ë¿˝ + ≥Ø¬• : spring_13
+        // 2) Season + day : spring_13
         key = $"{context.Season}_{context.DayOfMonth}";
         if (TryGetDialogue(npcName, key, out data)) return key;
 
-        // 3) ∞Ë¿˝ + ø‰¿œ : spring_Mon
+        // 3) Season + DayOfWeek : spring_Mon
         key = $"{context.Season}_{context.DayOfWeek}";
         if (TryGetDialogue(npcName, key, out data)) return key;
 
-        // 4) ∞Ë¿˝ : spring
+        // 4) Season : spring
         key = context.Season;
         if (TryGetDialogue(npcName, key, out data)) return key;
 
-        // 4) ø‰¿œ : Mon
+        // 4) DayOfWeek : Mon
         key = context.DayOfWeek;
         if (TryGetDialogue(npcName, key, out data)) return key;
 
@@ -408,7 +408,7 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
         switch (type)
         {
             case DialogueTagType.BREAK:
-                // Space ¥Î±‚ »ƒ ¥Ÿ¿Ω ∂Û¿Œ
+                // Space ÎåÄÍ∏∞ ÌõÑ Îã§Ïùå ÎùºÏù∏
                 return true;
             case DialogueTagType.END:
                 EndDialogue();
@@ -438,7 +438,7 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
     string ReplaceTokens(string line)
     {
         line = Regex.Replace(line, @"\$b|\$e|\$k", "");
-        line = line.Replace("@", "«√∑π¿ÃæÓ");
+        line = line.Replace("@", "PlayerName");
         return line;
     }
     DialogueTagType ParseDialogueTag(string line)

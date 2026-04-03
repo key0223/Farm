@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -150,6 +150,7 @@ public class PlayerController : MonoBehaviour, ISaveable
         Vector3Serializable vector3Serializable = new Vector3Serializable(transform.position.x, transform.position.y, transform.position.z);
         sceneSave.Vector3Dictionary.Add("playerPosition", vector3Serializable);
         sceneSave.IntDictionary.Add("playerDirection", _playerMove.CurrentDirection);
+        sceneSave.IntDictionary.Add("money", _playerProfile.Money);
 
         /* Player Profile */
         sceneSave.StringDictionary.Add("farmName", _playerProfile.FarmName);
@@ -197,6 +198,10 @@ public class PlayerController : MonoBehaviour, ISaveable
                     if (sceneSave.IntDictionary.TryGetValue("playerDirection", out int playerDir))
                     {
                         _playerMove.CurrentDirection = playerDir;
+                    }
+                    if (sceneSave.IntDictionary.TryGetValue("money", out int money))
+                    {
+                        _playerProfile.Money = money;
                     }
                 }
 

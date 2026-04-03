@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -17,6 +17,21 @@ public class SaveUI : ClickableMenu
     protected override void Start()
     {
         base.Start();
+        InitButtons();
+    }
+
+    void InitButtons()
+    {
+        SaveButton[] foundButtons =GetComponentsInChildren<SaveButton>(); 
+
+        for (int i = 0; i < foundButtons.Length; i++)
+        {
+            SaveButton button = foundButtons[i];
+            button.ClickableId = i;
+
+            if(!_clickableComponents.Contains(button))
+                _clickableComponents.Add(button);
+        }
     }
     #region Clickable
      public override void ReceiveLeftClick(Vector2 screenPos)

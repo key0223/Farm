@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -167,6 +167,20 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
         GameSceneManager.Instance.Fade();
         yield return new WaitForSeconds(1f);
         GameManager.Instance.Player.SetPlayerProfile(profile);
+        GiveDefaultItem();
         UIManager.Instance.HideTitle();
+    }
+
+    void GiveDefaultItem()
+    {
+        PlayerController player = GameManager.Instance.Player;
+        Item shovel = ItemFactory.Create(7040);
+         player.PlayerInven.TryAdd(shovel);
+
+        Item wateringCan = ItemFactory.Create(7050);
+        player.PlayerInven.TryAdd(wateringCan);
+
+        Item seed = ItemFactory.Create(601,10);
+        player.PlayerInven.TryAdd(seed);
     }
 }
