@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static Define;
-using static UnityEditor.Progress;
 
 public class PlayerController : MonoBehaviour, ISaveable
 {

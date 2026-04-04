@@ -1,7 +1,5 @@
-using SuperTiled2Unity.Editor;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using static Define;
 
 namespace Data
 {
