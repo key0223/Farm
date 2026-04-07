@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/Town.unity
     guid: a86ff6cf560d9d54a86dea3f4beaa74b
+  - enabled: 1
+    path: Assets/01.Scenes/VillagerHouse1.unity
+    guid: 6147145c22c75aa48a77dcfe9a3e2010
   m_configObjects: {}

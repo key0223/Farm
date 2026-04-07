@@ -106,7 +106,7 @@
 </data>
  </layer>
  <objectgroup id="9" name="Path Object" locked="1"/>
- <layer id="5" name="Front" width="15" height="15">
+ <layer id="5" name="Front" width="15" height="15" locked="1">
   <properties>
    <property name="unity:SortingLayer" value="Front"/>
    <property name="unity:SortingOrder" value="700"/>
@@ -154,7 +154,7 @@
 </data>
  </layer>
  <objectgroup id="11" name="Always Front Object" locked="1"/>
- <layer id="16" name="Always Front2" width="15" height="15">
+ <layer id="16" name="Always Front2" width="15" height="15" locked="1">
   <properties>
    <property name="unity:SortingLayer" value="AlwaysFront"/>
   </properties>

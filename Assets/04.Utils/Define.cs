@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ public partial class Define
     public const string PERSISTENT_SCENE = "PersistentScene";
     public const string DEFAULT_TEXT_COLOR = "#313131";
 
-    // Time ½ÇÁ¦ ½Ã°£ 50¹è
+    // Time ì‹¤ì œ ì‹œê°„ 50ë°°
     public const float SECONDS_PER_GAME_SECOND = 1 / 50f;
 
     public enum SceneName
@@ -24,6 +24,7 @@ public partial class Define
         FarmHouse,
         Farm,
         Town,
+        VillagerHouse1,
 
     }
     public enum ObjectType
