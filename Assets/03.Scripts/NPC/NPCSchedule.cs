@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
@@ -52,14 +52,14 @@ public class NPCSchedule : MonoBehaviour
         if (_lastMinute == currentTime) return;
         _lastMinute = currentTime;
 
-        ///* »õ ³¯ */
-        //if (gameHour == 0 && gameMinute == 0)
-        //{
-        //    _currentSchedule = GetSchedule(gameSeason.ToString().ToLower(), gameDay, gameDayOfWeek);
-        //    _currentScheduleIndex = 0;
-        //    _npcController.ResetDay();
-        //    return;
-        //}
+        /* ìƒˆ ë‚  */
+        if (gameHour == 0 && gameMinute == 0)
+        {
+            _currentSchedule = GetSchedule(gameSeason.ToString().ToLower(), gameDay, gameDayOfWeek);
+            _currentScheduleIndex = 0;
+            _npcController.ResetDay();
+            return;
+        }
 
         if (_currentSchedule == null || _currentScheduleIndex >= _currentSchedule.Count) return;
 
@@ -69,7 +69,7 @@ public class NPCSchedule : MonoBehaviour
             _npcController.MoveTo(nextSchedule);
             _currentScheduleIndex++;
 
-            /* ÃëÄ§ */
+            /* ì·¨ì¹¨ */
             if (nextSchedule.Time >= 2200)
                 _currentScheduleIndex = _currentSchedule.Count;
         }
@@ -90,7 +90,7 @@ public class NPCSchedule : MonoBehaviour
         /* season_gameDay */
         if (gameDay > 0) keys.Add($"{gameSeason}_{gameDay}");
 
-        // °èÀı, ¿äÀÏ, ³¯Â¥
+        // ê³„ì ˆ, ìš”ì¼, ë‚ ì§œ
 
         /* season_DayOfWeek */
         keys.Add($"{gameSeason}_{gameDayOfWeek}");
@@ -104,7 +104,7 @@ public class NPCSchedule : MonoBehaviour
                 return scheduleData;
         }
 
-        return null;
+        return new List<ScheduleData>();
 
     }
 }
