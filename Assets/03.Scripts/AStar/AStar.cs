@@ -14,15 +14,14 @@ public class AStar : MonoBehaviour
     GridNodes _gridNodes;
     Node _startNode;
     Node _targetNode;
-    int _gridWidth;
-    int _gridHeight;
 
     PriorityQueue<Node> _openSet;
     HashSet<int> _openSetIds;
     HashSet<Node> _closedSet;
 
     bool _pathFound = false;
-
+    
+    public MapDebugger _mapDebugger;
     public bool BuildPath(GameLocation location, Vector2Int start, Vector2Int goal, Stack<PathNode> stack)
     {
         
@@ -39,8 +38,7 @@ public class AStar : MonoBehaviour
     bool SetupPathfindingGrid(GameLocation location, Vector2Int startPos, Vector2Int goalPos)
     {
         MapData mapData = location.MapData;
-        _gridWidth = mapData._mapWidth;
-        _gridHeight = mapData._mapHeight;
+        _mapDebugger.SetMapData(mapData);
 
         _gridNodes = new GridNodes(mapData);
         _openSet = new PriorityQueue<Node>();
@@ -50,9 +48,14 @@ public class AStar : MonoBehaviour
         _startNode = _gridNodes.GetGridNode(startPos.x , startPos.y);
         _targetNode = _gridNodes.GetGridNode(goalPos.x, goalPos.y);
 
-        for (int x = 0; x < _gridWidth; x++)
+        int minX = mapData._minX;
+        int minY = mapData._minY;
+        int maxX = minX + mapData._actualWidth;
+        int maxY = minY + mapData._actualHeight;
+
+        for (int x = minX; x < maxX; x++)
         {
-            for (int y = 0; y < _gridHeight; y++)
+            for (int y = minY; y < maxY; y++)
             {
                 var tile = mapData.GetTileData(x, y);
                 if (tile == null) continue;
@@ -102,10 +105,13 @@ public class AStar : MonoBehaviour
         {
             for (int dy = -1; dy <= 1; dy++)
             {
-                if (dx != 0 && dy != 0) continue;
+                //if (dx != 0 && dy != 0) continue;
                 if (dx == 0 && dy == 0) continue;
 
-                Node neighbor = _gridNodes.GetGridNode(current._gridPosition.x + dx, current._gridPosition.y + dy);
+                int checkX = current._gridPosition.x + dx; 
+                int checkY = current._gridPosition.y + dy;
+
+                Node neighbor = _gridNodes.GetGridNode(checkX, checkY);
                 if (neighbor == null || neighbor._isObstacle || _closedSet.Contains(neighbor)) continue;
 
                 int distance = GetDistance(current._gridPosition, neighbor._gridPosition);

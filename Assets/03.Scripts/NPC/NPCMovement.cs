@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,7 +30,7 @@ public class NPCMovement : MonoBehaviour
     string _previousPathNodeLocation;
     Vector3Int _nextCellPos;
     Vector3 _nextWorldPos;
-    Vector2 _moveDir; // ½ÇÁ¦ ÀÌµ¿ ¹æÇâ
+    Vector2 _moveDir; // ì‹¤ì œ ì´ë™ ë°©í–¥
 
     bool _isMoving = false;
     bool _npcInitialized;
@@ -53,6 +53,8 @@ public class NPCMovement : MonoBehaviour
         _targetLocation = _currentLocation;
         _targetCellPos = _currentCellPos;
         _targetWorldPos = transform.position;
+
+        Debug.Log($"Start Cell {_currentCellPos} ");
     }
 
     void Start()
@@ -94,8 +96,11 @@ public class NPCMovement : MonoBehaviour
         _previousPathNodeLocation = _currentLocation;
         _currentCellPos = GridUtils.WorldToGrid(transform.position);
         _nextCellPos = _currentCellPos;
+
         _targetCellPos = _currentCellPos;
         _targetWorldPos = GridUtils.GridToWorldCenter(_currentCellPos);
+
+        Debug.Log($"Init Cell {_currentCellPos} ");
     }
 
     public void SetScheduleDataDetails(ScheduleData scheduleData)
@@ -172,14 +177,14 @@ public class NPCMovement : MonoBehaviour
                 bool pathFound = NPCManager.Instance.BuildPath(location, start, goal, _nav.PathStepStack);
                 Debug.Log($"[{_npcController.NPCName}] BuildPath {start}->{goal} = {pathFound} (Stack now: {_nav.PathStepStack.Count})");
 
-                /* A* °æ·Î »ı¼º */
+                /* A* ê²½ë¡œ ìƒì„± */
                 if (NPCManager.Instance.BuildPath(location, start, goal, _nav.PathStepStack))
                 {
                     _nav.UpdateTimesOnPath();
                 }
                 else
                 {
-                    /* °æ·Î ¾øÀ½ : Á÷¼± ÀÌµ¿ */
+                    /* ê²½ë¡œ ì—†ìŒ : ì§ì„  ì´ë™ */
                     _nextCellPos = _targetCellPos;
                     MoveToCellPos(_nextCellPos, TimeManager.Instance.GetGameTime(), TimeManager.Instance.GetGameTime());
                     return;

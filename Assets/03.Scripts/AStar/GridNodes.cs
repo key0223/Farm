@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
@@ -53,7 +53,7 @@ public class GridNodes
         int arrayX = posX - _minX;
         int arrayY = posY - _minY;
 
-        if (arrayX < _width && arrayY < _height)
+        if (arrayX >= 0 && arrayX < _width && arrayY >= 0 && arrayY < _height)
         {
             return _gridNode[arrayX, arrayY];
         }

@@ -1,4 +1,4 @@
-using SuperTiled2Unity;
+ï»¿using SuperTiled2Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -214,10 +214,11 @@ public class MapData
     }
     #endregion
 
-    /* ¸Ê °æ°è ³» À§Ä¡ÀÎÁö È®ÀÎ */
+    /* ë§µ ê²½ê³„ ë‚´ ìœ„ì¹˜ì¸ì§€ í™•ì¸ */
     public bool IsValidPosition(int x, int y)
     {
-        return x >= 0 && x < _mapWidth && y >= 0 && y < _mapHeight;
+        return x >= _minX && x < (_minX + _actualWidth) &&
+           y >= _minY && y < (_minY + _actualHeight);
     }
    
     public TileData GetTileData(int gridX, int gridY)
