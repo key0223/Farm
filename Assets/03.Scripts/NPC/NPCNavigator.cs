@@ -1,10 +1,10 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 /// <summary>
-/// NPC ½ºÄÉÁì ±â¹İ °æ·Î »ı¼º
+/// NPC ìŠ¤ì¼€ì¥´ ê¸°ë°˜ ê²½ë¡œ ìƒì„±
 /// </summary>
 public class NPCNavigator : MonoBehaviour
 {
@@ -32,7 +32,7 @@ public class NPCNavigator : MonoBehaviour
             if(NPCManager.Instance.BuildPath(location,currentCellPos,targetCellPos,_pathStepStack))
             {
                 UpdateTimesOnPath();
-                _pathStepStack.Pop(); // ½ÃÀÛÁ¡ Á¦°Å
+                _pathStepStack.Pop(); // ì‹œì‘ì  ì œê±°
             }
         }
         else if(data.Location != _movement.CurrentLocation)
@@ -48,7 +48,7 @@ public class NPCNavigator : MonoBehaviour
 
                     MapPath mapPath = mapRoute.MapPaths[i];
 
-                    // ¸¶Áö¸· ¸ñÀûÁö ÀÎ°¡
+                    // ë§ˆì§€ë§‰ ëª©ì ì§€ ì¸ê°€
                     if (mapPath.ToX >= MAX_GRID_WIDTH || mapPath.ToY >= MAX_GRID_HEIGHT)
                     {
                         toCellX = data.TargetX;
@@ -60,7 +60,7 @@ public class NPCNavigator : MonoBehaviour
                         toCellY = mapPath.ToY;
                     }
 
-                    // Ãâ¹ßÁö ÀÎ°¡?
+                    // ì¶œë°œì§€ ì¸ê°€?
 
                     if (mapPath.FromX >= MAX_GRID_WIDTH || mapPath.FromY >= MAX_GRID_HEIGHT)
                     {
@@ -82,8 +82,9 @@ public class NPCNavigator : MonoBehaviour
                 }
             }
         }
+        Debug.Log($"Target: {data.Location}({data.TargetX},{data.TargetY}), Path Count: {_pathStepStack.Count}");
 
-        if(_pathStepStack.Count > 1)
+        if (_pathStepStack.Count > 1)
         {
             UpdateTimesOnPath();
             _pathStepStack.Pop();
@@ -92,7 +93,7 @@ public class NPCNavigator : MonoBehaviour
         }
     }
 
-    /* ¾ğÁ¦ µµÂøÇÒÁö ±â·Ï */
+    /* ì–¸ì œ ë„ì°©í• ì§€ ê¸°ë¡ */
     public void UpdateTimesOnPath()
     {
         TimeSpan currentGameTime = TimeManager.Instance.GetGameTime();

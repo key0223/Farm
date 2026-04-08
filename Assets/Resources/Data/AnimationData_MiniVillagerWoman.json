@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "73d4acda05e8fda0d585c937330cfa4f",
+	"md5": "fd4dd8e52d9ac4c5d65f14e84e5f261e",
 	"array": 
 		[
 			{
@@ -38,6 +38,14 @@
 				"SheetDirectory": "Sprites/Characters/NPC",
 				"ParentSheet": "MiniVillagerWoman",
 				"SpriteIndexStr": "24-27"
+			},
+			{
+				"AnimationName": "MiniVillagerWoman_sleep",
+				"LayerType": "NONE",
+				"SheetDirectory": "Sprites/Characters/NPC",
+				"ParentSheet": "MiniVillagerWoman",
+				"SpriteIndexStr": 30,
+				"Loop": true
 			}
 		]
 }

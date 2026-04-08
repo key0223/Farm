@@ -19,8 +19,7 @@ public class NPCSchedule : MonoBehaviour
 
     void Start()
     {
-        _npcController = GetComponent<NPCController>();
-        _scheduleDict = TableDataManager.Instance.GetNPCScheduleDict(_npcController.NPCName);
+        
     }
 
     void OnEnable()
@@ -41,11 +40,24 @@ public class NPCSchedule : MonoBehaviour
     }
     void SubscribeEvent()
     {
+        Init();
         TimeManager.Instance.OnMinutePassed += OnMinuteTick;
         TimeManager.Instance.OnDayPassed += OnNewDayStarted;
         GameManager.OnAllManagersReady -= SubscribeEvent;
     }
+    
+    void Init()
+    {
+        _npcController = GetComponent<NPCController>();
+        _scheduleDict = TableDataManager.Instance.GetNPCScheduleDict(_npcController.NPCName);
 
+        if(TimeManager.Instance !=null)
+        {
+            _currentSchedule = GetSchedule(TimeManager.Instance.GameSeason.ToString().ToLower(),
+            TimeManager.Instance.GameDay,
+            TimeManager.Instance.GameDayOfWeek);
+        }
+    }
     void OnMinuteTick(int gameMinute, int gameHour, int gameDay, string gameDayOfWeek, Season gameSeason, int gameYear)
     {
         int currentTime = (gameHour * 100) + gameMinute;
@@ -70,7 +82,7 @@ public class NPCSchedule : MonoBehaviour
             _currentScheduleIndex++;
 
             /* 취침 */
-            if (nextSchedule.Time >= 2200)
+            if (nextSchedule.Time >= 2300)
                 _currentScheduleIndex = _currentSchedule.Count;
         }
         

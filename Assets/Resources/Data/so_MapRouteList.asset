@@ -65,3 +65,29 @@ MonoBehaviour:
       FromY: -7
       ToX: 99999
       ToY: 99999
+  - FromMapName: VillagerHouse1
+    ToMapName: Town
+    MapPaths:
+    - MapName: VillagerHouse1
+      FromX: 99999
+      FromY: 99999
+      ToX: 16
+      ToY: -12
+    - MapName: Town
+      FromX: 2
+      FromY: -6
+      ToX: 99999
+      ToY: 99999
+  - FromMapName: Town
+    ToMapName: VillagerHouse1
+    MapPaths:
+    - MapName: Town
+      FromX: 99999
+      FromY: 99999
+      ToX: 2
+      ToY: -6
+    - MapName: VillagerHouse1
+      FromX: 6
+      FromY: -12
+      ToX: 99999
+      ToY: 99999

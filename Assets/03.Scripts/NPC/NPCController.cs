@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,17 +24,17 @@ public class NPCController : MonoBehaviour
     public NPCMovement NPCMovement { get { return _npcMovement; }}
     public NPCAnimator NPCAnim { get { return _npcAnimator; }}
 
-    void Start()
+
+    void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
         _npcMovement = GetComponent<NPCMovement>();
         _npcNavigator = GetComponent<NPCNavigator>();
         _npcAnimator = GetComponent<NPCAnimator>();
-
         _npcMovement.CurrentLocation = _npcStartLocation;
-    }
 
+    }
     public void MoveTo(ScheduleData scheduleData)
     {
         _npcNavigator.BuildPath(scheduleData);
