@@ -42,6 +42,8 @@ public class NPCController : MonoBehaviour
 
     public void Interact(PlayerController player, Item gift)
     {
+        if (_npcAnimator.IsSleeping()) return;
+
         Vector2 dir = (player.transform.position - transform.position).normalized;
         int faceDir = _npcMovement.GetDirectionIndex(dir);
         _npcMovement.CurrentDirection = faceDir;

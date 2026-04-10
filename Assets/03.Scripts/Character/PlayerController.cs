@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour, ISaveable
     [ContextMenu("DialogueTest")]
     public void DialogueTest()
     {
-        DialogueManager.Instance.StartDialogue("Rand", TestDialogue);
+        DialogueManager.Instance.StartDialogue("MiniVillagerWoman", TestDialogue);
     }
     #region Saveable
     public void ISaveableRegister()

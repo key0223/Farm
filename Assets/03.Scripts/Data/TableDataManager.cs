@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
     public Dictionary<int, CropDataBase> CropDict = new Dictionary<int, CropDataBase>();
     public Dictionary<string, AnimationDataBase> AnimationDict = new Dictionary<string, AnimationDataBase>();
     public Dictionary<string, Dictionary<string, StringDataBase>> Languages = new Dictionary<string, Dictionary<string, StringDataBase>>();
-    public Dictionary<string, DialogueData> DialogueDict = new Dictionary<string, DialogueData>();
+    public Dictionary<string,Dictionary<string, DialogueData>> DialogueDict = new Dictionary<string, Dictionary<string, DialogueData>>();
     public Dictionary<string, List<ScheduleData>> ScheduleDict = new Dictionary<string, List<ScheduleData>>();
     public Dictionary<string,ShopDataBase> ShopDict = new Dictionary<string, ShopDataBase>();
 
@@ -36,7 +36,7 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
         LoadAllAnimations();
         LoadAllLanguages();
 
-        DialogueDict = LoadJson<Data.DialogueLoader, string, DialogueData>("DialogueData_Rand").MakeDict();
+        LoadAllDialogues();
         ScheduleDict = LoadJson<Data.ScheduleLoader, string, List<ScheduleData>>("ScheduleData_Rand").MakeDict();
         ShopDict = LoadJson<Data.ShopLoader, string, ShopDataBase>("ShopData").MakeDict();
     }
@@ -129,12 +129,32 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
     }
     #endregion
 
+    void LoadAllDialogues()
+    {
+        DialogueDict.Add("ko", MakeKoreanDialogueDict());
+    }
+
+    Dictionary<string,DialogueData> MakeKoreanDialogueDict()
+    {
+        Dictionary<string,DialogueData> result = new Dictionary<string,DialogueData>();
+
+        Dictionary<string, DialogueData> miniVillagerWoman = LoadJson<Data.DialogueLoader, string, DialogueData>("DialogueData_MiniVillagerWoman_ko").MakeDict();
+
+        result = MergeDict<string, DialogueData>(miniVillagerWoman);
+
+        return result;
+    }
     public Dictionary<string,DialogueData> GetNpcDialogueDict(string npcName)
     {
+        Dictionary<string, DialogueData> currentDict = new Dictionary<string, DialogueData>();
+        DialogueDict.TryGetValue(GameManager.Instance.Config.LanguageCode, out currentDict);
+
+        if (currentDict == null) return null;
+
         string prefix = $"{npcName}_";
         Dictionary<string,DialogueData> dict = new Dictionary<string,DialogueData>();
 
-        foreach(var kvp in DialogueDict)
+        foreach(var kvp in currentDict)
         {
             if (!kvp.Key.StartsWith(npcName, StringComparison.OrdinalIgnoreCase))
                 continue;

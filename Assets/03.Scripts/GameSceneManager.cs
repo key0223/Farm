@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -83,6 +83,7 @@ public class GameSceneManager : SingletonMonobehaviour<GameSceneManager>
 
     IEnumerator CoFadeScene()
     {
+        TimeManager.Instance.SetGameClockPaused(true);
         GameManager.Instance.Player.CanMove = false;
         yield return StartCoroutine(CoFade(1f)); /* Fading to black */
 
@@ -90,6 +91,7 @@ public class GameSceneManager : SingletonMonobehaviour<GameSceneManager>
 
         yield return StartCoroutine(CoFade(0));
 
+        TimeManager.Instance.SetGameClockPaused(false);
         GameManager.Instance.Player.CanMove = true;
 
     }

@@ -2953,7 +2953,6 @@ MonoBehaviour:
   _observePenalties: 1
   _pathMovementPenalty: 0
   _defaultMovementPenalty: 0
-  _mapDebugger: {fileID: 271162794}
 --- !u!114 &271162794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2971,6 +2970,7 @@ MonoBehaviour:
   outlineColor: {r: 0, g: 1, b: 0, a: 1}
   checkX: 0
   checkY: 0
+  targetMapDataName: Town
 --- !u!1 &273974316
 GameObject:
   m_ObjectHideFlags: 0
@@ -7635,7 +7635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d852b4af6c51e040aa52b47f130a82d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TestDialogue: Sun2
+  TestDialogue: spring_6
 --- !u!114 &658673275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26468,7 +26468,7 @@ PrefabInstance:
     - target: {fileID: 2449952039033281462, guid: 86a9d58bac9c2554ebb23f29c33da743,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.3
+      value: -9.04
       objectReference: {fileID: 0}
     - target: {fileID: 2449952039033281462, guid: 86a9d58bac9c2554ebb23f29c33da743,
         type: 3}

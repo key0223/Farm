@@ -84,6 +84,8 @@ public class NPCNavigator : MonoBehaviour
         }
         Debug.Log($"Target: {data.Location}({data.TargetX},{data.TargetY}), Path Count: {_pathStepStack.Count}");
 
+        
+
         if (_pathStepStack.Count > 1)
         {
             UpdateTimesOnPath();

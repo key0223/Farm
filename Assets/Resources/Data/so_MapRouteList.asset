@@ -72,7 +72,7 @@ MonoBehaviour:
       FromX: 99999
       FromY: 99999
       ToX: 16
-      ToY: -12
+      ToY: -14
     - MapName: Town
       FromX: 2
       FromY: -6
@@ -87,7 +87,7 @@ MonoBehaviour:
       ToX: 2
       ToY: -6
     - MapName: VillagerHouse1
-      FromX: 6
+      FromX: 15
       FromY: -12
       ToX: 99999
       ToY: 99999

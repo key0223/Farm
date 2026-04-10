@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
@@ -37,6 +37,7 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>, ISaveable
     public int GameYear { get { return _gameYear; } }
     public int GameDay { get { return _gameDay; } }
     public string GameDayOfWeek { get { return _gameDayOfWeek; } }
+
     #endregion
 
     protected override void Awake()
@@ -59,14 +60,18 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>, ISaveable
         if (!GameManager.Instance.AllManagersReady)
             return;
 
+        UIManager.Instance.OnUIOpenedChanged -= SetGameClockPaused;
+        UIManager.Instance.OnUIOpenedChanged += SetGameClockPaused;
         ISaveableRegister();
     }
     void OnDisable()
     {
+        UIManager.Instance.OnUIOpenedChanged -= SetGameClockPaused;
         ISaveableDeregister();
     }
     void SubscribeEvent()
     {
+        UIManager.Instance.OnUIOpenedChanged += SetGameClockPaused;
         ISaveableRegister();
 
         GameManager.OnAllManagersReady -= SubscribeEvent;
@@ -234,6 +239,10 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>, ISaveable
         }
     }
 
+    public void SetGameClockPaused(bool paused)
+    {
+        _gameClockPaused = paused;
+    }
     void PlayerTestInput()
     {
         // Trigger Advance Time

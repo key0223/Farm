@@ -21,7 +21,6 @@ public class AStar : MonoBehaviour
 
     bool _pathFound = false;
     
-    public MapDebugger _mapDebugger;
     public bool BuildPath(GameLocation location, Vector2Int start, Vector2Int goal, Stack<PathNode> stack)
     {
         
@@ -38,7 +37,6 @@ public class AStar : MonoBehaviour
     bool SetupPathfindingGrid(GameLocation location, Vector2Int startPos, Vector2Int goalPos)
     {
         MapData mapData = location.MapData;
-        _mapDebugger.SetMapData(mapData);
 
         _gridNodes = new GridNodes(mapData);
         _openSet = new PriorityQueue<Node>();

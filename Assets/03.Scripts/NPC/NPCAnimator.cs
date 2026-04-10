@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,5 +55,10 @@ public class NPCAnimator : MonoBehaviour
         _isInAction = false;
         _animatedSprite.PlayAnim("idle");
         _lastAnimState = "idle";
+    }
+
+    public bool IsSleeping()
+    {
+        return _lastAnimState == "sleep";
     }
 }

@@ -22,6 +22,8 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
     bool _isQuestionActive;
     bool _dialogueKilled;
 
+    Dictionary<string,DialogueData> _currentDialogueDict = new Dictionary<string,DialogueData>();
+
     DialogueState _dialogueState;
     List<DialogueResponseOption> _currentResponses = new List<DialogueResponseOption>();
 
@@ -50,9 +52,14 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
         TimeManager.Instance.OnDayPassed -= OnNewDayStarted;
     }
   
-
+    void InitDialogueDict()
+    {
+        _currentDialogueDict.Clear();
+        _currentDialogueDict = GetDialogueDict(GameManager.Instance.Config.LanguageCode);
+    }
     void SubscribeEvent()
     {
+        InitDialogueDict();
         TimeManager.Instance.OnDayPassed += OnNewDayStarted;
         GameManager.OnAllManagersReady -= SubscribeEvent;
     }
@@ -68,7 +75,7 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
     public void StartDialogue(string npc, string dialogueId)
     {
         DialogueData dialogueData;
-        TableDataManager.Instance.DialogueDict.TryGetValue(dialogueId, out dialogueData);
+        _currentDialogueDict.TryGetValue($"{dialogueId}", out dialogueData);
         if (dialogueData == null) return;
 
         _currentNpc = npc;
@@ -223,7 +230,8 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
     void LoadReactionDialogue(string reactionId)
     {
         DialogueData reactionData;
-        TableDataManager.Instance.DialogueDict.TryGetValue(reactionId, out reactionData);
+        bool found = _currentDialogueDict.TryGetValue($"{_currentNpc}_{reactionId}" , out reactionData);
+        Debug.Log($"LoadReaction: {_currentNpc}_{reactionId}, Found: {found}"); // 디버그
         if (reactionData == null)
         {
             ProcessNextLine();
@@ -374,7 +382,7 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
     }
     bool TryGetDialogue(string npcName,string key, out DialogueData data)
     {
-        return TableDataManager.Instance.DialogueDict.TryGetValue($"{npcName}_{key}", out data);
+        return _currentDialogueDict.TryGetValue($"{npcName}_{key}", out data);
     }
 
     public DialogueContext BuildContext(string npcName)
@@ -458,6 +466,16 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
 
         return DialogueTagType.NONE;
     }
+
+    Dictionary<string, DialogueData> GetDialogueDict(string languageCode)
+    {
+        Dictionary<string, DialogueData> dict;
+        TableDataManager.Instance.DialogueDict.TryGetValue(languageCode, out dict);
+
+        if (dict == null) return null;
+        return dict;
+    }
+
     #endregion
 
     void OnNewDayStarted(int gameMinute, int gameHour, int gameDay, string gameDayOfWeek, Season gameSeason)
