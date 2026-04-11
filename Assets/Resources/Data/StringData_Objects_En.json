@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "376cac4f7e7fc6571930f15d22b9a4ce",
+	"md5": "68b258427311ea368fc832336d83f6eb",
 	"array": 
 		[
 			{
@@ -327,6 +327,105 @@
 			{
 				"StringId": "Kale Seeds_Description",
 				"Translation": "Plant these in the spring. Takes 6 days to mature. Harvest with the scythe."
+			},
+			{
+				"StringId": "Salt_Name",
+				"Translation": "Salt"
+			},
+			{
+				"StringId": "Salt_Description",
+				"Translation": "A seasoning that adds saltiness and improves the overall quality of cooked dishes."
+			},
+			{
+				"StringId": "Oli_Name",
+				"Translation": "Oil"
+			},
+			{
+				"StringId": "Oli_Description",
+				"Translation": "A basic cooking oil used in everyday cooking."
+			},
+			{
+				"StringId": "Butter_Name",
+				"Translation": "Butter"
+			},
+			{
+				"StringId": "Butter_Description",
+				"Translation": "A dairy fat made by solidifying cream. Adds a rich, savory flavor and aroma to food."
+			},
+			{
+				"StringId": "Creamy Veggie Soup_Name",
+				"Translation": "Creamy Veggie Soup"
+			},
+			{
+				"StringId": "Creamy Veggie Soup_Description",
+				"Translation": "A smooth cream soup made with a variety of vegetables"
+			},
+			{
+				"StringId": "Bread_Name",
+				"Translation": "Bread"
+			},
+			{
+				"StringId": "Bread_Description",
+				"Translation": "Basic bread used as a staple food."
+			},
+			{
+				"StringId": "Potato Gratin_Name",
+				"Translation": "Potato Gratin"
+			},
+			{
+				"StringId": "Potato Gratin_Description",
+				"Translation": "Thinly sliced potatoes baked golden brown with cream and butter."
+			},
+			{
+				"StringId": "Carrot Muffin_Name",
+				"Translation": "Carrot Muffin"
+			},
+			{
+				"StringId": "Carrot Muffin_Description",
+				"Translation": "A sweet muffin made by finely grating carrots and baking them with flour in an oven."
+			},
+			{
+				"StringId": "Parsnip Soup_Name",
+				"Translation": "Parsnip Soup"
+			},
+			{
+				"StringId": "Parsnip Soup_Description",
+				"Translation": "A warm cream soup made by boiling parsnips in milk."
+			},
+			{
+				"StringId": "Creamy Veggie Soup Recipe_Name",
+				"Translation": "Creamy Veggie Soup Recipe"
+			},
+			{
+				"StringId": "Creamy Veggie Soup Recipe_Description"
+			},
+			{
+				"StringId": "Bread Recipe_Name",
+				"Translation": "Bread Recipe"
+			},
+			{
+				"StringId": "Bread Recipe_Description"
+			},
+			{
+				"StringId": "Potato Gratin Recipe_Name",
+				"Translation": "Potato Gratin Recipe"
+			},
+			{
+				"StringId": "Potato Gratin Recipe_Description"
+			},
+			{
+				"StringId": "Carrot Muffin Recipe_Name",
+				"Translation": "Carrot Muffin Recipe"
+			},
+			{
+				"StringId": "Carrot Muffin Recipe_Description"
+			},
+			{
+				"StringId": "Parsnip Soup Recipe_Name",
+				"Translation": "Parsnip Soup Recipe"
+			},
+			{
+				"StringId": "Parsnip Soup Recipe_Description"
 			}
 		]
 }

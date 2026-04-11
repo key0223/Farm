@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "072349db85bf4b26b6878b410c62bf6c",
+	"md5": "d5b80f2bd479ee752b041aa5375dd6ce",
 	"array": 
 		[
 			{
@@ -149,6 +149,22 @@
 			{
 				"StringId": "Pm",
 				"Translation": "오후"
+			},
+			{
+				"StringId": "Fruit",
+				"Translation": "과일"
+			},
+			{
+				"StringId": "Artisan Goods",
+				"Translation": "장인 제작품"
+			},
+			{
+				"StringId": "Cooking",
+				"Translation": "요리"
+			},
+			{
+				"StringId": "Recipe",
+				"Translation": "제작법"
 			}
 		]
 }

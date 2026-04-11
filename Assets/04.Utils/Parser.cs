@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +9,9 @@ public static class Parser
 {
     public static HashSet<string> ParseString(string rawString)
     {
-        HashSet<string> set = new HashSet<string>(StringComparer.OrdinalIgnoreCase); /* Áßº¹, ´ë¼Ò¹®ÀÚ ¹«½Ã */
-        if (string.IsNullOrWhiteSpace(rawString)) return set; /* ÀÔ·Â °ªÀÌ null ÀÌ¸é return */
-        var removeSpace = new string(rawString.Where(ch => !char.IsWhiteSpace(ch)).ToArray()); /* °ø¹é Á¦°Å */
+        HashSet<string> set = new HashSet<string>(StringComparer.OrdinalIgnoreCase); /* ì¤‘ë³µ, ëŒ€ì†Œë¬¸ìž ë¬´ì‹œ */
+        if (string.IsNullOrWhiteSpace(rawString)) return set; /* ìž…ë ¥ ê°’ì´ null ì´ë©´ return */
+        var removeSpace = new string(rawString.Where(ch => !char.IsWhiteSpace(ch)).ToArray()); /* ê³µë°± ì œê±° */
 
         int start = 0;
         for (int i = 0; i <= removeSpace.Length; i++)
@@ -40,8 +40,8 @@ public static class Parser
     {
         HashSet<TEnum> set = new HashSet<TEnum>();
 
-        if (string.IsNullOrWhiteSpace(rawString)) return set; /* ÀÔ·Â °ªÀÌ null ÀÌ¸é return */
-        var removeSpace = new string(rawString.Where(ch => !char.IsWhiteSpace(ch)).ToArray()); /* °ø¹é Á¦°Å */
+        if (string.IsNullOrWhiteSpace(rawString)) return set; /* ìž…ë ¥ ê°’ì´ null ì´ë©´ return */
+        var removeSpace = new string(rawString.Where(ch => !char.IsWhiteSpace(ch)).ToArray()); /* ê³µë°± ì œê±° */
 
         int start = 0;
         for (int i = 0; i <= removeSpace.Length; i++)
@@ -157,7 +157,7 @@ public static class Parser
 
     public static string ToHexRGB(Color color)
     {
-        return "#" + ColorUtility.ToHtmlStringRGB(color); 
+        return "#" + ColorUtility.ToHtmlStringRGB(color);
     }
 
     public static bool TryParseTileKey(string tileKey, out Vector3Int gridPos)
@@ -207,5 +207,26 @@ public static class Parser
     {
         string[] tokens = str.Split(',', StringSplitOptions.RemoveEmptyEntries);
         return tokens;
+    }
+    public static List<Need> ParserNeeds(string rawString)
+    {
+        List<Need> result = new List<Need>();
+
+        if (string.IsNullOrEmpty(rawString)) return result;
+
+        string[] pairs = rawString.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string pair in pairs)
+        {
+            string[] parts = pair.Split(':');
+
+            if (parts.Length == 2 &&
+                int.TryParse(parts[0].Trim(), out int itemId) &&
+                int.TryParse(parts[1].Trim(), out int count))
+            {
+                result.Add(new Need { ItemId = itemId, Count = count });
+            }
+        }
+        return result;
     }
 }

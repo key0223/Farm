@@ -53,7 +53,23 @@ namespace Data
             return dict;
         }
     }
+    [Serializable]
+    public class RecipeLoader:ILoader<int, RecipeDataBase>
+    {
+        public RecipeDataBase[] array;
 
+        public Dictionary<int, RecipeDataBase> MakeDict()
+        {
+            Dictionary<int,RecipeDataBase> dict = new Dictionary<int, RecipeDataBase>();
+            foreach(RecipeDataBase item in array)
+            {
+                item.Needs = Parser.ParserNeeds(item.Rep_ingredient);
+                dict.Add(item.Id,item);
+            }
+
+            return dict;
+        }
+    }
     [Serializable]
     public class  AnimationLoader : ILoader<string, AnimationDataBase>
     {

@@ -14,6 +14,7 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
 
     public Dictionary<int, ItemDataBase> ItemDict = new Dictionary<int, ItemDataBase>();
     public Dictionary<int, CropDataBase> CropDict = new Dictionary<int, CropDataBase>();
+    public Dictionary<int, RecipeDataBase> RecipeDict = new Dictionary<int, RecipeDataBase>();
     public Dictionary<string, AnimationDataBase> AnimationDict = new Dictionary<string, AnimationDataBase>();
     public Dictionary<string, Dictionary<string, StringDataBase>> Languages = new Dictionary<string, Dictionary<string, StringDataBase>>();
     public Dictionary<string,Dictionary<string, DialogueData>> DialogueDict = new Dictionary<string, Dictionary<string, DialogueData>>();
@@ -33,6 +34,7 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
         Dictionary<int, ItemDataBase> objects = LoadJson<Data.ItemLoader, int, ItemDataBase>("Objects").MakeDict();
         ItemDict = MergeDict<int, ItemDataBase>(tools, objects);
         CropDict = LoadJson<Data.CropLoader, int, CropDataBase>("Crops").MakeDict();
+        RecipeDict = LoadJson<Data.RecipeLoader, int, RecipeDataBase>("Recipes").MakeDict();
         LoadAllAnimations();
         LoadAllLanguages();
 

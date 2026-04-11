@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "5d03b995b16c8eceb88bdbc826c5f28d",
+	"md5": "7c8aaf682d41af64027e5daaae9f7b1e",
 	"array": 
 		[
 			{
@@ -149,6 +149,22 @@
 			{
 				"StringId": "Pm",
 				"Translation": "pm"
+			},
+			{
+				"StringId": "Fruit",
+				"Translation": "Fruit"
+			},
+			{
+				"StringId": "Artisan Goods",
+				"Translation": "Artisan Goods"
+			},
+			{
+				"StringId": "Cooking",
+				"Translation": "Food"
+			},
+			{
+				"StringId": "Recipe",
+				"Translation": "Recipe"
 			}
 		]
 }

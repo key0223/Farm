@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "3f8412b9a427366c0efc4b8e9cceb47d",
+	"md5": "ce1abaf1bbf2d97a5a336fa10862fa74",
 	"array": 
 		[
 			{
@@ -329,6 +329,105 @@
 			{
 				"StringId": "Kale Seeds_Description",
 				"Translation": "봄 작물. 성장하려면 6일 소요됩니다. 낫으로 수확할 수 있습니다."
+			},
+			{
+				"StringId": "Salt_Name",
+				"Translation": "소금"
+			},
+			{
+				"StringId": "Salt_Description",
+				"Translation": "짠맛을 더해 요리의 완성도를 높여주는 조미료."
+			},
+			{
+				"StringId": "Oli_Name",
+				"Translation": "기름"
+			},
+			{
+				"StringId": "Oli_Description",
+				"Translation": "요리에 사용하는 기본 식용유"
+			},
+			{
+				"StringId": "Butter_Name",
+				"Translation": "버터"
+			},
+			{
+				"StringId": "Butter_Description",
+				"Translation": "크림을 굳힌 동물성 지방 음식에 고소한 맛과 고소한 향을 더해 준다."
+			},
+			{
+				"StringId": "Creamy Veggie Soup_Name",
+				"Translation": "부드러운 야채 수프"
+			},
+			{
+				"StringId": "Creamy Veggie Soup_Description",
+				"Translation": "각종 야채가 들어간 크림 수프."
+			},
+			{
+				"StringId": "Bread_Name",
+				"Translation": "빵"
+			},
+			{
+				"StringId": "Bread_Description",
+				"Translation": "기본 식사용 빵"
+			},
+			{
+				"StringId": "Potato Gratin_Name",
+				"Translation": "감자 그라탕"
+			},
+			{
+				"StringId": "Potato Gratin_Description",
+				"Translation": "감자를 얇게 썰어 크림과 버터로 노릇하게 구워낸 요리."
+			},
+			{
+				"StringId": "Carrot Muffin_Name",
+				"Translation": "당근 머핀"
+			},
+			{
+				"StringId": "Carrot Muffin_Description",
+				"Translation": "당근을 곱게 다져 밀가루와 함께 오븐에 구운 달콤한 머핀."
+			},
+			{
+				"StringId": "Parsnip Soup_Name",
+				"Translation": "파스닙 수프"
+			},
+			{
+				"StringId": "Parsnip Soup_Description",
+				"Translation": "파스닙과 우유로 끓인 뜨거운 크림 수프."
+			},
+			{
+				"StringId": "Creamy Veggie Soup Recipe_Name",
+				"Translation": "부드러운 야채 수프 레시피"
+			},
+			{
+				"StringId": "Creamy Veggie Soup Recipe_Description"
+			},
+			{
+				"StringId": "Bread Recipe_Name",
+				"Translation": "빵 레시피"
+			},
+			{
+				"StringId": "Bread Recipe_Description"
+			},
+			{
+				"StringId": "Potato Gratin Recipe_Name",
+				"Translation": "감자 그라탕 레시피"
+			},
+			{
+				"StringId": "Potato Gratin Recipe_Description"
+			},
+			{
+				"StringId": "Carrot Muffin Recipe_Name",
+				"Translation": "당근 머핀 레시피"
+			},
+			{
+				"StringId": "Carrot Muffin Recipe_Description"
+			},
+			{
+				"StringId": "Parsnip Soup Recipe_Name",
+				"Translation": "파스닙 수프 레시피"
+			},
+			{
+				"StringId": "Parsnip Soup Recipe_Description"
 			}
 		]
 }
