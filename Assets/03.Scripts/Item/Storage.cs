@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,14 +45,14 @@ public class Storage
 
         if(targetItem == null)
         {
-            /* ºó ½½·ÔÀÏ °æ¿ì ±×³É ³õ±â */
+            /* ë¹ˆ ìŠ¬ë¡¯ì¼ ê²½ìš° ê·¸ëƒ¥ ë†“ê¸° */
             SetItemAtSlot(targetIdx, draggedItem);
             if(sourceIdx >=0 && sourceContainer != null)
                 sourceContainer.Storage.ClearSlot(sourceIdx);
         }
         else if(targetItem.Id == draggedItem.Id && draggedItem.Stackable && targetItem.Stackable)
         {
-            /* °°Àº ¾ÆÀÌÅÛÀÏ °æ¿ì ½ºÅÃ ÇÕÄ§ (³²´Â ½ºÅÃ¸¸Å­)  */
+            /* ê°™ì€ ì•„ì´í…œì¼ ê²½ìš° ìŠ¤íƒ í•©ì¹¨ (ë‚¨ëŠ” ìŠ¤íƒë§Œí¼)  */
             int spaceLeft = Define.ITEM_MAX_STACK - targetItem.Stack;
             int transferAmount = Mathf.Min(draggedItem.Stack, spaceLeft);
 
@@ -67,7 +67,7 @@ public class Storage
         }
         else
         {
-            /* ±³È¯ */
+            /* êµí™˜ */
             Item targetItemClone = targetItem.Clone();
             
             SetItemAtSlot(targetIdx,draggedItem.Clone());
@@ -131,7 +131,7 @@ public class Storage
             }
         }
 
-        /* ºó ½½·Ô */
+        /* ë¹ˆ ìŠ¬ë¡¯ */
         for (int i = 0; i < _slots.Length; i++)
         {
             if (_slots[i] == null)
@@ -148,6 +148,15 @@ public class Storage
         return Remove(id, count);
     }
 
+    public int GetItemStack(int id)
+    {
+        int idx = GetSlotIndex(id);
+        Item item = GetItemAtSlot(idx);
+
+        if(item !=null)
+            return item.Stack;
+        return -1;
+    }
     void ClearSlot(int slotIdx)
     {
         if (slotIdx < 0 || slotIdx >= _slots.Length)

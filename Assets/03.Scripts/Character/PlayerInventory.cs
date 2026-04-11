@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +8,11 @@ public class PlayerInventory : MonoBehaviour
 
     int _currentToolbarIndex = -1;
 
+    Dictionary<int,bool> _unlockedRecipes = new Dictionary<int,bool>();
     public Container PlayerContainer {  get { return _container; } }
     public int CurrentToolbarIndex {  get { return _currentToolbarIndex; } }  
 
+    public Dictionary<int, bool> UnlockedRecipes {  get { return _unlockedRecipes; } }
     public void SetCurrentToolbarItem(Item item)
     {
         _currentToolbarIndex = item != null ? _container.Storage.GetSlotIndex(item.Id) :-1;
@@ -39,7 +41,13 @@ public class PlayerInventory : MonoBehaviour
    
     public bool TryAdd(Item item)
     {
-        return _container.TryAdd(item);
+        if(item.Category == "Recipe")
+        {
+            _unlockedRecipes[item.Id] = true;
+            return true;
+        }
+        else
+            return _container.TryAdd(item);
     }
     public bool TryAddAt(int idx, Item item)
     {

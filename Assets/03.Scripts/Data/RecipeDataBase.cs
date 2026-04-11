@@ -10,7 +10,4 @@ public class RecipeDataBase
     public RecipeType RecipeType;
     public string Rep_ingredient;
     public int ResultItemId;
-
-    public List<Need> Needs;
-
 }

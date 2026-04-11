@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "c0d1b3881a70a6421102369929d95775",
+	"md5": "70107e6ecc45e5cc12401b3538d6f454",
 	"array": 
 		[
 			{
@@ -10,7 +10,7 @@
 				"CloseTime": 18,
 				"DayOff": "Sun",
 				"ClosedMessage": "SeedShop_Closed",
-				"SalableCategoriesString": "Seed,Resource"
+				"SalableCategoriesString": "Seed,Resource,Animal Product,Artisan Goods,Recipe"
 			},
 			{
 				"ShopId": "VegeShop",

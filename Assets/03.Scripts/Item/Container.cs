@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,6 +42,16 @@ public class Container
 
         return false;
     }
+
+    public bool TryConsume(int id,int count)
+    {
+        if(Storage.ConsumeExact(id, count))
+        {
+            OnSlotChanged?.Invoke();
+            return true;
+        }
+        return false;
+    }
     public bool TryRemove(int id, int count =1)
     {
         if(Storage.Remove(id,count))
@@ -51,6 +61,11 @@ public class Container
         }
 
         return false;
+    }
+
+    public int TryGetItemStack(int id)
+    {
+        return Storage.GetItemStack(id);
     }
     public void NotifyUIChanged()
     {

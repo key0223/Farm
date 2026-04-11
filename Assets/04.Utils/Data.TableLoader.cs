@@ -63,7 +63,6 @@ namespace Data
             Dictionary<int,RecipeDataBase> dict = new Dictionary<int, RecipeDataBase>();
             foreach(RecipeDataBase item in array)
             {
-                item.Needs = Parser.ParserNeeds(item.Rep_ingredient);
                 dict.Add(item.Id,item);
             }
 
