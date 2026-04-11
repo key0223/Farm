@@ -56,6 +56,10 @@ public partial class Define
         SHOVEL,
         WATERING,
     }
+    public enum RecipeType
+    {
+        COOKING,
+    }
     public enum Season
     {
         SPRING,

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
@@ -45,8 +45,8 @@ public class ToolDataBase:ItemDataBase
     public string UpgradeFromStr;
 
     public UpgradeFrom UpgradeFrom;
-
 }
+
 
 
 
