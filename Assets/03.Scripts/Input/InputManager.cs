@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +21,7 @@ public class InputManager : SingletonMonobehaviour<InputManager>
         Keys.Alpha6,Keys.Alpha7,Keys.Alpha8,Keys.Alpha9,Keys.Alpha0,
     };
 
-    // ±‚¥… ¥‹¿ß πˆ∆∞
+    // Í∏∞Îä• Îã®ÏúÑ Î≤ÑÌäº
     InputButton _useToolButton;
     InputButton _leftClickButton;
     InputButton _rightClickButton;
@@ -48,7 +48,7 @@ public class InputManager : SingletonMonobehaviour<InputManager>
         _input.Update(_watchedKeys);
         OnInput?.Invoke();
 
-        /* ≈∞∫∞ ¿Ã∫•∆Æ */
+        /* ÌÇ§Î≥Ñ Ïù¥Î≤§Ìä∏ */
         foreach (Keys key in _watchedKeys)
         {
             if (_input.IsNewKeyPress(key))
@@ -92,6 +92,7 @@ public class InputManager : SingletonMonobehaviour<InputManager>
             case Keys.Up : return KeyCode.UpArrow;
             case Keys.Down : return KeyCode.DownArrow;
             case Keys.E : return KeyCode.E;
+            case Keys.I : return KeyCode.I;
             case Keys.Escape: return KeyCode.Escape;
             case Keys.Return: return KeyCode.Return;
             case Keys.Alpha1: return KeyCode.Alpha1;

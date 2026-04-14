@@ -87,6 +87,7 @@ public class BuyMenu : ClickableMenu,IQuantityAdjuster
 
     void AddForSale(ShopDataBase data)
     {
+        _items.Clear();
         foreach (string category in data.SalableCategories)
         {
             List<ObjectItem> categoryItems = TableDataManager.Instance.ItemDict.Values

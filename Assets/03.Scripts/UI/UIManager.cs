@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using static Define;
 
@@ -10,7 +11,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     readonly Dictionary<Keys, (string name, Type type)> _uiButtons = new()
     {
         {Keys.E,("Inventory",typeof(InventoryMenu))},
-        {Keys.I,("TestTab",typeof(TestUI))},
+        //{Keys.I,("CookingCollection",typeof(CookingCollectionMenu))},
 
         /* Toolbar */
         {Keys.Alpha1,("Toolbar",typeof(ToolbarMenu))},
@@ -29,7 +30,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     Dictionary<string, string> _tabContainers = new()
     {
         {"Inventory","GameMenuContainer" },
-        {"TestTab","GameMenuContainer" },
+        {"CookingCollection","GameMenuContainer" },
         {"Buy","ShopContainer" },
         {"Sell","ShopContainer" },
     };
@@ -458,7 +459,7 @@ public void ShowSave()
         return (container,tabName) switch
         {
             ("GameMenuContainer", "Inventory")=>0,
-            ("GameMenuContainer", "TestTab") =>1,
+            ("GameMenuContainer", "CookingCollection") =>1,
             ("ShopContainer", "Buy") =>0,
             ("ShopContainer", "Sell") =>1,
             _ => 0
