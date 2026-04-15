@@ -13,9 +13,8 @@ public class CookingMenu : ClickableMenu
 
     List<Item> _cookingItems = new List<Item>();
     List<Recipe> _recipes = new List<Recipe>();
-
     CookingSlot[] _cookingSlots;
-
+    CookingInventorySlot[] _cookingInventorySlots;
 
     protected override void Awake()
     {
@@ -29,6 +28,7 @@ public class CookingMenu : ClickableMenu
         _cookingSlots = new CookingSlot[TableDataManager.Instance.RecipeDict.Count];
         Init_CookingItems();
         Init_CookingSlots();
+        Init_InventorySlot();
 
     }
     protected override void OnEnable()
@@ -41,6 +41,8 @@ public class CookingMenu : ClickableMenu
     }
     protected override void SubscribeEvent()
     {
+        _playerController = GameManager.Instance.Player;
+        _playerContainer = GameManager.Instance.Player.PlayerInven.PlayerContainer;
         base.SubscribeEvent();
     }
     void Init_CookingItems()
@@ -70,7 +72,7 @@ public class CookingMenu : ClickableMenu
         ClearCookingSlots();
         for (int i = 0; i < _cookingItems.Count; i++)
         {
-            GameObject slotObj = ResourceManager.Instance.Instantiate(_cookingSlotPrefabPath,_cookingSlotParent.transform);
+            GameObject slotObj = ResourceManager.Instance.Instantiate(_cookingSlotPrefabPath, _cookingSlotParent.transform);
             CookingSlot slot = slotObj.GetComponent<CookingSlot>();
             slot.SlotIndex = i;
             slot.SetItem(_cookingItems[i]);
@@ -81,19 +83,77 @@ public class CookingMenu : ClickableMenu
                 _clickableComponents.Add(slot);
         }
     }
-    
+
+    void Init_InventorySlot()
+    {
+        CookingInventorySlot[] foundSlots = GetComponentsInChildren<CookingInventorySlot>();
+        _cookingInventorySlots = new CookingInventorySlot[foundSlots.Length];
+
+        for(int i =0; i <foundSlots.Length; i++)
+        {
+            CookingInventorySlot slot = foundSlots[i];
+            slot.OwnerContainer = _playerContainer;
+            slot.SlotIndex = i;
+            _cookingInventorySlots[i]= slot;
+
+            if(!_clickableComponents.Contains(slot))
+            _clickableComponents.Add(slot);
+        }
+
+        RefreshInventorySlots();
+    }
+    void RefreshInventorySlots()
+    {
+        foreach(CookingInventorySlot slot in _cookingInventorySlots)
+        {
+            Item item = _playerContainer.Storage.GetItemAtSlot(slot.SlotIndex);
+            slot.SetItem(item);
+        }
+    }
     void ClearCookingSlots()
     {
-        if(_cookingSlots[0] == null) return;
-        for(int i = 0; i<_cookingSlots.Length; i++)
+        if (_cookingSlots[0] == null) return;
+        for (int i = 0; i < _cookingSlots.Length; i++)
         {
-            if(_clickableComponents.Contains(_cookingSlots[i]))
-            _clickableComponents.Remove(_cookingSlots[i]);
+            if (_clickableComponents.Contains(_cookingSlots[i]))
+                _clickableComponents.Remove(_cookingSlots[i]);
 
             ResourceManager.Instance.Destroy(_cookingSlots[i].gameObject);
         }
     }
-        public override void ReceiveLeftClick(Vector2 screenPos)
+
+    protected override void PerformHoverAction(Vector2 mousePos)
+    {
+        ClickableComponent previousHover = _currentClickableComponent;
+        _currentClickableComponent = null;
+
+        if (previousHover != null)
+            previousHover.OnHoverExit();
+
+            foreach (ClickableComponent component in _clickableComponents)
+        {
+            bool contains = component.ContainsPoint((int)mousePos.x, (int)mousePos.y);
+
+            if (contains)
+            {
+                _currentClickableComponent = component;
+                component.OnHover();
+
+                CookingInventorySlot slot = component.GetComponent<CookingInventorySlot>();
+                if (slot != null && slot.CurrentItem != null)
+                {
+                    string name = LocalizationManager.Instance.GetString(slot.CurrentItem.DisplayName);
+                    string itemType = slot.CurrentItem.Category;
+                    string desc = LocalizationManager.Instance.GetString(slot.CurrentItem.Description);
+                    string color = slot.CurrentItem.CategoryColor;
+                    UIManager.Instance.ShowTooltip(name, itemType, color, desc, mousePos);
+                }
+
+                return;
+            }
+        }
+    }
+    public override void ReceiveLeftClick(Vector2 screenPos)
     {
         ClickableComponent previousHover = _currentClickableComponent;
         _currentClickableComponent = null;
@@ -105,7 +165,7 @@ public class CookingMenu : ClickableMenu
             if (contains)
             {
                 _currentClickableComponent = component;
-                
+
             }
         }
     }
