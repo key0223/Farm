@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using UnityEngine;
 using static Define;
 
 public class Recipe
@@ -10,15 +13,17 @@ public class Recipe
 
     public int ResultItemId { get { return _resultItemId; } }
     public List<Need> Needs { get { return _needs; } }
-    public Recipe(int recipeId)
+    public Recipe(int cookingId)
     {
-        RecipeDataBase data = TableDataManager.Instance.RecipeDict[recipeId];
+        int recipeId =  TableDataManager.Instance.RecipeDict.Values.FirstOrDefault(x=> x.ResultItemId == cookingId).Id;
 
-        _id = data.Id;
-        _resultItemId = data.ResultItemId;
-        _recipeType = data.RecipeType;
+       TableDataManager.Instance.RecipeDict.TryGetValue(recipeId, out RecipeDataBase recipeData);
+       
+        _id = recipeData.Id;
+        _resultItemId = recipeData.ResultItemId;
+        _recipeType = recipeData.RecipeType;
 
-        _needs = Parser.ParserNeeds(data.Rep_ingredient);
+        _needs = Parser.ParserNeeds(recipeData.Rep_ingredient);
     }
     
 }

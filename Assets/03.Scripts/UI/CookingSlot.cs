@@ -1,13 +1,13 @@
-﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
-public class RecipeSlot : ClickableComponent
+
+public class CookingSlot : ClickableComponent
 {
     [Header("UI References")]
     [SerializeField] Image _lockedImage;
     [SerializeField] Image _unlockedImage;
     [SerializeField] Image _craftedImage;
-
     Item _currentItem;
     int _slotIndex;
 
@@ -74,5 +74,9 @@ public class RecipeSlot : ClickableComponent
 
         UIManager.Instance.HideTooltip();
     }
-  
+
+    public override void OnLeftClick(Vector2 pos)
+    {
+        // TODO: 요리 아이템 생성 후 인벤토리에 추가
+    }
 }

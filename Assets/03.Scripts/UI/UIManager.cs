@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using UnityEngine;
 using static Define;
 
@@ -11,7 +10,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     readonly Dictionary<Keys, (string name, Type type)> _uiButtons = new()
     {
         {Keys.E,("Inventory",typeof(InventoryMenu))},
-        //{Keys.I,("CookingCollection",typeof(CookingCollectionMenu))},
+        {Keys.I,("Cooking",typeof(CookingMenu))},
 
         /* Toolbar */
         {Keys.Alpha1,("Toolbar",typeof(ToolbarMenu))},
@@ -113,7 +112,6 @@ public class UIManager : SingletonMonobehaviour<UIManager>
                 _menuCache.Add(menu.MenuName, menu);
         }
     }
-
     public void RegisterTabs(string containerName, List<ClickableMenu> tabs)
     {
         _tabGroups[containerName] = tabs;

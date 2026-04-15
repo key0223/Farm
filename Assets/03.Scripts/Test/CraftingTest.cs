@@ -17,7 +17,7 @@ public class CraftingTest : MonoBehaviour
 
     void Start()
     {
-        RunAllTests();
+        Invoke("RunAllTests",1f);
     }
 
     void RunAllTests()

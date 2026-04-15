@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -32,11 +31,11 @@ public class CookingCollectionMenu : ClickableMenu
     }
     protected override void SubscribeEvent()
     {
-        Init_Items();
+        Init_RecipeItems();
         base.SubscribeEvent();
     }
 
-    void Init_Items()
+    void Init_RecipeItems()
     {
         _recipes.Clear();
         List<Item> items = TableDataManager.Instance.ItemDict.Values
@@ -54,7 +53,6 @@ public class CookingCollectionMenu : ClickableMenu
         {
             GameObject slotObj = ResourceManager.Instance.Instantiate(_recipeSlotPrefabPath, _slotParent.transform);
             RecipeSlot slot = slotObj.GetComponent<RecipeSlot>();
-            slot.SlotIndex = i;
             slot.SlotIndex = i;
             slot.SetItem(_recipes[i]);
 

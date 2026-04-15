@@ -49,7 +49,6 @@ public abstract class ClickableMenu : MonoBehaviour
         InputManager.Instance.OnInput += HandleInput;
         GameManager.OnAllManagersReady -= SubscribeEvent;
     }
-
     void SetUI()
     {
         if (_showCloseButton)
