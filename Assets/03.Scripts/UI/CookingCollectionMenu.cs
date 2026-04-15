@@ -19,6 +19,7 @@ public class CookingCollectionMenu : ClickableMenu
     protected override void Start()
     {
         base.Start();
+        gameObject.SetActive(true);
     }
 
     protected override void OnEnable()
