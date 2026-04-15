@@ -39,6 +39,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
     Dictionary<string,List<ClickableMenu>> _tabGroups = new Dictionary<string, List<ClickableMenu>>();
     Dictionary<string, int> _currentTabIndices = new Dictionary<string, int>();
+    Dictionary<string, List<TabButton>> _tabButtons = new Dictionary<string, List<TabButton>>();
 
     ClickableMenu _activeMenu;
     ToolbarMenu _toolbar;
@@ -118,6 +119,10 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         _tabGroups[containerName] = tabs;
         _currentTabIndices[containerName] = 0;
         //ShowTab(containerName, 0);
+    }
+    public void RegisterTabButtons(string containerName,List<TabButton> buttons)
+    {
+        _tabButtons[containerName] = buttons;
     }
     public ClickableMenu GetActiveTab(string containerName)
     {
@@ -270,6 +275,12 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         {
             bool isActive = (i== index);
             tabs[i].gameObject.SetActive(isActive);
+            
+            if (_tabButtons.TryGetValue(containerName, out var buttons) &&
+            i < buttons.Count)
+        {
+            buttons[i].SetBGImage(isActive);
+        }
         }
 
         _currentTabIndices[containerName] = index;

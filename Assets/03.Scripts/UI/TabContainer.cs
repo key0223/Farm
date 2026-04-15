@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TabContainer : ClickableMenu
@@ -17,6 +16,8 @@ public class TabContainer : ClickableMenu
         base.Start();
         UIManager.Instance.RegisterTabs(MenuName, _tabPages);
         _tabButtons[0].SetBGImage(true);
+
+        UIManager.Instance.RegisterTabButtons(_menuName, _tabButtons);
     }
     protected override void OnEnable()
     {
