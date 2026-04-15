@@ -9,7 +9,6 @@ public class DialogueUI : ClickableMenu
 
     List<ResponseButton> _buttons = new List<ResponseButton>();
 
-    
     public TextMeshProUGUI DialogueText { get {  return _dialogueText; }}
     public List<ResponseButton> Buttons { get { return _buttons; } }
     protected override void Awake()

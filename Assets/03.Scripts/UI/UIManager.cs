@@ -62,7 +62,6 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         base.Awake();
         GameManager.OnAllManagersReady += SubscribeEvent;
 
-        CacheAllMenus();
         _toolbar = FindObjectOfType<ToolbarMenu>();
         _tooltip = FindObjectOfType<TooltipUI>();
         _dialogueUI = FindObjectOfType<DialogueUI>();
@@ -93,6 +92,8 @@ public class UIManager : SingletonMonobehaviour<UIManager>
 
     void SubscribeEvent()
     {
+        CacheAllMenus();
+
         InputManager.Instance.OnKeyPressed += HandleKeyPressed;
         InputManager.Instance.OnEscapePressed += HandleEscape;
 
