@@ -16,10 +16,12 @@ public class TooltipUI : MonoBehaviour
 
     string _ingredientPrefabPath = "UI/IngredientSlot";
 
-
+    float _offsetX = 60f;
+    float _offsetY = 20f;
 
     Canvas _overlayCanvas;
     RectTransform _rectTransform;
+    RectTransform _canvasRect;
 
     List<IngredientSlot> _ingredientSlots = new List<IngredientSlot>();
 
@@ -27,6 +29,7 @@ public class TooltipUI : MonoBehaviour
     {
         _overlayCanvas = GameObject.Find("Overlay Layer").GetComponent<Canvas>();
         _rectTransform = GetComponent<RectTransform>();
+        _canvasRect = _overlayCanvas.GetComponent<RectTransform>();
     }
 
     void Start()
@@ -35,13 +38,44 @@ public class TooltipUI : MonoBehaviour
     }
     void SetPosition(Vector2 mousePos)
     {
-        _rectTransform.pivot = new Vector2(0f, 0f);
-        Vector2 pos = mousePos + new Vector2(20f, 10f);
+        //_rectTransform.pivot = new Vector2(0f, 0f);
+        //Vector2 pos = mousePos + new Vector2(20f, 10f);
 
-        pos.x = Mathf.Clamp(pos.x, 10, Screen.width - 250);
-        pos.y = Mathf.Clamp(pos.y, 10, Screen.height - 100);
+        //pos.x = Mathf.Clamp(pos.x, 10, Screen.width - 250);
+        //pos.y = Mathf.Clamp(pos.y, 10, Screen.height - 100);
 
-        transform.position = pos;
+        //transform.position = pos;
+
+
+        RectTransform canvasRect = _canvasRect;
+
+        Camera uiCam = _overlayCanvas.renderMode == RenderMode.ScreenSpaceOverlay
+            ? null
+            : _overlayCanvas.worldCamera;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvasRect,
+            mousePos,
+            uiCam,
+            out Vector2 localMousePos);
+
+        Vector2 pivot = new Vector2(0f, 1f);
+        _rectTransform.pivot = pivot;
+
+        Vector2 size = _rectTransform.sizeDelta;
+
+        float left = -canvasRect.rect.width * canvasRect.pivot.x;
+        float right = canvasRect.rect.width * (1f - canvasRect.pivot.x);
+        float top = canvasRect.rect.height * (1f - canvasRect.pivot.y);
+        float bottom = -canvasRect.rect.height * canvasRect.pivot.y;
+
+        float x = localMousePos.x + _offsetX;
+        float y = localMousePos.y - _offsetY;
+
+        x = Mathf.Clamp(x, left, right - size.x);
+        y = Mathf.Clamp(y, bottom + size.y, top);
+
+        _rectTransform.anchoredPosition = new Vector2(x, y);
     }
     public void Show(Item item, Vector2 mousePos, bool shouldHideText)
     {

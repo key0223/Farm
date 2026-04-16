@@ -1,4 +1,4 @@
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using UnityEngine;
 
 
@@ -7,12 +7,14 @@ public class CookingSlot : ClickableComponent
     [Header("UI References")]
     [SerializeField] Image _lockedImage;
     [SerializeField] Image _unlockedImage;
-    [SerializeField] Image _craftedImage;
+    [SerializeField] Image _canMakeImage;
+
     Item _currentItem;
+    RecipeDataBase _recipeData;
     int _slotIndex;
 
     bool _unlocked = false;
-    bool _crafted = false;
+    bool _canMake = false;
 
     bool _isHovered = false;
 
@@ -20,6 +22,7 @@ public class CookingSlot : ClickableComponent
     public Item CurrentItem { get { return _currentItem; } }
     public int SlotIndex { get { return _slotIndex; }set { _slotIndex = value; } }
     public bool Unlocked { get { return _unlocked; } }
+    public bool CanMake { get { return _canMake; } }
 
 
 
@@ -29,9 +32,18 @@ public class CookingSlot : ClickableComponent
         RefreshIconImage();
     }
 
-    public void SetItem(Item item)
+    public void SetItem(Item item,bool canMake,bool hasRecipe)
     {
+        int recipeId = TableDataManager.Instance.GetRecipeId(item.Id);
+        RecipeDataBase recipeData;
+        TableDataManager.Instance.RecipeDict.TryGetValue(recipeId, out recipeData);
+        if (recipeData == null) return;
+
         _currentItem = item;
+        _canMake = canMake;
+        _unlocked = hasRecipe;
+        _recipeData = recipeData;
+
         SetIconImage();
         RefreshIconImage();
 
@@ -42,7 +54,7 @@ public class CookingSlot : ClickableComponent
         {
             _lockedImage.sprite = _currentItem.Icon;
             _unlockedImage.sprite = _currentItem.Icon;
-            _craftedImage.sprite = _currentItem.Icon;
+            _canMakeImage.sprite = _currentItem.Icon;
         }
     }
     void RefreshIconImage()
@@ -50,16 +62,16 @@ public class CookingSlot : ClickableComponent
         if(!_unlocked)
         {
             _unlockedImage.enabled = false;
-            _craftedImage.enabled = false;
+            _canMakeImage.enabled = false;
         }
-        else if(_unlocked && !_crafted)
+        else if(_unlocked && !_canMake)
         {
             _unlockedImage.enabled = true;
-            _craftedImage.enabled = false;
+            _canMakeImage.enabled = false;
         }
-        else if(_crafted)
+        else if(_canMake)
         {
-            _craftedImage.enabled = true;
+            _canMakeImage.enabled = true;
         }
     }
     public override void OnHover()
@@ -77,6 +89,9 @@ public class CookingSlot : ClickableComponent
 
     public override void OnLeftClick(Vector2 pos)
     {
+        if (!_canMake) return;
+
+
         // TODO: 요리 아이템 생성 후 인벤토리에 추가
     }
 }

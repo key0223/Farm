@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -37,6 +38,9 @@ public class PlayerInventory : MonoBehaviour
         //TryAdd(seed);
         //ObjectItem objectItem = item as ObjectItem;
         //MapManager.Instance.CurrentLocation.AddWorldObject(objectItem, new Vector3Int(11, -7, 0));
+
+        Invoke("Init_Ingredients", 15f);
+        Invoke("Init_Recipes", 15f);
     }
    
     public bool TryAdd(Item item)
@@ -60,5 +64,42 @@ public class PlayerInventory : MonoBehaviour
         bool removed = _container.TryRemove(id, count);
 
         return removed;
+    }
+
+    public bool HasRecipe(int recipeId)
+    {
+        bool hasRecipe = _unlockedRecipes.ContainsKey(recipeId);
+
+        return hasRecipe;
+    }
+    /* Test */
+
+    void Init_Ingredients()
+    {
+        AddItem(301, 10); // milk
+        //AddItem(302, 10); // carrot
+        AddItem(303, 10); // cauliflower
+        AddItem(304, 10); // pumpkin
+        AddItem(307, 10); // parsnip
+        AddItem(308, 10); // potato
+        AddItem(311, 10); // wheat
+        AddItem(316, 10); // egg
+        AddItem(324, 10); // salt
+        AddItem(325, 10); // oil
+        AddItem(326, 10); // butter
+    }
+
+    void Init_Recipes()
+    {
+        AddItem(801, 1);
+        AddItem(802, 1);
+        AddItem(803, 1);
+        AddItem(804, 1);
+        AddItem(805, 1);
+    }
+    void AddItem(int id,int count)
+    {
+        Item item = ItemFactory.Create(id,count);
+        TryAdd(item);
     }
 }

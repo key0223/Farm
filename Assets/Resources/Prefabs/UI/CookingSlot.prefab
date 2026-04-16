@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 120, y: 120}
+  m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &8251591977120522665
 CanvasGroup:
@@ -67,7 +67,7 @@ MonoBehaviour:
   _id: 0
   _lockedImage: {fileID: 5945796002399079540}
   _unlockedImage: {fileID: 9033687358557534046}
-  _craftedImage: {fileID: 5045606196360546236}
+  _canMakeImage: {fileID: 5045606196360546236}
 --- !u!1 &3159672046648843853
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 7344302414521684196}
   - component: {fileID: 5045606196360546236}
   m_Layer: 5
-  m_Name: Crafted Image
+  m_Name: CanMake Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Unity.Properties;
 using UnityEngine;
 
 public class CookingMenu : ClickableMenu
 {
+    RecipeRequirementEvaluator _evaluator;
     [Header("UI References")]
     [SerializeField] GameObject _cookingSlotParent;
     [SerializeField] string _cookingSlotPrefabPath = "UI/CookingSlot";
@@ -19,6 +21,7 @@ public class CookingMenu : ClickableMenu
     protected override void Awake()
     {
         base.Awake();
+        _evaluator = new RecipeRequirementEvaluator();
         _menuName = "Cooking";
         _playerController = GameManager.Instance.Player;
         _playerContainer = GameManager.Instance.Player.PlayerInven.PlayerContainer;
@@ -36,21 +39,21 @@ public class CookingMenu : ClickableMenu
     protected override void OnEnable()
     {
         base.OnEnable();
-        RefreshInventorySlots();
-        _playerContainer.OnSlotChanged -= RefreshInventorySlots;
-        _playerContainer.OnSlotChanged += RefreshInventorySlots;
+        RefreshSlots();
+        _playerContainer.OnSlotChanged -= RefreshSlots;
+        _playerContainer.OnSlotChanged += RefreshSlots;
 
     }
     protected override void OnDisable()
     {
         base.OnDisable();
-        _playerContainer.OnSlotChanged -= RefreshInventorySlots;
+        _playerContainer.OnSlotChanged -= RefreshSlots;
 
     }
     protected override void SubscribeEvent()
     {
 
-        _playerContainer.OnSlotChanged += RefreshInventorySlots;
+        _playerContainer.OnSlotChanged += RefreshSlots;
 
         base.SubscribeEvent();
     }
@@ -83,15 +86,31 @@ public class CookingMenu : ClickableMenu
             GameObject slotObj = ResourceManager.Instance.Instantiate(_cookingSlotPrefabPath, _cookingSlotParent.transform);
             CookingSlot slot = slotObj.GetComponent<CookingSlot>();
             slot.SlotIndex = i;
-            slot.SetItem(_cookingItems[i]);
+            bool canMake = _evaluator.CanMake(_recipes[i].Needs,_playerContainer);
+            bool hasRecipe = _playerController.PlayerInven.HasRecipe(_recipes[i].Id);
+            slot.SetItem(_cookingItems[i],canMake,hasRecipe);
 
             _cookingSlots[i] = slot;
 
             if (!_clickableComponents.Contains(slot))
                 _clickableComponents.Add(slot);
         }
-    }
 
+        RefreshCookingSlots();
+    }
+    void RefreshCookingSlots()
+    {
+        if (_cookingSlots == null) return;
+
+        for (int i = 0; i < _cookingItems.Count; i++)
+        {
+            Item item = _cookingItems[i];
+            bool canMake = _evaluator.CanMake(_recipes[i].Needs, _playerContainer);
+            bool hasRecipe = _playerController.PlayerInven.HasRecipe(_recipes[i].Id);
+            _cookingSlots[i].SetItem(_cookingItems[i], canMake, hasRecipe);
+
+        }
+    }
     void Init_InventorySlot()
     {
         CookingInventorySlot[] foundSlots = GetComponentsInChildren<CookingInventorySlot>();
@@ -131,6 +150,11 @@ public class CookingMenu : ClickableMenu
         }
     }
 
+    void RefreshSlots()
+    {
+        RefreshCookingSlots();
+        RefreshInventorySlots();
+    }
     protected override void PerformHoverAction(Vector2 mousePos)
     {
         ClickableComponent previousHover = _currentClickableComponent;

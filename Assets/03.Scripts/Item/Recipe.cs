@@ -10,7 +10,8 @@ public class Recipe
     int _resultItemId;
     RecipeType _recipeType;
     List<Need> _needs = new List<Need>();
-
+    
+    public int Id {  get { return _id; } }
     public int ResultItemId { get { return _resultItemId; } }
     public List<Need> Needs { get { return _needs; } }
     public Recipe(int cookingId)
