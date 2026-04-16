@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -34,15 +34,23 @@ public class CookingMenu : ClickableMenu
     protected override void OnEnable()
     {
         base.OnEnable();
+        RefreshInventorySlots();
+        _playerContainer.OnSlotChanged -= RefreshInventorySlots;
+        _playerContainer.OnSlotChanged += RefreshInventorySlots;
+
     }
     protected override void OnDisable()
     {
         base.OnDisable();
+        _playerContainer.OnSlotChanged -= RefreshInventorySlots;
+
     }
     protected override void SubscribeEvent()
     {
         _playerController = GameManager.Instance.Player;
         _playerContainer = GameManager.Instance.Player.PlayerInven.PlayerContainer;
+        _playerContainer.OnSlotChanged += RefreshInventorySlots;
+
         base.SubscribeEvent();
     }
     void Init_CookingItems()
@@ -89,22 +97,22 @@ public class CookingMenu : ClickableMenu
         CookingInventorySlot[] foundSlots = GetComponentsInChildren<CookingInventorySlot>();
         _cookingInventorySlots = new CookingInventorySlot[foundSlots.Length];
 
-        for(int i =0; i <foundSlots.Length; i++)
+        for (int i = 0; i < foundSlots.Length; i++)
         {
             CookingInventorySlot slot = foundSlots[i];
             slot.OwnerContainer = _playerContainer;
             slot.SlotIndex = i;
-            _cookingInventorySlots[i]= slot;
+            _cookingInventorySlots[i] = slot;
 
-            if(!_clickableComponents.Contains(slot))
-            _clickableComponents.Add(slot);
+            if (!_clickableComponents.Contains(slot))
+                _clickableComponents.Add(slot);
         }
 
         RefreshInventorySlots();
     }
     void RefreshInventorySlots()
     {
-        foreach(CookingInventorySlot slot in _cookingInventorySlots)
+        foreach (CookingInventorySlot slot in _cookingInventorySlots)
         {
             Item item = _playerContainer.Storage.GetItemAtSlot(slot.SlotIndex);
             slot.SetItem(item);
@@ -130,7 +138,7 @@ public class CookingMenu : ClickableMenu
         if (previousHover != null)
             previousHover.OnHoverExit();
 
-            foreach (ClickableComponent component in _clickableComponents)
+        foreach (ClickableComponent component in _clickableComponents)
         {
             bool contains = component.ContainsPoint((int)mousePos.x, (int)mousePos.y);
 

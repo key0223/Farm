@@ -369,7 +369,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 829982361680211340}
-  - component: {fileID: 3148746735212325207}
   - component: {fileID: 4480697968608513236}
   m_Layer: 5
   m_Name: CookingInventorySlot
@@ -401,18 +400,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &3148746735212325207
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8815109192732923173}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &4480697968608513236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,5 +413,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
-  _iconImage: {fileID: 0}
-  _stackText: {fileID: 0}
+  _iconImage: {fileID: 3400212841195403709}
+  _stackText: {fileID: 6335277549600516580}

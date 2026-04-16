@@ -49,7 +49,7 @@ public class ContainerSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     void UpdateVisual()
     {
-        if(_currentItem!= null)
+        if (_currentItem != null)
         {
             _iconImage.sprite = _currentItem.Icon;
             _stackText.text = _currentItem.Stack > 1 ? _currentItem.Stack.ToString() : "";
@@ -62,10 +62,10 @@ public class ContainerSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             _stackText.text = "";
         }
     }
-  
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(_currentItem!= null)
+        if (_currentItem != null)
         {
             SoundManager.Instance.PlaySound(SoundName.UI_CLICK_4);
         }
@@ -108,9 +108,9 @@ public class ContainerSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         _originalStack = _draggedItem.Stack;
         _ownerContainer.Storage.SetItemAtSlot(_slotIndex, null);
 
-        GlobalDragManager.Instance.StartDrag(_draggedItem, _ownerContainer,_slotIndex);
+        GlobalDragManager.Instance.StartDrag(_draggedItem, _ownerContainer, _slotIndex);
         CreateDragItem(_draggedItem);
-       
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -121,7 +121,7 @@ public class ContainerSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         /* 스크롤 수량 조절 */
         if (Mathf.Abs(_input.ScrollDelta) > 0.01f)
         {
-            int dir = _input.ScrollDelta >0 ? 1 : -1;
+            int dir = _input.ScrollDelta > 0 ? 1 : -1;
             AdjustDragStack(dir);
         }
     }
@@ -152,7 +152,7 @@ public class ContainerSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     Container GetTargetContainer(PointerEventData eventData)
     {
-        if(eventData == null) return null;
+        if (eventData == null) return null;
 
         if (eventData.pointerEnter != null)
         {
@@ -162,7 +162,7 @@ public class ContainerSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         }
 
         var results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventData,results);
+        EventSystem.current.RaycastAll(eventData, results);
 
         foreach (var result in results)
         {
@@ -240,7 +240,7 @@ public class ContainerSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     }
     void CleanupDrag()
     {
-        if(_dragItemObj)
+        if (_dragItemObj)
             Destroy(_dragItemObj);
         _canvasGroup.alpha = 1f;
         _canvasGroup.blocksRaycasts = true;
