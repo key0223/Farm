@@ -213,11 +213,7 @@ public class SellMenu : ClickableMenu, IQuantityAdjuster
                 ShopSlot slot = component.GetComponent<ShopSlot>();
                 if (slot != null && slot.CurrentItem != null)
                 {
-                    string name = LocalizationManager.Instance.GetString(slot.CurrentItem.DisplayName);
-                    string itemType = slot.CurrentItem.Category;
-                    string desc = LocalizationManager.Instance.GetString(slot.CurrentItem.Description);
-                    string color = slot.CurrentItem.CategoryColor;
-                    UIManager.Instance.ShowTooltip(name, itemType, color, desc, mousePos);
+                    UIManager.Instance.ShowTooltip(slot.CurrentItem, mousePos);
                 }
 
                 return;

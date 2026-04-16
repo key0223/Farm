@@ -307,9 +307,9 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     #endregion
 
     #region Tooltip
-    public void ShowTooltip(string name, string itemType, string color, string description, Vector2 mousePos)
+    public void ShowTooltip(Item item, Vector2 mousePos,bool shouldHideText = false)
     {
-        _tooltip.Show(name, itemType, color, description, mousePos);
+        _tooltip.Show(item, mousePos, shouldHideText);
     }
     public void HideTooltip()
     {

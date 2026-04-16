@@ -39,6 +39,7 @@ public partial class Define
         COOKING,
         SEEDS,
         INTERACTIVE,
+        RECIPE,
     }
     public enum ItemType
     {

@@ -13,6 +13,7 @@ namespace Data
             Dictionary<int, ItemDataBase>  dict = new Dictionary<int, ItemDataBase>();
             foreach(ItemDataBase item in array)
             {
+                item.Icon = LoadUtils.GetAtlasSprite(item.SheetDirectory, item.ParentSheet, item.SpriteIndex);
                 dict.Add(item.Id, item);
             }
             return dict;
@@ -63,6 +64,7 @@ namespace Data
             Dictionary<int,RecipeDataBase> dict = new Dictionary<int, RecipeDataBase>();
             foreach(RecipeDataBase item in array)
             {
+                item.Needs = Parser.ParserNeeds(item.Req_ingredient);
                 dict.Add(item.Id,item);
             }
 

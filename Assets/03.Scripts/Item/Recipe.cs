@@ -23,7 +23,7 @@ public class Recipe
         _resultItemId = recipeData.ResultItemId;
         _recipeType = recipeData.RecipeType;
 
-        _needs = Parser.ParserNeeds(recipeData.Rep_ingredient);
+        _needs = Parser.ParserNeeds(recipeData.Req_ingredient);
     }
     
 }

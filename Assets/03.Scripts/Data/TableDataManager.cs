@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 public interface ILoader<Key, Value>
 {
@@ -184,5 +185,12 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
             dict[newKey] = kvp.Value;
         }
         return dict;
+    }
+
+    public int GetRecipeId(int cookingId)
+    {
+        int recipeId = RecipeDict.Values.FirstOrDefault(x => x.ResultItemId == cookingId).Id;
+
+        return recipeId;
     }
 }

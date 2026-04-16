@@ -18,8 +18,10 @@ public class CookingMenu : ClickableMenu
 
     protected override void Awake()
     {
-        _menuName = "Cooking";
         base.Awake();
+        _menuName = "Cooking";
+        _playerController = GameManager.Instance.Player;
+        _playerContainer = GameManager.Instance.Player.PlayerInven.PlayerContainer;
     }
 
     protected override void Start()
@@ -47,8 +49,7 @@ public class CookingMenu : ClickableMenu
     }
     protected override void SubscribeEvent()
     {
-        _playerController = GameManager.Instance.Player;
-        _playerContainer = GameManager.Instance.Player.PlayerInven.PlayerContainer;
+
         _playerContainer.OnSlotChanged += RefreshInventorySlots;
 
         base.SubscribeEvent();
@@ -69,7 +70,6 @@ public class CookingMenu : ClickableMenu
         _recipes.Clear();
         foreach (Item item in _cookingItems)
         {
-            // Cooking Item Id 가 아니라 레시피 ID 넘겨야함
             Recipe recipe = new Recipe(item.Id);
             _recipes.Add(recipe);
         }
@@ -112,6 +112,7 @@ public class CookingMenu : ClickableMenu
     }
     void RefreshInventorySlots()
     {
+        if (_cookingInventorySlots == null) return;
         foreach (CookingInventorySlot slot in _cookingInventorySlots)
         {
             Item item = _playerContainer.Storage.GetItemAtSlot(slot.SlotIndex);
@@ -142,23 +143,20 @@ public class CookingMenu : ClickableMenu
         {
             bool contains = component.ContainsPoint((int)mousePos.x, (int)mousePos.y);
 
-            if (contains)
+            if (!contains) continue;
+            _currentClickableComponent = component;
+            component.OnHover();
+
+            if (component.TryGetComponent(out CookingSlot cookingSlot) && cookingSlot.CurrentItem != null)
             {
-                _currentClickableComponent = component;
-                component.OnHover();
-
-                CookingInventorySlot slot = component.GetComponent<CookingInventorySlot>();
-                if (slot != null && slot.CurrentItem != null)
-                {
-                    string name = LocalizationManager.Instance.GetString(slot.CurrentItem.DisplayName);
-                    string itemType = slot.CurrentItem.Category;
-                    string desc = LocalizationManager.Instance.GetString(slot.CurrentItem.Description);
-                    string color = slot.CurrentItem.CategoryColor;
-                    UIManager.Instance.ShowTooltip(name, itemType, color, desc, mousePos);
-                }
-
-                return;
+                UIManager.Instance.ShowTooltip(cookingSlot.CurrentItem, mousePos);
             }
+            else if (component.TryGetComponent(out CookingInventorySlot inventorySlot) && inventorySlot.CurrentItem != null)
+            {
+                UIManager.Instance.ShowTooltip(inventorySlot.CurrentItem, mousePos);
+            }
+
+            return;
         }
     }
     public override void ReceiveLeftClick(Vector2 screenPos)

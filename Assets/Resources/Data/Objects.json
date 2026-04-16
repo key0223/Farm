@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "87c73856cb09ad735af6bd481d44cb94",
+	"md5": "b156d2e787c86072711d0333265dd92a",
 	"array": 
 		[
 			{
@@ -895,7 +895,7 @@
 				"ItemType": "OBJECTS",
 				"Category": "Recipe",
 				"CategoryColor": "#DC3C00",
-				"ObjectType": "COOKING",
+				"ObjectType": "RECIPE",
 				"SheetDirectory": "Sprites/Items",
 				"ParentSheet": "Objects",
 				"SpriteIndex": 100
@@ -908,7 +908,7 @@
 				"ItemType": "OBJECTS",
 				"Category": "Recipe",
 				"CategoryColor": "#DC3C00",
-				"ObjectType": "COOKING",
+				"ObjectType": "RECIPE",
 				"SheetDirectory": "Sprites/Items",
 				"ParentSheet": "Objects",
 				"SpriteIndex": 100
@@ -921,7 +921,7 @@
 				"ItemType": "OBJECTS",
 				"Category": "Recipe",
 				"CategoryColor": "#DC3C00",
-				"ObjectType": "COOKING",
+				"ObjectType": "RECIPE",
 				"SheetDirectory": "Sprites/Items",
 				"ParentSheet": "Objects",
 				"SpriteIndex": 100
@@ -934,7 +934,7 @@
 				"ItemType": "OBJECTS",
 				"Category": "Recipe",
 				"CategoryColor": "#DC3C00",
-				"ObjectType": "COOKING",
+				"ObjectType": "RECIPE",
 				"SheetDirectory": "Sprites/Items",
 				"ParentSheet": "Objects",
 				"SpriteIndex": 100
@@ -947,7 +947,7 @@
 				"ItemType": "OBJECTS",
 				"Category": "Recipe",
 				"CategoryColor": "#DC3C00",
-				"ObjectType": "COOKING",
+				"ObjectType": "RECIPE",
 				"SheetDirectory": "Sprites/Items",
 				"ParentSheet": "Objects",
 				"SpriteIndex": 100
