@@ -400,6 +400,8 @@ MonoBehaviour:
   _itemIconImage: {fileID: 3844109933650767115}
   _itemCountText: {fileID: 6397918389497107747}
   _itemNameText: {fileID: 7793018292635757929}
+  _defaultColor: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
+  _notEnoughColor: {r: 0.7924528, g: 0.19063722, b: 0.19063722, a: 1}
 --- !u!114 &8204809336782798010
 MonoBehaviour:
   m_ObjectHideFlags: 0

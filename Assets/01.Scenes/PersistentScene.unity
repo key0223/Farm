@@ -22826,7 +22826,6 @@ MonoBehaviour:
   _itemDescriptionText: {fileID: 1997020205}
   _ingredientObj: {fileID: 148726237}
   _ingredientText: {fileID: 136987956}
-  _ingredientPrefabPath: 
 --- !u!1 &1597184419
 GameObject:
   m_ObjectHideFlags: 0
