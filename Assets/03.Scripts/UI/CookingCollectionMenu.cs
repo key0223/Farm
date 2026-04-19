@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CookingCollectionMenu : ClickableMenu
 {
+    RecipeRequirementEvaluator _evaluator;
     [Header("UI References")]
     [SerializeField] GameObject _slotParent;
     [SerializeField] string _recipeSlotPrefabPath = "UI/RecipeSlot";
@@ -13,6 +14,7 @@ public class CookingCollectionMenu : ClickableMenu
     protected override void Awake()
     {
         base.Awake();
+        _evaluator = new RecipeRequirementEvaluator();
         _menuName = "CookingCollection";
     }
 
@@ -64,6 +66,14 @@ public class CookingCollectionMenu : ClickableMenu
         }
     }
 
+    void RefreshSlots()
+    {
+        for (int i = 0; i < _recipes.Count; i++)
+        {
+            Item item = _recipes[i];
+            bool hasRecipe = GameManager.Instance.Player.PlayerInven.HasRecipe(_recipes[i].Id);
+        }
+    }
     void ClearSlots()
     {
         for (int i = 0; i < _slots.Count; i++)
