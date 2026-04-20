@@ -88,7 +88,7 @@ public class CookingMenu : ClickableMenu
             slot.SlotIndex = i;
             bool canMake = _evaluator.CanMake(_recipes[i].Needs,_playerContainer);
             bool hasRecipe = _playerController.PlayerInven.HasRecipe(_recipes[i].Id);
-            slot.SetItem(_cookingItems[i],canMake,hasRecipe);
+            slot.SetItem(_cookingItems[i],canMake,hasRecipe,_playerController.PlayerInven);
 
             _cookingSlots[i] = slot;
 
@@ -107,7 +107,7 @@ public class CookingMenu : ClickableMenu
             Item item = _cookingItems[i];
             bool canMake = _evaluator.CanMake(_recipes[i].Needs, _playerContainer);
             bool hasRecipe = _playerController.PlayerInven.HasRecipe(_recipes[i].Id);
-            _cookingSlots[i].SetItem(_cookingItems[i], canMake, hasRecipe);
+            _cookingSlots[i].SetItem(_cookingItems[i], canMake, hasRecipe,_playerController.PlayerInven);
 
         }
     }
@@ -195,7 +195,7 @@ public class CookingMenu : ClickableMenu
             if (contains)
             {
                 _currentClickableComponent = component;
-
+                component.OnLeftClick(screenPos);
             }
         }
     }

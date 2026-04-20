@@ -9,6 +9,7 @@ public class CookingSlot : ClickableComponent
     [SerializeField] Image _unlockedImage;
     [SerializeField] Image _canMakeImage;
 
+    PlayerInventory _playerInven;
     Item _currentItem;
     RecipeDataBase _recipeData;
     int _slotIndex;
@@ -32,7 +33,7 @@ public class CookingSlot : ClickableComponent
         RefreshIconImage();
     }
 
-    public void SetItem(Item item,bool canMake,bool hasRecipe)
+    public void SetItem(Item item,bool canMake,bool hasRecipe,PlayerInventory playerInven)
     {
         int recipeId = TableDataManager.Instance.GetRecipeId(item.Id);
         RecipeDataBase recipeData;
@@ -42,6 +43,7 @@ public class CookingSlot : ClickableComponent
         _currentItem = item;
         _canMake = canMake;
         _unlocked = hasRecipe;
+        _playerInven = playerInven;
         _recipeData = recipeData;
 
         SetIconImage();
@@ -91,7 +93,15 @@ public class CookingSlot : ClickableComponent
     {
         if (!_canMake) return;
 
+        bool success = false;
+        foreach(Need need in _recipeData.Needs)
+            success = _playerInven.TryRemove(need.ItemId,need.Count);
 
-        // TODO: 요리 아이템 생성 후 인벤토리에 추가
+        if (success)
+        {
+            Item newFood = ItemFactory.Create(_recipeData.ResultItemId);
+            _playerInven.TryAdd(newFood);
+        }
+        else return;
     }
 }
