@@ -588,7 +588,7 @@ GameObject:
   - component: {fileID: 1366249859396374877}
   - component: {fileID: 7827011572346015115}
   m_Layer: 5
-  m_Name: SaveFileSlot
+  m_Name: SavefileSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -630,8 +630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2c7b52977294e568026191c47abe30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _farmNameText: {fileID: 4244950988813056605}
   _farmText: {fileID: 4854641220425981025}
+  _farmNameText: {fileID: 4244950988813056605}
   _playerNameText: {fileID: 3946128301717881755}
   _currentDayText: {fileID: 7064299011406196065}
   _moneyText: {fileID: 4915675748570188496}
@@ -737,7 +737,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 51802468, guid: 822982e2d7c58834bacd8a8342253bd7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

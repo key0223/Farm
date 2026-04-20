@@ -1,12 +1,11 @@
-using System.Collections.Generic;
 using System;
 using TMPro;
 using UnityEngine;
 using static Define;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEditor.SearchService;
 public class SaveFileSlot : MonoBehaviour,IPointerEnterHandler
 {
     [Header("Refresh UI Targets")]
@@ -24,10 +23,10 @@ public class SaveFileSlot : MonoBehaviour,IPointerEnterHandler
 
     string _farmName;
     string _playerName;
-
     Season _gameSeason;
     int _gameYear = 1;
     int _gameDay = 1;
+    int _money;
     GameSave _gameSave;
 
     void Awake()
@@ -68,7 +67,11 @@ public class SaveFileSlot : MonoBehaviour,IPointerEnterHandler
             {
                 if (sceneSave.StringDictionary != null)
                     SetNameText(sceneSave);
+                
+                if(sceneSave.IntDictionary != null)
+                    SetMoneyText(sceneSave);
             }
+          
         }
 
         RefreshUI();
@@ -137,6 +140,16 @@ public class SaveFileSlot : MonoBehaviour,IPointerEnterHandler
                 break;
 
         }
+    }
+    void SetMoneyText(SceneSave sceneSave)
+    {
+        if(sceneSave.IntDictionary.TryGetValue("money", out int money))
+            _money = money;
+
+        string gold = LocalizationManager.Instance.GetString("Money");
+
+        string text = $"{_money} {gold}";
+        _moneyText.text = text;
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
