@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -88,9 +87,12 @@ public class DialogueUI : ClickableMenu
                 ResponseButton button = component.GetComponent<ResponseButton>();
                 if (button != null)
                     button.SelectResponse();
-                break;
+                return;
             }
         }
+
+        DialogueManager.Instance.ProcessNextLine();
+
     }
 
     public override void ReceiveRightClick(Vector2 screenPos)
