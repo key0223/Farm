@@ -30,6 +30,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         {"Inventory","GameMenuContainer" },
         {"CookingCollection","GameMenuContainer" },
+        {"Settings","GameMenuContainer" },
         {"Buy","ShopContainer" },
         {"Sell","ShopContainer" },
     };
@@ -380,7 +381,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     }
     #endregion
 
-#region Save UI
+    #region Save UI
 public void ShowSave()
     {
         OpenMenuByName("Save");
@@ -470,6 +471,7 @@ public void ShowSave()
         {
             ("GameMenuContainer", "Inventory")=>0,
             ("GameMenuContainer", "CookingCollection") =>1,
+            ("GameMenuContainer", "Settings") =>2,
             ("ShopContainer", "Buy") =>0,
             ("ShopContainer", "Sell") =>1,
             _ => 0

@@ -1,11 +1,11 @@
-using DG.Tweening;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using static Define;
+using static UnityEngine.Rendering.DebugUI;
 
 public class SoundManager : SingletonMonobehaviour<SoundManager>
 {
@@ -133,7 +133,9 @@ public class SoundManager : SingletonMonobehaviour<SoundManager>
 
     float ConvertSoundVolumeDecimalFractionToDecibels(float volumeDecimalFraction)
     {
-        return (volumeDecimalFraction * 100f - 80f);
+        if (volumeDecimalFraction <= 0.0001f)
+            return -80f;
+        return Mathf.Log10(volumeDecimalFraction) * 20f;
     }
     IEnumerator CoPlaySceneSounds(float musicPlayTime, SoundItem musicSound, SoundItem ambientSound)
     {
