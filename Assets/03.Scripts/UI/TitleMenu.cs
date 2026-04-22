@@ -32,9 +32,6 @@ public class TitleMenu : ClickableMenu
 
         _menuName = "Title";
         _rectTransform = GetComponent<RectTransform>();
-
-        _languageButton.onClick.AddListener(OnLanguageButtonClicked);  
-        _exitButton.onClick.AddListener(OnExitButtonClicked);
     }
     protected override void Start()
     {
@@ -48,7 +45,8 @@ public class TitleMenu : ClickableMenu
         base.OnEnable();
         if (!GameManager.Instance.AllManagersReady)
             return;
-
+        UnsubsButtonEvents();
+        SubsButtonEvents();
         GameManager.OnLanguageChanged -= RefreshUI;
         GameManager.OnLanguageChanged += RefreshUI;
     }
@@ -56,13 +54,28 @@ public class TitleMenu : ClickableMenu
     {
         base.OnDisable();
 
+        UnsubsButtonEvents();
+        SlideToIndex(1);
         GameManager.OnLanguageChanged -= RefreshUI;
 
     }
     protected override void SubscribeEvent()
     {
+        SubsButtonEvents();
         GameManager.OnLanguageChanged += RefreshUI;
         base.SubscribeEvent();
+    }
+
+    void SubsButtonEvents()
+    {
+        _languageButton.onClick.AddListener(OnLanguageButtonClicked);
+        _exitButton.onClick.AddListener(OnExitButtonClicked);
+    }
+
+    void UnsubsButtonEvents()
+    {
+        _languageButton.onClick.RemoveListener(OnLanguageButtonClicked);
+        _exitButton.onClick.RemoveListener(OnExitButtonClicked);
     }
    
 

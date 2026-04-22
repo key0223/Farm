@@ -31,6 +31,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         {"Inventory","GameMenuContainer" },
         {"CookingCollection","GameMenuContainer" },
         {"Settings","GameMenuContainer" },
+        {"Exit","GameMenuContainer" },
         {"Buy","ShopContainer" },
         {"Sell","ShopContainer" },
     };
@@ -472,6 +473,7 @@ public void ShowSave()
             ("GameMenuContainer", "Inventory")=>0,
             ("GameMenuContainer", "CookingCollection") =>1,
             ("GameMenuContainer", "Settings") =>2,
+            ("GameMenuContainer", "Exit") =>3,
             ("ShopContainer", "Buy") =>0,
             ("ShopContainer", "Sell") =>1,
             _ => 0

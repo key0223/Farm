@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
@@ -11,42 +12,57 @@ public class SettingsMenu : ClickableMenu
     [SerializeField] Slider _musicSlider;
     [SerializeField] Slider _ambientSlider;
 
+    [Header("Texts")]
+    [SerializeField] TextMeshProUGUI _soundText;
+    [SerializeField] TextMeshProUGUI _masterVolumeText;
+    [SerializeField] TextMeshProUGUI _musicVolumeText;
+    [SerializeField] TextMeshProUGUI _ambientVolumeText;
+
     const string MasterKey = "MasterVolume";
     const string MusicKey = "MusicVolume";
     const string AmbientKey = "AmbientVolume";
     protected override void Awake()
     {
         base.Awake();
+        GameManager.OnAllManagersReady += SubscribeEvent;
         _menuName = "Settings";
     }
 
     protected override void Start()
     {
         base.Start();
+        RefreshUI();
+
         gameObject.SetActive(true);
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
+        UnsubsSliderEvents();
         SubsSliderEvents();
+
+        GameManager.OnLanguageChanged -= RefreshUI;
+        GameManager.OnLanguageChanged += RefreshUI;
     }
     protected override void OnDisable()
     {
         base.OnDisable();
         SaveSettings();
         UnsubsSliderEvents();
+        GameManager.OnLanguageChanged -= RefreshUI;
+
     }
     protected override void SubscribeEvent()
     {
         LoadVolume();
         SubsSliderEvents();
+        GameManager.OnLanguageChanged += RefreshUI;
         base.SubscribeEvent();
     }
     
     void SubsSliderEvents()
     {
-        UnsubsSliderEvents();
         _masterSlider.onValueChanged.AddListener(SetMasterVolume);
         _musicSlider.onValueChanged.AddListener(SetMusicVolume);
         _ambientSlider.onValueChanged.AddListener(SetAmbientVolume);
@@ -57,6 +73,19 @@ public class SettingsMenu : ClickableMenu
         _masterSlider.onValueChanged.RemoveListener(SetMasterVolume);
         _musicSlider.onValueChanged.RemoveListener(SetMusicVolume);
         _ambientSlider.onValueChanged.RemoveListener(SetAmbientVolume);
+    }
+    void RefreshUI()
+    {
+        string sound = LocalizationManager.Instance.GetString("Sound");
+        string master = LocalizationManager.Instance.GetString("MasterVolume");
+        string music = LocalizationManager.Instance.GetString("MusicVolume");
+        string ambient = LocalizationManager.Instance.GetString("AmbientVolume");
+
+        _soundText.text = $"{sound}:";
+        _masterVolumeText.text = master;
+        _musicVolumeText.text = music;
+        _ambientVolumeText.text = ambient;
+       
     }
     void LoadVolume()
     {

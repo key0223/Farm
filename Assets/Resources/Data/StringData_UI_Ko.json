@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "d5b80f2bd479ee752b041aa5375dd6ce",
+	"md5": "f20d5809de3e5a6298bb3afb459109c0",
 	"array": 
 		[
 			{
@@ -165,6 +165,34 @@
 			{
 				"StringId": "Recipe",
 				"Translation": "제작법"
+			},
+			{
+				"StringId": "Money",
+				"Translation": "골드"
+			},
+			{
+				"StringId": "ExitToTitle",
+				"Translation": "타이틀 메뉴로"
+			},
+			{
+				"StringId": "ExitGame",
+				"Translation": "게임 종료"
+			},
+			{
+				"StringId": "Sound",
+				"Translation": "사운드"
+			},
+			{
+				"StringId": "MasterVolume",
+				"Translation": "전체 볼륨"
+			},
+			{
+				"StringId": "MusicVolume",
+				"Translation": "음악 볼륨"
+			},
+			{
+				"StringId": "AmbientVolume",
+				"Translation": "주변음 볼륨"
 			}
 		]
 }
