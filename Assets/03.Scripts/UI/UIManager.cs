@@ -10,7 +10,6 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     readonly Dictionary<Keys, (string name, Type type)> _uiButtons = new()
     {
         {Keys.E,("Inventory",typeof(InventoryMenu))},
-        {Keys.I,("Cooking",typeof(CookingMenu))},
 
         /* Toolbar */
         {Keys.Alpha1,("Toolbar",typeof(ToolbarMenu))},
@@ -391,7 +390,18 @@ public void ShowSave()
     {
         OpenMenuByName("Save");
     }
-#endregion
+    #endregion
+
+    #region Cooking
+    public void ShowCooking()
+    {
+        OpenMenuByName("Cooking");
+    }
+    public void HideCooking()
+    {
+        OpenMenuByName("Cooking");
+    }
+    #endregion
     #region Helpers
 
     public ClickableMenu OpenMenuByName(string menuName)
