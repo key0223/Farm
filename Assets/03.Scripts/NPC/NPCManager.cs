@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.FilePathAttribute;
 
 [RequireComponent(typeof(AStar))]
 public class NPCManager : SingletonMonobehaviour<NPCManager>

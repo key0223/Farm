@@ -1,11 +1,10 @@
-using System;
+﻿using System;
 using TMPro;
 using UnityEngine;
 using static Define;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.EventSystems;
-using UnityEditor.SearchService;
 public class SaveFileSlot : MonoBehaviour,IPointerEnterHandler
 {
     [Header("Refresh UI Targets")]
