@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "009e2528c6de3bc4c20541e7f7fa24b0",
+	"md5": "59a80f61a08d4bc4dc79965e541f0253",
 	"array": 
 		[
 			{
@@ -201,6 +201,34 @@
 			{
 				"StringId": "MyItems",
 				"Translation": "내 아이템"
+			},
+			{
+				"StringId": "Move",
+				"Translation": "이동"
+			},
+			{
+				"StringId": "Inventory",
+				"Translation": "인벤토리"
+			},
+			{
+				"StringId": "ESCDesc",
+				"Translation": "메뉴 닫기"
+			},
+			{
+				"StringId": "LeftClickDesc",
+				"Translation": "도구 사용 또는 아이템 배치"
+			},
+			{
+				"StringId": "RightClickDesc",
+				"Translation": "수확/대화"
+			},
+			{
+				"StringId": "MiddleClickDesc",
+				"Translation": "아이템 변경"
+			},
+			{
+				"StringId": "Hotkeys",
+				"Translation": "인벤토리 핫키"
 			}
 		]
 }

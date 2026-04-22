@@ -11,7 +11,7 @@ public class ScrollBarSize : MonoBehaviour
     }
 
 
-    void LateUpdate()
+    void Update()
     {
         _scrollbar.size = 0.05f;
     }

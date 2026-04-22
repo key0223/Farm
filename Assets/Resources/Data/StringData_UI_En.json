@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "61cb514a271a9d4018ff0759954475e1",
+	"md5": "36c99745c5d9b047c2dbbd70d0b96160",
 	"array": 
 		[
 			{
@@ -201,6 +201,34 @@
 			{
 				"StringId": "MyItems",
 				"Translation": "My Items"
+			},
+			{
+				"StringId": "Move",
+				"Translation": "Move"
+			},
+			{
+				"StringId": "Inventory",
+				"Translation": "Inventory"
+			},
+			{
+				"StringId": "ESCDesc",
+				"Translation": "Close Menu"
+			},
+			{
+				"StringId": "LeftClickDesc",
+				"Translation": "Use tool or place item"
+			},
+			{
+				"StringId": "RightClickDesc",
+				"Translation": "Check/Do Action"
+			},
+			{
+				"StringId": "MiddleClickDesc",
+				"Translation": "Switch Item"
+			},
+			{
+				"StringId": "Hotkeys",
+				"Translation": "Invetory Hotkeys"
 			}
 		]
 }

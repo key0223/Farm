@@ -18,6 +18,15 @@ public class SettingsMenu : ClickableMenu
     [SerializeField] TextMeshProUGUI _musicVolumeText;
     [SerializeField] TextMeshProUGUI _ambientVolumeText;
 
+    [Header("Controls")]
+    [SerializeField] TextMeshProUGUI _moveText;
+    [SerializeField] TextMeshProUGUI _inventoryText;
+    [SerializeField] TextMeshProUGUI _escText;
+    [SerializeField] TextMeshProUGUI _leftClickText;
+    [SerializeField] TextMeshProUGUI _rightClickText;
+    [SerializeField] TextMeshProUGUI _middleClickText;
+    [SerializeField] TextMeshProUGUI _hotkeyText;
+
     const string MasterKey = "MasterVolume";
     const string MusicKey = "MusicVolume";
     const string AmbientKey = "AmbientVolume";
@@ -85,7 +94,23 @@ public class SettingsMenu : ClickableMenu
         _masterVolumeText.text = master;
         _musicVolumeText.text = music;
         _ambientVolumeText.text = ambient;
-       
+
+        string move = LocalizationManager.Instance.GetString("Move");
+        string inventory = LocalizationManager.Instance.GetString("Inventory");
+        string esc = LocalizationManager.Instance.GetString("ESCDesc");
+        string left = LocalizationManager.Instance.GetString("LeftClickDesc");
+        string right = LocalizationManager.Instance.GetString("RightClickDesc");
+        string middle = LocalizationManager.Instance.GetString("MiddleClickDesc");
+        string hot = LocalizationManager.Instance.GetString("Hotkeys");
+
+        _moveText.text = move;
+        _inventoryText.text = inventory;
+        _escText.text = esc;
+        _leftClickText.text = left;
+        _rightClickText.text = right;
+        _middleClickText.text = middle;
+        _hotkeyText.text = hot; 
+
     }
     void LoadVolume()
     {
