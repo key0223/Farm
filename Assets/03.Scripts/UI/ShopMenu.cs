@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +9,8 @@ public class ShopMenu : MonoBehaviour
     [Header("Shop Info UI References")]
     [SerializeField] Image _shopIconImage;
     [SerializeField] TextMeshProUGUI _shopNameText;
+    [SerializeField] TextMeshProUGUI _shopItemTabText;
+    [SerializeField] TextMeshProUGUI _myItemTabText;
     [Header("Item Info UI References")]
     [SerializeField] GameObject _itemInfoObj;
     [SerializeField] TextMeshProUGUI _itemNameText;
@@ -59,7 +58,7 @@ public class ShopMenu : MonoBehaviour
         TableDataManager.Instance.ShopDict.TryGetValue(_currentShopId, out data);
 
         _shopNameText.text = LocalizationManager.Instance.GetString(data.DisplayName);
+        _shopItemTabText.text = LocalizationManager.Instance.GetString("ShopItems");
+        _myItemTabText.text = LocalizationManager.Instance.GetString("MyItems");
     }
-   
-    
 }

@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "f20d5809de3e5a6298bb3afb459109c0",
+	"md5": "009e2528c6de3bc4c20541e7f7fa24b0",
 	"array": 
 		[
 			{
@@ -193,6 +193,14 @@
 			{
 				"StringId": "AmbientVolume",
 				"Translation": "주변음 볼륨"
+			},
+			{
+				"StringId": "ShopItems",
+				"Translation": "상점 아이템"
+			},
+			{
+				"StringId": "MyItems",
+				"Translation": "내 아이템"
 			}
 		]
 }

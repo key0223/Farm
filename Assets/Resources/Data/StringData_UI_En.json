@@ -1,5 +1,5 @@
 ﻿{
-	"md5": "6e9e18c81cfd0e02dea55613881ee761",
+	"md5": "61cb514a271a9d4018ff0759954475e1",
 	"array": 
 		[
 			{
@@ -193,6 +193,14 @@
 			{
 				"StringId": "AmbientVolume",
 				"Translation": "Ambient Volume"
+			},
+			{
+				"StringId": "ShopItems",
+				"Translation": "Store Items"
+			},
+			{
+				"StringId": "MyItems",
+				"Translation": "My Items"
 			}
 		]
 }

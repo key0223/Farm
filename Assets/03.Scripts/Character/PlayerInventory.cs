@@ -39,8 +39,8 @@ public class PlayerInventory : MonoBehaviour
         //ObjectItem objectItem = item as ObjectItem;
         //MapManager.Instance.CurrentLocation.AddWorldObject(objectItem, new Vector3Int(11, -7, 0));
 
-        Invoke("Init_Ingredients", 15f);
-        Invoke("Init_Recipes", 15f);
+        //Invoke("Init_Ingredients", 15f);
+        //Invoke("Init_Recipes", 15f);
     }
    
     public bool TryAdd(Item item)

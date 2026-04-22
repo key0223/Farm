@@ -157,7 +157,7 @@ public class CharacterCustomizationUI : MonoBehaviour, IQuantityAdjuster
             PlayerName = _playerName,
             HairName = _hairStyleNames[_currentHairIndex],
             HairColor = _selectedColor,
-            Money = 500
+            Money = 5000
         };
         SoundManager.Instance.PlaySound(SoundName.UI_CLICK_5);
         StartCoroutine(CoEnterGame(profile));
