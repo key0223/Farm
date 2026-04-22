@@ -133,6 +133,7 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
     void LoadAllDialogues()
     {
         DialogueDict.Add("ko", MakeKoreanDialogueDict());
+        DialogueDict.Add("en",MakeEnglishDialogueDict());
     }
 
     Dictionary<string,DialogueData> MakeKoreanDialogueDict()
@@ -140,6 +141,17 @@ public class TableDataManager : SingletonMonobehaviour<TableDataManager>
         Dictionary<string,DialogueData> result = new Dictionary<string,DialogueData>();
 
         Dictionary<string, DialogueData> miniVillagerWoman = LoadJson<Data.DialogueLoader, string, DialogueData>("DialogueData_MiniVillagerWoman_ko").MakeDict();
+
+        result = MergeDict<string, DialogueData>(miniVillagerWoman);
+
+        return result;
+    }
+
+    Dictionary<string,DialogueData> MakeEnglishDialogueDict()
+    {
+        Dictionary<string, DialogueData> result = new Dictionary<string, DialogueData>();
+
+        Dictionary<string, DialogueData> miniVillagerWoman = LoadJson<Data.DialogueLoader, string, DialogueData>("DialogueData_MiniVillagerWoman_en").MakeDict();
 
         result = MergeDict<string, DialogueData>(miniVillagerWoman);
 

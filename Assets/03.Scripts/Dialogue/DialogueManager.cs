@@ -445,7 +445,7 @@ public class DialogueManager : SingletonMonobehaviour<DialogueManager>
     string ReplaceTokens(string line)
     {
         line = Regex.Replace(line, @"\$b|\$e|\$k", "");
-        line = line.Replace("@", "PlayerName");
+        line = line.Replace("@", GameManager.Instance.Player.PlayerProfile.PlayerName);
         return line;
     }
     DialogueTagType ParseDialogueTag(string line)

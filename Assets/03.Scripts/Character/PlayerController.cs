@@ -133,7 +133,8 @@ public class PlayerController : MonoBehaviour, ISaveable
     [ContextMenu("DialogueTest")]
     public void DialogueTest()
     {
-        DialogueManager.Instance.StartDialogue("MiniVillagerWoman", TestDialogue);
+        string testDialogue = $"MiniVillagerWoman_{TestDialogue}";
+        DialogueManager.Instance.StartDialogue("MiniVillagerWoman", testDialogue);
     }
     #region Saveable
     public void ISaveableRegister()
