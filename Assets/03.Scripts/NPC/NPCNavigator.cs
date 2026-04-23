@@ -29,11 +29,8 @@ public class NPCNavigator : MonoBehaviour
             GameLocation location = MapManager.Instance.GetLocation(_movement.CurrentLocation);
             if (location == null) return;
 
-            if(NPCManager.Instance.BuildPath(location,currentCellPos,targetCellPos,_pathStepStack))
-            {
-                UpdateTimesOnPath();
-                _pathStepStack.Pop(); // 시작점 제거
-            }
+            NPCManager.Instance.BuildPath(location, currentCellPos, targetCellPos, _pathStepStack);
+           
         }
         else if(data.Location != _movement.CurrentLocation)
         {

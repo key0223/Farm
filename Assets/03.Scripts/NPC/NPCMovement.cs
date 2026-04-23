@@ -13,6 +13,7 @@ public class NPCMovement : MonoBehaviour
 
     NPCController _npcController;
     NPCNavigator _nav;
+    Grid _grid;
 
     string _currentLocation;
     string _targetLocation;
@@ -94,11 +95,12 @@ public class NPCMovement : MonoBehaviour
             _npcController.SetNPCInactiveInScene();
 
         _previousPathNodeLocation = _currentLocation;
-        _currentCellPos = GridUtils.WorldToGrid(transform.position);
         _nextCellPos = _currentCellPos;
 
         _targetCellPos = _currentCellPos;
-        _targetWorldPos = GridUtils.GridToWorldCenter(_currentCellPos);
+        _targetWorldPos = GetWorldPosition(_targetCellPos);
+
+        _nextWorldPos = GetWorldPosition(_currentCellPos);
 
         Debug.Log($"Init Cell {_currentCellPos} ");
     }
@@ -119,7 +121,7 @@ public class NPCMovement : MonoBehaviour
 
         if (!_isMoving)
         {
-            _currentCellPos = GridUtils.WorldToGrid(transform.position);
+            _currentCellPos = GetGridPosition(transform.position);
             _nextCellPos = _currentCellPos;
 
             if (_nav.PathStepStack.Count > 0)
@@ -131,7 +133,7 @@ public class NPCMovement : MonoBehaviour
                 {
                     _currentCellPos = (Vector3Int)pathNode.TargetGrid;
                     _nextCellPos = _currentCellPos;
-                    transform.position = GridUtils.GridToWorldCenter(_currentCellPos);
+                    transform.position = GetWorldPosition(_currentCellPos);
                     _previousPathNodeLocation = _currentLocation;
                     _nav.UpdateTimesOnPath();
                 }
@@ -152,7 +154,7 @@ public class NPCMovement : MonoBehaviour
 
                     _currentCellPos = (Vector3Int)pathNode.TargetGrid;
                     _nextCellPos = _currentCellPos;
-                    transform.position = GridUtils.GridToWorldCenter(_currentCellPos);
+                    transform.position = GetWorldPosition(_currentCellPos);
 
                     TimeSpan pathNodeTime = new TimeSpan(pathNode.Hour, pathNode.Minute, pathNode.Second);
                     TimeSpan gameTime = TimeManager.Instance.GetGameTime();
@@ -162,32 +164,8 @@ public class NPCMovement : MonoBehaviour
                         pathNode = _nav.PathStepStack.Pop();
                         _currentCellPos = (Vector3Int)pathNode.TargetGrid;
                         _nextCellPos = _currentCellPos;
-                        transform.position = GridUtils.GridToWorldCenter(_currentCellPos);
+                        transform.position = GetWorldPosition(_currentCellPos);
                     }
-                }
-            }
-            else if (_targetCellPos != _currentCellPos)
-            {
-                Vector2Int start = new Vector2Int(_currentCellPos.x, _currentCellPos.y);
-                Vector2Int goal = new Vector2Int(_targetCellPos.x, _targetCellPos.y);
-
-                GameLocation location = MapManager.Instance.GetLocation(_currentLocation);
-                if (location == null) return;
-
-                bool pathFound = NPCManager.Instance.BuildPath(location, start, goal, _nav.PathStepStack);
-                Debug.Log($"[{_npcController.NPCName}] BuildPath {start}->{goal} = {pathFound} (Stack now: {_nav.PathStepStack.Count})");
-
-                /* A* 경로 생성 */
-                if (NPCManager.Instance.BuildPath(location, start, goal, _nav.PathStepStack))
-                {
-                    _nav.UpdateTimesOnPath();
-                }
-                else
-                {
-                    /* 경로 없음 : 직선 이동 */
-                    _nextCellPos = _targetCellPos;
-                    MoveToCellPos(_nextCellPos, TimeManager.Instance.GetGameTime(), TimeManager.Instance.GetGameTime());
-                    return;
                 }
             }
             else
@@ -201,7 +179,7 @@ public class NPCMovement : MonoBehaviour
                         _npcController.NPCAnim.SetMovementState(false, _currentDirection);
                         //_currentAnimation = _targetAnimation;
                     }
-                    else if(_targetAnimation != _currentAnimation)
+                    else if (_targetAnimation != _currentAnimation)
                     {
                         _npcController.NPCAnim.PlayAction(_targetAnimation, _currentDirection);
                     }
@@ -221,7 +199,7 @@ public class NPCMovement : MonoBehaviour
     IEnumerator CoMoveToCellPos(Vector3Int cellPos, TimeSpan pathNodeTime, TimeSpan gameTime)
     {
         _isMoving = true;
-        _nextWorldPos = GridUtils.GridToWorldCenter(cellPos);
+        _nextWorldPos = GetWorldPosition(cellPos);
 
         if (pathNodeTime > gameTime)
         {
@@ -272,6 +250,7 @@ public class NPCMovement : MonoBehaviour
     }
     void AfterSceneLoad()
     {
+        _grid = FindObjectOfType<Grid>();
         if (!_npcInitialized)
         {
             Init();
@@ -285,4 +264,24 @@ public class NPCMovement : MonoBehaviour
     {
         _sceneLoaded = false;
     }
+
+    Vector3Int GetGridPosition(Vector3 worldPosition)
+    {
+        if (_grid != null)
+        {
+            return _grid.WorldToCell(worldPosition);
+        }
+        else
+        {
+            return Vector3Int.zero;
+        }
+    }
+
+    public Vector3 GetWorldPosition(Vector3Int gridPosition)
+    {
+        Vector3 worldPosition = _grid.CellToWorld(gridPosition);
+
+        return new Vector3(worldPosition.x + CELL_SIZE / 2f, worldPosition.y + CELL_SIZE / 2f, worldPosition.z);
+    }
+
 }

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using UnityEngine;
-using UnityEngine.UIElements;
+﻿using UnityEngine;
 
 public class GridNodes 
 {
@@ -39,7 +35,7 @@ public class GridNodes
    
     public Node GetGridNode(int posX, int posY)
     {
-        if (posX < _width && posX < _height)
+        if (posX < _width && posY < _height)
         {
             return _gridNode[posX, posY];
         }
