@@ -1,4 +1,4 @@
-using SuperTiled2Unity;
+Ôªøusing SuperTiled2Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +23,7 @@ public class MapManager : SingletonMonobehaviour<MapManager>, ISaveable
     public event Action<GameLocation> OnLocationChanged;
 
     [SerializeField] SuperMap[] _superMaps;
+    [SerializeField] List<MapSizeData> _mapSizes;
     [Header("Tiles")]
     [SerializeField] TileBase _dugTile;
     [SerializeField] TileBase _wateredTile;
@@ -141,6 +142,27 @@ public class MapManager : SingletonMonobehaviour<MapManager>, ISaveable
         string mapName = sceneName.Substring(index + 1);
 
         return mapName;
+    }
+    public bool GetMapSize(string mapName, out Vector2Int mapSize, out Vector2Int mapOrigin)
+    {
+        mapSize = Vector2Int.zero;
+        mapOrigin = Vector2Int.zero;
+
+        foreach(MapSizeData data in _mapSizes)
+        {
+            if(data.MapName == mapName)
+            {
+                mapSize.x = data.GridWidth;
+                mapSize.y = data.GridHeight;
+
+                mapOrigin.x = data.OriginX;
+                mapOrigin.y = data.OriginY;
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void SetTileFeatureSave(int gridX, int gridY,TileFeatureSave tileFeatureSave, Dictionary<string,TileFeatureSave> tileFeatureDict)
@@ -264,7 +286,7 @@ public class MapManager : SingletonMonobehaviour<MapManager>, ISaveable
 
     public GameObjectSave ISaveableSave()
     {
-        /* «ˆ¿Á æ¿ µ•¿Ã≈Õ ¿˙¿Â */
+        /* ÌòÑÏû¨ Ïî¨ Îç∞Ïù¥ÌÑ∞ Ï†ÄÏû• */
         ISaveableStoreScene(SceneManager.GetActiveScene().name);
         return GameObjectSave;
     }
@@ -274,7 +296,7 @@ public class MapManager : SingletonMonobehaviour<MapManager>, ISaveable
         if (gameSave.GameObjectData.TryGetValue(ISaveableUniqueId, out GameObjectSave gameObjSave))
         {
             GameObjectSave = gameObjSave;
-            /* «ˆ¿Á æ¿ µ•¿Ã≈Õ ∫π±∏ */
+            /* ÌòÑÏû¨ Ïî¨ Îç∞Ïù¥ÌÑ∞ Î≥µÍµ¨ */
             ISaveableRestoreScene(SceneManager.GetActiveScene().name);
         }
     }

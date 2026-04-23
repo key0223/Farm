@@ -35,8 +35,8 @@ MonoBehaviour:
       ToX: 17
       ToY: -7
     - MapName: FarmHouse
-      FromX: 17
-      FromY: -7
+      FromX: 4
+      FromY: -9
       ToX: 99999
       ToY: 99999
   - FromMapName: Farm
@@ -48,8 +48,8 @@ MonoBehaviour:
       ToX: 29
       ToY: -7
     - MapName: Town
-      FromX: 0
-      FromY: 0
+      FromX: 1
+      FromY: -9
       ToX: 99999
       ToY: 99999
   - FromMapName: Town
@@ -58,8 +58,8 @@ MonoBehaviour:
     - MapName: Town
       FromX: 99999
       FromY: 99999
-      ToX: 0
-      ToY: 0
+      ToX: 1
+      ToY: -9
     - MapName: Farm
       FromX: 29
       FromY: -7
@@ -71,11 +71,11 @@ MonoBehaviour:
     - MapName: VillagerHouse1
       FromX: 99999
       FromY: 99999
-      ToX: 16
+      ToX: 15
       ToY: -14
     - MapName: Town
       FromX: 2
-      FromY: -6
+      FromY: -7
       ToX: 99999
       ToY: 99999
   - FromMapName: Town
@@ -85,9 +85,9 @@ MonoBehaviour:
       FromX: 99999
       FromY: 99999
       ToX: 2
-      ToY: -6
+      ToY: -7
     - MapName: VillagerHouse1
       FromX: 15
-      FromY: -12
+      FromY: -14
       ToX: 99999
       ToY: 99999

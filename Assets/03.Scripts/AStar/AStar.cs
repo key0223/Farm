@@ -15,8 +15,12 @@ public class AStar : MonoBehaviour
     Node _startNode;
     Node _targetNode;
 
+    int _width;
+    int _height;
+    int _originX;
+    int _originY;
+
     PriorityQueue<Node> _openSet;
-    HashSet<int> _openSetIds;
     HashSet<Node> _closedSet;
 
     bool _pathFound = false;
@@ -38,24 +42,30 @@ public class AStar : MonoBehaviour
     {
         MapData mapData = location.MapData;
 
-        _gridNodes = new GridNodes(mapData);
-        _openSet = new PriorityQueue<Node>();
-        _openSetIds = new HashSet<int>();
-        _closedSet = new HashSet<Node>();
-
-        _startNode = _gridNodes.GetGridNode(startPos.x , startPos.y);
-        _targetNode = _gridNodes.GetGridNode(goalPos.x, goalPos.y);
-
-        int minX = mapData._minX;
-        int minY = mapData._minY;
-        int maxX = minX + mapData._mapWidth;
-        int maxY = minY + mapData._mapHeight;
-
-        for (int x = minX; x < maxX; x++)
+        if (MapManager.Instance.GetMapSize(mapData._mapName, out Vector2Int mapSize, out Vector2Int mapOrigin))
         {
-            for (int y = minY; y < maxY; y++)
+            _gridNodes = new GridNodes(mapSize.x, mapSize.y);
+            _width = mapSize.x;
+            _height = mapSize.y;
+            _originX = mapOrigin.x;
+            _originY = mapOrigin.y;
+
+            _openSet = new PriorityQueue<Node>();
+            _closedSet = new HashSet<Node>();
+
+        }
+        else
+            return false;
+
+        _startNode = _gridNodes.GetGridNode(startPos.x - mapOrigin.x, startPos.y - mapOrigin.y);
+        _targetNode = _gridNodes.GetGridNode(goalPos.x - mapOrigin.x, goalPos.y - mapOrigin.y);
+
+        
+        for (int x = 0; x < mapSize.x; x++)
+        {
+            for (int y = 0; y < mapSize.y; y++)
             {
-                var tile = mapData.GetTileData(x, y);
+                var tile = mapData.GetTileData(x+mapOrigin.x,y+mapOrigin.y);
                 if (tile == null) continue;
 
                 Node node = _gridNodes.GetGridNode(x, y);
@@ -77,75 +87,94 @@ public class AStar : MonoBehaviour
     bool FindShortestPath()
     {
         _openSet.Enqueue(_startNode);
-        _openSetIds.Add(_startNode._id);
 
         while (_openSet.Count > 0)
         {
             Node current = _openSet.Dequeue();
-            _openSetIds.Remove(current._id);
+            _closedSet.Add(current);
 
             if (current == _targetNode)
             {
                 _pathFound = true;
-                return true;
+                break;
             }
-            if (_closedSet.Contains(current)) continue;
-            _closedSet.Add(current);
 
             EvaluateNeighbors(current);
         }
-        return false;
+
+        if (_pathFound)
+            return true;
+        else return false;
     }
 
     void EvaluateNeighbors(Node current)
     {
-        for (int dx = -1; dx <= 1; dx++)
+        Vector2Int currentNodeGridPos = current._gridPosition;
+        Node neighbor;
+
+        for (int i = -1; i <=1; i++)
         {
-            for (int dy = -1; dy <= 1; dy++)
+            for (int j = -1; j <= 1; j++)
             {
-                //if (dx != 0 && dy != 0) continue;
-                if (dx == 0 && dy == 0) continue;
+                if (i == 0 && j == 0) continue;
 
-                int checkX = current._gridPosition.x + dx; 
-                int checkY = current._gridPosition.y + dy;
+                neighbor = GetNeighbor(currentNodeGridPos.x + i, currentNodeGridPos.y + j);
 
-                Node neighbor = _gridNodes.GetGridNode(checkX, checkY);
-                if (neighbor == null || neighbor._isObstacle || _closedSet.Contains(neighbor)) continue;
-
-                int distance = GetDistance(current._gridPosition, neighbor._gridPosition);
-                int newGCost = current._gCost + distance + (_observePenalties ? neighbor._movementPenalty : 0);
-
-                if (!_openSetIds.Contains(neighbor._id) || newGCost < neighbor._gCost)
+                if(neighbor != null)
                 {
-                    if (_openSetIds.Contains(neighbor._id)) _openSetIds.Remove(neighbor._id);
-                    neighbor._gCost = newGCost;
-                    neighbor._hCost = GetDistance(neighbor._gridPosition, _targetNode._gridPosition);
-                    neighbor._parentNode = current;
-                    _openSet.Enqueue(neighbor);
-                    _openSetIds.Add(neighbor._id);
+                    int costToNeighbor;
+
+                    if (_observePenalties)
+                        costToNeighbor = current._gCost + GetDistance(current, neighbor) + neighbor._movementPenalty;
+                    else
+                        costToNeighbor = current._gCost + GetDistance(current,neighbor);
+
+                    bool neighborInOpenSet = _openSet.Contains(neighbor);
+
+                    if (costToNeighbor<neighbor._gCost || !neighborInOpenSet)
+                    {
+                        neighbor._gCost = costToNeighbor;
+                        neighbor._hCost = GetDistance(neighbor, _targetNode);
+
+                        neighbor._parentNode = current;
+
+                        if(!neighborInOpenSet)
+                            _openSet.Enqueue(neighbor);
+                    }
+
                 }
+
             }
         }
     }
 
-    int GetDistance(Vector2Int a, Vector2Int b)
+    int GetDistance(Node a, Node b)
     {
-        int dstX = Mathf.Abs(a.x - b.x), dstY = Mathf.Abs(a.y - b.y);
+        int dstX = Mathf.Abs(a._gridPosition.x -  b._gridPosition.x);
+        int dstY = Mathf.Abs(a._gridPosition.y - b._gridPosition.y); 
         return dstX > dstY ? 14 * dstY + 10 * (dstX - dstY) : 14 * dstX + 10 * (dstY - dstX);
     }
 
+    Node GetNeighbor(int neighborPosX, int neighborPosY)
+    {
+        if(neighborPosX >= _width || neighborPosX <0 || neighborPosY >= _height || neighborPosY <0) return null;
+
+        Node neighbor = _gridNodes.GetGridNode(neighborPosX, neighborPosY);
+        if (neighbor._isObstacle || _closedSet.Contains(neighbor)) return null;
+        else return neighbor;
+    }
     void UpdateNPCStack(GameLocation location, Stack<PathNode> stack)
     {
-        Node node = _targetNode;
-        while (node != null)
+        Node nextNode = _targetNode;
+        while (nextNode != null)
         {
             var step = new PathNode
             {
                 MapName = location.MapData._mapName,
-                TargetGrid = new Vector2Int(node._gridPosition.x , node._gridPosition.y )
+                TargetGrid = new Vector2Int(nextNode._gridPosition.x+ _originX , nextNode._gridPosition.y+_originY)
             };
             stack.Push(step);
-            node = node._parentNode;
+            nextNode = nextNode._parentNode;
         }
     }
 

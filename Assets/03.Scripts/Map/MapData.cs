@@ -113,9 +113,9 @@ public class MapData
             Vector3Int startCell = tilemap.cellBounds.min;
             Vector3Int endCell = tilemap.cellBounds.max;
 
-            for (int x = startCell.x; x <= endCell.x; x++)
+            for (int x = startCell.x; x < endCell.x; x++)
             {
-                for (int y = startCell.y; y <= endCell.y; y++)
+                for (int y = startCell.y; y < endCell.y; y++)
                 {
                     TileBase unityTile = tilemap.GetTile(new Vector3Int(x, y, 0));
 

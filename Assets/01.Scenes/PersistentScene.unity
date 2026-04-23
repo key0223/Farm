@@ -30572,6 +30572,27 @@ MonoBehaviour:
   - {fileID: -3656767908885118864, guid: 536c9bf5be5b70249bf8a6bfd387cee5, type: 3}
   - {fileID: -2548586860597128776, guid: c3f46c6453f3a7844866221ba4984f28, type: 3}
   - {fileID: -7415389632694780713, guid: bb9cd5e780ae3824b82e9e4e4d77ddd1, type: 3}
+  _mapSizes:
+  - MapName: FarmHouse
+    GridWidth: 11
+    GridHeight: 9
+    OriginX: 1
+    OriginY: -10
+  - MapName: Farm
+    GridWidth: 30
+    GridHeight: 20
+    OriginX: 0
+    OriginY: -19
+  - MapName: Town
+    GridWidth: 33
+    GridHeight: 21
+    OriginX: 0
+    OriginY: -20
+  - MapName: VillagerHouse1
+    GridWidth: 10
+    GridHeight: 12
+    OriginX: 11
+    OriginY: -15
   _dugTile: {fileID: 11400000, guid: 7211a25fe2ba4d54ca7696ecf91cc53e, type: 2}
   _wateredTile: {fileID: 11400000, guid: 083fc58821cbca546a36406f1045967a, type: 2}
 --- !u!114 &1805673887

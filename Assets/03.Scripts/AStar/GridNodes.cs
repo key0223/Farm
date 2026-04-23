@@ -2,60 +2,46 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GridNodes 
 {
     int _nextId = 0;
     int _width;
     int _height;
-    int _minX;
-    int _minY;
 
     Node[,] _gridNode;
 
-    public GridNodes(MapData mapData)
+    public GridNodes(int width, int height)
     {
-        _nextId = 0;
 
-        _width = mapData._mapWidth;
-        _height = mapData._mapHeight;
-        _minX = mapData._minX;
-        _minY = mapData._minY;
+        _width = width;
+        _height = height;
 
-        _gridNode =new Node[_width, _height];
+        _gridNode =new Node[width, height];
 
-        foreach(var kvp in mapData.Tiles)
+        for (int x = 0; x < width; x++)
         {
-            Vector2Int tilePos =GridUtils.TileKeyToVector2Int(kvp.Key);
-            int arrayX = tilePos.x - _minX;
-            int arrayY = tilePos.y - _minY;
-
-            TileData tile = kvp.Value;
-
-            Node node = CreateNode(tilePos, tile);
-            _gridNode[arrayX,arrayY] = node;
-            
+            for (int y = 0; y < height; y++)
+            {
+                _gridNode[x, y] = CreateNode(x,y);
+            }
         }
     }
 
-    Node CreateNode(Vector2Int tilePos,TileData data)
+    Node CreateNode(int x, int y)
     {
         int id = _nextId++;
 
-        return new Node(tilePos, id)
-        {
-            _isObstacle = !data.IsPassable,
-            //_movementPenalty = GetPenalty(),
-        };
+        return new Node(new Vector2Int(x, y), id);
     }
+
+   
     public Node GetGridNode(int posX, int posY)
     {
-        int arrayX = posX - _minX;
-        int arrayY = posY - _minY;
-
-        if (arrayX >= 0 && arrayX < _width && arrayY >= 0 && arrayY < _height)
+        if (posX < _width && posX < _height)
         {
-            return _gridNode[arrayX, arrayY];
+            return _gridNode[posX, posY];
         }
         else
         {
