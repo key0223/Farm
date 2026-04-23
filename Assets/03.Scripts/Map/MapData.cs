@@ -14,8 +14,6 @@ public class MapData
 
     public int _minX;
     public int _minY;
-    public int _actualWidth;
-    public int _actualHeight;
 
     Dictionary<string, TileData> _tiles;
     public Dictionary<string, TileData> Tiles { get { return _tiles; } }
@@ -146,8 +144,6 @@ public class MapData
             _minY = Mathf.Min(_minY, pos.y);
             maxY = Mathf.Max(maxY, pos.y);
         }
-        _actualWidth = maxX - _minX + 1;
-        _actualHeight = maxY - _minY + 1;
     }
 
     #endregion
@@ -217,8 +213,8 @@ public class MapData
     /* 맵 경계 내 위치인지 확인 */
     public bool IsValidPosition(int x, int y)
     {
-        return x >= _minX && x < (_minX + _actualWidth) &&
-           y >= _minY && y < (_minY + _actualHeight);
+        return x >= _minX && x < (_minX + _mapWidth) &&
+           y >= _minY && y < (_minY + _mapHeight);
     }
    
     public TileData GetTileData(int gridX, int gridY)

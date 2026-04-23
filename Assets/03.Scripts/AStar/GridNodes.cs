@@ -17,8 +17,8 @@ public class GridNodes
     {
         _nextId = 0;
 
-        _width = mapData._actualWidth;
-        _height = mapData._actualHeight;
+        _width = mapData._mapWidth;
+        _height = mapData._mapHeight;
         _minX = mapData._minX;
         _minY = mapData._minY;
 

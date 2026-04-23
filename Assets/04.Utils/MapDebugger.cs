@@ -26,8 +26,8 @@ public class MapDebugger : MonoBehaviour
         // 실제 타일 영역(Actual Bounds) 계산
         Vector3 bottomLeft = GridUtils.GridToWorld(new Vector3Int(_targetMapData._minX, _targetMapData._minY, 0));
 
-        float width = _targetMapData._actualWidth;
-        float height = _targetMapData._actualHeight;
+        float width = _targetMapData._mapWidth;
+        float height = _targetMapData._mapHeight;
 
         Vector3 center = bottomLeft + new Vector3(width / 2f, height / 2f, 0);
         Vector3 size = new Vector3(width, height, 0.1f);

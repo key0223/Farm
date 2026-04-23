@@ -48,8 +48,8 @@ public class AStar : MonoBehaviour
 
         int minX = mapData._minX;
         int minY = mapData._minY;
-        int maxX = minX + mapData._actualWidth;
-        int maxY = minY + mapData._actualHeight;
+        int maxX = minX + mapData._mapWidth;
+        int maxY = minY + mapData._mapHeight;
 
         for (int x = minX; x < maxX; x++)
         {
