@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
@@ -10,11 +10,11 @@ public static class ItemFactory
         return TableDataManager.Instance.ItemDict.ContainsKey(id);
     }
 
-    public static Item Create(int id, int statck = 1)
+    public static Item Create(int id, int stack = 1)
     {
         if (!Exists(id))
         {
-            Debug.LogWarning($"ItemFactory : Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌÅÛ ID {id}");
+            Debug.LogWarning($"ItemFactory : ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´í…œ ID {id}");
             return null;
         }
 
@@ -23,7 +23,7 @@ public static class ItemFactory
         switch (data.ItemType)
         {
             case ItemType.OBJECTS:
-                return new ObjectItem(data, statck);
+                return new ObjectItem(data, stack);
             case ItemType.TOOLS:
                 return CreateTool(data);
             case ItemType.WEAPONS:
