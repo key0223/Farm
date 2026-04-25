@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020182013a638c74a8d383944ff3c8fb, type: 3}
+  m_Name: Mini
+  m_EditorClassIdentifier: 
+  md5: 
+  savePath: Assets/Resources/Data/
+  fileName: DialogueData_TestMini.json
+  array:
+  - DialogueId: Mini_Sun
+    DialogueOwner: Mini
+    DialogueName: Sun
+    Dialogue: "\uBC24\uC0C8 \uBB18\uC9C0\uC5D0 \uC788\uC73C\uBA74 \uC5B4\uB5BB\uAC8C
+      \uB420\uAE4C?#$q 17/18 Sun_old#@, \uC6B0\uB9AC\uAC00 \uC8FD\uACE0\uB098\uBA74
+      \uBB34\uC2A8 \uC77C\uC774 \uC788\uC744 \uAC70\uB77C \uC0C1\uAC01\uD574?\n#$r
+      17 0 Sun_17#\uB098\uB3C4 \uBAA8\uB974\uAC30\uC5B4.\n#$r 18 0 Sun_18#\uC73C\uC2A4\uC2A4\uD55C
+      \uADC0\uC2E0\uC774 \uB420\uAC70\uC57C.\n#$r 17 0 Sun_17#\uCC9C\uAD6D\uC5D0
+      \uAC00\uACA0\uC9C0.\n#$r 18 0 Sun_17#\uC6B0\uB9AC \uC5D0\uB108\uC9C0\uAC00
+      \uC601\uC801\uC778 \uCC28\uC6D0\uC73C\uB85C \uB118\uC5B4\uAC08\uAC70\uC57C."
+  - DialogueId: Mini_Sun_old
+    DialogueOwner: Mini
+    DialogueName: Sun_old
+    Dialogue: "$p 17#\uC544\uBB34 \uC77C\uB3C4 \uC5C6\uC744 \uAC70\uB77C \uC0DD\uAC01\uD558\uB294
+      \uAC70\uC57C?|\uC0AC\uC545\uD55C \uADC0\uC2E0\uC774 \uB098\uD0C0\uB0A0\uC9C0\uB3C4
+      \uBAB0\uB77C!"
+  - DialogueId: Mini_Sun_17
+    DialogueOwner: Mini
+    DialogueName: Sun_17
+    Dialogue: "\uD750\uC74C, \uD765\uBBF8\uB85C\uC6B4\uAC78..."
