@@ -50,7 +50,7 @@ Item item  = ItemFactory.Create(1000); /* ItemID */
 <br/>
 
 ### 2️⃣ 커스텀 애니메이터 
-- [👉 See Animator Code](https://github.com/key0223/Farm/blob/ace10a4398ef7a5be835418b8913581f8268ec69/Assets/03.Scripts/Animation/AnimatedSprite.cs) 
+- *[👉 See Animator Code](https://github.com/key0223/Farm/blob/ace10a4398ef7a5be835418b8913581f8268ec69/Assets/03.Scripts/Animation/AnimatedSprite.cs)*
 - **핵심 기술** : 데이터 기반 애니메이션, 레이어 싱크
 - **설명** : 유니티 메카님의 복잡한 상태 머신 대신, JSON 데이터를 기반으로 캐릭터 파츠(몸,머리,팔 등)를 실시간 동기화하여 재생하는 커스텀 애니메이터 구현
 <div>
@@ -77,7 +77,7 @@ Item item  = ItemFactory.Create(1000); /* ItemID */
 <br/>
 
 ### 3️⃣ 속성 바인딩 맵 시스템
-- [👉 See Map Code](https://github.com/key0223/Farm/tree/ace10a4398ef7a5be835418b8913581f8268ec69/Assets/03.Scripts/Map) 
+- *[👉 See Map Code](https://github.com/key0223/Farm/tree/ace10a4398ef7a5be835418b8913581f8268ec69/Assets/03.Scripts/Map)*
 - **핵심 기술** : Tiled Custom Properties, TileRuntimeFeature
 - **설명** : 외부 맵 에디터의 커스텀 속성을 런타임 데이터와 직접 바인딩하여 타일별 속성(충돌,경작 가능 여부 등)을 자동화. Dictionary 구조를 통해 $O(1)$의 속도로 타일 데이터에 접근하며 상호작용 로직을 모듈화하여 관리
 <div>
@@ -91,7 +91,7 @@ Item item  = ItemFactory.Create(1000); /* ItemID */
 <br/>
 
 ### 4️⃣ 다이얼로그 시스템
-- [👉 See Dialogue Code](https://github.com/key0223/Farm/blob/ace10a4398ef7a5be835418b8913581f8268ec69/Assets/03.Scripts/Dialogue/DialogueManager.cs) 
+- *[👉 See Dialogue Code](https://github.com/key0223/Farm/blob/ace10a4398ef7a5be835418b8913581f8268ec69/Assets/03.Scripts/Dialogue/DialogueManager.cs)*
 - **핵심 기술** : Regex Tag Parsing, State Management
 - **설명** : 정규 표현식을 활용한 커스텀 태그 분석기로 복잡한 대사 분기를 제어. 게임 내 환경(시간,날짜)과 유저의 과거 선택 데이터를 조합하여 상황에 가장 적합한 대사를 추출.
 
@@ -113,8 +113,8 @@ Item item  = ItemFactory.Create(1000); /* ItemID */
 
 
 ### 5️⃣ UI 프레임워크
-- [👉 See ClickableMenu Code](https://github.com/key0223/Farm/blob/ace10a4398ef7a5be835418b8913581f8268ec69/Assets/03.Scripts/UI/ClickableMenu.cs) 
-- [👉 See ClickableComponent Code](https://github.com/key0223/Farm/blob/ace10a4398ef7a5be835418b8913581f8268ec69/Assets/03.Scripts/UI/ClickableComponent.cs) 
+- *[👉 See ClickableMenu Code](https://github.com/key0223/Farm/blob/ace10a4398ef7a5be835418b8913581f8268ec69/Assets/03.Scripts/UI/ClickableMenu.cs)*
+- *[👉 See ClickableComponent Code](https://github.com/key0223/Farm/blob/ace10a4398ef7a5be835418b8913581f8268ec69/Assets/03.Scripts/UI/ClickableComponent.cs)*
 - **핵심 기술** : Abstraction & Polymorphism
 - **설명** : 클릭 가능한 모든 UI의 공통 동작을 추상 클래스화하고 규격화하여 다양한 UI에서 코드 재사용성을 극대화
 
