@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://github.com/user-attachments/assets/3f441bdb-5aa9-4ef0-af22-0430991e7186" alt="녹음 2024-11-09 143520">
+    <img width="794" height="446" alt="Image" src="https://github.com/user-attachments/assets/692b7738-b4ad-45c5-b31c-d65c11bea60b" alt="녹음 2024-11-09 143520">
 </div>
 
 <br/>
