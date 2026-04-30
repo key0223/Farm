@@ -54,8 +54,12 @@ Item item  = ItemFactory.Create(1000); /* ItemID */
 - **핵심 기술** : 데이터 기반 애니메이션, 레이어 싱크
 - **설명** : 유니티 메카님의 복잡한 상태 머신 대신, JSON 데이터를 기반으로 캐릭터 파츠(몸,머리,팔 등)를 실시간 동기화하여 재생하는 커스텀 애니메이터 구현
 <div>
-    <img width="306" height="275" alt="Image" src="https://github.com/user-attachments/assets/beffd85a-2d6f-4f8b-abaa-696824b8f26a" />
-    <img width="565" height="275" alt="Image" src="https://github.com/user-attachments/assets/32f66cad-c0ba-437a-bcb2-2072ab9f95aa" />
+    <table>
+  <tr>
+    <td> <img width="306" height="275" alt="Image" src="https://github.com/user-attachments/assets/beffd85a-2d6f-4f8b-abaa-696824b8f26a" /></td>
+    <td> <img width="565" height="275" alt="Image" src="https://github.com/user-attachments/assets/32f66cad-c0ba-437a-bcb2-2072ab9f95aa" /></td>
+  </tr>
+</table>
 </div>
 
 ```csharp
